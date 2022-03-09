@@ -20,6 +20,8 @@
 
 [es module](https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/)
 
+[ES6 的解构赋值是深拷贝 or 浅拷贝?](https://mp.weixin.qq.com/s/qq90CbqQscltVwJXTY3qDw)
+
 # React
 
 [react 词汇表](https://reactjs.org/docs/glossary.html)
@@ -67,6 +69,10 @@
 # miniprogram
 
 [从源码看微信小程序启动过程](https://tech.youzan.com/weapp-booting/)
+
+# 自动化测试
+
+[用 Enzyme 测试使用 Hooks 的 React 函数组件](https://juejin.cn/post/6844904122412433422)
 
 # Grocery 杂货铺
 
