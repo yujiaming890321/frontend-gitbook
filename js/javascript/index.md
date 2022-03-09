@@ -8,8 +8,6 @@
 
 - [this](./this.md) & [原型链](./原型链与继承.md)
 
-- [new](./new.md)
-
 - [call-apply-bind](./call-apply-bind.md)
 
 - [ES6](./ES6.md)
@@ -39,3 +37,13 @@
 - [ServiceWorker](./ServiceWorker.md)
 
 - [其他题目](./其他题目.md)
+
+- [手写 new](./手写new.md)
+
+- [手写 instanceof](./手写instanceof.md)
+
+- [手写 debonce、throttle](./手写debonce、throttle.md)
+
+- [手写 Promise](./手写Promise.md)
+
+- [手写 Promise 队列](./手写Promise队列.md)
