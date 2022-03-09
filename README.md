@@ -6,7 +6,7 @@
 
 - [JavaScript](js/javascript/index.md)
 
-- [React](js/react/react.md)
+- [React](js/react/index.md)
 
 - [Vue](js/vue/vue.md)
 
