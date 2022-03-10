@@ -72,7 +72,19 @@
 
 # 自动化测试
 
+[用 Enzyme 测试使用 Hooks 的 React 函数组件](https://zhuanlan.zhihu.com/p/148233487)
+以 70%、20%、10% 的比例分别投入单元测试，集成测试和端到端测试。
+
+- 最小化单元测试，如基础类方法、utils 工具库等
+- Redux actions、reducers、effects 测试
+- React 组件测试
+- 端内测试（考虑到后端可能没有全流程的沙箱链路，所以使用 mock 数据测试）
+
 [用 Enzyme 测试使用 Hooks 的 React 函数组件](https://juejin.cn/post/6844904122412433422)
+[UI 自动化测试神器 Cypress](https://www.jianshu.com/p/55ed1d40f40f)
+
+[编写第一个 React 集成测试 en](https://frontend-digest.com/write-your-first-react-integration-test-1721a8173ade)
+[编写第一个 React 集成测试 cn](https://blog.csdn.net/weixin_26735933/article/details/109069784)
 
 # Grocery 杂货铺
 
