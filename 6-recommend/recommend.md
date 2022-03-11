@@ -36,7 +36,36 @@
 
 [Build your own React](https://pomb.us/build-your-own-react/)
 
+[eager State](https://mp.weixin.qq.com/s/zbDW3pBj-w9m59o_4SIfZA)
+
+如果状态更新前后没有变化，则可以略过剩下的步骤。这个优化策略被称为 `eagerState`。
+
+当前组件不存在更新，那么首次触发状态更新时，就能立刻计算出最新状态，进而与当前状态比较。
+
+[Demo](https://codesandbox.io/s/react-eager-state-4q8s1f)
+
+第一次点击 div，打印
+
+```
+App render 1
+child render
+```
+
+1. current 与 wip 同时标记更新，render 后 wip 的「更新标记」清除。（current 有，wip 无）
+2. 完成渲染后 current proess 与 wip 交换位置。（current 无，wip 有）
+   第二次点击 div，打印
+
+```
+App render 1
+```
+
+第二次点击 div 时，由于 wip 存在更新标记，没有命中 eagerState 3. render 后 wip 的「更新标记」清除。 （current 无，wip 无）
+
+如果组件的子孙节点没有状态变化，可以跳过子孙组件的 render。这个优化策略被称为 `bailout`
+
 [使用 React-DnD 打造简易低代码平台](https://mp.weixin.qq.com/s/F-kUdzg7ZAKUqANd8wH6KA)
+
+[在 Vscode 里调试 React](https://mp.weixin.qq.com/s/4GZ6eB_h3ELp8qhLw8vowQ)
 
 # Vue
 
