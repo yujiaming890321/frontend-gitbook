@@ -1,3 +1,16 @@
 {
-  "plugins": ["summary"]
+  "title": "Frontend-gitbook",
+  "description": "前端个人知识小书",
+  "plugins": [
+    "summary",
+    "github",
+    "codeblock-disable-glossary",
+    "collapsible-menu",
+    "anchors"
+  ],
+  "pluginsConfig": {
+    "github": {
+      "url": "https://github.com/yujiaming890321/frontend-gitbook/"
+    }
+  }
 }

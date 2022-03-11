@@ -11,7 +11,12 @@
   "author": "https://github.com/yujiaming890321",
   "license": "MIT",
   "dependencies": {
-    "gitbook-plugin-summary": "^1.1.0"
+    "prettier": "2.2.1",
+    "gitbook-plugin-summary": "^1.1.0",
+    "gitbook-plugin-anchors": "^0.7.1",
+    "gitbook-plugin-codeblock-disable-glossary": "0.0.1",
+    "gitbook-plugin-collapsible-menu": "^1.0.3",
+    "gitbook-plugin-github": "^2.0.0"
   },
   "devDependencies": {
     "husky": "^4.2.3",
