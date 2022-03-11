@@ -1,6 +1,6 @@
 {
   "title": "Frontend-gitbook",
-  "description": "前端个人知识小书",
+  "description": "前端个人知识总结",
   "plugins": [
     "summary",
     "github",
