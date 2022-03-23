@@ -882,41 +882,8 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x521D;&#x59CB;&#x5316;"><a name="&#x521D;&#x59CB;&#x5316;" class="plugin-anchor" href="#&#x521D;&#x59CB;&#x5316;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521D;&#x59CB;&#x5316;</h1>
-<p>&#x8FD4;&#x56DE; create &#x65B9;&#x6CD5;&#x6267;&#x884C;&#x540E;&#x7684;&#x7ED3;&#x679C;</p>
-<pre><code>function mountMemo&lt;T&gt;(
-  nextCreate: () =&gt; T,
-  deps: Array&lt;mixed&gt; | void | null,
-): T {
-  const hook = mountWorkInProgressHook();
-  const nextDeps = deps === undefined ? null : deps;
-  const nextValue = nextCreate();
-  hook.memoizedState = [nextValue, nextDeps];
-  return nextValue;
-}
-</code></pre><h1 id="&#x66F4;&#x65B0;"><a name="&#x66F4;&#x65B0;" class="plugin-anchor" href="#&#x66F4;&#x65B0;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x66F4;&#x65B0;</h1>
-<p>&#x5BF9; deps &#x8FDB;&#x884C;&#x6F5C;&#x6BD4;&#x8F83;&#xFF0C;&#x76F8;&#x7B49;&#x8FD4;&#x56DE;&#x4E4B;&#x524D;&#x7F13;&#x5B58;&#x7ED3;&#x679C;</p>
-<pre><code>function updateMemo&lt;T&gt;(
-  nextCreate: () =&gt; T,
-  deps: Array&lt;mixed&gt; | void | null,
-): T {
-  const hook = updateWorkInProgressHook();
-  const nextDeps = deps === undefined ? null : deps;
-  const prevState = hook.memoizedState;
-  if (prevState !== null) {
-    // Assume these are defined. If they&apos;re not, areHookInputsEqual will warn.
-    if (nextDeps !== null) {
-      const prevDeps: Array&lt;mixed&gt; | null = prevState[1];
-      if (areHookInputsEqual(nextDeps, prevDeps)) {
-        return prevState[0];
-      }
-    }
-  }
-  const nextValue = nextCreate();
-  hook.memoizedState = [nextValue, nextDeps];
-  return nextValue;
-}
-</code></pre>
+                                <h1 id="memo"><a name="memo" class="plugin-anchor" href="#memo"><i class="fa fa-link" aria-hidden="true"></i></a>Memo</h1>
+
                                 
                                 </section>
                             
@@ -959,7 +926,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Memo","level":"2.1.3","depth":2,"next":{"title":"UseCallback","level":"2.1.4","depth":2,"path":"2-react/react/4-useCallback.md","ref":"2-react/react/4-useCallback.md","articles":[]},"previous":{"title":"UseRef","level":"2.1.2","depth":2,"path":"2-react/react/2-useRef.md","ref":"2-react/react/2-useRef.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"2-react/react/3-memo.md","mtime":"2022-03-18T06:00:37.472Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-03-18T06:01:14.407Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Memo","level":"2.1.3","depth":2,"next":{"title":"UseCallback","level":"2.1.4","depth":2,"path":"2-react/react/4-useCallback.md","ref":"2-react/react/4-useCallback.md","articles":[]},"previous":{"title":"UseRef","level":"2.1.2","depth":2,"path":"2-react/react/2-useRef.md","ref":"2-react/react/2-useRef.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"2-react/react/3-memo.md","mtime":"2022-03-23T10:40:15.914Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-03-23T10:40:26.538Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
