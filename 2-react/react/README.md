@@ -1,8 +1,10 @@
 # 目录
 
-- [useRef](./useRef.md) & [useCallback](./useCallback.md) & [memo](./memo.md)
+- [useRef](./useRef.md) & [useCallback](./useCallback.md) & [useMemo](./useMemo.md) & [memo](./memo.md)
 
-useRef 创建缓存对象，useCallback 创建缓存方法，memo 创建方法的结果
+useRef 创建缓存对象，useCallback 创建缓存方法，useMemo 创建缓存方法的结果
+
+memo 缓存组件，对组件进行 props 潜比较
 
 - [useEffect](./useEffect.md) & [useLayoutEffect](./useLayoutEffect.md)
 

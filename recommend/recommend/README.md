@@ -101,6 +101,7 @@ App render 1
 
 # 自动化测试
 
+[2022 软件测试学习路线图](http://bbs.itheima.com/thread-405757-1-1.html)
 [用 Enzyme 测试使用 Hooks 的 React 函数组件](https://zhuanlan.zhihu.com/p/148233487)
 以 70%、20%、10% 的比例分别投入单元测试，集成测试和端到端测试。
 
