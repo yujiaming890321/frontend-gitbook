@@ -992,6 +992,25 @@
             
 
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1.1.1" >
+            
+                <span>
+            
+                    
+                    Gallery
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
         <li class="chapter " data-level="9.1.2" data-path="../../9-multi-thread/multi-thread/ServiceWorker.html">
@@ -1007,7 +1026,20 @@
             
         </li>
     
-        <li class="chapter " data-level="9.1.3" >
+        <li class="chapter " data-level="9.1.3" data-path="../../9-multi-thread/multi-thread/WebAssembly.html">
+            
+                <a href="../../9-multi-thread/multi-thread/WebAssembly.html">
+            
+                    
+                    WebAssembly
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.4" >
             
                 <span>
             
@@ -1020,7 +1052,7 @@
             
         </li>
     
-        <li class="chapter " data-level="9.1.4" data-path="../../9-multi-thread/multi-thread/WebWorker.html">
+        <li class="chapter " data-level="9.1.5" data-path="../../9-multi-thread/multi-thread/WebWorker.html">
             
                 <a href="../../9-multi-thread/multi-thread/WebWorker.html">
             
@@ -1157,6 +1189,19 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="jest-mock"><a name="jest-mock" class="plugin-anchor" href="#jest-mock"><i class="fa fa-link" aria-hidden="true"></i></a>Jest mock</h1>
+<p><a href="https://jestjs.io/docs/mock-functions" target="_blank">when to use jest.fn, jest.mock or jest.spyOn</a></p>
+<ul>
+<li>Use fn when mocking a function</li>
+<li>Use mock when mocking a module</li>
+<li>Use spyOn when you want to observe things about a real module or function</li>
+</ul>
+<p>jest.fn creates Jest spy with no implementation.
+jest.spyOn replaces a method or property accessor with Jest spy, which implementation defaults to original one and can be changed to anything, including a stub.</p>
+<pre><code>jest.spyOn(Date, &apos;now&apos;).mockImplementation(...);
+</code></pre><p>%stmts &#x662F;&#x8BED;&#x53E5;&#x8986;&#x76D6;&#x7387;&#xFF08;statement coverage&#xFF09;
+%Branch &#x903B;&#x8F91;&#x5206;&#x652F;&#x8986;&#x76D6;&#x7387;&#xFF08;branch coverage&#xFF09;
+%Funcs &#x51FD;&#x6570;&#x8986;&#x76D6;&#x7387;&#xFF08;function coverage&#xFF09;
+%Lines &#x884C;&#x8986;&#x76D6;&#x7387;&#xFF08;line coverage&#xFF09;</p>
 <h2 id="jestfnimplementation"><a name="jestfnimplementation" class="plugin-anchor" href="#jestfnimplementation"><i class="fa fa-link" aria-hidden="true"></i></a>jest.fn(implementation)</h2>
 <p><a href="https://jestjs.io/docs/jest-object" target="_blank">jest-object</a>&#x3001;<a href="https://jestjs.io/docs/mock-function-api" target="_blank">mock-function-api</a>&#x4E2D;&#x67E5;&#x627E;</p>
 <p>&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5168;&#x65B0;&#x6CA1;&#x6709;&#x4F7F;&#x7528;&#x8FC7;&#x7684; mock function&#xFF0C;&#x8FD9;&#x4E2A; function &#x5728;&#x88AB;&#x8C03;&#x7528;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x8BB0;&#x5F55;&#x5F88;&#x591A;&#x548C;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x6709;&#x5173;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x662F;&#x521B;&#x5EFA; Mock &#x51FD;&#x6570;&#x6700;&#x7B80;&#x5355;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5B9A;&#x4E49;&#x51FD;&#x6570;&#x5185;&#x90E8;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;jest.fn()&#x4F1A;&#x8FD4;&#x56DE; undefined &#x4F5C;&#x4E3A;&#x8FD4;&#x56DE;&#x503C;&#x3002;</p>
@@ -1230,7 +1275,16 @@ func.mockImplementation(() =&gt; {
 <p>&#x7528;&#x6765; mock &#x4E00;&#x4E9B;&#x6A21;&#x5757;&#x6216;&#x8005;&#x6587;&#x4EF6;</p>
 <h2 id="jestspyonobject-methodname"><a name="jestspyonobject-methodname" class="plugin-anchor" href="#jestspyonobject-methodname"><i class="fa fa-link" aria-hidden="true"></i></a>jest.spyOn(object, methodName)</h2>
 <p>&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; mock function&#xFF0C;&#x548C; jest.fn &#x76F8;&#x4F3C;&#xFF0C;&#x4F46;&#x662F;&#x80FD;&#x591F;&#x8FFD;&#x8E2A; object[methodName]&#x7684;&#x8C03;&#x7528;&#x4FE1;&#x606F;&#xFF0C;&#x7C7B;&#x4F3C; Sinon</p>
-
+<h2 id="expectobjectcontainingobject"><a name="expectobjectcontainingobject" class="plugin-anchor" href="#expectobjectcontainingobject"><i class="fa fa-link" aria-hidden="true"></i></a><a href="https://jestjs.io/zh-Hans/docs/expect#expectobjectcontainingobject" target="_blank">expect.objectContaining(object)</a></h2>
+<p>&#x9884;&#x671F;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; object &#x683C;&#x5F0F;&#x7684;&#x5BF9;&#x8C61;</p>
+<pre><code> expect(onPress).toEqual(
+    // { x: number, y: number }
+    expect.objectContaining({
+      x: expect.any(Number),
+      y: expect.any(Number),
+    }),
+  );
+</code></pre>
                                 
                                 </section>
                             
@@ -1273,7 +1327,7 @@ func.mockImplementation(() =&gt; {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Jest","level":"8.1.2","depth":2,"next":{"title":"Sinon","level":"8.1.3","depth":2,"path":"8-testing/test/Sinon.md","ref":"8-testing/test/Sinon.md","articles":[]},"previous":{"title":"Enzyme","level":"8.1.1","depth":2,"path":"8-testing/test/Enzyme.md","ref":"8-testing/test/Enzyme.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"8-testing/test/Jest.md","mtime":"2022-03-24T01:41:53.485Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-03-24T01:42:36.011Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Jest","level":"8.1.2","depth":2,"next":{"title":"Sinon","level":"8.1.3","depth":2,"path":"8-testing/test/Sinon.md","ref":"8-testing/test/Sinon.md","articles":[]},"previous":{"title":"Enzyme","level":"8.1.1","depth":2,"path":"8-testing/test/Enzyme.md","ref":"8-testing/test/Enzyme.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"8-testing/test/Jest.md","mtime":"2022-03-28T09:30:25.360Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-03-28T09:31:14.404Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
