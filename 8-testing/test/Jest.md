@@ -1,5 +1,23 @@
 # Jest mock
 
+[when to use jest.fn, jest.mock or jest.spyOn](https://jestjs.io/docs/mock-functions)
+
+- Use fn when mocking a function
+- Use mock when mocking a module
+- Use spyOn when you want to observe things about a real module or function
+
+jest.fn creates Jest spy with no implementation.
+jest.spyOn replaces a method or property accessor with Jest spy, which implementation defaults to original one and can be changed to anything, including a stub.
+
+```
+jest.spyOn(Date, 'now').mockImplementation(...);
+```
+
+%stmts 是语句覆盖率（statement coverage）
+%Branch 逻辑分支覆盖率（branch coverage）
+%Funcs 函数覆盖率（function coverage）
+%Lines 行覆盖率（line coverage）
+
 ## jest.fn(implementation)
 
 [jest-object](https://jestjs.io/docs/jest-object)、[mock-function-api](https://jestjs.io/docs/mock-function-api)中查找
@@ -98,3 +116,17 @@ func.mockImplementation(() => {
 ## jest.spyOn(object, methodName)
 
 返回一个 mock function，和 jest.fn 相似，但是能够追踪 object[methodName]的调用信息，类似 Sinon
+
+## [expect.objectContaining(object)](https://jestjs.io/zh-Hans/docs/expect#expectobjectcontainingobject)
+
+预期返回一个 object 格式的对象
+
+```
+ expect(onPress).toEqual(
+    // { x: number, y: number }
+    expect.objectContaining({
+      x: expect.any(Number),
+      y: expect.any(Number),
+    }),
+  );
+```

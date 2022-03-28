@@ -21,3 +21,5 @@ useEffect & useLayoutEffect 底层调用方法一样，useLayoutEffect 执行优
 - [Thunk](./thunk.md)
 
 - [Saga](./saga.md)
+
+- [react-intl 国际化](https://formatjs.io/docs/getting-started/installation/)

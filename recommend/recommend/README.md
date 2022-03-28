@@ -63,9 +63,21 @@ App render 1
 
 如果组件的子孙节点没有状态变化，可以跳过子孙组件的 render。这个优化策略被称为 `bailout`
 
+[Dva](https://dvajs.com/)
+
+[Umi](https://umijs.org/zh-CN)
+
+[应用 connected-react-router 和 redux-thunk 打通 react 路由孤立](https://blog.csdn.net/qq_37648307/article/details/106456549)
+
 [使用 React-DnD 打造简易低代码平台](https://mp.weixin.qq.com/s/F-kUdzg7ZAKUqANd8wH6KA)
 
+[拖拽组件：React-DnD 用法及源码解析](https://juejin.cn/post/6885511137236877325#heading-9)
+
 [在 Vscode 里调试 React](https://mp.weixin.qq.com/s/4GZ6eB_h3ELp8qhLw8vowQ)
+
+# Taro
+
+[Taro 源码阅读](https://github.com/a1029563229/blogs/tree/master/Source-Code/taro)
 
 # Vue
 
@@ -89,7 +101,7 @@ App render 1
 
 [屏蔽自动编码器](https://github.com/facebookresearch/mae)
 
-# Rust
+# [Rust](https://kaisery.github.io/trpl-zh-cn/ch01-01-installation.html)
 
 [使用 Rust 编写更快的 React 组件](https://mp.weixin.qq.com/s/ATOySeIPWJCf9dmoxMQUIw)
 

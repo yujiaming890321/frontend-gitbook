@@ -1,6 +1,19 @@
-### fireEvent、userEvent
+### [waitFor](https://codesandbox.io/embed/7m3m792o4q?autoresize=1&fontsize=14&module=%2Fsrc%2FComponent.test.js&previewwindow=tests)
 
-fireEvent.click() 只会发出 onClick 而 userEvent.click() 会发出所有类型的事件
+```
+import { waitFor } from '@testing-library/react'
+```
+
+### fireEvent
+
+import { fireEvent } from '@testing-library/react'
+
+fireEvent.click() 只会发出 onClick
+fireEvent.scroll() 触发 scroll
+
+```
+fireEvent (node: htmlElement, event: Event)
+```
 
 [fireEvent 源码](https://github.com/testing-library/react-testing-library/blob/v12.1.4/src/fire-event.js)
 
@@ -18,6 +31,10 @@ React 事件系统跟踪运行 onMouseCenter/onMouseLeave 处理程序的本机 
 
 @link https://github.com/facebook/react/blob/b87aabdfe1b7461e7331abb3601d9e6bb27544bc/packages/react-dom/src/events/EnterLeaveEventPlugin.js#L24-L31
 
+### userEvent
+
+userEvent.click() 会发出所有类型的事件
+
 [userEvent 源码](https://github.com/testing-library/user-event/blob/v13.5.0/src/click.ts)
 
 function clickLabel
@@ -25,3 +42,19 @@ function clickLabel
 > clicking the label will trigger a click of the label.control however, it will not focus the label.control so we have to do it ourselves.
 
 点击标签会触发点击`label.control`，但不会聚焦`label.control`，所以我们必须自己做。
+
+## 快照测试
+
+```
+import React from 'react'
+import {render, cleanup} from '@testing-library/react'
+import App from '../App'
+
+ afterEach(cleanup)
+
+ it('should take a snapshot', () => {
+    const { asFragment } = render(<App />)
+
+    expect(asFragment()).toMatchSnapshot()
+})
+```

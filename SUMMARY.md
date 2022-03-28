@@ -91,7 +91,9 @@
 - [Multi Thread](9-multi-thread/multi-thread/README.md)
 
   - [ServiceWorker Demo]()
+    - [Gallery]()
   - [ServiceWorker](9-multi-thread/multi-thread/ServiceWorker.md)
+  - [WebAssembly](9-multi-thread/multi-thread/WebAssembly.md)
   - [WebWorker Demo]()
   - [WebWorker](9-multi-thread/multi-thread/WebWorker.md)
 
