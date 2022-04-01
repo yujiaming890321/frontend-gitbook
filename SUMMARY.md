@@ -20,6 +20,7 @@
   - [7.事件队列](1-javascript/javascript/2-7.事件队列.md)
   - [8.事件](1-javascript/javascript/2-8.事件.md)
   - [9.Node 事件轮询](1-javascript/javascript/2-9.node事件轮询.md)
+  - [SSR](1-javascript/javascript/SSR.md)
   - [ServiceWorker](1-javascript/javascript/ServiceWorker.md)
   - [事件轮询机制](1-javascript/javascript/事件轮询机制.md)
   - [其他题目](1-javascript/javascript/其他题目.md)
@@ -51,6 +52,10 @@
 
 - [Vue](3-vue/vue/README.md)
 
+  - [Vue Router](3-vue/vue/Vue-router.md)
+  - [Vue Icon](3-vue/vue/vue-icon.md)
+  - [Vue Server Renderer](3-vue/vue/vue-server-renderer.md)
+
 ## 浏览器
 
 - [浏览器](4-浏览器/浏览器/README.md)
@@ -59,6 +64,7 @@
   - [协商缓存](4-浏览器/浏览器/协商缓存.md)
   - [强制缓存](4-浏览器/浏览器/强制缓存.md)
   - [跨域](4-浏览器/浏览器/跨域.md)
+  - [重排&重绘](4-浏览器/浏览器/重排&重绘.md)
 
 ## Css
 

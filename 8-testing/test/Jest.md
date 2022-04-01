@@ -130,3 +130,11 @@ func.mockImplementation(() => {
     }),
   );
 ```
+
+## [test.each(table)(name, fn, timeout)](https://jestjs.io/docs/api#testeachtablename-fn-timeout)
+
+多个测试用例一起测
+
+## [jest.doMock(moduleName, factory, options)](https://jestjs.io/docs/jest-object#jestdomockmodulename-factory-options)
+
+避免 mock 提升

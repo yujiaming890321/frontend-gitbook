@@ -33,6 +33,8 @@ React 事件系统跟踪运行 onMouseCenter/onMouseLeave 处理程序的本机 
 
 ### userEvent
 
+[difference-to-fireevent](https://testing-library.com/docs/user-event/intro#difference-to-fireevent)
+
 userEvent.click() 会发出所有类型的事件
 
 [userEvent 源码](https://github.com/testing-library/user-event/blob/v13.5.0/src/click.ts)
@@ -58,3 +60,11 @@ import App from '../App'
     expect(asFragment()).toMatchSnapshot()
 })
 ```
+
+## [hooks](https://github.com/testing-library/react-hooks-testing-library)
+
+```
+import { renderHook, act } from '@testing-library/react-hooks'
+```
+
+## [Mock Service Worker](https://github.com/mswjs/msw)
