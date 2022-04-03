@@ -1259,8 +1259,38 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="webpack-&#x5E38;&#x7528;&#x63D2;&#x4EF6;"><a name="webpack-&#x5E38;&#x7528;&#x63D2;&#x4EF6;" class="plugin-anchor" href="#webpack-&#x5E38;&#x7528;&#x63D2;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>webpack &#x5E38;&#x7528;&#x63D2;&#x4EF6;</h1>
-<h2 id="commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;"><a name="commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;" class="plugin-anchor" href="#commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>CommonsChunkPlugin&#xFF08;webpack 4 removed&#xFF09;</h2>
+                                <h1 id="webpack-&#x5E38;&#x7528;&#x914D;&#x7F6E;"><a name="webpack-&#x5E38;&#x7528;&#x914D;&#x7F6E;" class="plugin-anchor" href="#webpack-&#x5E38;&#x7528;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>webpack &#x5E38;&#x7528;&#x914D;&#x7F6E;</h1>
+<h3 id="&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;"><a name="&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;" class="plugin-anchor" href="#&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;</h3>
+<p>&#x6587;&#x4EF6;&#x540D;&#x4F7F;&#x7528;<code>&#x6D88;&#x606F;&#x6458;&#x8981;&#x7B97;&#x6CD5;</code></p>
+<pre><code>output: {
+    filename: &apos;bundle.[name][hash:8].js&apos;,
+    publicPath,
+}
+</code></pre><h3 id="htmlwebpackplugin-cdn&#x914D;&#x7F6E;"><a name="htmlwebpackplugin-cdn&#x914D;&#x7F6E;" class="plugin-anchor" href="#htmlwebpackplugin-cdn&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>HtmlWebpackPlugin CDN&#x914D;&#x7F6E;</h3>
+<p>HtmlWebpackPlugin &#x4FEE;&#x6539;&#x4E3A; cdn &#x8DEF;&#x5F84;</p>
+<pre><code>// webpack.config.js
+const CDN_HOST = process.env.CDN_HOST;// CDN &#x57DF;&#x540D;
+const CDN_PATH = process.env.CDN_PATH; // CDN &#x8DEF;&#x5F84;
+const ENV = process.env.ENV; // &#x5F53;&#x524D;&#x7684;&#x73AF;&#x5883;&#x7B49;&#x7B49;
+const VERSION = process.env.VERSION; // &#x5F53;&#x524D;&#x53D1;&#x5E03;&#x7684;&#x7248;&#x672C;
+
+const getPublicPath = () =&gt; {
+    // Some code here
+    return `${CDN_HOST}/${CDN_PATH}/${ENV}/`;// &#x4F9D;&#x636E; ENV &#x7B49;&#x52A8;&#x6001;&#x6784;&#x9020; publicPath
+}
+
+const publicPath = process.env.NODE_ENV === &apos;production&apos; ? getPublicPath() : &apos;.&apos;;
+
+module.exports = {
+    output: {
+        filename: &apos;bundle.[name][hash:8].js&apos;,
+        publicPath,
+    },
+    plugins: [
+        new HtmlWebpackPlugin()
+    ]
+}
+</code></pre><h3 id="commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;"><a name="commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;" class="plugin-anchor" href="#commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>CommonsChunkPlugin&#xFF08;webpack 4 removed&#xFF09;</h3>
 <p>&#x8D1F;&#x8D23;&#x5C06;&#x591A;&#x6B21;&#x88AB;&#x4F7F;&#x7528;&#x7684; JS &#x6A21;&#x5757;&#x6253;&#x5305;&#x5728;&#x4E00;&#x8D77;</p>
 <ul>
 <li>&#x4F20;&#x5165;&#x5B57;&#x7B26;&#x4E32;&#x53C2;&#x6570;</li>
@@ -1282,8 +1312,7 @@ new webpack.optimize.CommonsChunkPlugin({
   name:&apos;common&apos;, // &#x6CE8;&#x610F;&#x4E0D;&#x8981;.js&#x540E;&#x7F00;
   chunks:[&apos;main&apos;,&apos;user&apos;,&apos;index&apos;]
 }),
-</code></pre><h1 id="webpack-&#x63D2;&#x4EF6;"><a name="webpack-&#x63D2;&#x4EF6;" class="plugin-anchor" href="#webpack-&#x63D2;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>webpack &#x63D2;&#x4EF6;</h1>
-<h3 id="defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;"><a name="defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;" class="plugin-anchor" href="#defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a>DefinePlugin &#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;</h3>
+</code></pre><h3 id="defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;"><a name="defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;" class="plugin-anchor" href="#defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a>DefinePlugin &#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;</h3>
 <pre><code>new webpack.DefinePlugin({
     NAME1: JSON.stringify(process.env.NAME1),
     NAME2: JSON.stringify(process.env.NAME2)
@@ -1365,7 +1394,7 @@ context
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Webpack","level":"6.1.1","depth":2,"next":{"title":"Package","level":"7.1","depth":1,"path":"7-package/package/README.md","ref":"7-package/package/README.md","articles":[{"title":"Node Sass","level":"7.1.1","depth":2,"path":"7-package/package/node_sass.md","ref":"7-package/package/node_sass.md","articles":[]},{"title":"Package Builder","level":"7.1.2","depth":2,"path":"7-package/package/package-builder.md","ref":"7-package/package/package-builder.md","articles":[]},{"title":"Package Env","level":"7.1.3","depth":2,"path":"7-package/package/package-env.md","ref":"7-package/package/package-env.md","articles":[]},{"title":"Package File","level":"7.1.4","depth":2,"path":"7-package/package/package-file.md","ref":"7-package/package/package-file.md","articles":[]}]},"previous":{"title":"Build Tools","level":"6.1","depth":1,"path":"6-build-tools/build-tools/README.md","ref":"6-build-tools/build-tools/README.md","articles":[{"title":"Webpack","level":"6.1.1","depth":2,"path":"6-build-tools/build-tools/webpack.md","ref":"6-build-tools/build-tools/webpack.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"6-build-tools/build-tools/webpack.md","mtime":"2022-04-03T03:02:54.627Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-03T03:03:31.641Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Webpack","level":"6.1.1","depth":2,"next":{"title":"Package","level":"7.1","depth":1,"path":"7-package/package/README.md","ref":"7-package/package/README.md","articles":[{"title":"Node Sass","level":"7.1.1","depth":2,"path":"7-package/package/node_sass.md","ref":"7-package/package/node_sass.md","articles":[]},{"title":"Package Builder","level":"7.1.2","depth":2,"path":"7-package/package/package-builder.md","ref":"7-package/package/package-builder.md","articles":[]},{"title":"Package Env","level":"7.1.3","depth":2,"path":"7-package/package/package-env.md","ref":"7-package/package/package-env.md","articles":[]},{"title":"Package File","level":"7.1.4","depth":2,"path":"7-package/package/package-file.md","ref":"7-package/package/package-file.md","articles":[]}]},"previous":{"title":"Build Tools","level":"6.1","depth":1,"path":"6-build-tools/build-tools/README.md","ref":"6-build-tools/build-tools/README.md","articles":[{"title":"Webpack","level":"6.1.1","depth":2,"path":"6-build-tools/build-tools/webpack.md","ref":"6-build-tools/build-tools/webpack.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"6-build-tools/build-tools/webpack.md","mtime":"2022-04-03T03:25:56.589Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-03T03:26:32.913Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
