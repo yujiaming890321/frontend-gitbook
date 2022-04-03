@@ -1,6 +1,42 @@
-# webpack 常用插件
+# webpack 常用配置
 
-## CommonsChunkPlugin（webpack 4 removed）
+### 静态资源使用强缓存
+文件名使用`消息摘要算法`
+```
+output: {
+    filename: 'bundle.[name][hash:8].js',
+    publicPath,
+}
+```
+
+### HtmlWebpackPlugin CDN配置
+HtmlWebpackPlugin 修改为 cdn 路径
+```
+// webpack.config.js
+const CDN_HOST = process.env.CDN_HOST;// CDN 域名
+const CDN_PATH = process.env.CDN_PATH; // CDN 路径
+const ENV = process.env.ENV; // 当前的环境等等
+const VERSION = process.env.VERSION; // 当前发布的版本
+
+const getPublicPath = () => {
+    // Some code here
+    return `${CDN_HOST}/${CDN_PATH}/${ENV}/`;// 依据 ENV 等动态构造 publicPath
+}
+
+const publicPath = process.env.NODE_ENV === 'production' ? getPublicPath() : '.';
+
+module.exports = {
+    output: {
+        filename: 'bundle.[name][hash:8].js',
+        publicPath,
+    },
+    plugins: [
+        new HtmlWebpackPlugin()
+    ]
+}
+```
+
+### CommonsChunkPlugin（webpack 4 removed）
 
 负责将多次被使用的 JS 模块打包在一起
 
@@ -29,8 +65,6 @@ new webpack.optimize.CommonsChunkPlugin({
   chunks:['main','user','index']
 }),
 ```
-
-# webpack 插件
 
 ### DefinePlugin 定义全局变量
 
