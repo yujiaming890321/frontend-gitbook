@@ -21,7 +21,6 @@
   - [8.事件](1-javascript/javascript/2-8.事件.md)
   - [9.Node 事件轮询](1-javascript/javascript/2-9.node事件轮询.md)
   - [SSR](1-javascript/javascript/SSR.md)
-  - [ServiceWorker](1-javascript/javascript/ServiceWorker.md)
   - [事件轮询机制](1-javascript/javascript/事件轮询机制.md)
   - [其他题目](1-javascript/javascript/其他题目.md)
   - [函数](1-javascript/javascript/函数.md)
@@ -44,6 +43,7 @@
   - [UseLayoutEffect](2-react/react/6-useLayoutEffect.md)
   - [Memo](2-react/react/7-memo.md)
   - [Immer](2-react/react/immer.md)
+  - [React 18 Upgrade](2-react/react/react-18-upgrade.md)
   - [Redux](2-react/react/redux.md)
   - [Saga](2-react/react/saga.md)
   - [Thunk](2-react/react/thunk.md)
@@ -72,6 +72,8 @@
 
 - [Build Tools](6-build-tools/build-tools/README.md)
 
+  - [Docker](6-build-tools/build-tools/docker.md)
+  - [Jenkins](6-build-tools/build-tools/jenkins.md)
   - [Webpack](6-build-tools/build-tools/webpack.md)
 
 ## Package
@@ -106,6 +108,8 @@
 ## Recommend
 
 - [Recommend](recommend/recommend/README.md)
+
+- [Team](team/README.md)
 
 ## Web Tools
 

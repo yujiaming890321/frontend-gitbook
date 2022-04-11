@@ -2,7 +2,7 @@
 
 - [useRef](./useRef.md) & [useCallback](./useCallback.md) & [useMemo](./useMemo.md) & [memo](./memo.md)
 
-useRef 创建缓存对象，useCallback 创建缓存方法，useMemo 创建缓存方法的结果
+useRef 创建缓存对象，useCallback 创建缓存方法，useMemo 创建缓存方法的结果（=vue computed）
 
 memo 缓存组件，对组件进行 props 潜比较
 

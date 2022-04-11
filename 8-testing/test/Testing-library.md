@@ -68,3 +68,48 @@ import { renderHook, act } from '@testing-library/react-hooks'
 ```
 
 ## [Mock Service Worker](https://github.com/mswjs/msw)
+
+## redux mock
+
+```
+import React from 'react'
+import { render, screen } from '@testing-library/react'
+import configureStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
+import Container from '../index'
+
+// 定义初始化数据
+const initState = {
+	login: {
+		Role: 1, // 1工人 2司机
+	},
+}
+
+// store 数据模拟
+const mockStore = configureStore([])
+const store = mockStore(initState)
+
+jest.mock('../../cpsShoppingMall', () => {
+	return () => {
+		return 'cpsShoppingMall'
+	}
+})
+
+jest.mock('../../cpsShoppingMallDriverOccupancy', () => {
+	return () => {
+		return 'cpsShoppingMallDriverOccupancy'
+	}
+})
+
+describe('模拟redux', () => {
+	test('验证工人身份，渲染组件', () => {
+		render(
+			<Provider store={store}>
+				<Container />
+			</Provider>
+		)
+		expect(screen.getAllByText('cpsShoppingMall')).toHaveLength(1)
+	})
+})
+
+```

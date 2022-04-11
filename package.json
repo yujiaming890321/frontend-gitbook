@@ -4,7 +4,7 @@
   "private": true,
   "description": "前端知识小书",
   "scripts": {
-    "start": "gitbook serve",
+    "start": "gitbook build && gitbook serve",
     "start:debug": "gitbook serve --log=debug",
     "build": "gitbook build"
   },
