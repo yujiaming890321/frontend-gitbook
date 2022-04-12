@@ -974,6 +974,19 @@
             
         </li>
     
+        <li class="chapter " data-level="7.1.5" data-path="vscode-plugin.html">
+            
+                <a href="vscode-plugin.html">
+            
+                    
+                    Vscode Plugin
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -1354,116 +1367,6 @@ module.exports = {
         &apos;subject-case&apos;: [0, &apos;never&apos;],
     },
 }
-</code></pre><h3 id="&#x672A;&#x6574;&#x7406;"><a name="&#x672A;&#x6574;&#x7406;" class="plugin-anchor" href="#&#x672A;&#x6574;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x672A;&#x6574;&#x7406;</h3>
-<pre><code>&quot;dependencies&quot;: {
-    &quot;@babel/plugin-proposal-optional-chaining&quot;: &quot;^7.11.0&quot;, // &#x5C06;&#x53EF;&#x9009;&#x7684;&#x94FE;&#x5F0F;&#x8FD0;&#x7B97;&#x7B26;&#x8F6C;&#x6362;&#x4E3A;&#x4E00;&#x7CFB;&#x5217;&#x7684;nil&#x68C0;&#x67E5;
-    &quot;@better-scroll/core&quot;: &quot;^2.1.1&quot;, // &#x6781;&#x7B80;&#x4E3B;&#x4E49; for BetterScroll
-    &quot;@jdcfe/yep-gesture&quot;: &quot;^0.0.3&quot;, // react &#x624B;&#x52BF; component
-    &quot;@rematch/core&quot;: &quot;^1.2.0&quot;, // A Redux Framework
-    &quot;@types/better-scroll&quot;: &quot;^1.12.3&quot;,
-    &quot;@types/classnames&quot;: &quot;^2.2.9&quot;,
-    &quot;@types/jest&quot;: &quot;24.0.23&quot;,
-    &quot;@types/lodash&quot;: &quot;^4.14.168&quot;,
-    &quot;@types/node&quot;: &quot;12.12.7&quot;,
-    &quot;@types/raf&quot;: &quot;^3.4.0&quot;,
-    &quot;@types/ramda&quot;: &quot;^0.27.4&quot;,
-    &quot;@types/react&quot;: &quot;16.9.11&quot;,
-    &quot;@types/react-dom&quot;: &quot;16.9.4&quot;,
-    &quot;@types/react-helmet&quot;: &quot;^5.0.14&quot;,
-    &quot;@types/react-redux&quot;: &quot;^7.1.5&quot;,
-    &quot;@types/react-router-dom&quot;: &quot;^5.1.3&quot;,
-    &quot;@types/react-transition-group&quot;: &quot;^4.2.3&quot;,
-    &quot;@types/smoothscroll-polyfill&quot;: &quot;^0.3.1&quot;,
-    &quot;@types/swiper&quot;: &quot;^5.4.1&quot;,
-    &quot;@types/video.js&quot;: &quot;^7.3.11&quot;,
-    &quot;add&quot;: &quot;^2.0.6&quot;, // &#x8DE8;&#x6D4F;&#x89C8;&#x5668;&#xFF0C;&#x6570;&#x503C;&#x7A33;&#x5B9A;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x4EE5;&#x6DFB;&#x52A0;&#x6D6E;&#x70B9;&#x6570;&#x51C6;&#x786E;
-    &quot;antd-mobile&quot;: &quot;^2.3.3&quot;, // antd-mobile
-    &quot;babel-plugin-import&quot;: &quot;^1.12.2&quot;, // Component modular import plugin for babel
-    &quot;classnames&quot;: &quot;^2.2.6&quot;, // &#x6761;&#x4EF6;&#x5730;&#x5C06;classname&#x8FDE;&#x63A5;&#x5728;&#x4E00;&#x8D77;
-    &quot;es6-promise&quot;: &quot;^4.2.8&quot;, // This is a polyfill of the ES6 Promise
-    &quot;fetch-detector&quot;: &quot;^1.0.1&quot;, // &#x672C;&#x5E93;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x53EA;&#x5728; Chrome &gt;= 46&#xFF0C;Firefox &gt;= 39 &#x65F6;&#x624D;&#x5F00;&#x542F;&#x539F;&#x751F; Fetch&#xFF0C;&#x5426;&#x5219;&#x4F7F;&#x7528; XHR polyfill&#x3002; &#x4E00;&#x5B9A;&#x8981;&#x4E0E; fetch-ie8 &#x4E00;&#x8D77;&#x4F7F;&#x7528;&#xFF0C; &#x5E76;&#x4E14;&#x653E;&#x5230; fetch-ie8 &#x524D;&#x5F15;&#x7528;&#x3002;
-    &quot;fetch-ie8&quot;: &quot;^1.5.0&quot;, // This fork supports IE8 with es5-shim, es5-sham and es6-promise.
-    &quot;fetch-jsonp&quot;: &quot;^1.1.3&quot;, // JSONP is NOT supported in standard Fetch API
-    &quot;postcss-aspect-ratio-mini&quot;: &quot;^1.0.1&quot;, //&#x57FA;&#x4E8E; PostCSS &#x751F;&#x6001;&#x7CFB;&#x7EDF;&#xFF0C;&#x5C06;&#x5143;&#x7D20;&#x7684;&#x5C3A;&#x5BF8;&#x56FA;&#x5B9A;&#x4E3A;&#x7EB5;&#x6A2A;&#x6BD4;
-    &quot;postcss-write-svg&quot;: &quot;^3.0.1&quot;, // &#x57FA;&#x4E8E; PostCSS &#x751F;&#x6001;&#x7CFB;&#x7EDF; css &#x4E2D;&#x7F16;&#x5199; svg
-    &quot;raf&quot;: &quot;^3.4.1&quot;, // requestAnimationFrame polyfill for node and the browser.
-    &quot;ramda&quot;: &quot;^0.26.1&quot;, // &#x51FD;&#x6570;&#x5E93;
-    &quot;react&quot;: &quot;^16.12.0&quot;, // react
-    &quot;react-copy-to-clipboard&quot;: &quot;^5.0.2&quot;, // Copy to clipboard React component
-    &quot;react-dom&quot;: &quot;^16.12.0&quot;, // &#x8FD9;&#x4E2A;&#x5305;&#x4F5C;&#x4E3A;React&#x7684;DOM&#x548C;&#x670D;&#x52A1;&#x5668;&#x5448;&#x73B0;&#x5668;&#x7684;&#x5165;&#x53E3;&#x70B9;&#x3002;
-    &quot;react-helmet&quot;: &quot;^5.2.1&quot;, // React component will manage all of document head.
-    &quot;react-redux&quot;: &quot;^7.1.3&quot;, // React bindings for Redux
-    &quot;react-router-dom&quot;: &quot;^5.1.2&quot;, // DOM bindings for React Router
-    &quot;react-scripts&quot;: &quot;3.2.0&quot;, // This package includes scripts and configuration used by CRA.
-    &quot;redux&quot;: &quot;^4.0.4&quot;, // redux
-    &quot;rmc-pull-to-refresh&quot;: &quot;^1.0.13&quot;, // React Mobile PullToRefresh Component.
-    &quot;smoothscroll-polyfill&quot;: &quot;^0.4.4&quot;, // The scroll-behavior CSS property polyfill
-    &quot;swiper&quot;: &quot;^6.4.5&quot;, // Swiper
-    &quot;ts-jest&quot;: &quot;^26.1.2&quot;, // lets you use Jest to test projects written in TypeScript.
-    &quot;typescript&quot;: &quot;3.7.2&quot;, // ts
-    &quot;typescript-estree&quot;: &quot;^18.1.0&quot;, // deprecated&#xFF0C;&#x5C06;TypeScript&#x6E90;&#x4EE3;&#x7801;&#x8F6C;&#x6362;&#x4E3A;ESTree&#x517C;&#x5BB9;&#x683C;&#x5F0F;&#x7684;&#x89E3;&#x6790;&#x5668; This package was moved to @typescript-eslint/typescript-estree, please install the latest version from there instead
-    &quot;video.js&quot;: &quot;^7.10.2&quot;, // HTML5 Video Player
-    &quot;whatwg-fetch&quot;: &quot;^3.0.0&quot;, // window.fetch polyfill
-    &quot;yarn&quot;: &quot;^1.19.1&quot;
-  },
-  &quot;devDependencies&quot;: {
-    &quot;@commitlint/cli&quot;: &quot;^8.2.0&quot;, //&#x4EE3;&#x7801;&#x68C0;&#x6D4B;
-    &quot;@commitlint/config-conventional&quot;: &quot;^8.2.0&quot;, //&#x4EE3;&#x7801;&#x68C0;&#x6D4B;
-    &quot;husky&quot;: &quot;^3.1.0&quot;, // &#x4EE3;&#x7801;&#x68C0;&#x6D4B;
-    &quot;lint-staged&quot;: &quot;^9.4.3&quot;, // git &#x94A9;&#x5B50;
-    &quot;prettier&quot;: &quot;^1.19.1&quot;, // &#x4EE3;&#x7801;&#x7F8E;&#x5316;&#x5DE5;&#x5177;
-
-
-    &quot;@types/enzyme&quot;: &quot;^3.10.5&quot;,  // react js &#x6D4B;&#x8BD5;&#x5DE5;&#x5177;
-    &quot;enzyme&quot;: &quot;3.10.0&quot;, // react &#x7EC4;&#x4EF6; js &#x6D4B;&#x8BD5;&#x5DE5;&#x5177;
-    &quot;enzyme-adapter-react-16&quot;: &quot;1.14.0&quot;, // react &#x7EC4;&#x4EF6; js &#x6D4B;&#x8BD5;&#x5DE5;&#x5177;
-    &quot;ts-jest&quot;: &quot;^26.1.2&quot;, //&#x6D4B;&#x8BD5;&#x5DE5;&#x5177;
-    &quot;jest-enzyme&quot;: &quot;7.0.2&quot;,  // react &#x7EC4;&#x4EF6; js &#x6D4B;&#x8BD5;&#x5DE5;&#x5177;
-
-
-    &quot;cross-env&quot;: &quot;^6.0.3&quot;, //&#x8DE8;&#x5E73;&#x53F0;&#x8FD0;&#x884C;&#x8BBE;&#x7F6E;&#x548C;&#x4F7F;&#x7528;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x7684;&#x811A;&#x672C;
-    &quot;customize-cra&quot;: &quot;^0.9.1&quot;, //&#x81EA;&#x5B9A;&#x4E49;CRA&#x914D;&#x7F6E;
-    &quot;react-app-rewire-less&quot;: &quot;^2.1.3&quot;,
-    &quot;react-app-rewire-postcss&quot;: &quot;^3.0.2&quot;,
-    &quot;react-app-rewired&quot;: &quot;^2.1.5&quot;, //&#x81EA;&#x5B9A;&#x4E49;CRA&#x914D;&#x7F6E;
-
-    &quot;speed-measure-webpack-plugin&quot;: &quot;^1.5.0&quot;, // &#x4F18;&#x5316;&#x8017;&#x65F6;&#x5206;&#x6790;
-
-    &quot;cssnano&quot;: &quot;^4.1.10&quot;, // &#x57FA;&#x4E8E; PostCSS &#x751F;&#x6001;&#x7CFB;&#x7EDF;&#x7684; CSS &#x538B;&#x7F29;&#x5DE5;&#x5177;
-    &quot;cssnano-preset-advanced&quot;: &quot;^4.0.7&quot;, // cssnano &#x4F18;&#x5316;&#x5DE5;&#x5177;
-    &quot;http-proxy-middleware&quot;: &quot;^1.0.3&quot;, //&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;
-
-
-    &quot;redux-mock-store&quot;: &quot;^1.5.4&quot;, // deprecated &#xFF0C; A mock store for testing Redux async action creators and middleware.
-    &quot;react-transition-group&quot;: &quot;^4.4.0&quot;, // deprecated &#xFF0C;A set of components for managing component states (including mounting and unmounting) over time, specifically designed with animation in mind.
-
-    &quot;jsencrypt&quot;: &quot;^3.0.0-rc.1&quot;,// &#x7528;&#x4E8E;&#x6267;&#x884C;OpenSSL RSA&#x52A0;&#x5BC6;&#x3001;&#x89E3;&#x5BC6;&#x548C;&#x5BC6;&#x94A5;&#x751F;&#x6210;&#x7684;Javascript&#x5E93;
-    &quot;lottie-web&quot;: &quot;^5.6.8&quot;, // &#x79FB;&#x52A8;&#x7AEF;&#x52A8;&#x753B;&#x5DE5;&#x5177; Lottie is a mobile library for Web, and iOS that parses Adobe After Effects animations exported as json with Bodymovin and renders them natively on mobile!
-
-
-    &quot;webpack-scp-upload-plugin&quot;: &quot;^1.1.0&quot;, // webpack secret copy &#x79D8;&#x94A5;&#x4E0A;&#x4F20;&#x7EC4;&#x4EF6;
-    &quot;less&quot;: &quot;^3.10.3&quot;, // The dynamic stylesheet language.
-    &quot;less-loader&quot;: &quot;^5.0.0&quot;, // webpack loader. Compiles Less to CSS
-    &quot;mockjs-webpack-plugin&quot;: &quot;^3.0.1&quot;, // webpack mock plugin
-    &quot;node-cmd&quot;: &quot;^3.0.0&quot;, //Node.js &#x547D;&#x4EE4;&#x884C;/&#x7EC8;&#x7AEF;
-    &quot;node-sass&quot;: &quot;^4.13.0&quot;, // deprecated &#xFF0C;&#x6837;&#x5F0F;&#x8868;&#x9884;&#x5904;&#x7406;&#x5668;Sass&#x7684;C&#x7248;&#x672C;&#xFF0C;Node sass&#x662F;&#x4E00;&#x4E2A;&#x5E93;&#xFF0C;Node.js to LibSass
-    &quot;node-ssh-modify-nginx&quot;: &quot;^1.1.7&quot;, // A node ssh upload&amp;reload nginx plugin
-    &quot;postcss-cssnext&quot;: &quot;^3.1.0&quot;,// deprecated &#xFF0C;&#x57FA;&#x4E8E; PostCSS &#x751F;&#x6001;&#x7CFB;&#x7EDF;&#x7684; CSS &#x8F6C;&#x6362;&#x5DE5;&#x5177;
-    &quot;postcss-px-to-viewport&quot;: &quot;^1.1.1&quot;, // &#x5C06;px&#x5355;&#x4F4D;&#x8F6C;&#x6362;&#x4E3A;&#x89C6;&#x53E3;&#x5355;&#x4F4D;&#x7684; (vw, vh, vmin, vmax) &#x7684; PostCSS &#x63D2;&#x4EF6;.
-    &quot;postcss-viewport-units&quot;: &quot;^0.1.6&quot;, // Automatically append content property for viewport-units-buggyfill.
-    &quot;source-map-explorer&quot;: &quot;^2.1.1&quot;,// Analyze and debug space usage through source maps
-    &quot;viewport-units-buggyfill-w&quot;: &quot;^0.1.1&quot;, // &#x63D0;&#x4F9B;&#x4E86;&#x5728;&#x65E7;IE&#x548C;Android&#x6D4F;&#x89C8;&#x5668;&#x4E2D;&#x4F7F;&#x7528;viewport&#x5355;&#x5143;&#x7684;&#x65B9;&#x6CD5;
-
-
-    &quot;babel-runtime&quot;: &quot;^6.26.0&quot;,  // &#x4E00;&#x4E2A;&#x7F16;&#x8BD1;&#x540E;&#x6587;&#x4EF6;&#x5F15;&#x7528;&#x7684;&#x516C;&#x5171;&#x5E93;&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x6548;&#x51CF;&#x5C11;&#x7F16;&#x8BD1;&#x540E;&#x7684;&#x6587;&#x4EF6;&#x4F53;&#x79EF;
-    &quot;flatten&quot;: &quot;^1.0.2&quot;, // &#x4E00;&#x4E2A;&#x5C06;&#x591A;&#x4E2A;&#x6570;&#x7EC4;&#x503C;&#x5408;&#x5E76;&#x6210;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x7684;&#x5E93;
-    &quot;global&quot;: &quot;^4.3.2&quot;,// &#x7528;&#x4E8E;&#x63D0;&#x4F9B;&#x5168;&#x5C40;&#x51FD;&#x6570;&#x6BD4;&#x5982; document &#x7684;&#x5F15;&#x7528;
-    &quot;invariant&quot;: &quot;^2.2.1&quot;,// &#x4E00;&#x4E2A;&#x6709;&#x8DA3;&#x7684;&#x65AD;&#x8A00;&#x5E93;
-    &quot;is-plain-object&quot;: &quot;^2.0.3&quot;, // &#x5224;&#x65AD;&#x662F;&#x5426;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;
-    &quot;redux&quot;: &quot;^3.7.1&quot;, // redux &#xFF0C;&#x7BA1;&#x7406; react &#x72B6;&#x6001;&#x7684;&#x5E93;
-    &quot;redux-saga&quot;: &quot;^0.15.4&quot;, // &#x5904;&#x7406;&#x5F02;&#x6B65;&#x6570;&#x636E;&#x6D41;
-    &quot;warning&quot;: &quot;^3.0.0&quot; // &#x540C;&#x6837;&#x662F;&#x4E2A;&#x65AD;&#x8A00;&#x5E93;&#xFF0C;&#x4E0D;&#x8FC7;&#x8F93;&#x51FA;&#x7684;&#x662F;&#x8B66;&#x544A;
-  },
 </code></pre>
                                 
                                 </section>
@@ -1507,7 +1410,7 @@ module.exports = {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Package Env","level":"7.1.3","depth":2,"next":{"title":"Package File","level":"7.1.4","depth":2,"path":"7-package/package/package-file.md","ref":"7-package/package/package-file.md","articles":[]},"previous":{"title":"Package Builder","level":"7.1.2","depth":2,"path":"7-package/package/package-builder.md","ref":"7-package/package/package-builder.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"7-package/package/package-env.md","mtime":"2022-04-11T02:37:01.536Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-11T02:37:51.697Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Package Env","level":"7.1.3","depth":2,"next":{"title":"Package File","level":"7.1.4","depth":2,"path":"7-package/package/package-file.md","ref":"7-package/package/package-file.md","articles":[]},"previous":{"title":"Package Builder","level":"7.1.2","depth":2,"path":"7-package/package/package-builder.md","ref":"7-package/package/package-builder.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"7-package/package/package-env.md","mtime":"2022-04-12T15:57:53.309Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-12T15:58:37.554Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
