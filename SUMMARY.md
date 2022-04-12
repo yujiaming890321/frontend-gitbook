@@ -84,6 +84,7 @@
   - [Package Builder](7-package/package/package-builder.md)
   - [Package Env](7-package/package/package-env.md)
   - [Package File](7-package/package/package-file.md)
+  - [Vscode Plugin](7-package/package/vscode-plugin.md)
 
 ## Testing
 
