@@ -69,6 +69,16 @@
 
     "cross-env": "^6.0.3", //跨平台运行设置和使用环境变量的脚本
     "customize-cra": "^0.9.1", //自定义CRA配置
+    "@craco/craco": "6.3.0", //自定义CRA配置
+    "craco-alias": "^3.0.1",
+    "craco-antd": "^1.19.0",
+    "postcss": "^8.4.6",
+    "querystring": "^0.2.1",
+    "resolve-url-loader": "^5.0.0"
+    "autoprefixer": "^10.4.2",
+    "craco-less": "^2.0.0",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-loader": "^6.1.1"
     "react-app-rewire-less": "^2.1.3",
     "react-app-rewire-postcss": "^3.0.2",
     "react-app-rewired": "^2.1.5", //自定义CRA配置
