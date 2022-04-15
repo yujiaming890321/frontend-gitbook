@@ -1,4 +1,6 @@
-# JavaScript
+# 推荐读物
+
+## JavaScript
 
 [You-Dont-Know-JS](https://github.com/JoeHetfield/You-Dont-Know-JS)
 
@@ -22,7 +24,7 @@
 
 [ES6 的解构赋值是深拷贝 or 浅拷贝?](https://mp.weixin.qq.com/s/qq90CbqQscltVwJXTY3qDw)
 
-# React
+## React
 
 [react 词汇表](https://reactjs.org/docs/glossary.html)
 
@@ -75,11 +77,11 @@ App render 1
 
 [在 Vscode 里调试 React](https://mp.weixin.qq.com/s/4GZ6eB_h3ELp8qhLw8vowQ)
 
-# Taro
+## Taro
 
 [Taro 源码阅读](https://github.com/a1029563229/blogs/tree/master/Source-Code/taro)
 
-# Vue
+## Vue
 
 [从 16 个方向逐步搭建基于 vue3 的前端架构](https://zhuanlan.zhihu.com/p/428497238)
 
@@ -87,31 +89,31 @@ App render 1
 
 [Vben Admin 一个开箱即用的前端框架](https://vvbin.cn/doc-next/)
 
-# Css
+## Css
 
 [vanilla-extract](https://github.com/seek-oss/vanilla-extract)
 
-# Algorithm
+## Algorithm
 
 [算法-labuladuo](https://github.com/labuladong/fucking-algorithm)
 
 [你管这破玩意叫哨兵？](https://mp.weixin.qq.com/s/5gj9iw3dgPlAOfrvbobzJQ)
 
-# Python
+## Python
 
 [屏蔽自动编码器](https://github.com/facebookresearch/mae)
 
-# [Rust](https://kaisery.github.io/trpl-zh-cn/ch01-01-installation.html)
+## [Rust](https://kaisery.github.io/trpl-zh-cn/ch01-01-installation.html)
 
 [使用 Rust 编写更快的 React 组件](https://mp.weixin.qq.com/s/ATOySeIPWJCf9dmoxMQUIw)
 
 [Rust 是 JS 基建的未来](https://mp.weixin.qq.com/s/hamfQVdish_0oCo6XkunhQ)
 
-# miniprogram
+## miniprogram
 
 [从源码看微信小程序启动过程](https://tech.youzan.com/weapp-booting/)
 
-# 自动化测试
+## 自动化测试
 
 [2022 软件测试学习路线图](http://bbs.itheima.com/thread-405757-1-1.html)
 [用 Enzyme 测试使用 Hooks 的 React 函数组件](https://zhuanlan.zhihu.com/p/148233487)
@@ -128,7 +130,7 @@ App render 1
 [编写第一个 React 集成测试 en](https://frontend-digest.com/write-your-first-react-integration-test-1721a8173ade)
 [编写第一个 React 集成测试 cn](https://blog.csdn.net/weixin_26735933/article/details/109069784)
 
-# Grocery 杂货铺
+## Grocery 杂货铺
 
 [clean-code](https://github.com/ryanmcdermott/clean-code-javascript)
 

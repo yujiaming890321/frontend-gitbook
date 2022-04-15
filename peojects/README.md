@@ -37,6 +37,7 @@
 - [vue-router](https://github.com/vuejs/vue-router)
 
 - [page-skeleton-webpack-plugin](https://github.com/ElemeFE/page-skeleton-webpack-plugin)
+  依赖 html-webpack-plugin 对 html 进行计算，替换 dom。
 
 ## JEST
 
