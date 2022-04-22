@@ -1,7 +1,10 @@
+# 工作环境安装
+
+iterm2
+oh my zsh
 git
-soucetree
-nvm (node)
+sourcetree
+nvm (node) or n
 nrm
 vscode
-7-zip
 fiddle

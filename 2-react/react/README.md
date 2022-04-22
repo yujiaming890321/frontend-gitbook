@@ -23,3 +23,7 @@ useEffect & useLayoutEffect 底层调用方法一样，useLayoutEffect 执行优
 - [Saga](./saga.md)
 
 - [react-intl 国际化](https://formatjs.io/docs/getting-started/installation/)
+
+## 如何拆分组件
+
+目的：简化代码，单一职责

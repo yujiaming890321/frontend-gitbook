@@ -1,3 +1,5 @@
+# vscode 插件
+
 atom keymap
 auto close tag
 auto rename tag
@@ -18,6 +20,6 @@ stylelint
 tslint
 turbo console log
 vetur
-vscode goto noder_modules
+vscode goto node_modules
 vscode-pigments
-volar
+Vue Language Features (Volar)
