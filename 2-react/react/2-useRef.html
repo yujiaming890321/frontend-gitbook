@@ -1363,21 +1363,24 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x521D;&#x59CB;&#x5316;"><a name="&#x521D;&#x59CB;&#x5316;" class="plugin-anchor" href="#&#x521D;&#x59CB;&#x5316;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521D;&#x59CB;&#x5316;</h1>
+                                <h1 id="useref"><a name="useref" class="plugin-anchor" href="#useref"><i class="fa fa-link" aria-hidden="true"></i></a>useRef</h1>
+<h2 id="&#x521D;&#x59CB;&#x5316;"><a name="&#x521D;&#x59CB;&#x5316;" class="plugin-anchor" href="#&#x521D;&#x59CB;&#x5316;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521D;&#x59CB;&#x5316;</h2>
 <p>&#x521B;&#x5EFA;&#x7F13;&#x5B58;&#x5BF9;&#x8C61;</p>
-<pre><code>function mountRef&lt;T&gt;(initialValue: T): {current: T} {
-  const hook = mountWorkInProgressHook();
-  const ref = {current: initialValue};
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mountRef</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">initialValue: T</span>): </span>{current: T} {
+  <span class="hljs-keyword">const</span> hook = mountWorkInProgressHook();
+  <span class="hljs-keyword">const</span> ref = {current: initialValue};
   hook.memoizedState = ref;
-  return ref;
-}
-</code></pre><h1 id="&#x66F4;&#x65B0;"><a name="&#x66F4;&#x65B0;" class="plugin-anchor" href="#&#x66F4;&#x65B0;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x66F4;&#x65B0;</h1>
-<p>&#x8FD4;&#x56DE;&#x7F13;&#x5B58;&#x5BF9;&#x8C61;</p>
-<pre><code>function updateRef&lt;T&gt;(initialValue: T): {current: T} {
-  const hook = updateWorkInProgressHook();
-  return hook.memoizedState;
+  <span class="hljs-keyword">return</span> ref;
 }
 </code></pre>
+<h2 id="&#x66F4;&#x65B0;"><a name="&#x66F4;&#x65B0;" class="plugin-anchor" href="#&#x66F4;&#x65B0;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x66F4;&#x65B0;</h2>
+<p>&#x8FD4;&#x56DE;&#x7F13;&#x5B58;&#x5BF9;&#x8C61;</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateRef</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">initialValue: T</span>): </span>{current: T} {
+  <span class="hljs-keyword">const</span> hook = updateWorkInProgressHook();
+  <span class="hljs-keyword">return</span> hook.memoizedState;
+}
+</code></pre>
+
                                 
                                 </section>
                             
@@ -1420,7 +1423,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"UseRef","level":"2.1.2","depth":2,"next":{"title":"UseMemo","level":"2.1.3","depth":2,"path":"2-react/react/3-useMemo.md","ref":"2-react/react/3-useMemo.md","articles":[]},"previous":{"title":"UseState","level":"2.1.1","depth":2,"path":"2-react/react/1-useState.md","ref":"2-react/react/1-useState.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"2-react/react/2-useRef.md","mtime":"2022-04-22T02:13:46.858Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-22T02:14:23.126Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"UseRef","level":"2.1.2","depth":2,"next":{"title":"UseMemo","level":"2.1.3","depth":2,"path":"2-react/react/3-useMemo.md","ref":"2-react/react/3-useMemo.md","articles":[]},"previous":{"title":"UseState","level":"2.1.1","depth":2,"path":"2-react/react/1-useState.md","ref":"2-react/react/1-useState.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"2-react/react/2-useRef.md","mtime":"2022-04-25T06:38:32.827Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-25T06:39:13.949Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

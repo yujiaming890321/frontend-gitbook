@@ -1381,66 +1381,71 @@ redux-saga &#x91CC;&#x6240;&#x6709; effect &#x8FD4;&#x56DE;&#x7684;&#x503C;&#xFF
 generator &#x7684;&#x7279;&#x70B9;&#x662F;&#x6267;&#x884C;&#x5230;&#x67D0;&#x4E00;&#x6B65;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;&#x63A7;&#x5236;&#x6743;&#x4EA4;&#x7ED9;&#x5916;&#x90E8;&#x4EE3;&#x7801;&#xFF0C;&#x7531;&#x5916;&#x90E8;&#x4EE3;&#x7801;&#x62FF;&#x5230;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x540E;&#xFF0C;&#x51B3;&#x5B9A;&#x8BE5;&#x600E;&#x4E48;&#x505A;&#x3002;</p>
 <p><strong>put</strong>
 &#x4F5C;&#x7528;&#x548C; redux &#x4E2D;&#x7684; dispatch &#x76F8;&#x540C;&#x3002;</p>
-<pre><code>yield put({ type: &apos;CLICK_BTN&apos; });
-</code></pre><p><strong>take</strong>
+<pre><code class="lang-javascript"><span class="hljs-keyword">yield</span> put({ type: <span class="hljs-string">&apos;CLICK_BTN&apos;</span> });
+</code></pre>
+<p><strong>take</strong>
 &#x7B49;&#x5F85; redux dispatch &#x5339;&#x914D;&#x67D0;&#x4E2A; pattern &#x7684; action &#x3002;</p>
 <p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x5148;&#x7B49;&#x5F85;&#x4E00;&#x4E2A;&#x6309;&#x94AE;&#x70B9;&#x51FB;&#x7684; action &#xFF0C;&#x7136;&#x540E;&#x6267;&#x884C;&#x6309;&#x94AE;&#x70B9;&#x51FB;&#x7684; saga&#xFF1A;</p>
-<pre><code>while (true) {
-  yield take(&apos;CLICK_BUTTON&apos;);
-  yield fork(clickButtonSaga);
+<pre><code class="lang-javascript"><span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+  <span class="hljs-keyword">yield</span> take(<span class="hljs-string">&apos;CLICK_BUTTON&apos;</span>);
+  <span class="hljs-keyword">yield</span> fork(clickButtonSaga);
 }
-</code></pre><p><strong>fork</strong>
+</code></pre>
+<p><strong>fork</strong>
 &#x5F53;&#x63A5;&#x6536;&#x5230; BEGIN_COUNT &#x7684; action&#xFF0C;&#x5219;&#x5F00;&#x59CB;&#x5012;&#x6570;&#xFF0C;&#x800C;&#x63A5;&#x6536;&#x5230; STOP_COUNT &#x7684; action&#xFF0C; &#x5219;&#x505C;&#x6B62;&#x5012;&#x6570;&#x3002;</p>
-<pre><code>function* count(number) {
-  let currNum = number;
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">count</span>(<span class="hljs-params">number</span>) </span>{
+  <span class="hljs-keyword">let</span> currNum = number;
 
-  while (currNum &gt;= 0) {
-    console.log(currNum--);
-    yield delay(1000);
+  <span class="hljs-keyword">while</span> (currNum &gt;= <span class="hljs-number">0</span>) {
+    <span class="hljs-built_in">console</span>.log(currNum--);
+    <span class="hljs-keyword">yield</span> delay(<span class="hljs-number">1000</span>);
   }
 }
 
-function countSaga* () {
-  while (true) {
-    const { payload: number } = yield take(BEGIN_COUNT);
-    const countTaskId = yield fork(count, number);
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">countSaga</span>* (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+    <span class="hljs-keyword">const</span> { payload: number } = <span class="hljs-keyword">yield</span> take(BEGIN_COUNT);
+    <span class="hljs-keyword">const</span> countTaskId = <span class="hljs-keyword">yield</span> fork(count, number);
 
-    yield take(STOP_TASK);
-    yield cancel(countTaskId);
+    <span class="hljs-keyword">yield</span> take(STOP_TASK);
+    <span class="hljs-keyword">yield</span> cancel(countTaskId);
   }
 }
-</code></pre><p><strong>call</strong>
+</code></pre>
+<p><strong>call</strong>
 &#x6709;&#x963B;&#x585E;&#x5730;&#x8C03;&#x7528; saga &#x6216;&#x8005;&#x8FD4;&#x56DE; promise &#x7684;&#x51FD;&#x6570;&#x3002;</p>
-<pre><code>const project = yield call(fetch, { url: UrlMap.fetchProject });
-const members = yield call(fetchMembers, project.id);
-</code></pre><p><strong>select</strong>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> project = <span class="hljs-keyword">yield</span> call(fetch, { url: UrlMap.fetchProject });
+<span class="hljs-keyword">const</span> members = <span class="hljs-keyword">yield</span> call(fetchMembers, project.id);
+</code></pre>
+<p><strong>select</strong>
 &#x4F5C;&#x7528;&#x548C; redux thunk &#x4E2D;&#x7684; getState &#x76F8;&#x540C;&#x3002;</p>
-<pre><code>const id = yield select(state =&gt; state.id);
-</code></pre><p><strong>&#x963B;&#x585E;&#x8C03;&#x7528;&#x548C;&#x65E0;&#x963B;&#x585E;&#x8C03;&#x7528;</strong>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> id = <span class="hljs-keyword">yield</span> select(state =&gt; state.id);
+</code></pre>
+<p><strong>&#x963B;&#x585E;&#x8C03;&#x7528;&#x548C;&#x65E0;&#x963B;&#x585E;&#x8C03;&#x7528;</strong>
 &#x5176;&#x4E2D; fork &#x662F;&#x65E0;&#x963B;&#x585E;&#x578B;&#x8C03;&#x7528;&#xFF0C;call &#x662F;&#x963B;&#x585E;&#x578B;&#x8C03;&#x7528;&#x3002;</p>
 <h3 id="channel"><a name="channel" class="plugin-anchor" href="#channel"><i class="fa fa-link" aria-hidden="true"></i></a>channel</h3>
 <p>channel &#x662F;&#x5BF9;&#x4E8B;&#x4EF6;&#x6E90;&#x7684;&#x62BD;&#x8C61;&#xFF0C;&#x4F5C;&#x7528;&#x662F;&#x5148;&#x6CE8;&#x518C;&#x4E00;&#x4E2A; take &#x65B9;&#x6CD5;&#xFF0C;&#x5F53; put &#x89E6;&#x53D1;&#x65F6;&#xFF0C;&#x6267;&#x884C;&#x4E00;&#x6B21; take &#x65B9;&#x6CD5;&#xFF0C;&#x7136;&#x540E;&#x9500;&#x6BC1; take&#x3002;</p>
-<pre><code>export function channel(buffer = buffers.expanding()) {
-  let closed = false
-  let takers = []
+<pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">channel</span>(<span class="hljs-params">buffer = buffers.expanding(</span>)) </span>{
+  <span class="hljs-keyword">let</span> closed = <span class="hljs-literal">false</span>
+  <span class="hljs-keyword">let</span> takers = []
 
-  function put(input) {
-    if (closed) {
-      return
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">put</span>(<span class="hljs-params">input</span>) </span>{
+    <span class="hljs-keyword">if</span> (closed) {
+      <span class="hljs-keyword">return</span>
     }
-    if (takers.length === 0) {
-      return buffer.put(input)
+    <span class="hljs-keyword">if</span> (takers.length === <span class="hljs-number">0</span>) {
+      <span class="hljs-keyword">return</span> buffer.put(input)
     }
-    const cb = takers.shift()
+    <span class="hljs-keyword">const</span> cb = takers.shift()
     cb(input)
   }
 
-  function take(cb) {
-    if (closed &amp;&amp; buffer.isEmpty()) {
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">take</span>(<span class="hljs-params">cb</span>) </span>{
+    <span class="hljs-keyword">if</span> (closed &amp;&amp; buffer.isEmpty()) {
       cb(END)
-    } else if (!buffer.isEmpty()) {
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!buffer.isEmpty()) {
       cb(buffer.take())
-    } else {
+    } <span class="hljs-keyword">else</span> {
       takers.push(cb)
       cb.cancel = () =&gt; {
         remove(takers, cb)
@@ -1448,38 +1453,39 @@ const members = yield call(fetchMembers, project.id);
     }
   }
 
-  function flush(cb) {
-    if (closed &amp;&amp; buffer.isEmpty()) {
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">flush</span>(<span class="hljs-params">cb</span>) </span>{
+    <span class="hljs-keyword">if</span> (closed &amp;&amp; buffer.isEmpty()) {
       cb(END)
-      return
+      <span class="hljs-keyword">return</span>
     }
     cb(buffer.flush())
   }
 
-  function close() {
-    if (closed) {
-      return
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">close</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> (closed) {
+      <span class="hljs-keyword">return</span>
     }
 
-    closed = true
+    closed = <span class="hljs-literal">true</span>
 
-    const arr = takers
+    <span class="hljs-keyword">const</span> arr = takers
     takers = []
 
-    for (let i = 0, len = arr.length; i &lt; len; i++) {
-      const taker = arr[i]
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, len = arr.length; i &lt; len; i++) {
+      <span class="hljs-keyword">const</span> taker = arr[i]
       taker(END)
     }
   }
 
-  return {
+  <span class="hljs-keyword">return</span> {
     take,
     put,
     flush,
     close,
   }
 }
-</code></pre><p>&#x5F53; put &#x89E6;&#x53D1;&#x65F6;&#xFF0C;&#x5982;&#x679C; channel &#x91CC;&#x5DF2;&#x7ECF;&#x6709;&#x6CE8;&#x518C;&#x4E86;&#x7684; taker&#xFF0C;taker &#x5C31;&#x4F1A;&#x6267;&#x884C;&#x3002;</p>
+</code></pre>
+<p>&#x5F53; put &#x89E6;&#x53D1;&#x65F6;&#xFF0C;&#x5982;&#x679C; channel &#x91CC;&#x5DF2;&#x7ECF;&#x6709;&#x6CE8;&#x518C;&#x4E86;&#x7684; taker&#xFF0C;taker &#x5C31;&#x4F1A;&#x6267;&#x884C;&#x3002;</p>
 <p>&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5728; put &#x89E6;&#x53D1;&#x4E4B;&#x524D;&#xFF0C;&#x5148;&#x8C03;&#x7528; channel &#x7684; take &#x65B9;&#x6CD5;&#xFF0C;&#x6CE8;&#x518C;&#x5B9E;&#x9645;&#x8981;&#x8FD0;&#x884C;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
 <pre><code>const chan = channel();
 btn.addEventListener(&apos;click&apos;, () =&gt; {
@@ -1495,52 +1501,54 @@ function* mainSaga() {
 <h3 id="task"><a name="task" class="plugin-anchor" href="#task"><i class="fa fa-link" aria-hidden="true"></i></a>task</h3>
 <p>task &#x662F; generator &#x65B9;&#x6CD5;&#x7684;&#x6267;&#x884C;&#x73AF;&#x5883;&#xFF0C;&#x6240;&#x6709; saga &#x7684; generator &#x65B9;&#x6CD5;&#x90FD;&#x8DD1;&#x5728; task &#x91CC;&#x3002;
 &#x7B80;&#x6613;&#x5B9E;&#x73B0;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code>function task(iterator) {
-  const iter = iterator();
-  function next(args) {
-    const result = iter.next(args);
-    if (!result.done) {
-      const effect = result.value;
-      if (effect.type === &apos;take&apos;) {
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">task</span>(<span class="hljs-params">iterator</span>) </span>{
+  <span class="hljs-keyword">const</span> iter = iterator();
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">next</span>(<span class="hljs-params">args</span>) </span>{
+    <span class="hljs-keyword">const</span> result = iter.next(args);
+    <span class="hljs-keyword">if</span> (!result.done) {
+      <span class="hljs-keyword">const</span> effect = result.value;
+      <span class="hljs-keyword">if</span> (effect.type === <span class="hljs-string">&apos;take&apos;</span>) {
         runEffect(result.value, next);
       }
     }
   }
   next();
 }
-</code></pre><h2 id="&#x6570;&#x636E;&#x6D41;&#x8F6C;"><a name="&#x6570;&#x636E;&#x6D41;&#x8F6C;" class="plugin-anchor" href="#&#x6570;&#x636E;&#x6D41;&#x8F6C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6570;&#x636E;&#x6D41;&#x8F6C;</h2>
+</code></pre>
+<h2 id="&#x6570;&#x636E;&#x6D41;&#x8F6C;"><a name="&#x6570;&#x636E;&#x6D41;&#x8F6C;" class="plugin-anchor" href="#&#x6570;&#x636E;&#x6D41;&#x8F6C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6570;&#x636E;&#x6D41;&#x8F6C;</h2>
 <p><img src="https://img2022.cnblogs.com/blog/2347599/202201/2347599-20220125164251396-758936865.png" alt="image"></p>
-<pre><code>// saga.js
-// &#x5B83;&#x662F;&#x4E00;&#x4E2A; generator function
-// fn &#x4E2D;&#x540C;&#x6837;&#x5305;&#x542B;&#x4E86;&#x4E1A;&#x52A1;&#x6570;&#x636E;&#x8BF7;&#x6C42;&#x4EE3;&#x7801;&#x903B;&#x8F91;
-function* fetchData(action) {
-  const { payload: { someValue } } = action;
-  try {
-    const result = yield call(myAjaxLib.post, &quot;/someEndpoint&quot;, { data: someValue });
-    yield put({ type: &quot;REQUEST_SUCCEEDED&quot;, payload: response });
-  } catch (error) {
-    yield put({ type: &quot;REQUEST_FAILED&quot;, error: error });
+<pre><code class="lang-javascript"><span class="hljs-comment">// saga.js</span>
+<span class="hljs-comment">// &#x5B83;&#x662F;&#x4E00;&#x4E2A; generator function</span>
+<span class="hljs-comment">// fn &#x4E2D;&#x540C;&#x6837;&#x5305;&#x542B;&#x4E86;&#x4E1A;&#x52A1;&#x6570;&#x636E;&#x8BF7;&#x6C42;&#x4EE3;&#x7801;&#x903B;&#x8F91;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">fetchData</span>(<span class="hljs-params">action</span>) </span>{
+  <span class="hljs-keyword">const</span> { payload: { someValue } } = action;
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">yield</span> call(myAjaxLib.post, <span class="hljs-string">&quot;/someEndpoint&quot;</span>, { data: someValue });
+    <span class="hljs-keyword">yield</span> put({ type: <span class="hljs-string">&quot;REQUEST_SUCCEEDED&quot;</span>, payload: response });
+  } <span class="hljs-keyword">catch</span> (error) {
+    <span class="hljs-keyword">yield</span> put({ type: <span class="hljs-string">&quot;REQUEST_FAILED&quot;</span>, error: error });
   }
 }
 
-// watcher saga
-// &#x76D1;&#x542C;&#x6BCF;&#x4E00;&#x6B21; dispatch(action)
-// &#x5982;&#x679C; action.type === &apos;REQUEST&apos;&#xFF0C;&#x90A3;&#x4E48;&#x6267;&#x884C; fetchData
-export function* watchFetchData() {
-  yield takeEvery(&apos;REQUEST&apos;, fetchData);
+<span class="hljs-comment">// watcher saga</span>
+<span class="hljs-comment">// &#x76D1;&#x542C;&#x6BCF;&#x4E00;&#x6B21; dispatch(action)</span>
+<span class="hljs-comment">// &#x5982;&#x679C; action.type === &apos;REQUEST&apos;&#xFF0C;&#x90A3;&#x4E48;&#x6267;&#x884C; fetchData</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">watchFetchData</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">yield</span> takeEvery(<span class="hljs-string">&apos;REQUEST&apos;</span>, fetchData);
 }
 
 
-// component.js
-// View &#x5C42; dispatch(action) &#x89E6;&#x53D1;&#x5F02;&#x6B65;&#x8BF7;&#x6C42;
-// &#x8FD9;&#x91CC;&#x7684; action &#x4F9D;&#x7136;&#x53EF;&#x4EE5;&#x662F;&#x4E00;&#x4E2A; plain object
-this.props.dispatch({
-  type: &apos;REQUEST&apos;,
+<span class="hljs-comment">// component.js</span>
+<span class="hljs-comment">// View &#x5C42; dispatch(action) &#x89E6;&#x53D1;&#x5F02;&#x6B65;&#x8BF7;&#x6C42;</span>
+<span class="hljs-comment">// &#x8FD9;&#x91CC;&#x7684; action &#x4F9D;&#x7136;&#x53EF;&#x4EE5;&#x662F;&#x4E00;&#x4E2A; plain object</span>
+<span class="hljs-keyword">this</span>.props.dispatch({
+  type: <span class="hljs-string">&apos;REQUEST&apos;</span>,
   payload: {
-    someValue: { hello: &apos;saga&apos; }
+    someValue: { hello: <span class="hljs-string">&apos;saga&apos;</span> }
   }
 });
-</code></pre><h2 id="&#x5BF9;&#x6BD4;-thunk"><a name="&#x5BF9;&#x6BD4;-thunk" class="plugin-anchor" href="#&#x5BF9;&#x6BD4;-thunk"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5BF9;&#x6BD4; thunk</h2>
+</code></pre>
+<h2 id="&#x5BF9;&#x6BD4;-thunk"><a name="&#x5BF9;&#x6BD4;-thunk" class="plugin-anchor" href="#&#x5BF9;&#x6BD4;-thunk"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5BF9;&#x6BD4; thunk</h2>
 <p>thunk &#x91C7;&#x7528;&#x7684;&#x662F;&#x6269;&#x5C55; action &#x7684;&#x65B9;&#x5F0F;&#xFF1A;&#x4F7F;&#x5F97; redux &#x7684; store &#x80FD; dispatch &#x7684;&#x5185;&#x5BB9;&#x4ECE;&#x666E;&#x901A;&#x5BF9;&#x8C61;&#x6269;&#x5C55;&#x5230;&#x51FD;&#x6570;</p>
 <p>saga &#x91C7;&#x7528;&#x7684;&#x65B9;&#x6848;&#x66F4;&#x63A5;&#x8FD1;&#x4E8E; redux &#x7684;&#x5168;&#x5C40;&#x601D;&#x60F3;
 saga &#x91C7;&#x7528;&#x53D1;&#x5E03;&#x8BA2;&#x9605;&#x6A21;&#x5F0F;&#xFF0C;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x7ECF;&#x7EAA;&#x4EBA; Broker&#xFF0C;&#x7528;&#x4E8E;&#x76D1;&#x542C;&#x7EC4;&#x4EF6;&#x53D1;&#x51FA;&#x7684; action&#xFF0C;&#x5C06;&#x76D1;&#x542C;&#x5230;&#x7684; action1 &#x8F6C;&#x53D1;&#x7ED9;&#x5BF9;&#x5E94;&#x7684;&#x8BA2;&#x9605;&#x8005;&#xFF0C;&#x518D;&#x7531;&#x8BA2;&#x9605;&#x8005;&#x6267;&#x884C;&#x5177;&#x4F53;&#x4EFB;&#x52A1;&#xFF0C;&#x4EFB;&#x52A1;&#x6267;&#x884C;&#x5B8C;&#x540E;&#xFF0C;&#x518D;&#x53D1;&#x51FA;&#x53E6;&#x4E00;&#x4E2A; action2 &#x4EA4;&#x7531; reducer &#x4FEE;&#x6539; state</p>
@@ -1587,7 +1595,7 @@ saga &#x91C7;&#x7528;&#x53D1;&#x5E03;&#x8BA2;&#x9605;&#x6A21;&#x5F0F;&#xFF0C;&#x
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Saga","level":"2.1.11","depth":2,"next":{"title":"Thunk","level":"2.1.12","depth":2,"path":"2-react/react/thunk.md","ref":"2-react/react/thunk.md","articles":[]},"previous":{"title":"Redux","level":"2.1.10","depth":2,"path":"2-react/react/redux.md","ref":"2-react/react/redux.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"2-react/react/saga.md","mtime":"2022-04-22T02:13:46.858Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-22T02:14:23.126Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Saga","level":"2.1.11","depth":2,"next":{"title":"Thunk","level":"2.1.12","depth":2,"path":"2-react/react/thunk.md","ref":"2-react/react/thunk.md","articles":[]},"previous":{"title":"Redux","level":"2.1.10","depth":2,"path":"2-react/react/redux.md","ref":"2-react/react/redux.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"2-react/react/saga.md","mtime":"2022-04-25T06:38:32.827Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-25T06:39:13.949Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

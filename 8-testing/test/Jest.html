@@ -1372,8 +1372,9 @@
 </ul>
 <p>jest.fn creates Jest spy with no implementation.
 jest.spyOn replaces a method or property accessor with Jest spy, which implementation defaults to original one and can be changed to anything, including a stub.</p>
-<pre><code>jest.spyOn(Date, &apos;now&apos;).mockImplementation(...);
-</code></pre><p>%stmts &#x662F;&#x8BED;&#x53E5;&#x8986;&#x76D6;&#x7387;&#xFF08;statement coverage&#xFF09;
+<pre><code class="lang-javascript">jest.spyOn(<span class="hljs-built_in">Date</span>, <span class="hljs-string">&apos;now&apos;</span>).mockImplementation(...);
+</code></pre>
+<p>%stmts &#x662F;&#x8BED;&#x53E5;&#x8986;&#x76D6;&#x7387;&#xFF08;statement coverage&#xFF09;
 %Branch &#x903B;&#x8F91;&#x5206;&#x652F;&#x8986;&#x76D6;&#x7387;&#xFF08;branch coverage&#xFF09;
 %Funcs &#x51FD;&#x6570;&#x8986;&#x76D6;&#x7387;&#xFF08;function coverage&#xFF09;
 %Lines &#x884C;&#x8986;&#x76D6;&#x7387;&#xFF08;line coverage&#xFF09;</p>
@@ -1383,7 +1384,7 @@ jest.spyOn replaces a method or property accessor with Jest spy, which implement
 <details>
 <summary>&#x70B9;&#x51FB;&#x67E5;&#x770B;&#x4EE3;&#x7801;</summary>
 
-```
+```javascript
 describe(&apos;&#x6D4B;&#x8BD5;jest.fn()&#x8C03;&#x7528;&apos;, () =&gt; {
   let mockFn = jest.fn();
   let result = mockFn(1, 2, 3);
@@ -1406,7 +1407,7 @@ describe(&apos;&#x6D4B;&#x8BD5;jest.fn()&#x8C03;&#x7528;&apos;, () =&gt; {
 <details>
 <summary>&#x70B9;&#x51FB;&#x67E5;&#x770B;&#x4EE3;&#x7801;</summary>
 
-```
+```javascript
 
 describe(&apos;&#x6D4B;&#x8BD5; jest.fn()&#x8FD4;&#x56DE;&#x56FA;&#x5B9A;&#x503C;&apos;, () =&gt; {
   let mockFn = jest.fn().mockReturnValue(&apos;default&apos;);
@@ -1429,37 +1430,57 @@ expect(mockFn(10, 10)).toBe(100);
 <h3 id="mockreturnvalue"><a name="mockreturnvalue" class="plugin-anchor" href="#mockreturnvalue"><i class="fa fa-link" aria-hidden="true"></i></a>mockReturnValue()</h3>
 <p>&#x6A21;&#x62DF;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x3002;&#x6307;&#x5B9A;&#x8FD4;&#x56DE;&#x5185;&#x5BB9;
 &#x51FD;&#x6570;&#x5185;&#x7684;&#x53C2;&#x6570;&#x5C31;&#x662F;&#x8981; &#x8FD4;&#x56DE;&#x7684;&#x503C;</p>
-<pre><code>
-const func = jest.fn()
-func.mockReturnValue(&apos;dell&apos;)
-// func &#x51FD;&#x6570;&#x8C03;&#x7528;&#xFF0C;return &apos;dell&apos;
-</code></pre><h3 id="mockreturnvalueonce"><a name="mockreturnvalueonce" class="plugin-anchor" href="#mockreturnvalueonce"><i class="fa fa-link" aria-hidden="true"></i></a>mockReturnValueOnce()()</h3>
+<pre><code class="lang-javascript">
+<span class="hljs-keyword">const</span> func = jest.fn()
+func.mockReturnValue(<span class="hljs-string">&apos;dell&apos;</span>)
+<span class="hljs-comment">// func &#x51FD;&#x6570;&#x8C03;&#x7528;&#xFF0C;return &apos;dell&apos;</span>
+</code></pre>
+<h3 id="mockreturnvalueonce"><a name="mockreturnvalueonce" class="plugin-anchor" href="#mockreturnvalueonce"><i class="fa fa-link" aria-hidden="true"></i></a>mockReturnValueOnce()()</h3>
 <p>mockReturnValue &#x6267;&#x884C;&#x8FD4;&#x56DE;&#x591A;&#x6B21;&#xFF0C;mockReturnValueOnce &#x53EA;&#x4F1A;&#x6267;&#x884C;&#x8FD4;&#x56DE;&#x4E00;&#x6B21;</p>
-<pre><code>
-const func = jest.fn()
-func.mockReturnValueOnce(&apos;dell&apos;)
-</code></pre><h3 id="mockimplementation"><a name="mockimplementation" class="plugin-anchor" href="#mockimplementation"><i class="fa fa-link" aria-hidden="true"></i></a>mockImplementation()()</h3>
+<pre><code class="lang-javascript">
+<span class="hljs-keyword">const</span> func = jest.fn()
+func.mockReturnValueOnce(<span class="hljs-string">&apos;dell&apos;</span>)
+</code></pre>
+<h3 id="mockimplementation"><a name="mockimplementation" class="plugin-anchor" href="#mockimplementation"><i class="fa fa-link" aria-hidden="true"></i></a>mockImplementation()()</h3>
 <p>&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A; mockReturnValue()&#x7684;&#x5E95;&#x5C42;&#x5199;&#x6CD5;
 &#x53EF;&#x4EE5;&#x5728;&#x65B9;&#x6CD5;&#x5185;&#x4E66;&#x5199;&#x8FC7;&#x7A0B;</p>
-<pre><code>
-const func = jest.fn()
+<pre><code class="lang-javascript">
+<span class="hljs-keyword">const</span> func = jest.fn()
 func.mockImplementation(() =&gt; {
-    return &apos;dell&apos;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;dell&apos;</span>
 })
-</code></pre><h2 id="jestmockmodulename-factory-options"><a name="jestmockmodulename-factory-options" class="plugin-anchor" href="#jestmockmodulename-factory-options"><i class="fa fa-link" aria-hidden="true"></i></a>jest.mock(moduleName, factory, options)</h2>
+</code></pre>
+<h2 id="jestmockmodulename-factory-options"><a name="jestmockmodulename-factory-options" class="plugin-anchor" href="#jestmockmodulename-factory-options"><i class="fa fa-link" aria-hidden="true"></i></a>jest.mock(moduleName, factory, options)</h2>
 <p>&#x7528;&#x6765; mock &#x4E00;&#x4E9B;&#x6A21;&#x5757;&#x6216;&#x8005;&#x6587;&#x4EF6;</p>
 <h2 id="jestspyonobject-methodname"><a name="jestspyonobject-methodname" class="plugin-anchor" href="#jestspyonobject-methodname"><i class="fa fa-link" aria-hidden="true"></i></a>jest.spyOn(object, methodName)</h2>
 <p>&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; mock function&#xFF0C;&#x548C; jest.fn &#x76F8;&#x4F3C;&#xFF0C;&#x4F46;&#x662F;&#x80FD;&#x591F;&#x8FFD;&#x8E2A; object[methodName]&#x7684;&#x8C03;&#x7528;&#x4FE1;&#x606F;&#xFF0C;&#x7C7B;&#x4F3C; Sinon</p>
+<pre><code class="lang-javascript">
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">multiplyThenAdd</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> _.add(a*b, b)
+}
+
+<span class="hljs-keyword">const</span> add = jest.spyOn(_, <span class="hljs-string">&apos;add&apos;</span>) <span class="hljs-comment">// &#x5C06; loadsh &#x7684; add &#x65B9;&#x6CD5; mock &#x6389;</span>
+
+multiplyThenAdd(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+
+<span class="hljs-comment">// &#x8868;&#x9762;&#x4E0A;&#x53EA;&#x662F;&#x5728;&#x83B7;&#x53D6; add &#x7684;&#x8C03;&#x7528;&#x53C2;&#x6570;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x8FD8;&#x786E;&#x4FDD;&#x4E86; multiplyThenAdd &#x88AB;&#x8C03;&#x7528;&#x540E;&#x4E00;&#x5B9A;&#x4F1A;&#x8C03;&#x7528; add&#x3002;</span>
+<span class="hljs-comment">// &#x56E0;&#x4E3A;&#x6CA1;&#x88AB;&#x8C03;&#x7528;&#x7684;&#x8BDD;&#x53C8;&#x4ECE;&#x4F55;&#x83B7;&#x53D6;&#x8C03;&#x7528;&#x53C2;&#x6570;&#x5462;&#xFF1F;</span>
+<span class="hljs-keyword">const</span> [arg1, arg2] = add.mock.calls[<span class="hljs-number">0</span>]
+
+expect(arg1).toBe(<span class="hljs-number">1</span> * <span class="hljs-number">2</span>) <span class="hljs-comment">// &#x786E;&#x4FDD;&#x53C2;&#x6570;&#x4F20;&#x503C;&#x6B63;&#x786E;</span>
+expect(arg2).toBe(<span class="hljs-number">2</span>) <span class="hljs-comment">// &#x786E;&#x4FDD;&#x53C2;&#x6570;&#x4F20;&#x503C;&#x6B63;&#x786E;</span>
+</code></pre>
 <h2 id="expectobjectcontainingobject"><a name="expectobjectcontainingobject" class="plugin-anchor" href="#expectobjectcontainingobject"><i class="fa fa-link" aria-hidden="true"></i></a><a href="https://jestjs.io/zh-Hans/docs/expect#expectobjectcontainingobject" target="_blank">expect.objectContaining(object)</a></h2>
 <p>&#x9884;&#x671F;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; object &#x683C;&#x5F0F;&#x7684;&#x5BF9;&#x8C61;</p>
-<pre><code> expect(onPress).toEqual(
-    // { x: number, y: number }
+<pre><code class="lang-javascript"> expect(onPress).toEqual(
+    <span class="hljs-comment">// { x: number, y: number }</span>
     expect.objectContaining({
-      x: expect.any(Number),
-      y: expect.any(Number),
+      x: expect.any(<span class="hljs-built_in">Number</span>),
+      y: expect.any(<span class="hljs-built_in">Number</span>),
     }),
   );
-</code></pre><h2 id="testeachtablename-fn-timeout"><a name="testeachtablename-fn-timeout" class="plugin-anchor" href="#testeachtablename-fn-timeout"><i class="fa fa-link" aria-hidden="true"></i></a><a href="https://jestjs.io/docs/api#testeachtablename-fn-timeout" target="_blank">test.each(table)(name, fn, timeout)</a></h2>
+</code></pre>
+<h2 id="testeachtablename-fn-timeout"><a name="testeachtablename-fn-timeout" class="plugin-anchor" href="#testeachtablename-fn-timeout"><i class="fa fa-link" aria-hidden="true"></i></a><a href="https://jestjs.io/docs/api#testeachtablename-fn-timeout" target="_blank">test.each(table)(name, fn, timeout)</a></h2>
 <p>&#x591A;&#x4E2A;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x4E00;&#x8D77;&#x6D4B;</p>
 <h2 id="jestdomockmodulename-factory-options"><a name="jestdomockmodulename-factory-options" class="plugin-anchor" href="#jestdomockmodulename-factory-options"><i class="fa fa-link" aria-hidden="true"></i></a><a href="https://jestjs.io/docs/jest-object#jestdomockmodulename-factory-options" target="_blank">jest.doMock(moduleName, factory, options)</a></h2>
 <p>&#x907F;&#x514D; mock &#x63D0;&#x5347;</p>
@@ -1506,7 +1527,7 @@ func.mockImplementation(() =&gt; {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Jest","level":"8.1.2","depth":2,"next":{"title":"Sinon","level":"8.1.3","depth":2,"path":"8-testing/test/Sinon.md","ref":"8-testing/test/Sinon.md","articles":[]},"previous":{"title":"Enzyme","level":"8.1.1","depth":2,"path":"8-testing/test/Enzyme.md","ref":"8-testing/test/Enzyme.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"8-testing/test/Jest.md","mtime":"2022-04-22T02:13:46.862Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-22T02:14:23.126Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Jest","level":"8.1.2","depth":2,"next":{"title":"Sinon","level":"8.1.3","depth":2,"path":"8-testing/test/Sinon.md","ref":"8-testing/test/Sinon.md","articles":[]},"previous":{"title":"Enzyme","level":"8.1.1","depth":2,"path":"8-testing/test/Enzyme.md","ref":"8-testing/test/Enzyme.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"8-testing/test/Jest.md","mtime":"2022-04-25T06:38:32.827Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-25T06:39:13.949Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

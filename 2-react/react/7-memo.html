@@ -1365,32 +1365,32 @@
                                 
                                 <h1 id="reactmemo"><a name="reactmemo" class="plugin-anchor" href="#reactmemo"><i class="fa fa-link" aria-hidden="true"></i></a>React.memo</h1>
 <p>React.memo( Component ) &#x5C01;&#x88C5;&#x7EC4;&#x4EF6;&#xFF0C;&#x5224;&#x65AD;&#x7EC4;&#x4EF6; props</p>
-<pre><code>React.memo( Component )
-// React memo.js
-export default function memo&lt;Props&gt;(
+<pre><code class="lang-javascript">React.memo( Component )
+<span class="hljs-comment">// React memo.js</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">memo</span>&lt;<span class="hljs-title">Props</span>&gt;(<span class="hljs-params">
   type: React$ElementType,
-  compare?: (oldProps: Props, newProps: Props) =&gt; boolean,
-) {
-  return {
-    $$typeof: REACT_MEMO_TYPE,
+  compare?: (oldProps: Props, newProps: Props</span>) =&gt; <span class="hljs-title">boolean</span>,
+) </span>{
+  <span class="hljs-keyword">return</span> {
+    $$<span class="hljs-keyword">typeof</span>: REACT_MEMO_TYPE,
     type,
-    compare: compare === undefined ? null : compare,
+    compare: compare === <span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : compare,
   };
 }
 
-// createFiberFromTypeAndProps
-case REACT_MEMO_TYPE:
+<span class="hljs-comment">// createFiberFromTypeAndProps</span>
+<span class="hljs-keyword">case</span> REACT_MEMO_TYPE:
     fiberTag = MemoComponent;
-    break getTag;
+    <span class="hljs-keyword">break</span> getTag;
 
-// ReactFiberBeginWork.js - beginWork
-case MemoComponent: {
-    const type = workInProgress.type;
-    const unresolvedProps = workInProgress.pendingProps;
-    // Resolve outer props first, then resolve inner props.
-    let resolvedProps = resolveDefaultProps(type, unresolvedProps);
+<span class="hljs-comment">// ReactFiberBeginWork.js - beginWork</span>
+<span class="hljs-keyword">case</span> MemoComponent: {
+    <span class="hljs-keyword">const</span> type = workInProgress.type;
+    <span class="hljs-keyword">const</span> unresolvedProps = workInProgress.pendingProps;
+    <span class="hljs-comment">// Resolve outer props first, then resolve inner props.</span>
+    <span class="hljs-keyword">let</span> resolvedProps = resolveDefaultProps(type, unresolvedProps);
     resolvedProps = resolveDefaultProps(type.type, resolvedProps);
-    return updateMemoComponent(
+    <span class="hljs-keyword">return</span> updateMemoComponent(
         current,
         workInProgress,
         type,
@@ -1400,29 +1400,29 @@ case MemoComponent: {
     );
 }
 
-// ReactFiberBeginWork.js
-function updateMemoComponent(
+<span class="hljs-comment">// ReactFiberBeginWork.js</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateMemoComponent</span>(<span class="hljs-params">
   current: Fiber | null,
   workInProgress: Fiber,
   Component: any,
   nextProps: any,
   updateExpirationTime,
   renderExpirationTime: ExpirationTime,
-): null | Fiber {
-  if (current === null) {
-    let type = Component.type;
-    if (
+</span>): <span class="hljs-title">null</span> | <span class="hljs-title">Fiber</span> </span>{
+  <span class="hljs-keyword">if</span> (current === <span class="hljs-literal">null</span>) {
+    <span class="hljs-keyword">let</span> type = Component.type;
+    <span class="hljs-keyword">if</span> (
       isSimpleFunctionComponent(type) &amp;&amp;
-      Component.compare === null &amp;&amp;
-      // SimpleMemoComponent codepath doesn&apos;t resolve outer props either.
-      Component.defaultProps === undefined
+      Component.compare === <span class="hljs-literal">null</span> &amp;&amp;
+      <span class="hljs-comment">// SimpleMemoComponent codepath doesn&apos;t resolve outer props either.</span>
+      Component.defaultProps === <span class="hljs-literal">undefined</span>
     ) {
-      // If this is a plain function component without default props,
-      // and with only the default shallow comparison, we upgrade it
-      // to a SimpleMemoComponent to allow fast path updates.
+      <span class="hljs-comment">// If this is a plain function component without default props,</span>
+      <span class="hljs-comment">// and with only the default shallow comparison, we upgrade it</span>
+      <span class="hljs-comment">// to a SimpleMemoComponent to allow fast path updates.</span>
       workInProgress.tag = SimpleMemoComponent;
       workInProgress.type = type;
-      return updateSimpleMemoComponent(
+      <span class="hljs-keyword">return</span> updateSimpleMemoComponent(
         current,
         workInProgress,
         type,
@@ -1431,38 +1431,38 @@ function updateMemoComponent(
         renderExpirationTime,
       );
     }
-    let child = createFiberFromTypeAndProps(
+    <span class="hljs-keyword">let</span> child = createFiberFromTypeAndProps(
       Component.type,
-      null,
+      <span class="hljs-literal">null</span>,
       nextProps,
-      null,
+      <span class="hljs-literal">null</span>,
       workInProgress.mode,
       renderExpirationTime,
     );
     child.ref = workInProgress.ref;
     child.return = workInProgress;
     workInProgress.child = child;
-    return child;
+    <span class="hljs-keyword">return</span> child;
   }
-  let currentChild = ((current.child: any): Fiber); // This is always exactly one child
-  if (updateExpirationTime &lt; renderExpirationTime) {
-    // This will be the props with resolved defaultProps,
-    // unlike current.memoizedProps which will be the unresolved ones.
-    const prevProps = currentChild.memoizedProps;
-    // Default to shallow comparison
-    let compare = Component.compare;
-    compare = compare !== null ? compare : shallowEqual;
-    if (compare(prevProps, nextProps) &amp;&amp; current.ref === workInProgress.ref) {
-      return bailoutOnAlreadyFinishedWork(
+  <span class="hljs-keyword">let</span> currentChild = ((current.child: any): Fiber); <span class="hljs-comment">// This is always exactly one child</span>
+  <span class="hljs-keyword">if</span> (updateExpirationTime &lt; renderExpirationTime) {
+    <span class="hljs-comment">// This will be the props with resolved defaultProps,</span>
+    <span class="hljs-comment">// unlike current.memoizedProps which will be the unresolved ones.</span>
+    <span class="hljs-keyword">const</span> prevProps = currentChild.memoizedProps;
+    <span class="hljs-comment">// Default to shallow comparison</span>
+    <span class="hljs-keyword">let</span> compare = Component.compare;
+    compare = compare !== <span class="hljs-literal">null</span> ? compare : shallowEqual;
+    <span class="hljs-keyword">if</span> (compare(prevProps, nextProps) &amp;&amp; current.ref === workInProgress.ref) {
+      <span class="hljs-keyword">return</span> bailoutOnAlreadyFinishedWork(
         current,
         workInProgress,
         renderExpirationTime,
       );
     }
   }
-  // React DevTools reads this flag.
+  <span class="hljs-comment">// React DevTools reads this flag.</span>
   workInProgress.effectTag |= PerformedWork;
-  let newChild = createWorkInProgress(
+  <span class="hljs-keyword">let</span> newChild = createWorkInProgress(
     currentChild,
     nextProps,
     renderExpirationTime,
@@ -1470,9 +1470,10 @@ function updateMemoComponent(
   newChild.ref = workInProgress.ref;
   newChild.return = workInProgress;
   workInProgress.child = newChild;
-  return newChild;
+  <span class="hljs-keyword">return</span> newChild;
 }
 </code></pre>
+
                                 
                                 </section>
                             
@@ -1515,7 +1516,7 @@ function updateMemoComponent(
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Memo","level":"2.1.7","depth":2,"next":{"title":"Immer","level":"2.1.8","depth":2,"path":"2-react/react/immer.md","ref":"2-react/react/immer.md","articles":[]},"previous":{"title":"UseLayoutEffect","level":"2.1.6","depth":2,"path":"2-react/react/6-useLayoutEffect.md","ref":"2-react/react/6-useLayoutEffect.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"2-react/react/7-memo.md","mtime":"2022-04-22T02:13:46.858Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-22T02:14:23.126Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Memo","level":"2.1.7","depth":2,"next":{"title":"Immer","level":"2.1.8","depth":2,"path":"2-react/react/immer.md","ref":"2-react/react/immer.md","articles":[]},"previous":{"title":"UseLayoutEffect","level":"2.1.6","depth":2,"path":"2-react/react/6-useLayoutEffect.md","ref":"2-react/react/6-useLayoutEffect.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"2-react/react/7-memo.md","mtime":"2022-04-25T06:38:32.827Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-25T06:39:13.949Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

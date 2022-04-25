@@ -1363,13 +1363,14 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x521D;&#x59CB;&#x5316;"><a name="&#x521D;&#x59CB;&#x5316;" class="plugin-anchor" href="#&#x521D;&#x59CB;&#x5316;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521D;&#x59CB;&#x5316;</h1>
+                                <h1 id="useeffect"><a name="useeffect" class="plugin-anchor" href="#useeffect"><i class="fa fa-link" aria-hidden="true"></i></a>useEffect</h1>
+<h2 id="&#x521D;&#x59CB;&#x5316;"><a name="&#x521D;&#x59CB;&#x5316;" class="plugin-anchor" href="#&#x521D;&#x59CB;&#x5316;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521D;&#x59CB;&#x5316;</h2>
 <p>&#x5C06;&#x65B9;&#x6CD5;&#x653E;&#x5165; effectList&#x3002;</p>
-<pre><code>function mountEffect(
-  create: () =&gt; (() =&gt; void) | void,
-  deps: Array&lt;mixed&gt; | void | null,
-): void {
-  return mountEffectImpl(
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mountEffect</span>(<span class="hljs-params">
+  create: (</span>) =&gt; (<span class="hljs-params">(</span>) =&gt; <span class="hljs-title">void</span>) | <span class="hljs-title">void</span>,
+  <span class="hljs-title">deps</span>: <span class="hljs-title">Array</span>&lt;<span class="hljs-title">mixed</span>&gt; | <span class="hljs-title">void</span> | <span class="hljs-title">null</span>,
+): <span class="hljs-title">void</span> </span>{
+  <span class="hljs-keyword">return</span> mountEffectImpl(
     UpdateEffect | PassiveEffect,
     UnmountPassive | MountPassive,
     create,
@@ -1377,19 +1378,20 @@
   );
 }
 
-function mountEffectImpl(fiberEffectTag, hookEffectTag, create, deps): void {
-  const hook = mountWorkInProgressHook();
-  const nextDeps = deps === undefined ? null : deps;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mountEffectImpl</span>(<span class="hljs-params">fiberEffectTag, hookEffectTag, create, deps</span>): <span class="hljs-title">void</span> </span>{
+  <span class="hljs-keyword">const</span> hook = mountWorkInProgressHook();
+  <span class="hljs-keyword">const</span> nextDeps = deps === <span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : deps;
   sideEffectTag |= fiberEffectTag;
-  hook.memoizedState = pushEffect(hookEffectTag, create, undefined, nextDeps);
+  hook.memoizedState = pushEffect(hookEffectTag, create, <span class="hljs-literal">undefined</span>, nextDeps);
 }
-</code></pre><h1 id="&#x66F4;&#x65B0;"><a name="&#x66F4;&#x65B0;" class="plugin-anchor" href="#&#x66F4;&#x65B0;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x66F4;&#x65B0;</h1>
+</code></pre>
+<h2 id="&#x66F4;&#x65B0;"><a name="&#x66F4;&#x65B0;" class="plugin-anchor" href="#&#x66F4;&#x65B0;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x66F4;&#x65B0;</h2>
 <p>&#x5BF9;&#x4F9D;&#x8D56;&#x8FDB;&#x884C;&#x6F5C;&#x6BD4;&#x8F83;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x5C06;&#x65B9;&#x6CD5;&#x653E;&#x5165; effectList&#x3002;</p>
-<pre><code>function updateEffect(
-  create: () =&gt; (() =&gt; void) | void,
-  deps: Array&lt;mixed&gt; | void | null,
-): void {
-  return updateEffectImpl(
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateEffect</span>(<span class="hljs-params">
+  create: (</span>) =&gt; (<span class="hljs-params">(</span>) =&gt; <span class="hljs-title">void</span>) | <span class="hljs-title">void</span>,
+  <span class="hljs-title">deps</span>: <span class="hljs-title">Array</span>&lt;<span class="hljs-title">mixed</span>&gt; | <span class="hljs-title">void</span> | <span class="hljs-title">null</span>,
+): <span class="hljs-title">void</span> </span>{
+  <span class="hljs-keyword">return</span> updateEffectImpl(
     UpdateEffect | PassiveEffect,
     UnmountPassive | MountPassive,
     create,
@@ -1397,19 +1399,19 @@ function mountEffectImpl(fiberEffectTag, hookEffectTag, create, deps): void {
   );
 }
 
-function updateEffectImpl(fiberEffectTag, hookEffectTag, create, deps): void {
-  const hook = updateWorkInProgressHook();
-  const nextDeps = deps === undefined ? null : deps;
-  let destroy = undefined;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateEffectImpl</span>(<span class="hljs-params">fiberEffectTag, hookEffectTag, create, deps</span>): <span class="hljs-title">void</span> </span>{
+  <span class="hljs-keyword">const</span> hook = updateWorkInProgressHook();
+  <span class="hljs-keyword">const</span> nextDeps = deps === <span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : deps;
+  <span class="hljs-keyword">let</span> destroy = <span class="hljs-literal">undefined</span>;
 
-  if (currentHook !== null) {
-    const prevEffect = currentHook.memoizedState;
+  <span class="hljs-keyword">if</span> (currentHook !== <span class="hljs-literal">null</span>) {
+    <span class="hljs-keyword">const</span> prevEffect = currentHook.memoizedState;
     destroy = prevEffect.destroy;
-    if (nextDeps !== null) {
-      const prevDeps = prevEffect.deps;
-      if (areHookInputsEqual(nextDeps, prevDeps)) {
+    <span class="hljs-keyword">if</span> (nextDeps !== <span class="hljs-literal">null</span>) {
+      <span class="hljs-keyword">const</span> prevDeps = prevEffect.deps;
+      <span class="hljs-keyword">if</span> (areHookInputsEqual(nextDeps, prevDeps)) {
         pushEffect(NoHookEffect, create, destroy, nextDeps);
-        return;
+        <span class="hljs-keyword">return</span>;
       }
     }
   }
@@ -1418,6 +1420,7 @@ function updateEffectImpl(fiberEffectTag, hookEffectTag, create, deps): void {
   hook.memoizedState = pushEffect(hookEffectTag, create, destroy, nextDeps);
 }
 </code></pre>
+
                                 
                                 </section>
                             
@@ -1460,7 +1463,7 @@ function updateEffectImpl(fiberEffectTag, hookEffectTag, create, deps): void {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"UseEffect","level":"2.1.5","depth":2,"next":{"title":"UseLayoutEffect","level":"2.1.6","depth":2,"path":"2-react/react/6-useLayoutEffect.md","ref":"2-react/react/6-useLayoutEffect.md","articles":[]},"previous":{"title":"UseCallback","level":"2.1.4","depth":2,"path":"2-react/react/4-useCallback.md","ref":"2-react/react/4-useCallback.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"2-react/react/5-useEffect.md","mtime":"2022-04-22T02:13:46.858Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-22T02:14:23.126Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"UseEffect","level":"2.1.5","depth":2,"next":{"title":"UseLayoutEffect","level":"2.1.6","depth":2,"path":"2-react/react/6-useLayoutEffect.md","ref":"2-react/react/6-useLayoutEffect.md","articles":[]},"previous":{"title":"UseCallback","level":"2.1.4","depth":2,"path":"2-react/react/4-useCallback.md","ref":"2-react/react/4-useCallback.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"2-react/react/5-useEffect.md","mtime":"2022-04-25T06:38:32.827Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-25T06:39:13.949Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

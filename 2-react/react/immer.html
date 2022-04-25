@@ -1366,150 +1366,155 @@
                                 <h1 id="&#x524D;&#x8A00;"><a name="&#x524D;&#x8A00;" class="plugin-anchor" href="#&#x524D;&#x8A00;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x524D;&#x8A00;</h1>
 <p>React &#x548C; Redux &#x90FD;&#x9075;&#x5B88;&#x7EC4;&#x4EF6;&#x72B6;&#x6001;&#x4E3A;<code>&#x4E0D;&#x53EF;&#x53D8;&#xFF08;immutable&#xFF09;</code>&#x7684;&#x7406;&#x5FF5;&#xFF0C;&#x4F7F;&#x7528; immer &#x53EF;&#x5C06;&#x5BF9;&#x8C61;&#x8BBE;&#x7F6E;&#x4E3A; immutable&#xFF0C;&#x9632;&#x6B62;&#x610F;&#x5916;&#x7684;&#x4FEE;&#x6539;&#x3002;
 Immer &#x662F;&#x4E00;&#x4E2A;&#x652F;&#x6301;&#x67EF;&#x91CC;&#x5316;&#xFF0C;&#x4EC5;&#x652F;&#x6301;&#x540C;&#x6B65;&#x8BA1;&#x7B97;&#x7684;&#x5DE5;&#x5177;&#xFF0C;&#x6240;&#x4EE5;&#x975E;&#x5E38;&#x9002;&#x5408;&#x4F5C;&#x4E3A; redux &#x7684; reducer &#x4F7F;&#x7528;&#x3002;</p>
-<pre><code>import produce from &quot;immer&quot;
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> produce <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;immer&quot;</span>
 
-const baseState = [
+<span class="hljs-keyword">const</span> baseState = [
     {
-        title: &quot;Learn TypeScript&quot;,
-        done: true
+        title: <span class="hljs-string">&quot;Learn TypeScript&quot;</span>,
+        done: <span class="hljs-literal">true</span>
     },
     {
-        title: &quot;Try Immer&quot;,
-        done: false
+        title: <span class="hljs-string">&quot;Try Immer&quot;</span>,
+        done: <span class="hljs-literal">false</span>
     }
 ]
 
-const nextState = produce(baseState, draftState =&gt; {
-    draftState.push({title: &quot;Tweet about it&quot;})
-    draftState[1].done = true
+<span class="hljs-keyword">const</span> nextState = produce(baseState, draftState =&gt; {
+    draftState.push({title: <span class="hljs-string">&quot;Tweet about it&quot;</span>})
+    draftState[<span class="hljs-number">1</span>].done = <span class="hljs-literal">true</span>
 })
-</code></pre><h1 id="immer-&#x539F;&#x7406;"><a name="immer-&#x539F;&#x7406;" class="plugin-anchor" href="#immer-&#x539F;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a>immer &#x539F;&#x7406;</h1>
-<h2 id="draft-&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E9B;&#x63CF;&#x8FF0;&#x5B57;&#x6BB5;"><a name="draft-&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E9B;&#x63CF;&#x8FF0;&#x5B57;&#x6BB5;" class="plugin-anchor" href="#draft-&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E9B;&#x63CF;&#x8FF0;&#x5B57;&#x6BB5;"><i class="fa fa-link" aria-hidden="true"></i></a>draft &#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E9B;&#x63CF;&#x8FF0;&#x5B57;&#x6BB5;</h2>
-<pre><code>{
-  modified, // &#x662F;&#x5426;&#x88AB;&#x4FEE;&#x6539;&#x8FC7;
-  finalized, // &#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x5B8C;&#x6210;&#xFF08;&#x6240;&#x6709; setter &#x6267;&#x884C;&#x5B8C;&#xFF0C;&#x5E76;&#x4E14;&#x5DF2;&#x7ECF;&#x751F;&#x6210;&#x4E86; copy&#xFF09;
-  parent, // &#x7236;&#x7EA7;&#x5BF9;&#x8C61;
-  base, // &#x539F;&#x59CB;&#x5BF9;&#x8C61;&#xFF08;&#x4E5F;&#x5C31;&#x662F; obj&#xFF09;
-  copy, // base&#xFF08;&#x4E5F;&#x5C31;&#x662F; obj&#xFF09;&#x7684;&#x6D45;&#x62F7;&#x8D1D;&#xFF0C;&#x4F7F;&#x7528; Object.assign(Object.create(null), obj) &#x5B9E;&#x73B0;
-  proxies, // &#x5B58;&#x50A8;&#x6BCF;&#x4E2A; propertyKey &#x7684;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#xFF0C;&#x91C7;&#x7528;&#x61D2;&#x521D;&#x59CB;&#x5316;&#x7B56;&#x7565;
+</code></pre>
+<h2 id="immer-&#x539F;&#x7406;"><a name="immer-&#x539F;&#x7406;" class="plugin-anchor" href="#immer-&#x539F;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a>immer &#x539F;&#x7406;</h2>
+<h3 id="draft-&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E9B;&#x63CF;&#x8FF0;&#x5B57;&#x6BB5;"><a name="draft-&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E9B;&#x63CF;&#x8FF0;&#x5B57;&#x6BB5;" class="plugin-anchor" href="#draft-&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E9B;&#x63CF;&#x8FF0;&#x5B57;&#x6BB5;"><i class="fa fa-link" aria-hidden="true"></i></a>draft &#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E9B;&#x63CF;&#x8FF0;&#x5B57;&#x6BB5;</h3>
+<pre><code class="lang-javascript">{
+  modified, <span class="hljs-comment">// &#x662F;&#x5426;&#x88AB;&#x4FEE;&#x6539;&#x8FC7;</span>
+  finalized, <span class="hljs-comment">// &#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x5B8C;&#x6210;&#xFF08;&#x6240;&#x6709; setter &#x6267;&#x884C;&#x5B8C;&#xFF0C;&#x5E76;&#x4E14;&#x5DF2;&#x7ECF;&#x751F;&#x6210;&#x4E86; copy&#xFF09;</span>
+  parent, <span class="hljs-comment">// &#x7236;&#x7EA7;&#x5BF9;&#x8C61;</span>
+  base, <span class="hljs-comment">// &#x539F;&#x59CB;&#x5BF9;&#x8C61;&#xFF08;&#x4E5F;&#x5C31;&#x662F; obj&#xFF09;</span>
+  copy, <span class="hljs-comment">// base&#xFF08;&#x4E5F;&#x5C31;&#x662F; obj&#xFF09;&#x7684;&#x6D45;&#x62F7;&#x8D1D;&#xFF0C;&#x4F7F;&#x7528; Object.assign(Object.create(null), obj) &#x5B9E;&#x73B0;</span>
+  proxies, <span class="hljs-comment">// &#x5B58;&#x50A8;&#x6BCF;&#x4E2A; propertyKey &#x7684;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#xFF0C;&#x91C7;&#x7528;&#x61D2;&#x521D;&#x59CB;&#x5316;&#x7B56;&#x7565;</span>
 }
-</code></pre><h2 id="produce-&#x521B;&#x5EFA;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;"><a name="produce-&#x521B;&#x5EFA;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;" class="plugin-anchor" href="#produce-&#x521B;&#x5EFA;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;"><i class="fa fa-link" aria-hidden="true"></i></a>produce &#x521B;&#x5EFA;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;</h2>
+</code></pre>
+<h3 id="produce-&#x521B;&#x5EFA;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;"><a name="produce-&#x521B;&#x5EFA;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;" class="plugin-anchor" href="#produce-&#x521B;&#x5EFA;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;"><i class="fa fa-link" aria-hidden="true"></i></a>produce &#x521B;&#x5EFA;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;</h3>
 <p>produce &#x65B9;&#x6CD5;&#x91CC;&#x9762;&#x4F1A;&#x901A;&#x8FC7; createProxy &#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;</p>
-<pre><code>produce: IProduce = (base: any, recipe?: any, patchListener?: any) =&gt; {
-    /* &#x5982;&#x679C;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x7684;&#x662F;&#x51FD;&#x6570;&#x800C;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x4E14;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4E0D;&#x662F;&#x51FD;&#x6570;&#xFF0C;&#x5219;&#x91C7;&#x7528;curried&#x51FD;&#x6570;&#x7684;&#x65B9;&#x5F0F;&#x3002;*/
-    if (typeof base === &quot;function&quot; &amp;&amp; typeof recipe !== &quot;function&quot;) {
-        /* &#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x5C31;&#x53D8;&#x6210;&#x4E86;&#x521D;&#x59CB;&#x503C; */
-        const defaultBase = recipe
-        /* &#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x53D8;&#x6210;&#x4E86;recipe&#x51FD;&#x6570; */
+<pre><code class="lang-javascript">produce: IProduce = (base: any, recipe?: any, patchListener?: any) =&gt; {
+    <span class="hljs-comment">/* &#x5982;&#x679C;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x7684;&#x662F;&#x51FD;&#x6570;&#x800C;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x4E14;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4E0D;&#x662F;&#x51FD;&#x6570;&#xFF0C;&#x5219;&#x91C7;&#x7528;curried&#x51FD;&#x6570;&#x7684;&#x65B9;&#x5F0F;&#x3002;*/</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> base === <span class="hljs-string">&quot;function&quot;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> recipe !== <span class="hljs-string">&quot;function&quot;</span>) {
+        <span class="hljs-comment">/* &#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x5C31;&#x53D8;&#x6210;&#x4E86;&#x521D;&#x59CB;&#x503C; */</span>
+        <span class="hljs-keyword">const</span> defaultBase = recipe
+        <span class="hljs-comment">/* &#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x53D8;&#x6210;&#x4E86;recipe&#x51FD;&#x6570; */</span>
         recipe = base
 
-        const self = this
-        return function curriedProduce(
+        <span class="hljs-keyword">const</span> self = <span class="hljs-keyword">this</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curriedProduce</span>(<span class="hljs-params">
             this: any,
             base = defaultBase,
             ...args: any[]
-        ) {
-             /* &#x5C06;&#x4FEE;&#x6539;&#x540E;&#x7684;&#x53C2;&#x6570;&#x4ECE;&#x65B0;&#x4F20;&#x5165;&#x6B63;&#x5E38;&#x7684;produce&#x51FD;&#x6570; &#x4EE3;&#x7406;&#x5BF9;&#x8C61; draft &#x5B9E;&#x9645;&#x662F;recipe&#x51FD;&#x6570;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x521D;&#x59CB;&#x503C;&#x53D6;&#x7684;&#x662F;produce&#x7684;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570; */
-            return self.produce(base, (draft: Drafted) =&gt; recipe.call(this, draft, ...args)) // prettier-ignore
+        </span>) </span>{
+             <span class="hljs-comment">/* &#x5C06;&#x4FEE;&#x6539;&#x540E;&#x7684;&#x53C2;&#x6570;&#x4ECE;&#x65B0;&#x4F20;&#x5165;&#x6B63;&#x5E38;&#x7684;produce&#x51FD;&#x6570; &#x4EE3;&#x7406;&#x5BF9;&#x8C61; draft &#x5B9E;&#x9645;&#x662F;recipe&#x51FD;&#x6570;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x521D;&#x59CB;&#x503C;&#x53D6;&#x7684;&#x662F;produce&#x7684;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570; */</span>
+            <span class="hljs-keyword">return</span> self.produce(base, (draft: Drafted) =&gt; recipe.call(<span class="hljs-keyword">this</span>, draft, ...args)) <span class="hljs-comment">// prettier-ignore</span>
         }
     }
 
-    if (typeof recipe !== &quot;function&quot;)
-        /** die &#x51FD;&#x6570;&#x5C01;&#x88C5;error&#xFF0C;&#x901A;&#x8FC7;key&#x8C03;&#x7528;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x4FE1;&#x606F; */
-        die(6)
-    if (patchListener !== undefined &amp;&amp; typeof patchListener !== &quot;function&quot;)
-        die(7)
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> recipe !== <span class="hljs-string">&quot;function&quot;</span>)
+        <span class="hljs-comment">/** die &#x51FD;&#x6570;&#x5C01;&#x88C5;error&#xFF0C;&#x901A;&#x8FC7;key&#x8C03;&#x7528;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x4FE1;&#x606F; */</span>
+        die(<span class="hljs-number">6</span>)
+    <span class="hljs-keyword">if</span> (patchListener !== <span class="hljs-literal">undefined</span> &amp;&amp; <span class="hljs-keyword">typeof</span> patchListener !== <span class="hljs-string">&quot;function&quot;</span>)
+        die(<span class="hljs-number">7</span>)
 
-    let result
+    <span class="hljs-keyword">let</span> result
 
-    /* &#x53EA;&#x6709;&#x5BF9;&#x8C61; &#x6570;&#x7EC4; &#x548C; &quot;immerable classes&quot; &#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x4EE3;&#x7406; */
-    if (isDraftable(base)) {
-        /* scope &#x662F; immer &#x7684;&#x4E00;&#x4E2A;&#x5185;&#x90E8;&#x6982;&#x5FF5;&#xFF0C;&#x5F53;&#x76EE;&#x6807;&#x5BF9;&#x8C61;&#x6709;&#x590D;&#x6742;&#x5D4C;&#x5957;&#x65F6;&#xFF0C;&#x5229;&#x7528; scope &#x533A;&#x5206;&#x548C;&#x8DDF;&#x8E2A;&#x5D4C;&#x5957;&#x5904;&#x7406;&#x7684;&#x8FC7;&#x7A0B; */
-        const scope = enterScope(this)
-        const proxy = createProxy(this, base, undefined)
-        let hasError = true
-        try {
+    <span class="hljs-comment">/* &#x53EA;&#x6709;&#x5BF9;&#x8C61; &#x6570;&#x7EC4; &#x548C; &quot;immerable classes&quot; &#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x4EE3;&#x7406; */</span>
+    <span class="hljs-keyword">if</span> (isDraftable(base)) {
+        <span class="hljs-comment">/* scope &#x662F; immer &#x7684;&#x4E00;&#x4E2A;&#x5185;&#x90E8;&#x6982;&#x5FF5;&#xFF0C;&#x5F53;&#x76EE;&#x6807;&#x5BF9;&#x8C61;&#x6709;&#x590D;&#x6742;&#x5D4C;&#x5957;&#x65F6;&#xFF0C;&#x5229;&#x7528; scope &#x533A;&#x5206;&#x548C;&#x8DDF;&#x8E2A;&#x5D4C;&#x5957;&#x5904;&#x7406;&#x7684;&#x8FC7;&#x7A0B; */</span>
+        <span class="hljs-keyword">const</span> scope = enterScope(<span class="hljs-keyword">this</span>)
+        <span class="hljs-keyword">const</span> proxy = createProxy(<span class="hljs-keyword">this</span>, base, <span class="hljs-literal">undefined</span>)
+        <span class="hljs-keyword">let</span> hasError = <span class="hljs-literal">true</span>
+        <span class="hljs-keyword">try</span> {
             result = recipe(proxy)
-            hasError = false
-        } finally {
-            // finally instead of catch + rethrow better preserves original stack
-            if (hasError) revokeScope(scope)
-            else leaveScope(scope)
+            hasError = <span class="hljs-literal">false</span>
+        } <span class="hljs-keyword">finally</span> {
+            <span class="hljs-comment">// finally instead of catch + rethrow better preserves original stack</span>
+            <span class="hljs-keyword">if</span> (hasError) revokeScope(scope)
+            <span class="hljs-keyword">else</span> leaveScope(scope)
         }
-        if (typeof Promise !== &quot;undefined&quot; &amp;&amp; result instanceof Promise) {
-            return result.then(
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Promise</span> !== <span class="hljs-string">&quot;undefined&quot;</span> &amp;&amp; result <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>) {
+            <span class="hljs-keyword">return</span> result.then(
                 result =&gt; {
                     usePatchesInScope(scope, patchListener)
-                    return processResult(result, scope)
+                    <span class="hljs-keyword">return</span> processResult(result, scope)
                 },
                 error =&gt; {
                     revokeScope(scope)
-                    throw error
+                    <span class="hljs-keyword">throw</span> error
                 }
             )
         }
         usePatchesInScope(scope, patchListener)
-        return processResult(result, scope)
-    } else if (!base || typeof base !== &quot;object&quot;) {
+        <span class="hljs-keyword">return</span> processResult(result, scope)
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!base || <span class="hljs-keyword">typeof</span> base !== <span class="hljs-string">&quot;object&quot;</span>) {
         result = recipe(base)
-        if (result === undefined) result = base
-        if (result === NOTHING) result = undefined
-        if (this.autoFreeze_) freeze(result, true)
-        if (patchListener) {
-            const p: Patch[] = []
-            const ip: Patch[] = []
-            getPlugin(&quot;Patches&quot;).generateReplacementPatches_(base, result, p, ip)
+        <span class="hljs-keyword">if</span> (result === <span class="hljs-literal">undefined</span>) result = base
+        <span class="hljs-keyword">if</span> (result === NOTHING) result = <span class="hljs-literal">undefined</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.autoFreeze_) freeze(result, <span class="hljs-literal">true</span>)
+        <span class="hljs-keyword">if</span> (patchListener) {
+            <span class="hljs-keyword">const</span> p: Patch[] = []
+            <span class="hljs-keyword">const</span> ip: Patch[] = []
+            getPlugin(<span class="hljs-string">&quot;Patches&quot;</span>).generateReplacementPatches_(base, result, p, ip)
             patchListener(p, ip)
         }
-        return result
-    } else die(21, base)
+        <span class="hljs-keyword">return</span> result
+    } <span class="hljs-keyword">else</span> die(<span class="hljs-number">21</span>, base)
 }
-</code></pre><h2 id="createproxy-&#x521B;&#x5EFA;&#x4EE3;&#x7406;"><a name="createproxy-&#x521B;&#x5EFA;&#x4EE3;&#x7406;" class="plugin-anchor" href="#createproxy-&#x521B;&#x5EFA;&#x4EE3;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a>createProxy &#x521B;&#x5EFA;&#x4EE3;&#x7406;</h2>
+</code></pre>
+<h3 id="createproxy-&#x521B;&#x5EFA;&#x4EE3;&#x7406;"><a name="createproxy-&#x521B;&#x5EFA;&#x4EE3;&#x7406;" class="plugin-anchor" href="#createproxy-&#x521B;&#x5EFA;&#x4EE3;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a>createProxy &#x521B;&#x5EFA;&#x4EE3;&#x7406;</h3>
 <p>createProxy &#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E3A;<code>&#x7B56;&#x7565;&#x6A21;&#x5F0F;</code>
 &#x5224;&#x65AD;&#x4F20;&#x5165;&#x7684;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;&#x6765;&#x91C7;&#x53D6;&#x4E0D;&#x540C;&#x7684;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#xFF0C;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#x90FD;&#x662F;&#x4F1A;&#x4F7F;&#x7528; createProxyProxy &#x4E5F;&#x5C31;&#x662F; Proxy &#x8FDB;&#x884C;&#x4EE3;&#x7406;</p>
-<pre><code>export function createProxy&lt;T extends Objectish&gt;(
+<pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createProxy</span>&lt;<span class="hljs-title">T</span> <span class="hljs-title">extends</span> <span class="hljs-title">Objectish</span>&gt;(<span class="hljs-params">
     immer: Immer,
     value: T,
     parent?: ImmerState
-): Drafted&lt;T, ImmerState&gt; {
-    /* &#x6839;&#x636E;&#x4F20;&#x5165;&#x7684;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;&#x6765;&#x91C7;&#x53D6;&#x4E0D;&#x540C;&#x7684;&#x4EE3;&#x7406;&#x6A21;&#x5F0F; */
-    const draft: Drafted = isMap(value)
-        ? getPlugin(&quot;MapSet&quot;).proxyMap_(value, parent)/* &#x4F20;&#x5165;&#x7684;base&#x5BF9;&#x8C61;&#x662F;Map&#x7C7B;&#x578B; */
+</span>): <span class="hljs-title">Drafted</span>&lt;<span class="hljs-title">T</span>, <span class="hljs-title">ImmerState</span>&gt; </span>{
+    <span class="hljs-comment">/* &#x6839;&#x636E;&#x4F20;&#x5165;&#x7684;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;&#x6765;&#x91C7;&#x53D6;&#x4E0D;&#x540C;&#x7684;&#x4EE3;&#x7406;&#x6A21;&#x5F0F; */</span>
+    <span class="hljs-keyword">const</span> draft: Drafted = isMap(value)
+        ? getPlugin(<span class="hljs-string">&quot;MapSet&quot;</span>).proxyMap_(value, parent)<span class="hljs-comment">/* &#x4F20;&#x5165;&#x7684;base&#x5BF9;&#x8C61;&#x662F;Map&#x7C7B;&#x578B; */</span>
         : isSet(value)
-        ? getPlugin(&quot;MapSet&quot;).proxySet_(value, parent)/* &#x4F20;&#x5165;&#x7684;base&#x5BF9;&#x8C61;&#x662F;Set&#x7C7B;&#x578B; */
+        ? getPlugin(<span class="hljs-string">&quot;MapSet&quot;</span>).proxySet_(value, parent)<span class="hljs-comment">/* &#x4F20;&#x5165;&#x7684;base&#x5BF9;&#x8C61;&#x662F;Set&#x7C7B;&#x578B; */</span>
         : immer.useProxies_
-        ? createProxyProxy(value, parent)/* &#x5F53;&#x524D;&#x73AF;&#x5883;&#x652F;&#x6301;Proxy&#x5219;&#x4F7F;&#x7528;Proxy&#x8FDB;&#x884C;&#x4EE3;&#x7406; */
-        : getPlugin(&quot;ES5&quot;).createES5Proxy_(value, parent) /* &#x5F53;&#x524D;&#x73AF;&#x5883;&#x4E0D;&#x652F;&#x6301;Proxy&#x5219;&#x4F7F;&#x7528;Object.defineProperty() */
+        ? createProxyProxy(value, parent)<span class="hljs-comment">/* &#x5F53;&#x524D;&#x73AF;&#x5883;&#x652F;&#x6301;Proxy&#x5219;&#x4F7F;&#x7528;Proxy&#x8FDB;&#x884C;&#x4EE3;&#x7406; */</span>
+        : getPlugin(<span class="hljs-string">&quot;ES5&quot;</span>).createES5Proxy_(value, parent) <span class="hljs-comment">/* &#x5F53;&#x524D;&#x73AF;&#x5883;&#x4E0D;&#x652F;&#x6301;Proxy&#x5219;&#x4F7F;&#x7528;Object.defineProperty() */</span>
 
-    const scope = parent ? parent.scope_ : getCurrentScope()
+    <span class="hljs-keyword">const</span> scope = parent ? parent.scope_ : getCurrentScope()
     scope.drafts_.push(draft)
-    return draft
+    <span class="hljs-keyword">return</span> draft
 }
-</code></pre><h2 id="createproxyproxy"><a name="createproxyproxy" class="plugin-anchor" href="#createproxyproxy"><i class="fa fa-link" aria-hidden="true"></i></a>createProxyProxy</h2>
-<pre><code>export function createProxyProxy&lt;T extends Objectish&gt;(
+</code></pre>
+<h3 id="createproxyproxy"><a name="createproxyproxy" class="plugin-anchor" href="#createproxyproxy"><i class="fa fa-link" aria-hidden="true"></i></a>createProxyProxy</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createProxyProxy</span>&lt;<span class="hljs-title">T</span> <span class="hljs-title">extends</span> <span class="hljs-title">Objectish</span>&gt;(<span class="hljs-params">
     base: T,
     parent?: ImmerState
-): Drafted&lt;T, ProxyState&gt; {
-    /** &#x5B9A;&#x4E49;&#x521D;&#x59CB;&#x5BF9;&#x8C61; */
+</span>): <span class="hljs-title">Drafted</span>&lt;<span class="hljs-title">T</span>, <span class="hljs-title">ProxyState</span>&gt; </span>{
+    <span class="hljs-comment">/** &#x5B9A;&#x4E49;&#x521D;&#x59CB;&#x5BF9;&#x8C61; */</span>
     ...
-    let target: T = state as any
-    let traps: ProxyHandler&lt;object | Array&lt;any&gt;&gt; = objectTraps
-    if (isArray) {
-        target = [state] as any
+    let target: T = state <span class="hljs-keyword">as</span> any
+    <span class="hljs-keyword">let</span> traps: ProxyHandler&lt;object | <span class="hljs-built_in">Array</span>&lt;any&gt;&gt; = objectTraps
+    <span class="hljs-keyword">if</span> (isArray) {
+        target = [state] <span class="hljs-keyword">as</span> any
         traps = arrayTraps
     }
 
-    const {revoke, proxy} = Proxy.revocable(target, traps)
-    state.draft_ = proxy as any
+    <span class="hljs-keyword">const</span> {revoke, proxy} = <span class="hljs-built_in">Proxy</span>.revocable(target, traps)
+    state.draft_ = proxy <span class="hljs-keyword">as</span> any
     state.revoke_ = revoke
-    return proxy as any
+    <span class="hljs-keyword">return</span> proxy <span class="hljs-keyword">as</span> any
 }
-</code></pre><p>&#x901A;&#x8FC7; Proxy.revocable() &#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x53EF;&#x64A4;&#x9500;&#x7684;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;.
+</code></pre>
+<p>&#x901A;&#x8FC7; Proxy.revocable() &#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x53EF;&#x64A4;&#x9500;&#x7684;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;.
 &#x5728;&#x8FD9;&#x4E2A;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x4E0A;&#xFF0C;&#x7ED1;&#x5B9A;&#x4E86;&#x81EA;&#x5B9A;&#x4E49;&#xFF08;objectTraps/arrayTraps&#xFF09;&#x7684; getter setter&#xFF0C;&#x7136;&#x540E;&#x76F4;&#x63A5;&#x5C06;&#x5176;&#x6254;&#x7ED9; produce &#x6267;&#x884C;&#x3002;</p>
-<h2 id="setter"><a name="setter" class="plugin-anchor" href="#setter"><i class="fa fa-link" aria-hidden="true"></i></a>setter</h2>
+<h3 id="setter"><a name="setter" class="plugin-anchor" href="#setter"><i class="fa fa-link" aria-hidden="true"></i></a>setter</h3>
 <p>&#x5F53;&#x5BF9; draft &#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x4FEE;&#x6539;&#x65F6;&#xFF0C;&#x4F1A;&#x5BF9;&#x539F;&#x59CB;&#x503C;&#x8FDB;&#x884C;&#x6D45;&#x62F7;&#x8D1D;&#xFF0C;&#x4FDD;&#x5B58;&#x5230; copy &#x5C5E;&#x6027;&#xFF0C;&#x540C;&#x65F6;&#x5C06; modified &#x5C5E;&#x6027;&#x8BBE;&#x7F6E;&#x4E3A; true&#x3002;
 &#x5C06; draft &#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x7684; copy &#x5C5E;&#x6027;&#x5BF9;&#x8C61; [props] &#x4FEE;&#x6539;&#x3002;</p>
-<h2 id="getter"><a name="getter" class="plugin-anchor" href="#getter"><i class="fa fa-link" aria-hidden="true"></i></a>getter</h2>
+<h3 id="getter"><a name="getter" class="plugin-anchor" href="#getter"><i class="fa fa-link" aria-hidden="true"></i></a>getter</h3>
 <p>&#x5F53; draft &#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x4FEE;&#x6539;&#x540E;&#xFF0C;&#x4F1A;&#x8BFB;&#x53D6; copy &#x5C5E;&#x6027;&#x7684;&#x5BF9;&#x8C61;</p>
 
                                 
@@ -1554,7 +1559,7 @@ const nextState = produce(baseState, draftState =&gt; {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Immer","level":"2.1.8","depth":2,"next":{"title":"React 18 Upgrade","level":"2.1.9","depth":2,"path":"2-react/react/react-18-upgrade.md","ref":"2-react/react/react-18-upgrade.md","articles":[]},"previous":{"title":"Memo","level":"2.1.7","depth":2,"path":"2-react/react/7-memo.md","ref":"2-react/react/7-memo.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"2-react/react/immer.md","mtime":"2022-04-22T02:13:46.858Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-22T02:14:23.126Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Immer","level":"2.1.8","depth":2,"next":{"title":"React 18 Upgrade","level":"2.1.9","depth":2,"path":"2-react/react/react-18-upgrade.md","ref":"2-react/react/react-18-upgrade.md","articles":[]},"previous":{"title":"Memo","level":"2.1.7","depth":2,"path":"2-react/react/7-memo.md","ref":"2-react/react/7-memo.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"2-react/react/immer.md","mtime":"2022-04-25T06:38:32.827Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-25T06:39:13.949Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
