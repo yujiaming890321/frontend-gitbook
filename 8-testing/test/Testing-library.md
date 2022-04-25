@@ -1,6 +1,8 @@
-### [waitFor](https://codesandbox.io/embed/7m3m792o4q?autoresize=1&fontsize=14&module=%2Fsrc%2FComponent.test.js&previewwindow=tests)
+# testing-library
 
-```
+## [waitFor](https://codesandbox.io/embed/7m3m792o4q?autoresize=1&fontsize=14&module=%2Fsrc%2FComponent.test.js&previewwindow=tests)
+
+```javascript
 import { waitFor } from '@testing-library/react'
 ```
 
@@ -11,7 +13,7 @@ import { fireEvent } from '@testing-library/react'
 fireEvent.click() 只会发出 onClick
 fireEvent.scroll() 触发 scroll
 
-```
+```javascript
 fireEvent (node: htmlElement, event: Event)
 ```
 
@@ -47,7 +49,7 @@ function clickLabel
 
 ## 快照测试
 
-```
+```javascript
 import React from 'react'
 import {render, cleanup} from '@testing-library/react'
 import App from '../App'
@@ -63,7 +65,7 @@ import App from '../App'
 
 ## [hooks](https://github.com/testing-library/react-hooks-testing-library)
 
-```
+```javascript
 import { renderHook, act } from '@testing-library/react-hooks'
 ```
 
@@ -71,7 +73,7 @@ import { renderHook, act } from '@testing-library/react-hooks'
 
 ## redux mock
 
-```
+```javascript
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import configureStore from 'redux-mock-store'
