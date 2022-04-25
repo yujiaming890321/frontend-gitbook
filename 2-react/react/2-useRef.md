@@ -1,8 +1,10 @@
-# 初始化
+# useRef
+
+## 初始化
 
 创建缓存对象
 
-```
+```javascript
 function mountRef<T>(initialValue: T): {current: T} {
   const hook = mountWorkInProgressHook();
   const ref = {current: initialValue};
@@ -11,11 +13,11 @@ function mountRef<T>(initialValue: T): {current: T} {
 }
 ```
 
-# 更新
+## 更新
 
 返回缓存对象
 
-```
+```javascript
 function updateRef<T>(initialValue: T): {current: T} {
   const hook = updateWorkInProgressHook();
   return hook.memoizedState;

@@ -1,8 +1,10 @@
-# 初始化
+# useCallback
+
+## 初始化
 
 创建缓存对象
 
-```
+```javascript
 function mountCallback<T>(callback: T, deps: Array<mixed> | void | null): T {
   const hook = mountWorkInProgressHook();
   const nextDeps = deps === undefined ? null : deps;
@@ -11,11 +13,11 @@ function mountCallback<T>(callback: T, deps: Array<mixed> | void | null): T {
 }
 ```
 
-# 更新
+## 更新
 
 对依赖进行潜比较，如果没有变化，返回缓存对象。
 
-```
+```javascript
 function updateCallback<T>(callback: T, deps: Array<mixed> | void | null): T {
   const hook = updateWorkInProgressHook();
   const nextDeps = deps === undefined ? null : deps;

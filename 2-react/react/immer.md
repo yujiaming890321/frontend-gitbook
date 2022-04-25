@@ -3,7 +3,7 @@
 React 和 Redux 都遵守组件状态为`不可变（immutable）`的理念，使用 immer 可将对象设置为 immutable，防止意外的修改。
 Immer 是一个支持柯里化，仅支持同步计算的工具，所以非常适合作为 redux 的 reducer 使用。
 
-```
+```javascript
 import produce from "immer"
 
 const baseState = [
@@ -23,11 +23,11 @@ const nextState = produce(baseState, draftState => {
 })
 ```
 
-# immer 原理
+## immer 原理
 
-## draft 代理对象的一些描述字段
+### draft 代理对象的一些描述字段
 
-```
+```javascript
 {
   modified, // 是否被修改过
   finalized, // 是否已经完成（所有 setter 执行完，并且已经生成了 copy）
@@ -38,11 +38,11 @@ const nextState = produce(baseState, draftState => {
 }
 ```
 
-## produce 创建代理对象
+### produce 创建代理对象
 
 produce 方法里面会通过 createProxy 这个方法创建一个代理对象
 
-```
+```javascript
 produce: IProduce = (base: any, recipe?: any, patchListener?: any) => {
     /* 如果第一个参数传入的是函数而不是一个对象且第二个参数不是函数，则采用curried函数的方式。*/
     if (typeof base === "function" && typeof recipe !== "function") {
@@ -114,12 +114,12 @@ produce: IProduce = (base: any, recipe?: any, patchListener?: any) => {
 }
 ```
 
-## createProxy 创建代理
+### createProxy 创建代理
 
 createProxy 设计模式为`策略模式`
 判断传入的对象类型来采取不同的代理模式，一般情况下都是会使用 createProxyProxy 也就是 Proxy 进行代理
 
-```
+```javascript
 export function createProxy<T extends Objectish>(
     immer: Immer,
     value: T,
@@ -140,9 +140,9 @@ export function createProxy<T extends Objectish>(
 }
 ```
 
-## createProxyProxy
+### createProxyProxy
 
-```
+```javascript
 export function createProxyProxy<T extends Objectish>(
     base: T,
     parent?: ImmerState
@@ -166,11 +166,11 @@ export function createProxyProxy<T extends Objectish>(
 通过 Proxy.revocable() 方法可以用来创建一个可撤销的代理对象.
 在这个代理对象上，绑定了自定义（objectTraps/arrayTraps）的 getter setter，然后直接将其扔给 produce 执行。
 
-## setter
+### setter
 
 当对 draft 代理对象修改时，会对原始值进行浅拷贝，保存到 copy 属性，同时将 modified 属性设置为 true。
 将 draft 代理对象的 copy 属性对象 [props] 修改。
 
-## getter
+### getter
 
 当 draft 代理对象修改后，会读取 copy 属性的对象

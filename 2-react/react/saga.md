@@ -24,7 +24,7 @@ generator 的特点是执行到某一步时，可以把控制权交给外部代�
 **put**
 作用和 redux 中的 dispatch 相同。
 
-```
+```javascript
 yield put({ type: 'CLICK_BTN' });
 ```
 
@@ -33,7 +33,7 @@ yield put({ type: 'CLICK_BTN' });
 
 在这个例子中，先等待一个按钮点击的 action ，然后执行按钮点击的 saga：
 
-```
+```javascript
 while (true) {
   yield take('CLICK_BUTTON');
   yield fork(clickButtonSaga);
@@ -43,7 +43,7 @@ while (true) {
 **fork**
 当接收到 BEGIN_COUNT 的 action，则开始倒数，而接收到 STOP_COUNT 的 action， 则停止倒数。
 
-```
+```javascript
 function* count(number) {
   let currNum = number;
 
@@ -67,7 +67,7 @@ function countSaga* () {
 **call**
 有阻塞地调用 saga 或者返回 promise 的函数。
 
-```
+```javascript
 const project = yield call(fetch, { url: UrlMap.fetchProject });
 const members = yield call(fetchMembers, project.id);
 ```
@@ -75,7 +75,7 @@ const members = yield call(fetchMembers, project.id);
 **select**
 作用和 redux thunk 中的 getState 相同。
 
-```
+```javascript
 const id = yield select(state => state.id);
 ```
 
@@ -86,7 +86,7 @@ const id = yield select(state => state.id);
 
 channel 是对事件源的抽象，作用是先注册一个 take 方法，当 put 触发时，执行一次 take 方法，然后销毁 take。
 
-```
+```javascript
 export function channel(buffer = buffers.expanding()) {
   let closed = false
   let takers = []
@@ -172,7 +172,7 @@ function* mainSaga() {
 task 是 generator 方法的执行环境，所有 saga 的 generator 方法都跑在 task 里。
 简易实现如下：
 
-```
+```javascript
 function task(iterator) {
   const iter = iterator();
   function next(args) {
@@ -192,7 +192,7 @@ function task(iterator) {
 
 ![image](https://img2022.cnblogs.com/blog/2347599/202201/2347599-20220125164251396-758936865.png)
 
-```
+```javascript
 // saga.js
 // 它是一个 generator function
 // fn 中同样包含了业务数据请求代码逻辑

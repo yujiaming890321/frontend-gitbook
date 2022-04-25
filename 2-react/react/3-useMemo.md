@@ -1,8 +1,10 @@
-# 初始化
+# useMemo
+
+## 初始化
 
 返回 create 方法执行后的结果
 
-```
+```javascript
 function mountMemo<T>(
   nextCreate: () => T,
   deps: Array<mixed> | void | null,
@@ -15,11 +17,11 @@ function mountMemo<T>(
 }
 ```
 
-# 更新
+## 更新
 
 对 deps 进行潜比较，相等返回之前缓存结果
 
-```
+```javascript
 function updateMemo<T>(
   nextCreate: () => T,
   deps: Array<mixed> | void | null,

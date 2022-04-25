@@ -1,4 +1,6 @@
-# redux 数据流
+# redux
+
+## redux 数据流
 
 组件通过 store.dispatch(action) 发起一个 action
 
@@ -6,13 +8,13 @@ store 接收到 action 通过 reducer 计算出新的 state
 
 store 返回新的 state 值给组件
 
-# 数据流
+## 数据流
 
 作为 Flux 的一种实现形式，Redux 自然保持着数据流的单向性，用一张图来形象说明的话，可以是这样：
 
 ![image](https://gw.alicdn.com/tps/TB1SsWQLFXXXXXMXVXXXXXXXXXX-1170-514.jpg_600x600.jpg)
 
-# Store
+## Store
 
 Store — 数据存储中心，同时连接着 Actions 和 Views（React Components）。
 
@@ -22,7 +24,7 @@ Store — 数据存储中心，同时连接着 Actions 和 Views（React Compone
 2. 然后，根据 Action.type 和 Action.payload 对 Store 里的数据进行修改
 3. 最后，Store 还需要通知 Views，数据有改变，Views 便去获取最新的 Store 数据，通过 setState 进行重新渲染组件（re1.render）。
 
-## Store 总结：
+## Store 总结
 
 1. Store 的数据修改，本质上是通过 Reducer 来完成的。
 2. Store 只提供 get 方法（即 getState），不提供 set 方法，所以数据的修改一定是通过 dispatch(action)来完成，即：action -> reducers -> store
@@ -30,13 +32,13 @@ Store — 数据存储中心，同时连接着 Actions 和 Views（React Compone
    - dispatch 方法 对应着 pub
    - subscribe 方法 对应着 sub
 
-# Reducer
+### Reducer
 
 Reducer，这个名字来源于数组的一个函数 — reduce，它们俩比较相似的地方在于：接收一个旧的 prevState，返回一个新的 nextState。
 
 在上文讲解 Store 的时候，得知：Reducer 是一个纯函数，用来修改 Store 数据的。
 
-## 数据不可变
+### 数据不可变
 
 React 在利用组件（Component）构建 Web 应用时，其实无形中创建了两棵树：虚拟 dom 树和组件树
 
@@ -48,7 +50,7 @@ React 在利用组件（Component）构建 Web 应用时，其实无形中创建
 
 Reducer 函数在修改数据的时候，正是这样做的，最后返回的都是一个新的引用，而不是直接修改引用的数据
 
-```
+```javascript
 function eReducer(state = [2, 3], action) {
   switch (action.type) {
     case 'ADD':
@@ -67,7 +69,7 @@ function eReducer(state = [2, 3], action) {
 
 总结一点：Redux 通过一个个 reducer 实现了不可变数据（immutability）。
 
-# Middleware
+## Middleware
 
 在 Redux 中，Middlerwares 要处理的对象则是：Action。
 
@@ -75,6 +77,6 @@ function eReducer(state = [2, 3], action) {
 
 ![image](https://img2022.cnblogs.com/blog/2347599/202201/2347599-20220121183010890-1303712922.png)
 
-# react-redux：将 store 通过 props 传入 React 最外层组件
+## react-redux：将 store 通过 props 传入 React 最外层组件
 
 ![image](https://img2020.cnblogs.com/blog/2347599/202112/2347599-20211203182754726-1163674991.jpg)

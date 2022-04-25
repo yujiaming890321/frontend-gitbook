@@ -7,7 +7,7 @@
 <details>
 <summary>点击查看代码</summary>
 
-```
+```javascript
 import { expect } from 'chai';
 import React from 'react';
 import { mount } from 'enzyme';
@@ -35,7 +35,7 @@ describe('Banner', function() {
 
 模拟事件，用来触发事件，event 为事件名称，mock 为一个 event object
 
-```
+```javascript
 it('can save value and cancel', () => {
    const value = 'edit'
    const {wrapper, props} = setup({

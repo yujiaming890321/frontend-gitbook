@@ -9,7 +9,7 @@
 jest.fn creates Jest spy with no implementation.
 jest.spyOn replaces a method or property accessor with Jest spy, which implementation defaults to original one and can be changed to anything, including a stub.
 
-```
+```javascript
 jest.spyOn(Date, 'now').mockImplementation(...);
 ```
 
@@ -27,7 +27,7 @@ jest.spyOn(Date, 'now').mockImplementation(...);
 <details>
 <summary>点击查看代码</summary>
 
-```
+```javascript
 describe('测试jest.fn()调用', () => {
   let mockFn = jest.fn();
   let result = mockFn(1, 2, 3);
@@ -51,7 +51,7 @@ jest.fn()所创建的 Mock 函数还可以设置返回值
 <details>
 <summary>点击查看代码</summary>
 
-```
+```javascript
 
 describe('测试 jest.fn()返回固定值', () => {
   let mockFn = jest.fn().mockReturnValue('default');
@@ -76,7 +76,7 @@ expect(mockFn(10, 10)).toBe(100);
 模拟返回结果。指定返回内容
 函数内的参数就是要 返回的值
 
-```
+```javascript
 
 const func = jest.fn()
 func.mockReturnValue('dell')
@@ -88,7 +88,7 @@ func.mockReturnValue('dell')
 
 mockReturnValue 执行返回多次，mockReturnValueOnce 只会执行返回一次
 
-```
+```javascript
 
 const func = jest.fn()
 func.mockReturnValueOnce('dell')
@@ -100,7 +100,7 @@ func.mockReturnValueOnce('dell')
 可以理解为 mockReturnValue()的底层写法
 可以在方法内书写过程
 
-```
+```javascript
 
 const func = jest.fn()
 func.mockImplementation(() => {
@@ -117,11 +117,30 @@ func.mockImplementation(() => {
 
 返回一个 mock function，和 jest.fn 相似，但是能够追踪 object[methodName]的调用信息，类似 Sinon
 
+```javascript
+
+function multiplyThenAdd(a, b) {
+  return _.add(a*b, b)
+}
+
+const add = jest.spyOn(_, 'add') // 将 loadsh 的 add 方法 mock 掉
+
+multiplyThenAdd(1, 2)
+
+// 表面上只是在获取 add 的调用参数，实际上还确保了 multiplyThenAdd 被调用后一定会调用 add。
+// 因为没被调用的话又从何获取调用参数呢？
+const [arg1, arg2] = add.mock.calls[0]
+
+expect(arg1).toBe(1 * 2) // 确保参数传值正确
+expect(arg2).toBe(2) // 确保参数传值正确
+
+```
+
 ## [expect.objectContaining(object)](https://jestjs.io/zh-Hans/docs/expect#expectobjectcontainingobject)
 
 预期返回一个 object 格式的对象
 
-```
+```javascript
  expect(onPress).toEqual(
     // { x: number, y: number }
     expect.objectContaining({

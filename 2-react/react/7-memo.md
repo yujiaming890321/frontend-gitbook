@@ -2,7 +2,7 @@
 
 React.memo( Component ) 封装组件，判断组件 props
 
-```
+```javascript
 React.memo( Component )
 // React memo.js
 export default function memo<Props>(

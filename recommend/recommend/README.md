@@ -44,11 +44,13 @@
 
 当前组件不存在更新，那么首次触发状态更新时，就能立刻计算出最新状态，进而与当前状态比较。
 
+[react 18 更新优先级与 react 17区别](https://mp.weixin.qq.com/s/rb5qRsxmfG2bmYKRezX3OA)
+
 [Demo](https://codesandbox.io/s/react-eager-state-4q8s1f)
 
 第一次点击 div，打印
 
-```
+```javscript
 App render 1
 child render
 ```
@@ -57,7 +59,7 @@ child render
 2. 完成渲染后 current proess 与 wip 交换位置。（current 无，wip 有）
    第二次点击 div，打印
 
-```
+```javscript
 App render 1
 ```
 
@@ -70,6 +72,8 @@ App render 1
 [Umi](https://umijs.org/zh-CN)
 
 [应用 connected-react-router 和 redux-thunk 打通 react 路由孤立](https://blog.csdn.net/qq_37648307/article/details/106456549)
+
+[mobx 和 redux 区别](https://mp.weixin.qq.com/s/zWp-qSVeOjzHKiOYLi2s0g)
 
 [使用 React-DnD 打造简易低代码平台](https://mp.weixin.qq.com/s/F-kUdzg7ZAKUqANd8wH6KA)
 

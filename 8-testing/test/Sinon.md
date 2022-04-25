@@ -16,7 +16,7 @@ spy 生成一个间谍函数，它会记录下函数调用的参数，返回值�
 
 > A spy call is an object representation of an individual call to a spied function, which could be a fake, spy, stub or mock method.
 
-```
+```javascript
 describe('测试Once函数', function () {
   it('传入Once的函数会被调用', function () {
     var callback = sinon.spy();
@@ -65,7 +65,7 @@ stubs 可以是匿名的，也可以是包装现有函数的。用 stubs 包装�
 
     当您希望防止直接调用特定方法时（可能是因为它触发了不希望的行为，例如XMLHttpRequest或类似行为）。
 
-```
+```javascript
 it('对原有函数的stub封装，可以监听原有函数的调用情况,以及模拟返回', function () {
     const obj={
         func:()=>{

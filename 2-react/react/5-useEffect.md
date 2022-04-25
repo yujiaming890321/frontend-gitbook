@@ -1,8 +1,10 @@
-# 初始化
+# useEffect
+
+## 初始化
 
 将方法放入 effectList。
 
-```
+```javascript
 function mountEffect(
   create: () => (() => void) | void,
   deps: Array<mixed> | void | null,
@@ -23,11 +25,11 @@ function mountEffectImpl(fiberEffectTag, hookEffectTag, create, deps): void {
 }
 ```
 
-# 更新
+## 更新
 
 对依赖进行潜比较，如果不一样，将方法放入 effectList。
 
-```
+```javascript
 function updateEffect(
   create: () => (() => void) | void,
   deps: Array<mixed> | void | null,

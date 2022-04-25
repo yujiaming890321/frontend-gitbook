@@ -1,8 +1,10 @@
-# 初始化
+# useSate
+
+## 初始化
 
 返回一个数组，第一个参数是变量，第二个参数是修改变量的方法
 
-```
+```javascript
 function mountState<S>(
   initialState: (() => S) | S,
 ): [S, Dispatch<BasicStateAction<S>>] {
@@ -29,11 +31,11 @@ function mountState<S>(
 }
 ```
 
-# 更新
+## 更新
 
 updateReducer
 
-```
+```javascript
 function updateState<S>(
   initialState: (() => S) | S,
 ): [S, Dispatch<BasicStateAction<S>>] {

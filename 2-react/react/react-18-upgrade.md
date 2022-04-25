@@ -2,7 +2,7 @@
 
 ## 新的 root api，可以调用并发模式 concurrent rendering
 
-```
+```javascript
 // Before
 import { render } from 'react-dom';
 const container = document.getElementById('app');
@@ -17,7 +17,7 @@ root.render(<App tab="home" />);
 
 ## unmountComponentAtNode 修改为 root.unmount:
 
-```
+```javascript
 // Before
 unmountComponentAtNode(container);
 
@@ -27,7 +27,7 @@ root.unmount();
 
 ## 删除 render 回调
 
-```
+```javascript
 // Before
 const container = document.getElementById('app');
 ReactDOM.render(<App tab="home" />, container, () => {
@@ -50,7 +50,7 @@ root.render(<AppWithCallbackAfterRender />);
 
 ## SSR hydrate to hydrateRoot
 
-```
+```javascript
 // Before
 import { hydrate } from 'react-dom';
 const container = document.getElementById('app');
@@ -63,13 +63,13 @@ const root = hydrateRoot(container, <App tab="home" />);
 // Unlike with createRoot, you don't need a separate root.render() call here.
 ```
 
-# Automatic Batching 自动批处理
+## Automatic Batching 自动批处理
 
 React 18 之前只在 React 事件处理程序中批量更新
 
 Promise, setTimeout, native event handlers, or any other event 则不会批量更新
 
-```
+```javascript
 // Before React 18 only React events were batched
 
 function handleClick() {
@@ -87,7 +87,7 @@ setTimeout(() => {
 
 Starting in React 18 with createRoot，这些都可以批量更新了。
 
-```
+```javascript
 // After React 18 updates inside of timeouts, promises,
 // native event handlers or any other event are batched.
 
@@ -106,7 +106,7 @@ setTimeout(() => {
 
 ## 可以使用 flushSync 退出批处理
 
-```
+```javascript
 import { flushSync } from 'react-dom';
 
 function handleClick() {
@@ -121,15 +121,15 @@ function handleClick() {
 }
 ```
 
-# [adding startTransition for slow renders](https://github.com/reactwg/react-18/discussions/65)
+## [adding startTransition for slow renders](https://github.com/reactwg/react-18/discussions/65)
 
-# [Concurrent React for Library Maintainers](https://github.com/reactwg/react-18/discussions/70)
+## [Concurrent React for Library Maintainers](https://github.com/reactwg/react-18/discussions/70)
 
-# [useMutableSource → useSyncExternalStore](https://github.com/reactwg/react-18/discussions/86)
+## [useMutableSource → useSyncExternalStore](https://github.com/reactwg/react-18/discussions/86)
 
-# New APIs
+## New APIs
 
-## startTransition、useTransition
+### startTransition、useTransition
 
 - startTransition 包裹的更新被当作非紧急事件来处理，如果有更紧急的更新，如点击或按键，则会被打断。
 
@@ -137,7 +137,7 @@ function handleClick() {
 
 将函数中的内容过渡
 
-```
+```javascript
 const [isPending, startTransition] = useTransition();
 
 // isPending:过度任务状态,true 代表过渡中,false 过渡结束
@@ -149,18 +149,18 @@ const [isPending, startTransition] = useTransition();
 
 - Skipping old results(跳过旧结果)，当它从打断中恢复时，它将从头开始渲染最新的值。 这意味着 React 只在用户实际需要看到渲染的 UI 上工作，而不是 old state。
 
-## useDeferredValue
+### useDeferredValue
 
 - 过渡单个状态值,让状态滞后变化
 - 避开紧急任务的渲染,让出优先级
 - 如果当前渲染是一个紧急更新的结果，比如用户输入，React 将返回之前的值，然后在紧急渲染完成后渲染新的值。
 - React 将在其他工作完成后立即进行更新(而不是等待任意的时间)，并且像 startTransition 一样，延迟值可以挂起，而不会触发现有内容的意外回退。
 
-```
+```javascript
 const pendingValue = useDeferredValue(value)
 ```
 
-## useTranstion 和 useDeferredValue 异同:
+### useTranstion 和 useDeferredValue 异同:
 
 相同点:
 
@@ -172,10 +172,10 @@ const pendingValue = useDeferredValue(value)
 1. 在 startTransition 之中任何更新，都会标记上 transition。React 将在更新的时候，判断这个标记来决定是否完成此次更新。
 1. transition 可以理解成比 setTimeout 更早的更新。但是同时要保证 ui 的正常响应，在性能好的设备上，transition 两次更新的延迟会很小，但是在慢的设备上，延时会很大，但是不会影响 UI 的响应。
 
-## useId
+### useId
 
 生成唯一 ID
 
-## useSyncExternalStore
+### useSyncExternalStore
 
 并发读取
