@@ -4,7 +4,12 @@ iterm2
 oh my zsh
 git
 sourcetree
-nvm (node) or n
+[nvm (node)](https://github.com/nvm-sh/nvm#installing-and-updating) or n
+
+```node
+brew install n
+```
+
 nrm
 vscode
 fiddle
