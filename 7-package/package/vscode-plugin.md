@@ -6,7 +6,7 @@ auto rename tag
 bookmarks
 eslint
 gitlens
-html snippets
+html snippets(deprecated)
 indent-rainbow
 jest
 jupyter
@@ -17,7 +17,7 @@ projectr manager
 rainbow brackets
 sass
 stylelint
-tslint
+tslint(deprecated)
 turbo console log
 vetur
 vscode goto node_modules
