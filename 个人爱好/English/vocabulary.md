@@ -100,6 +100,22 @@ available [əˈveɪləbl] adj.可获得的;
 detect [dɪˈtekt] vt.发现;
 tend [tend] v.倾向;趋向;
 forecast [ˈfɔːrkæst] n.预测;预报 vt.预测;预报
+calculate [ˈkælkjuleɪt] vt.计算;核算;
+comma [ˈkɑːmə] n.逗号
+dots [dɑːts] n.点;
+blank [blæŋk] adj.空白的 n.空格;
+duplicate [ˈduːplɪkeɪt]  vt.复制;复印;
+balance [ˈbæləns] n.均衡;平衡;均势;平衡能力;余额;结欠;天平 v.保持平衡
+according [əˈkɔːrdɪŋ] v.给予，赠予，授予(权力、地位、某种待遇); (与…)一致，符合，配合
+accordingly [əˈkɔːrdɪŋli] adv.照着;相应地;因此;所以
+readiness [ˈredinəs] n.准备就绪;
+requirement [rɪˈkwaɪərmənt] n.要求;
+prioritize [praɪˈɔːrətaɪz] v.按重要性排列;
+discussed [dɪˈskʌst] v.讨论;谈论;
+schedule [ˈskedʒuːl] n.工作计划;日程安排;
+zoom [zuːm] vi.快速移动;
+minimal [ˈmɪnɪməl] adj.最小的;
+maximal [ˈmæksɪml] adj.最大的;
 
 ## commonly
 
@@ -117,6 +133,12 @@ encapsulation n.封装，包封
 spec [spek] n.规格
 spectacular [spekˈtækjələr] adj.壮观的; n.壮观的场面;
 second [ˈsekənd] adv.第二 n.秒(时间单位);片刻;瞬间;
+double [ˈdʌbl] adj.双的;两倍的;
+triple [ˈtrɪpl] adj.三部分的;三人的;三组的;三倍的;
+fourfold [ˈfɔːrfoʊld] adj.四倍的；四重的
+actual [ˈæktʃuəl] adj.真实的;实际的;
+series [ˈsɪriːz] n.系列;连续;
+prepare [prɪˈper] v.准备;把…预备好;
 align [əˈlaɪn] v.排列;校准;
 echelon [ˈeʃəlɑːn] n.职权的等级;阶层;(士兵、飞机等的)梯形编队，梯队
 shuffle [ˈʃʌfl] v.洗牌;拖着脚走; n.洗牌;
