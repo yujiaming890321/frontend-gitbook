@@ -5,6 +5,9 @@
 btw - by the way
 FYI - for your information 供参考
 FYA - for your attention 请注意
+fw - forward 转发
+re - reply 回复
+aka - Also Known As 又名、亦称、也被称为
 
 ## Tesla
 
@@ -17,7 +20,9 @@ minimize bureaucracy, just get it done
 我们力争在自己的领域里做到最好
 competitive to be the best
 
+VFX - Vehicle Fulfillment Experience
 DRO - Delivery & Registration Operations
+CX - Customer Experience Platform
 TAI - Trade In
 PR - pull request
 
@@ -37,6 +42,11 @@ bureaucracy [bjʊˈrɑːkrəsi] n.官僚主义
 director [dəˈrektər] n.负责人
 compete [kəmˈpiːt] vu.竞争;对抗;
 competitive [kəmˈpetətɪv] adj.竞争的;努力竞争的;
+garage [ɡəˈrɑːʒ] n.停车房;车库;
+honk [hɑːŋk] n.鹅叫声;汽车喇叭声
+horn [hɔːrn] n.喇叭;角质;(羊、牛等动物的)角;(乐器)号;（车辆的）喇叭
+hazards [ˈhæzərdz] n.危险;危害;汽车双闪
+financial [faɪˈnænʃl] adj.财政的;财务的;金融的;有钱的
 
 ## agile 敏捷开发
 
@@ -48,12 +58,13 @@ enhancement [ɪnˈhænsmənt] n.提高
 improve [ɪmˈpruːv] v.改善;改进;
 improvement [ɪmˈpruːvmənt] n.改善;改进;
 feature [ˈfiːtʃər] n.特征;特点; v.以…为特色;
-implement [ˈɪmplɪment] vt.使生效; n.工具;器具;
+implement [ˈɪmplɪment] vt.实施;使生效; n.工具;器具;
 retrospective [ˌretrəˈspektɪv] n.回顾展 adj.回顾的;
 scoping [ˈskoʊpɪŋ] v.范围界定;仔细看;彻底检查
 spike [spaɪk] n.尖峰;尖状物; v.用尖物刺入
 effort [ˈefərt] n.气力;努力;
 engagements [ɛnˈgeɪdʒmənts] n.约定，约会
+challenge [ˈtʃælɪndʒ] n.挑战;艰巨任务;
 
 ## pr related
 
@@ -63,6 +74,7 @@ stale [steɪl] adj.不新鲜的; v.使陈旧；
 outdated [ˌaʊtˈdeɪtɪd] adj.过时的;
 minor [ˈmaɪnər] adj.少数的;轻微的;
 comment [ˈkɑːment] n.议论;评论;
+consider [kənˌsɪdə] v.考虑;认为;
 consideration [kənˌsɪdəˈreɪʃn] n.考虑;深思;
 entirely [ɪnˈtaɪərli] adv.完整地
 
@@ -116,6 +128,14 @@ schedule [ˈskedʒuːl] n.工作计划;日程安排;
 zoom [zuːm] vi.快速移动;
 minimal [ˈmɪnɪməl] adj.最小的;
 maximal [ˈmæksɪml] adj.最大的;
+instance [ˈɪnstəns] n.例子;事例;实例
+applicable [ˈæplɪkəbl] adj.可应用的;适用;合适 (if applicable)
+summary [ˈsʌməri] n.总结;概括;概要
+license [ˈlaɪsns] n.许可证;执照;特许
+watermark [ˈwɔːtərmɑːrk] n.水印
+asterisk [ˈæstərɪsk] n.星号
+collapse [kəˈlæps] n.崩溃;突然失败
+hardcode [ˌhɑːrd ˈkoʊd] 硬编码
 
 ## commonly
 
@@ -163,6 +183,54 @@ enclose [ɪnˈkloʊz] vt.围住;附入;附上;
 enclosing [ɪnˈkloʊzɪŋ] vt.围住;附入;附上;
 agriculture [ˈæɡrɪkʌltʃər] n.农业;
 poinsettias [pɔɪnˈsɛtiəz] n.一品红;
+especially [ɪˈspeʃəli] adv.尤其;特别;
+forward [ˈfɔːrwərd] adv.向前地;向前;前进;进展;
+reply [rɪˈplaɪ] v.回复;答复;
+huge [hjuːdʒ] adj.巨大的;极多的;
+shout [ʃaʊt] v.呼喊;叫;喊叫
+shut [ʃʌt] v.关闭;关上;合上;
+poke [poʊk] v.(用手指或其他东西)捅，杵;推;捅;戳;探;露出;伸出;探出;捅窟窿;与（某人）性交
+awake [əˈweɪk] v.唤醒;(使)醒来;唤起;被唤起
+coordinates [koʊˈɔːrdɪneɪts] v.使协调;使相配合;使(身体各部分)动作协调;协同动作;(衣服、家具等)搭配，协调
+literal [ˈlɪtərəl] adj.字面意义的;
+construct [kənˈstrʌkt] vt.建筑;修建;建造;
+satellite [ˈsætəlaɪt] n.人造卫星;
+refer [rɪˈfɜːr] v.参考;指;涉及;
+owe [oʊ] v.欠(债);归因于;归功于;起源于
+institute [ˈɪnstɪtuːt] n.研究所;
+positive [ˈpɑːzətɪv] adj.积极乐观的;自信的;
+negative [ˈneɡətɪv] adj.消极的;负面的;否定的;
+material [məˈtɪriəl] n.布料;原料;(某一活动所需的)材料;素材;节目
+concept [ˈkɑːnsept] n.概念;观念
+capacity [kəˈpæsəti] n.容量;容积;容纳能力;领悟(或理解、办事)能力;职位;职责;生产量;功率
+suspected [səˈspektɪd] v.疑有，觉得(尤指坏事可能属实或发生);感觉有问题;不信任;怀疑(某人有罪)
+assume [əˈsuːm] v.假定;假设;认为;承担(责任);就(职);取得(权力);呈现(外观、样子);显露(特征);装出
+implicitly [ɪmˈplɪsətli] adv.含蓄地;暗中地;不明显地;蕴涵地;无疑问地;无保留地;绝对地
+trial [ˈtraɪəl] v.试验;试用;测试(能力、质量、性能等) n.(法院的)审讯，审理，审判;(对能力、质量、性能等的)试验，试用;预赛;选拔赛;比赛;令人伤脑筋的事
+expression [ɪkˈspreʃn] n.表示;表达;表露;表情;神色;词语;措辞;表达方式;
+adjust [əˈdʒʌst] v.调整;调节;适应;习惯;整理
+crowded [ˈkraʊdɪd] adj.拥挤的;人(太)多的;充满的;挤满的
+intentional [ɪnˈtenʃənl] adj.故意的;有意的;存心的
+grid [ɡrɪd] n.网格;方格;
+agent [ˈeɪdʒənt] n.代理人;经纪人;原动力;动因;
+drive [draɪv] v.驾驶;开车;
+track [træk] n.轨道;小道，小径;
+confuse [kənˈfjuːz] vt.混淆;使糊涂;
+deadline [ˈdedlaɪn] n.最后期限;截止日期
+suppress [səˈpres] vt.镇压;(武力)平定;压制;
+make sense [meɪk sens] 有道理，合乎情理;可以理解;讲得通
+work around [wɜːrk əˈraʊnd] 解决方案
+enterprise [ˈentərpraɪz] n.企业;公司;
+community [kəˈmjuːnəti] n.社区;社会;
+slight [slaɪt] adj.轻微的;略微的;细小的;
+currently [ˈkɜːrəntli] adv.现时;目前;当前;时下
+despite [dɪˈspaɪt] perp.即使;尽管;尽管
+appointment [əˈpɔɪntmənt] n.约会;任命;预约;委任;约定;职务;职位
+accomplish [əˈkɑːmplɪʃ] vt.完成
+potentially [pə'tenʃəli] adv.潜在地
+benefits [ˈbenɪfɪts] n.优势;益处;成效;
+ownership [ˈoʊnərʃɪp] n.所有权;产权;物主身份
+wo,shion
 
 ## 提要求
 
