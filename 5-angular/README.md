@@ -1,8 +1,56 @@
 # Angular
 
+Interpolation {{ }}
+
+```js
+<a>
+  {{ product.name }}
+</a>
+```
+
+Property binding [ ]
+
+```js
+<a [title]="product.name + ' details'">
+  {{ product.name }}
+</a>
+```
+
+Event binding ( )
+
+```js
+<button (click)="share()">
+  Share
+</button>
+```
+
 ## angular 8
 
 @Input() 从父级传入 = react props
+
+### html if else
+
+```html
+<div *ngIf="isPlannerScreen; else NonPlannerScreenMap" class="dropdown">
+    <button class="dropbtn">
+        <span class="material-icons">format_list_bulleted</span>
+    </button>
+    <div class="dropdown-content">
+        <a [href]="garageURL" target="_blank" tsl-button color="white" class="custom-btn-white">Garage</a>
+        <button type="button" [disabled]="isDisabledBtn" mat-raised-button class="custom-btn-white" (click)="performActionForVin(2)">Honk Horn</button>
+        <button type="button" [disabled]="isDisabledBtn" mat-raised-button class="custom-btn-white" (click)="performActionForVin(4)">Hazards On</button>
+        <button type="button" [disabled]="isDisabledBtn" mat-raised-button class="custom-btn-white" (click)="performActionForVin(5)">Hazards Off</button>
+    </div>
+</div>
+<ng-template #NonPlannerScreenMap>
+    <div class="vin-actions">
+        <a [href]="garageURL" target="_blank" tsl-button color="white" class="custom-btn-white">Garage</a>
+        <button type="button" [disabled]="isDisabledBtn" mat-raised-button class="custom-btn-white" (click)="performActionForVin(2)">Honk Horn</button>
+        <button type="button" [disabled]="isDisabledBtn" mat-raised-button class="custom-btn-white" (click)="performActionForVin(4)">Hazards On</button>
+        <button type="button" [disabled]="isDisabledBtn" mat-raised-button class="custom-btn-white" (click)="performActionForVin(5)">Hazards Off</button>
+    </div>
+</ng-template>
+```
 
 ### [Glossary](https://v8.angular.io/guide/glossary)
 
