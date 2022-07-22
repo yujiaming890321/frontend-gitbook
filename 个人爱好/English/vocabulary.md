@@ -8,6 +8,9 @@ FYA - for your attention 请注意
 fw - forward 转发
 re - reply 回复
 aka - Also Known As 又名、亦称、也被称为
+gotcha - I've got you
+
+Sorry for late reply.
 
 ## Tesla
 
@@ -136,6 +139,7 @@ watermark [ˈwɔːtərmɑːrk] n.水印
 asterisk [ˈæstərɪsk] n.星号
 collapse [kəˈlæps] n.崩溃;突然失败
 hardcode [ˌhɑːrd ˈkoʊd] 硬编码
+carryover [ˈkæri oʊvər] 延期
 
 ## commonly
 
@@ -227,9 +231,32 @@ currently [ˈkɜːrəntli] adv.现时;目前;当前;时下
 despite [dɪˈspaɪt] perp.即使;尽管;尽管
 appointment [əˈpɔɪntmənt] n.约会;任命;预约;委任;约定;职务;职位
 accomplish [əˈkɑːmplɪʃ] vt.完成
+potential [pəˈtenʃl] adj.潜在的;可能的
 potentially [pə'tenʃəli] adv.潜在地
 benefits [ˈbenɪfɪts] n.优势;益处;成效;
 ownership [ˈoʊnərʃɪp] n.所有权;产权;物主身份
+convenient [kənˈviːniənt] adj.实用的;便利的;方便的;省事的;附近的;近便的;容易到达的
+caveats [ˈkeɪviˌæts] n.警告;告诫
+maze [meɪz] n.迷宫;纷繁复杂的规则;复杂难懂的细节;迷宫图 vt.使困惑;使混乱;迷失
+addition [əˈdɪʃn] n.附加;加;添加;加法;增加;增加物;添加物
+annoying [əˈnɔɪɪŋ] adj.烦人的;使恼怒的;
+brief [briːf] adj.简明的;短暂的;简单的;短时间的;简洁的;过短的;
+guide [ɡaɪd] vt.指导;指引;给某人领路(或导游);影响(某人的行为);(向某人)解释;阐明;搀扶（某人朝…方向）走
+prerequisites [priˈrɛkwəzəts] n.先决条件;前提;必备条件
+cause [kɔːz] n.原因;起因;理由;动机;缘故;(支持或为之奋斗的)事业，目标，思想;
+solution [səˈluːʃn] n.解决方案;溶液;解;解决办法;处理手段;答案;谜底;
+nest [ˈnestɪŋ] n.筑巢;巢居;嵌套(信息)
+leasing [ˈliːsɪŋ] v.租用，租借，出租
+deny [dɪˈnaɪ] v.否认;否定;拒绝承认;拒绝接受;拒绝;拒绝给予;节制，克制，戒绝
+adaptive [əˈdæptɪv] adj.适应的;有适应能力的
+hyper [ˈhaɪpər] adj.既兴奋又紧张的;精力过旺的 n.宣传人员
+visor [ˈvaɪzər] n.(头盔上的)面甲，面罩，护面;遮阳帽舌;(汽车内挡风玻璃上方的)遮阳板
+hypervisor  n.管理程序
+alternative [ɔːlˈtɜːrnətɪv] adj.可供替代的;另类的;非传统的
+formula [ˈfɔːrmjələ] n.公式;方程式;计算式;分子式;方案;方法;配方;配方奶（母乳的替代品）;（特定场合的）惯用词语，套话
+infra [ˈɪnfrə] adv.〈拉〉在下；（在）以下
+bench [bentʃ] n.长凳;
+fire up = setup
 wo,shion
 
 ## 提要求
