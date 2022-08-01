@@ -64,6 +64,9 @@ feature [ˈfiːtʃər] n.特征;特点; v.以…为特色;
 implement [ˈɪmplɪment] vt.实施;使生效; n.工具;器具;
 retrospective [ˌretrəˈspektɪv] n.回顾展 adj.回顾的;
 scoping [ˈskoʊpɪŋ] v.范围界定;仔细看;彻底检查
+grooming [ˈɡruːmɪŋ] n.打扮;装束;刷洗;(给动物)梳毛 需求讲解
+planning [ˈplænɪŋ] n.计划制订;规划过程 计划会
+stand-up meeting 早站会
 spike [spaɪk] n.尖峰;尖状物; v.用尖物刺入
 effort [ˈefərt] n.气力;努力;
 engagements [ɛnˈgeɪdʒmənts] n.约定，约会

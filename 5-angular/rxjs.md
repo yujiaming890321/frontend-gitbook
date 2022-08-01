@@ -12,12 +12,28 @@ RxJS 是使用 Observables 的响应式编程的库，它使编写异步或基�
 - Schedulers (调度器): 用来控制并发并且是中央集权的调度员，允许我们在发生计算时进行协调，例如 setTimeout 或 requestAnimationFrame 或其他。
 
 ```js
-this.timeSlotChooseSubject = new Subject<AdvisorDashboardItem>();
-this.timeSlotChooseSubject.pipe(
+this.subject = new Subject();
+this.subject.pipe(
   switchMap((item) => this.getTimeSlots(item))
 ).subscribe(resp => {
   this.remark = resp.Notes;
 });
+// or
+this.subject = new Subject<string>();
+this.subject.pipe(
+  switchMap(value => {
+    return this.Service.get(value);
+  })
+)
+.subscribe(
+  result => {
+    // to do sth
+  },
+  error => {
+  }
+);
+
+this.subject.next(value);
 ```
 
 ## 
