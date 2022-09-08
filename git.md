@@ -14,3 +14,25 @@ To push the current branch and set the remote as upstream, use
 ## 跟踪远程分支
 
 git branch -u origin/feature/DRO-1216
+
+## git lfs (Large File Storage) 大文件传输
+
+```js
+git lfs install
+git lfs uninstall
+```
+
+## git pull --dedth 1 后拉取分支
+
+```js
+// git clone --depth 1 https://github.com/dogescript/xxxxxxx.git
+// git fetch --unshallow
+git remote set-branches origin '9_1_vfx_tds5_upgrade_combined_global' && 
+git fetch --depth 1 origin 9_1_vfx_tds5_upgrade_combined_global && 
+git checkout 9_1_vfx_tds5_upgrade_combined_global && 
+git fetch --unshallow
+
+git remote set-branches origin 'r/202209_2/alpha' && 
+git fetch origin r/202209_2/alpha && 
+git checkout r/202209_2/alpha
+```

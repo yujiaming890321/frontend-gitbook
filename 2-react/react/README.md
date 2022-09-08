@@ -27,3 +27,219 @@ useEffect & useLayoutEffect 底层调用方法一样，useLayoutEffect 执行优
 ## 如何拆分组件
 
 目的：简化代码，单一职责
+
+## React-basic
+
+[react-basic](https://github.com/reactjs/react-basic)
+
+- Transformation
+
+```js
+function NameBox(name) {
+  return { fontWeight: 'bold', labelContent: name };
+}
+
+'Sebastian Markbåge' ->
+{ fontWeight: 'bold', labelContent: 'Sebastian Markbåge' };
+```
+
+- Abstraction
+
+```js
+function FancyUserBox(user) {
+  return {
+    borderStyle: '1px solid blue',
+    childContent: [
+      'Name: ',
+      NameBox(user.firstName + ' ' + user.lastName)
+    ]
+  };
+}
+
+{ firstName: 'Sebastian', lastName: 'Markbåge' } ->
+{
+  borderStyle: '1px solid blue',
+  childContent: [
+    'Name: ',
+    { fontWeight: 'bold', labelContent: 'Sebastian Markbåge' }
+  ]
+};
+```
+
+- Composition
+
+```js
+function FancyBox(children) {
+  return {
+    borderStyle: '1px solid blue',
+    children: children
+  };
+}
+
+function UserBox(user) {
+  return FancyBox([
+    'Name: ',
+    NameBox(user.firstName + ' ' + user.lastName)
+  ]);
+}
+```
+
+- Memoization
+
+```js
+function memoize(fn) {
+  var cachedArg;
+  var cachedResult;
+  return function(arg) {
+    if (cachedArg === arg) {
+      return cachedResult;
+    }
+    cachedArg = arg;
+    cachedResult = fn(arg);
+    return cachedResult;
+  };
+}
+
+var MemoizedNameBox = memoize(NameBox);
+
+function NameAndAgeBox(user, currentTime) {
+  return FancyBox([
+    'Name: ',
+    MemoizedNameBox(user.firstName + ' ' + user.lastName),
+    'Age in milliseconds: ',
+    currentTime - user.dateOfBirth
+  ]);
+}
+```
+
+- List
+
+```js
+function UserList(users, likesPerUser, updateUserLikes) {
+  return users.map(user => FancyNameBox(
+    user,
+    likesPerUser.get(user.id),
+    () => updateUserLikes(user.id, likesPerUser.get(user.id) + 1)
+  ));
+}
+
+var likesPerUser = new Map();
+function updateUserLikes(id, likeCount) {
+  likesPerUser.set(id, likeCount);
+  rerender();
+}
+
+UserList(data.users, likesPerUser, updateUserLikes);
+```
+
+- Continuations
+
+```js
+function FancyUserList(users) {
+  return FancyBox(
+    UserList.bind(null, users)
+  );
+}
+
+const box = FancyUserList(data.users);
+const resolvedChildren = box.children(likesPerUser, updateUserLikes);
+const resolvedBox = {
+  ...box,
+  children: resolvedChildren
+};
+```
+
+- State Map
+
+```js
+function FancyBoxWithState(
+  children,
+  stateMap,
+  updateState
+) {
+  return FancyBox(
+    children.map(child => child.continuation(
+      stateMap.get(child.key),
+      updateState
+    ))
+  );
+}
+
+function UserList(users) {
+  return users.map(user => {
+    continuation: FancyNameBox.bind(null, user),
+    key: user.id
+  });
+}
+
+function FancyUserList(users) {
+  return FancyBoxWithState.bind(null,
+    UserList(users)
+  );
+}
+
+const continuation = FancyUserList(data.users);
+continuation(likesPerUser, updateUserLikes);
+```
+
+- Memoization Map
+
+```js
+function memoize(fn) {
+  return function(arg, memoizationCache) {
+    if (memoizationCache.arg === arg) {
+      return memoizationCache.result;
+    }
+    const result = fn(arg);
+    memoizationCache.arg = arg;
+    memoizationCache.result = result;
+    return result;
+  };
+}
+
+function FancyBoxWithState(
+  children,
+  stateMap,
+  updateState,
+  memoizationCache
+) {
+  return FancyBox(
+    children.map(child => child.continuation(
+      stateMap.get(child.key),
+      updateState,
+      memoizationCache.get(child.key)
+    ))
+  );
+}
+
+const MemoizedFancyNameBox = memoize(FancyNameBox);
+```
+
+- Algebraic Effects
+
+```js
+function ThemeBorderColorRequest() { }
+
+function FancyBox(children) {
+  const color = raise new ThemeBorderColorRequest();
+  return {
+    borderWidth: '1px',
+    borderColor: color,
+    children: children
+  };
+}
+
+function BlueTheme(children) {
+  return try {
+    children();
+  } catch effect ThemeBorderColorRequest -> [, continuation] {
+    continuation('blue');
+  }
+}
+
+function App(data) {
+  return BlueTheme(
+    FancyUserList.bind(null, data.users)
+  );
+}
+```

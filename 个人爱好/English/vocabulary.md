@@ -9,8 +9,11 @@ fw - forward 转发
 re - reply 回复
 aka - Also Known As 又名、亦称、也被称为
 gotcha - I've got you
-
+RSVP - Reply, if you please
 Sorry for late reply.
+make sense. 有道理
+fire up = setup
+spark the fire
 
 ## Tesla
 
@@ -140,9 +143,21 @@ summary [ˈsʌməri] n.总结;概括;概要
 license [ˈlaɪsns] n.许可证;执照;特许
 watermark [ˈwɔːtərmɑːrk] n.水印
 asterisk [ˈæstərɪsk] n.星号
-collapse [kəˈlæps] n.崩溃;突然失败
+conflict [ˈkɑːnflɪkt]  n.争执;争论;(军事)冲突;战斗;抵触;矛盾;不一致
 hardcode [ˌhɑːrd ˈkoʊd] 硬编码
 carryover [ˈkæri oʊvər] 延期
+regression [rɪˈɡreʃn] n.倒退;回归;退化
+inform [ɪnˈfɔːrm] vt.知会;通知;通告;了解;熟悉;对…有影响
+manually [ˈmænjuəli] adv.用手地；手动地；人工地
+trailing [ˈtreɪlɪŋ] v.(被)拖，拉;(尤指跟在他人后面)疲惫地走，没精打采地慢走，磨蹭;(在比赛或其他竞赛中)落后，失利，失败
+slash [slæʃ] n.斜线;斜杠;(用刀等)劈;(长而窄的)伤口;切口;砍痕;斜线号;撒尿
+trailing slash [ˈtreɪlɪŋ slæʃ] n.反斜杠
+decline [dɪˈklaɪn] n.(数量、价值、质量等的)减少，下降，衰落，衰退 v.减少;下降;衰弱;衰退;谢绝;婉言拒绝;(根据名词、形容词或代词在句中的作用)变格，使发生词形变化
+expand [ɪkˈspænd] (展开) v.扩大;增加;增强(尺码、数量或重要性);扩展(业务);细谈;详述;详细阐明
+collapse [kəˈlæps] (收起) n.崩溃;突然失败(如机构、生意或行动的);(突然的)倒塌;塌陷;垮掉;病倒;(因病或体弱的)昏倒;突然降价 v.(突然)倒塌;(尤指因病重而)晕倒;(尤指工作劳累后)躺下放松;突然失败;（突然）降价，贬值;折叠;（肺或血管）萎陷
+nitpicks 吹毛求疵
+declarative [dɪˈklærətɪv] adj.陈述的
+composability [kəmˈpoʊzəˈbɪləti] n.可组合性;
 
 ## commonly
 
@@ -259,7 +274,11 @@ alternative [ɔːlˈtɜːrnətɪv] adj.可供替代的;另类的;非传统的
 formula [ˈfɔːrmjələ] n.公式;方程式;计算式;分子式;方案;方法;配方;配方奶（母乳的替代品）;（特定场合的）惯用词语，套话
 infra [ˈɪnfrə] adv.〈拉〉在下；（在）以下
 bench [bentʃ] n.长凳;
-fire up = setup
+alpha [ˈælfə] n.阿尔法;希腊字母表的第1个字母
+tremendous [trəˈmendəs] adj.巨大的;极大的;极好的;精彩的;了不起的
+mentioned [ˈmenʃnd] v.提到;写到;说到
+internship
+collaborator
 wo,shion
 
 ## 提要求
