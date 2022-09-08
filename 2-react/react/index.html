@@ -1391,6 +1391,211 @@
 </ul>
 <h2 id="&#x5982;&#x4F55;&#x62C6;&#x5206;&#x7EC4;&#x4EF6;"><a name="&#x5982;&#x4F55;&#x62C6;&#x5206;&#x7EC4;&#x4EF6;" class="plugin-anchor" href="#&#x5982;&#x4F55;&#x62C6;&#x5206;&#x7EC4;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5982;&#x4F55;&#x62C6;&#x5206;&#x7EC4;&#x4EF6;</h2>
 <p>&#x76EE;&#x7684;&#xFF1A;&#x7B80;&#x5316;&#x4EE3;&#x7801;&#xFF0C;&#x5355;&#x4E00;&#x804C;&#x8D23;</p>
+<h2 id="react-basic"><a name="react-basic" class="plugin-anchor" href="#react-basic"><i class="fa fa-link" aria-hidden="true"></i></a>React-basic</h2>
+<p><a href="https://github.com/reactjs/react-basic" target="_blank">react-basic</a></p>
+<ul>
+<li>Transformation</li>
+</ul>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">NameBox</span>(<span class="hljs-params">name</span>) </span>{
+  <span class="hljs-keyword">return</span> { fontWeight: <span class="hljs-string">&apos;bold&apos;</span>, labelContent: name };
+}
+
+<span class="hljs-string">&apos;Sebastian Markb&#xE5;ge&apos;</span> -&gt;
+{ fontWeight: <span class="hljs-string">&apos;bold&apos;</span>, labelContent: <span class="hljs-string">&apos;Sebastian Markb&#xE5;ge&apos;</span> };
+</code></pre>
+<ul>
+<li>Abstraction</li>
+</ul>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FancyUserBox</span>(<span class="hljs-params">user</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    borderStyle: <span class="hljs-string">&apos;1px solid blue&apos;</span>,
+    childContent: [
+      <span class="hljs-string">&apos;Name: &apos;</span>,
+      NameBox(user.firstName + <span class="hljs-string">&apos; &apos;</span> + user.lastName)
+    ]
+  };
+}
+
+{ firstName: <span class="hljs-string">&apos;Sebastian&apos;</span>, lastName: <span class="hljs-string">&apos;Markb&#xE5;ge&apos;</span> } -&gt;
+{
+  borderStyle: <span class="hljs-string">&apos;1px solid blue&apos;</span>,
+  childContent: [
+    <span class="hljs-string">&apos;Name: &apos;</span>,
+    { fontWeight: <span class="hljs-string">&apos;bold&apos;</span>, labelContent: <span class="hljs-string">&apos;Sebastian Markb&#xE5;ge&apos;</span> }
+  ]
+};
+</code></pre>
+<ul>
+<li>Composition</li>
+</ul>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FancyBox</span>(<span class="hljs-params">children</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    borderStyle: <span class="hljs-string">&apos;1px solid blue&apos;</span>,
+    children: children
+  };
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">UserBox</span>(<span class="hljs-params">user</span>) </span>{
+  <span class="hljs-keyword">return</span> FancyBox([
+    <span class="hljs-string">&apos;Name: &apos;</span>,
+    NameBox(user.firstName + <span class="hljs-string">&apos; &apos;</span> + user.lastName)
+  ]);
+}
+</code></pre>
+<ul>
+<li>Memoization</li>
+</ul>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">memoize</span>(<span class="hljs-params">fn</span>) </span>{
+  <span class="hljs-keyword">var</span> cachedArg;
+  <span class="hljs-keyword">var</span> cachedResult;
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">arg</span>) </span>{
+    <span class="hljs-keyword">if</span> (cachedArg === arg) {
+      <span class="hljs-keyword">return</span> cachedResult;
+    }
+    cachedArg = arg;
+    cachedResult = fn(arg);
+    <span class="hljs-keyword">return</span> cachedResult;
+  };
+}
+
+<span class="hljs-keyword">var</span> MemoizedNameBox = memoize(NameBox);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">NameAndAgeBox</span>(<span class="hljs-params">user, currentTime</span>) </span>{
+  <span class="hljs-keyword">return</span> FancyBox([
+    <span class="hljs-string">&apos;Name: &apos;</span>,
+    MemoizedNameBox(user.firstName + <span class="hljs-string">&apos; &apos;</span> + user.lastName),
+    <span class="hljs-string">&apos;Age in milliseconds: &apos;</span>,
+    currentTime - user.dateOfBirth
+  ]);
+}
+</code></pre>
+<ul>
+<li>List</li>
+</ul>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">UserList</span>(<span class="hljs-params">users, likesPerUser, updateUserLikes</span>) </span>{
+  <span class="hljs-keyword">return</span> users.map(user =&gt; FancyNameBox(
+    user,
+    likesPerUser.get(user.id),
+    () =&gt; updateUserLikes(user.id, likesPerUser.get(user.id) + <span class="hljs-number">1</span>)
+  ));
+}
+
+<span class="hljs-keyword">var</span> likesPerUser = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateUserLikes</span>(<span class="hljs-params">id, likeCount</span>) </span>{
+  likesPerUser.set(id, likeCount);
+  rerender();
+}
+
+UserList(data.users, likesPerUser, updateUserLikes);
+</code></pre>
+<ul>
+<li>Continuations</li>
+</ul>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FancyUserList</span>(<span class="hljs-params">users</span>) </span>{
+  <span class="hljs-keyword">return</span> FancyBox(
+    UserList.bind(<span class="hljs-literal">null</span>, users)
+  );
+}
+
+<span class="hljs-keyword">const</span> box = FancyUserList(data.users);
+<span class="hljs-keyword">const</span> resolvedChildren = box.children(likesPerUser, updateUserLikes);
+<span class="hljs-keyword">const</span> resolvedBox = {
+  ...box,
+  children: resolvedChildren
+};
+</code></pre>
+<ul>
+<li>State Map</li>
+</ul>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FancyBoxWithState</span>(<span class="hljs-params">
+  children,
+  stateMap,
+  updateState
+</span>) </span>{
+  <span class="hljs-keyword">return</span> FancyBox(
+    children.map(child =&gt; child.continuation(
+      stateMap.get(child.key),
+      updateState
+    ))
+  );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">UserList</span>(<span class="hljs-params">users</span>) </span>{
+  <span class="hljs-keyword">return</span> users.map(user =&gt; {
+    continuation: FancyNameBox.bind(<span class="hljs-literal">null</span>, user),
+    key: user.id
+  });
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FancyUserList</span>(<span class="hljs-params">users</span>) </span>{
+  <span class="hljs-keyword">return</span> FancyBoxWithState.bind(<span class="hljs-literal">null</span>,
+    UserList(users)
+  );
+}
+
+<span class="hljs-keyword">const</span> continuation = FancyUserList(data.users);
+continuation(likesPerUser, updateUserLikes);
+</code></pre>
+<ul>
+<li>Memoization Map</li>
+</ul>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">memoize</span>(<span class="hljs-params">fn</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">arg, memoizationCache</span>) </span>{
+    <span class="hljs-keyword">if</span> (memoizationCache.arg === arg) {
+      <span class="hljs-keyword">return</span> memoizationCache.result;
+    }
+    <span class="hljs-keyword">const</span> result = fn(arg);
+    memoizationCache.arg = arg;
+    memoizationCache.result = result;
+    <span class="hljs-keyword">return</span> result;
+  };
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FancyBoxWithState</span>(<span class="hljs-params">
+  children,
+  stateMap,
+  updateState,
+  memoizationCache
+</span>) </span>{
+  <span class="hljs-keyword">return</span> FancyBox(
+    children.map(child =&gt; child.continuation(
+      stateMap.get(child.key),
+      updateState,
+      memoizationCache.get(child.key)
+    ))
+  );
+}
+
+<span class="hljs-keyword">const</span> MemoizedFancyNameBox = memoize(FancyNameBox);
+</code></pre>
+<ul>
+<li>Algebraic Effects</li>
+</ul>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ThemeBorderColorRequest</span>(<span class="hljs-params"></span>) </span>{ }
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FancyBox</span>(<span class="hljs-params">children</span>) </span>{
+  <span class="hljs-keyword">const</span> color = raise <span class="hljs-keyword">new</span> ThemeBorderColorRequest();
+  <span class="hljs-keyword">return</span> {
+    borderWidth: <span class="hljs-string">&apos;1px&apos;</span>,
+    borderColor: color,
+    children: children
+  };
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">BlueTheme</span>(<span class="hljs-params">children</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">try</span> {
+    children();
+  } <span class="hljs-keyword">catch</span> effect ThemeBorderColorRequest -&gt; [, continuation] {
+    continuation(<span class="hljs-string">&apos;blue&apos;</span>);
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params">data</span>) </span>{
+  <span class="hljs-keyword">return</span> BlueTheme(
+    FancyUserList.bind(<span class="hljs-literal">null</span>, data.users)
+  );
+}
+</code></pre>
 
                                 
                                 </section>
@@ -1434,7 +1639,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"React","level":"2.1","depth":1,"next":{"title":"UseState","level":"2.1.1","depth":2,"path":"2-react/react/1-useState.md","ref":"2-react/react/1-useState.md","articles":[]},"previous":{"title":"手写 New","level":"1.3.30","depth":2,"path":"1-javascript/javascript/手写new.md","ref":"1-javascript/javascript/手写new.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"2-react/react/README.md","mtime":"2022-08-01T17:03:53.245Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-08-01T17:04:31.444Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"React","level":"2.1","depth":1,"next":{"title":"UseState","level":"2.1.1","depth":2,"path":"2-react/react/1-useState.md","ref":"2-react/react/1-useState.md","articles":[]},"previous":{"title":"手写 New","level":"1.3.30","depth":2,"path":"1-javascript/javascript/手写new.md","ref":"1-javascript/javascript/手写new.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"2-react/react/README.md","mtime":"2022-09-08T08:45:34.706Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-09-08T08:46:09.807Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

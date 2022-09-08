@@ -1364,98 +1364,128 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="webpack-&#x5E38;&#x7528;&#x914D;&#x7F6E;"><a name="webpack-&#x5E38;&#x7528;&#x914D;&#x7F6E;" class="plugin-anchor" href="#webpack-&#x5E38;&#x7528;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>webpack &#x5E38;&#x7528;&#x914D;&#x7F6E;</h1>
-<h3 id="&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;"><a name="&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;" class="plugin-anchor" href="#&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;</h3>
+<h2 id="&#x83B7;&#x53D6;commithash"><a name="&#x83B7;&#x53D6;commithash" class="plugin-anchor" href="#&#x83B7;&#x53D6;commithash"><i class="fa fa-link" aria-hidden="true"></i></a>&#x83B7;&#x53D6;commitHash</h2>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> { execSync } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;child_process&apos;</span>);
+<span class="hljs-keyword">let</span> commitHash;
+
+<span class="hljs-keyword">try</span> {
+  commitHash = execSync(<span class="hljs-string">&apos;git rev-parse --short HEAD&apos;</span>).toString();
+} <span class="hljs-keyword">catch</span> (error) {
+  <span class="hljs-built_in">console</span>.log(error);
+  commitHash = <span class="hljs-string">&apos;N/A&apos;</span>;
+}
+</code></pre>
+<h2 id="&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;"><a name="&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;" class="plugin-anchor" href="#&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;</h2>
 <p>&#x6587;&#x4EF6;&#x540D;&#x4F7F;&#x7528;<code>&#x6D88;&#x606F;&#x6458;&#x8981;&#x7B97;&#x6CD5;</code></p>
-<pre><code>output: {
-    filename: &apos;bundle.[name][hash:8].js&apos;,
+<pre><code class="lang-js">output: {
+    filename: <span class="hljs-string">&apos;bundle.[name][hash:8].js&apos;</span>,
     publicPath,
 }
-</code></pre><h3 id="htmlwebpackplugin-cdn&#x914D;&#x7F6E;"><a name="htmlwebpackplugin-cdn&#x914D;&#x7F6E;" class="plugin-anchor" href="#htmlwebpackplugin-cdn&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>HtmlWebpackPlugin CDN&#x914D;&#x7F6E;</h3>
+</code></pre>
+<h2 id="htmlwebpackplugin-cdn&#x914D;&#x7F6E;"><a name="htmlwebpackplugin-cdn&#x914D;&#x7F6E;" class="plugin-anchor" href="#htmlwebpackplugin-cdn&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>HtmlWebpackPlugin CDN&#x914D;&#x7F6E;</h2>
 <p>HtmlWebpackPlugin &#x4FEE;&#x6539;&#x4E3A; cdn &#x8DEF;&#x5F84;</p>
-<pre><code>// webpack.config.js
-const CDN_HOST = process.env.CDN_HOST;// CDN &#x57DF;&#x540D;
-const CDN_PATH = process.env.CDN_PATH; // CDN &#x8DEF;&#x5F84;
-const ENV = process.env.ENV; // &#x5F53;&#x524D;&#x7684;&#x73AF;&#x5883;&#x7B49;&#x7B49;
-const VERSION = process.env.VERSION; // &#x5F53;&#x524D;&#x53D1;&#x5E03;&#x7684;&#x7248;&#x672C;
+<pre><code class="lang-js"><span class="hljs-comment">// webpack.config.js</span>
+<span class="hljs-keyword">const</span> CDN_HOST = process.env.CDN_HOST;<span class="hljs-comment">// CDN &#x57DF;&#x540D;</span>
+<span class="hljs-keyword">const</span> CDN_PATH = process.env.CDN_PATH; <span class="hljs-comment">// CDN &#x8DEF;&#x5F84;</span>
+<span class="hljs-keyword">const</span> ENV = process.env.ENV; <span class="hljs-comment">// &#x5F53;&#x524D;&#x7684;&#x73AF;&#x5883;&#x7B49;&#x7B49;</span>
+<span class="hljs-keyword">const</span> VERSION = process.env.VERSION; <span class="hljs-comment">// &#x5F53;&#x524D;&#x53D1;&#x5E03;&#x7684;&#x7248;&#x672C;</span>
 
-const getPublicPath = () =&gt; {
-    // Some code here
-    return `${CDN_HOST}/${CDN_PATH}/${ENV}/`;// &#x4F9D;&#x636E; ENV &#x7B49;&#x52A8;&#x6001;&#x6784;&#x9020; publicPath
+<span class="hljs-keyword">const</span> getPublicPath = () =&gt; {
+    <span class="hljs-comment">// Some code here</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${CDN_HOST}</span>/<span class="hljs-subst">${CDN_PATH}</span>/<span class="hljs-subst">${ENV}</span>/`</span>;<span class="hljs-comment">// &#x4F9D;&#x636E; ENV &#x7B49;&#x52A8;&#x6001;&#x6784;&#x9020; publicPath</span>
 }
 
-const publicPath = process.env.NODE_ENV === &apos;production&apos; ? getPublicPath() : &apos;.&apos;;
+<span class="hljs-keyword">const</span> publicPath = process.env.NODE_ENV === <span class="hljs-string">&apos;production&apos;</span> ? getPublicPath() : <span class="hljs-string">&apos;.&apos;</span>;
 
-module.exports = {
+<span class="hljs-built_in">module</span>.exports = {
     output: {
-        filename: &apos;bundle.[name][hash:8].js&apos;,
+        filename: <span class="hljs-string">&apos;bundle.[name][hash:8].js&apos;</span>,
         publicPath,
     },
     plugins: [
-        new HtmlWebpackPlugin()
+        <span class="hljs-keyword">new</span> HtmlWebpackPlugin()
     ]
 }
-</code></pre><h3 id="commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;"><a name="commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;" class="plugin-anchor" href="#commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>CommonsChunkPlugin&#xFF08;webpack 4 removed&#xFF09;</h3>
+</code></pre>
+<h2 id="commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;"><a name="commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;" class="plugin-anchor" href="#commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>CommonsChunkPlugin&#xFF08;webpack 4 removed&#xFF09;</h2>
 <p>&#x8D1F;&#x8D23;&#x5C06;&#x591A;&#x6B21;&#x88AB;&#x4F7F;&#x7528;&#x7684; JS &#x6A21;&#x5757;&#x6253;&#x5305;&#x5728;&#x4E00;&#x8D77;</p>
 <ul>
 <li>&#x4F20;&#x5165;&#x5B57;&#x7B26;&#x4E32;&#x53C2;&#x6570;</li>
 </ul>
-<pre><code>// &#x63D0;&#x4F9B;&#x516C;&#x5171;&#x4EE3;&#x7801;
-new webpack.optimize.CommonsChunkPlugin(&apos;common.js&apos;), // &#x9ED8;&#x8BA4;&#x4F1A;&#x628A;&#x6240;&#x6709;&#x5165;&#x53E3;&#x8282;&#x70B9;&#x7684;&#x516C;&#x5171;&#x4EE3;&#x7801;&#x63D0;&#x53D6;&#x51FA;&#x6765;,&#x751F;&#x6210;&#x4E00;&#x4E2A;common.js
-</code></pre><ul>
+<pre><code class="lang-js"><span class="hljs-comment">// &#x63D0;&#x4F9B;&#x516C;&#x5171;&#x4EE3;&#x7801;</span>
+<span class="hljs-keyword">new</span> webpack.optimize.CommonsChunkPlugin(<span class="hljs-string">&apos;common.js&apos;</span>), <span class="hljs-comment">// &#x9ED8;&#x8BA4;&#x4F1A;&#x628A;&#x6240;&#x6709;&#x5165;&#x53E3;&#x8282;&#x70B9;&#x7684;&#x516C;&#x5171;&#x4EE3;&#x7801;&#x63D0;&#x53D6;&#x51FA;&#x6765;,&#x751F;&#x6210;&#x4E00;&#x4E2A;common.js</span>
+</code></pre>
+<ul>
 <li>&#x6709;&#x9009;&#x62E9;&#x7684;&#x63D0;&#x53D6;</li>
 </ul>
-<pre><code>// &#x63D0;&#x4F9B;&#x516C;&#x5171;&#x4EE3;&#x7801;
-// &#x9ED8;&#x8BA4;&#x4F1A;&#x628A;&#x6240;&#x6709;&#x5165;&#x53E3;&#x8282;&#x70B9;&#x7684;&#x516C;&#x5171;&#x4EE3;&#x7801;&#x63D0;&#x53D6;&#x51FA;&#x6765;,&#x751F;&#x6210;&#x4E00;&#x4E2A;common.js
-// &#x53EA;&#x63D0;&#x53D6;main&#x8282;&#x70B9;&#x548C;index&#x8282;&#x70B9;
-new webpack.optimize.CommonsChunkPlugin(&apos;common.js&apos;,[&apos;main&apos;,&apos;index&apos;]),
-</code></pre><ul>
+<pre><code class="lang-js"><span class="hljs-comment">// &#x63D0;&#x4F9B;&#x516C;&#x5171;&#x4EE3;&#x7801;</span>
+<span class="hljs-comment">// &#x9ED8;&#x8BA4;&#x4F1A;&#x628A;&#x6240;&#x6709;&#x5165;&#x53E3;&#x8282;&#x70B9;&#x7684;&#x516C;&#x5171;&#x4EE3;&#x7801;&#x63D0;&#x53D6;&#x51FA;&#x6765;,&#x751F;&#x6210;&#x4E00;&#x4E2A;common.js</span>
+<span class="hljs-comment">// &#x53EA;&#x63D0;&#x53D6;main&#x8282;&#x70B9;&#x548C;index&#x8282;&#x70B9;</span>
+<span class="hljs-keyword">new</span> webpack.optimize.CommonsChunkPlugin(<span class="hljs-string">&apos;common.js&apos;</span>,[<span class="hljs-string">&apos;main&apos;</span>,<span class="hljs-string">&apos;index&apos;</span>]),
+</code></pre>
+<ul>
 <li>&#x6709;&#x9009;&#x62E9;&#x6027;&#x7684;&#x63D0;&#x53D6;&#xFF08;&#x5BF9;&#x8C61;&#x65B9;&#x5F0F;&#x4F20;&#x53C2;&#xFF09;</li>
 </ul>
-<pre><code>// &#x901A;&#x8FC7;CommonsChunkPlugin&#xFF0C;&#x6211;&#x4EEC;&#x628A;&#x516C;&#x5171;&#x4EE3;&#x7801;&#x4E13;&#x95E8;&#x62BD;&#x53D6;&#x5230;&#x4E00;&#x4E2A;common.js&#xFF0C;&#x8FD9;&#x6837;&#x4E1A;&#x52A1;&#x4EE3;&#x7801;&#x53EA;&#x5728;index.js&#xFF0C;main.js&#xFF0C;user.js
-new webpack.optimize.CommonsChunkPlugin({
-  name:&apos;common&apos;, // &#x6CE8;&#x610F;&#x4E0D;&#x8981;.js&#x540E;&#x7F00;
-  chunks:[&apos;main&apos;,&apos;user&apos;,&apos;index&apos;]
+<pre><code class="lang-js"><span class="hljs-comment">// &#x901A;&#x8FC7;CommonsChunkPlugin&#xFF0C;&#x6211;&#x4EEC;&#x628A;&#x516C;&#x5171;&#x4EE3;&#x7801;&#x4E13;&#x95E8;&#x62BD;&#x53D6;&#x5230;&#x4E00;&#x4E2A;common.js&#xFF0C;&#x8FD9;&#x6837;&#x4E1A;&#x52A1;&#x4EE3;&#x7801;&#x53EA;&#x5728;index.js&#xFF0C;main.js&#xFF0C;user.js</span>
+<span class="hljs-keyword">new</span> webpack.optimize.CommonsChunkPlugin({
+  name:<span class="hljs-string">&apos;common&apos;</span>, <span class="hljs-comment">// &#x6CE8;&#x610F;&#x4E0D;&#x8981;.js&#x540E;&#x7F00;</span>
+  chunks:[<span class="hljs-string">&apos;main&apos;</span>,<span class="hljs-string">&apos;user&apos;</span>,<span class="hljs-string">&apos;index&apos;</span>]
 }),
-</code></pre><h3 id="defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;"><a name="defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;" class="plugin-anchor" href="#defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a>DefinePlugin &#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;</h3>
-<pre><code>new webpack.DefinePlugin({
-    NAME1: JSON.stringify(process.env.NAME1),
-    NAME2: JSON.stringify(process.env.NAME2)
+</code></pre>
+<h2 id="defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;"><a name="defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;" class="plugin-anchor" href="#defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a>DefinePlugin &#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;</h2>
+<pre><code class="lang-js"><span class="hljs-keyword">new</span> webpack.DefinePlugin({
+    NAME1: <span class="hljs-built_in">JSON</span>.stringify(process.env.NAME1),
+    NAME2: <span class="hljs-built_in">JSON</span>.stringify(process.env.NAME2)
 })
-</code></pre><h3 id="webpack-bundle-analyzer-&#x6587;&#x4EF6;&#x53EF;&#x89C6;&#x5316;&#x5206;&#x6790;&#x5DE5;&#x5177;"><a name="webpack-bundle-analyzer-&#x6587;&#x4EF6;&#x53EF;&#x89C6;&#x5316;&#x5206;&#x6790;&#x5DE5;&#x5177;" class="plugin-anchor" href="#webpack-bundle-analyzer-&#x6587;&#x4EF6;&#x53EF;&#x89C6;&#x5316;&#x5206;&#x6790;&#x5DE5;&#x5177;"><i class="fa fa-link" aria-hidden="true"></i></a>webpack-bundle-analyzer &#x6587;&#x4EF6;&#x53EF;&#x89C6;&#x5316;&#x5206;&#x6790;&#x5DE5;&#x5177;</h3>
-<pre><code>plugins: [
-  new BundleAnalyzerPlugin(),
+</code></pre>
+<h2 id="bannerplugin-&#x7248;&#x6743;&#x58F0;&#x660E;"><a name="bannerplugin-&#x7248;&#x6743;&#x58F0;&#x660E;" class="plugin-anchor" href="#bannerplugin-&#x7248;&#x6743;&#x58F0;&#x660E;"><i class="fa fa-link" aria-hidden="true"></i></a>BannerPlugin &#x7248;&#x6743;&#x58F0;&#x660E;</h2>
+<pre><code class="lang-js"><span class="hljs-keyword">new</span> webpack.BannerPlugin(
+  <span class="hljs-string">`
+  Bundle: Standalone
+  Version: <span class="hljs-subst">${commitHash}</span>
+  `</span>
+),
+</code></pre>
+<h2 id="webpack-bundle-analyzer-&#x6587;&#x4EF6;&#x53EF;&#x89C6;&#x5316;&#x5206;&#x6790;&#x5DE5;&#x5177;"><a name="webpack-bundle-analyzer-&#x6587;&#x4EF6;&#x53EF;&#x89C6;&#x5316;&#x5206;&#x6790;&#x5DE5;&#x5177;" class="plugin-anchor" href="#webpack-bundle-analyzer-&#x6587;&#x4EF6;&#x53EF;&#x89C6;&#x5316;&#x5206;&#x6790;&#x5DE5;&#x5177;"><i class="fa fa-link" aria-hidden="true"></i></a>webpack-bundle-analyzer &#x6587;&#x4EF6;&#x53EF;&#x89C6;&#x5316;&#x5206;&#x6790;&#x5DE5;&#x5177;</h2>
+<pre><code class="lang-js">plugins: [
+  <span class="hljs-keyword">new</span> BundleAnalyzerPlugin(),
 ],
-</code></pre><h3 id="speed-measure-webpack-plugin-&#x4F18;&#x5316;&#x8017;&#x65F6;&#x5206;&#x6790;"><a name="speed-measure-webpack-plugin-&#x4F18;&#x5316;&#x8017;&#x65F6;&#x5206;&#x6790;" class="plugin-anchor" href="#speed-measure-webpack-plugin-&#x4F18;&#x5316;&#x8017;&#x65F6;&#x5206;&#x6790;"><i class="fa fa-link" aria-hidden="true"></i></a>speed-measure-webpack-plugin &#x4F18;&#x5316;&#x8017;&#x65F6;&#x5206;&#x6790;</h3>
-<pre><code>const SpeedMeasurePlugin=require(&apos;speed-measure-webpack-plugin&apos;)
+</code></pre>
+<h2 id="speed-measure-webpack-plugin-&#x4F18;&#x5316;&#x8017;&#x65F6;&#x5206;&#x6790;"><a name="speed-measure-webpack-plugin-&#x4F18;&#x5316;&#x8017;&#x65F6;&#x5206;&#x6790;" class="plugin-anchor" href="#speed-measure-webpack-plugin-&#x4F18;&#x5316;&#x8017;&#x65F6;&#x5206;&#x6790;"><i class="fa fa-link" aria-hidden="true"></i></a>speed-measure-webpack-plugin &#x4F18;&#x5316;&#x8017;&#x65F6;&#x5206;&#x6790;</h2>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> SpeedMeasurePlugin=<span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;speed-measure-webpack-plugin&apos;</span>)
 
-const smp = new SpeedMeasurePlugin();
+<span class="hljs-keyword">const</span> smp = <span class="hljs-keyword">new</span> SpeedMeasurePlugin();
 smp.wrap( webpackConfig )
-</code></pre><h3 id="babelplugin-proposal-optional-chaining-&#x53EF;&#x9009;&#x94FE;&#x64CD;&#x4F5C;&#x7B26;-"><a name="babelplugin-proposal-optional-chaining-&#x53EF;&#x9009;&#x94FE;&#x64CD;&#x4F5C;&#x7B26;-" class="plugin-anchor" href="#babelplugin-proposal-optional-chaining-&#x53EF;&#x9009;&#x94FE;&#x64CD;&#x4F5C;&#x7B26;-"><i class="fa fa-link" aria-hidden="true"></i></a>@babel/plugin-proposal-optional-chaining &#x53EF;&#x9009;&#x94FE;&#x64CD;&#x4F5C;&#x7B26; ?.</h3>
-<pre><code>plugins: [
+</code></pre>
+<h2 id="babelplugin-proposal-optional-chaining-&#x53EF;&#x9009;&#x94FE;&#x64CD;&#x4F5C;&#x7B26;-"><a name="babelplugin-proposal-optional-chaining-&#x53EF;&#x9009;&#x94FE;&#x64CD;&#x4F5C;&#x7B26;-" class="plugin-anchor" href="#babelplugin-proposal-optional-chaining-&#x53EF;&#x9009;&#x94FE;&#x64CD;&#x4F5C;&#x7B26;-"><i class="fa fa-link" aria-hidden="true"></i></a>@babel/plugin-proposal-optional-chaining &#x53EF;&#x9009;&#x94FE;&#x64CD;&#x4F5C;&#x7B26; ?.</h2>
+<pre><code class="lang-js">plugins: [
   @babel/plugin-proposal-optional-chaining
 ],
-</code></pre><h3 id="babelplugin-proposal-nullish-coalescing-operator-&#x7A7A;&#x4F4D;&#x5408;&#x5E76;&#x8FD0;&#x7B97;&#x7B26;-"><a name="babelplugin-proposal-nullish-coalescing-operator-&#x7A7A;&#x4F4D;&#x5408;&#x5E76;&#x8FD0;&#x7B97;&#x7B26;-" class="plugin-anchor" href="#babelplugin-proposal-nullish-coalescing-operator-&#x7A7A;&#x4F4D;&#x5408;&#x5E76;&#x8FD0;&#x7B97;&#x7B26;-"><i class="fa fa-link" aria-hidden="true"></i></a>@babel/plugin-proposal-nullish-coalescing-operator &#x7A7A;&#x4F4D;&#x5408;&#x5E76;&#x8FD0;&#x7B97;&#x7B26; ??</h3>
-<pre><code>plugins: [
+</code></pre>
+<h2 id="babelplugin-proposal-nullish-coalescing-operator-&#x7A7A;&#x4F4D;&#x5408;&#x5E76;&#x8FD0;&#x7B97;&#x7B26;-"><a name="babelplugin-proposal-nullish-coalescing-operator-&#x7A7A;&#x4F4D;&#x5408;&#x5E76;&#x8FD0;&#x7B97;&#x7B26;-" class="plugin-anchor" href="#babelplugin-proposal-nullish-coalescing-operator-&#x7A7A;&#x4F4D;&#x5408;&#x5E76;&#x8FD0;&#x7B97;&#x7B26;-"><i class="fa fa-link" aria-hidden="true"></i></a>@babel/plugin-proposal-nullish-coalescing-operator &#x7A7A;&#x4F4D;&#x5408;&#x5E76;&#x8FD0;&#x7B97;&#x7B26; ??</h2>
+<pre><code class="lang-js">plugins: [
   @babel/plugin-proposal-nullish-coalescing-operator
 ],
-</code></pre><h3 id="babelplugin-proposal-pipeline-operator-&#x7BA1;&#x9053;&#x8FD0;&#x7B97;&#x7B26;-"><a name="babelplugin-proposal-pipeline-operator-&#x7BA1;&#x9053;&#x8FD0;&#x7B97;&#x7B26;-" class="plugin-anchor" href="#babelplugin-proposal-pipeline-operator-&#x7BA1;&#x9053;&#x8FD0;&#x7B97;&#x7B26;-"><i class="fa fa-link" aria-hidden="true"></i></a>@babel/plugin-proposal-pipeline-operator &#x7BA1;&#x9053;&#x8FD0;&#x7B97;&#x7B26; |&gt;</h3>
-<pre><code>plugins: [
-  [&quot;@babel/plugin-proposal-pipeline-operator&quot;, { &quot;topicToken&quot;: &quot;^^&quot; }]
+</code></pre>
+<h2 id="babelplugin-proposal-pipeline-operator-&#x7BA1;&#x9053;&#x8FD0;&#x7B97;&#x7B26;-"><a name="babelplugin-proposal-pipeline-operator-&#x7BA1;&#x9053;&#x8FD0;&#x7B97;&#x7B26;-" class="plugin-anchor" href="#babelplugin-proposal-pipeline-operator-&#x7BA1;&#x9053;&#x8FD0;&#x7B97;&#x7B26;-"><i class="fa fa-link" aria-hidden="true"></i></a>@babel/plugin-proposal-pipeline-operator &#x7BA1;&#x9053;&#x8FD0;&#x7B97;&#x7B26; |&gt;</h2>
+<pre><code class="lang-js">plugins: [
+  [<span class="hljs-string">&quot;@babel/plugin-proposal-pipeline-operator&quot;</span>, { <span class="hljs-string">&quot;topicToken&quot;</span>: <span class="hljs-string">&quot;^^&quot;</span> }]
 ],
 
-// Status quo
-jQuery.merge( this, jQuery.parseHTML(
-  match[ 1 ],
-  context &amp;&amp; context.nodeType ? context.ownerDocument || context : document,
-  true
+<span class="hljs-comment">// Status quo</span>
+jQuery.merge( <span class="hljs-keyword">this</span>, jQuery.parseHTML(
+  match[ <span class="hljs-number">1</span> ],
+  context &amp;&amp; context.nodeType ? context.ownerDocument || context : <span class="hljs-built_in">document</span>,
+  <span class="hljs-literal">true</span>
 ) );
 
-// With pipes
+<span class="hljs-comment">// With pipes</span>
 context
-  |&gt; (^^ &amp;&amp; ^^.nodeType ? ^^.ownerDocument || ^^ : document)
-  |&gt; jQuery.parseHTML(match[1], ^^, true)
+  |&gt; (^^ &amp;&amp; ^^.nodeType ? ^^.ownerDocument || ^^ : <span class="hljs-built_in">document</span>)
+  |&gt; jQuery.parseHTML(match[<span class="hljs-number">1</span>], ^^, <span class="hljs-literal">true</span>)
   |&gt; jQuery.merge(^^);
 </code></pre>
+
                                 
                                 </section>
                             
@@ -1498,7 +1528,7 @@ context
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Webpack","level":"6.1.3","depth":2,"next":{"title":"Package","level":"7.1","depth":1,"path":"7-package/package/README.md","ref":"7-package/package/README.md","articles":[{"title":"Node Sass","level":"7.1.1","depth":2,"path":"7-package/package/node_sass.md","ref":"7-package/package/node_sass.md","articles":[]},{"title":"Package Builder","level":"7.1.2","depth":2,"path":"7-package/package/package-builder.md","ref":"7-package/package/package-builder.md","articles":[]},{"title":"Package Env","level":"7.1.3","depth":2,"path":"7-package/package/package-env.md","ref":"7-package/package/package-env.md","articles":[]},{"title":"Package File","level":"7.1.4","depth":2,"path":"7-package/package/package-file.md","ref":"7-package/package/package-file.md","articles":[]},{"title":"Vscode Plugin","level":"7.1.5","depth":2,"path":"7-package/package/vscode-plugin.md","ref":"7-package/package/vscode-plugin.md","articles":[]}]},"previous":{"title":"Jenkins","level":"6.1.2","depth":2,"path":"6-build-tools/build-tools/jenkins.md","ref":"6-build-tools/build-tools/jenkins.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"6-build-tools/build-tools/webpack.md","mtime":"2022-08-01T17:03:53.249Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-08-01T17:04:31.444Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Webpack","level":"6.1.3","depth":2,"next":{"title":"Package","level":"7.1","depth":1,"path":"7-package/package/README.md","ref":"7-package/package/README.md","articles":[{"title":"Node Sass","level":"7.1.1","depth":2,"path":"7-package/package/node_sass.md","ref":"7-package/package/node_sass.md","articles":[]},{"title":"Package Builder","level":"7.1.2","depth":2,"path":"7-package/package/package-builder.md","ref":"7-package/package/package-builder.md","articles":[]},{"title":"Package Env","level":"7.1.3","depth":2,"path":"7-package/package/package-env.md","ref":"7-package/package/package-env.md","articles":[]},{"title":"Package File","level":"7.1.4","depth":2,"path":"7-package/package/package-file.md","ref":"7-package/package/package-file.md","articles":[]},{"title":"Vscode Plugin","level":"7.1.5","depth":2,"path":"7-package/package/vscode-plugin.md","ref":"7-package/package/vscode-plugin.md","articles":[]}]},"previous":{"title":"Jenkins","level":"6.1.2","depth":2,"path":"6-build-tools/build-tools/jenkins.md","ref":"6-build-tools/build-tools/jenkins.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"6-build-tools/build-tools/webpack.md","mtime":"2022-09-08T08:45:34.710Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-09-08T08:46:09.807Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
