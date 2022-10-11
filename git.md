@@ -27,12 +27,21 @@ git lfs uninstall
 ```js
 // git clone --depth 1 https://github.com/dogescript/xxxxxxx.git
 // git fetch --unshallow
-git remote set-branches origin '9_1_vfx_tds5_upgrade_combined_global' && 
-git fetch --depth 1 origin 9_1_vfx_tds5_upgrade_combined_global && 
-git checkout 9_1_vfx_tds5_upgrade_combined_global && 
+
+git remote set-branches origin 'DEVOPS-3868-pvg16-prd' && 
+git fetch --depth 1 origin DEVOPS-3868-pvg16-prd && 
+git checkout DEVOPS-3868-pvg16-prd && 
 git fetch --unshallow
 
-git remote set-branches origin 'r/202209_2/alpha' && 
-git fetch origin r/202209_2/alpha && 
-git checkout r/202209_2/alpha
+git stash &&
+git remote set-branches origin 'main' && 
+git fetch origin main && 
+git checkout main &&
+git stash pop
+
+git stash &&
+git remote set-branches origin 'r/202210_2/alpha_cn' && 
+git fetch origin r/202210_2/alpha_cn && 
+git checkout r/202210_2/alpha_cn &&
+git stash pop
 ```

@@ -113,6 +113,10 @@ export class xxxModule { }
 </ng-template>
 ```
 
+### [Angular Material Icon](https://material.io/resources/icons/?icon=sd_storage&style=baseline)
+
+https://www.jianshu.com/p/a49e242aeac8
+
 ### [@angular/flex-layout](https://www.angularjswiki.com/flexlayout/fxlayout/)
 
 ### [ag-grid-angular](https://www.ag-grid.com/javascript-data-grid/)

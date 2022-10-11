@@ -1,5 +1,9 @@
 # webpack 常用配置
 
+webpack4 2018 Feb release. major change: remove commonsChunk.
+
+webpack5 2020 Oct release. major change: Long Term Caching.
+
 ## 获取commitHash
 
 ```js
@@ -102,6 +106,59 @@ new webpack.BannerPlugin(
   Version: ${commitHash}
   `
 ),
+```
+
+## MiniCssExtractPlugin css-in-js css提取file
+
+```js
+const plugins = [
+  new MiniCssExtractPlugin({
+    filename: '[name].styles.min.css?[contenthash]',
+  }),
+]
+
+rules: [
+  {
+    test: /\.(scss|css)$/,
+    use: [
+      MiniCssExtractPlugin.loader,
+      'css-loader',
+      'postcss-loader',
+    ],
+  },
+]
+```
+
+## [TerserPlugin](https://webpack.js.org/plugins/terser-webpack-plugin) 压缩JS
+
+```js
+const TerserPlugin = require("terser-webpack-plugin");
+
+module.exports = {
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin({
+      parallel: true,
+      exclude: /node_modules/,
+      terserOptions: {
+        toplevel: true,
+      },
+    })],
+  },
+};
+```
+
+## [CssMinimizerWebpackPlugin](https://webpack.js.org/plugins/css-minimizer-webpack-plugin/) 压缩css
+
+```js
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+
+module.exports = {
+  optimization: {
+    minimize: true,
+    minimizer: [new CssMinimizerPlugin()],
+  },
+};
 ```
 
 ## webpack-bundle-analyzer 文件可视化分析工具

@@ -1,6 +1,6 @@
 # docker
 
-docker-machine、docker-compose、
+docker-machine、docker-compose、docker-swarm
 
 ## docker-machine
 
@@ -15,6 +15,27 @@ dcoker-compose主要是解决本地docker容器编排问题。
 一般是通过yaml配置文件来使用它，这个yaml文件里能记录多个容器启动的配置信息（镜像、启动命令、端口映射等）
 
 最后只需要执行docker-compose对应的命令就会像执行脚本一样地批量创建和销毁容器。
+
+### docker-compose down [options]
+
+删除容器、网络、卷、镜像
+
+--remove-orphans  删除服务中没有在compose中定义的容器
+
+```js
+docker-compose down --remove-orphans
+```
+
+### docker-compose up [options]
+
+创建镜像、运行容器
+
+-d  在后台运行服务容器.
+–build  在启动容器前构建服务镜像
+
+```js
+docker-compose up --build -d
+```
 
 ## docker-swarm
 
