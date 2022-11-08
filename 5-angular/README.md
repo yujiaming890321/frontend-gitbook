@@ -52,6 +52,36 @@ Event binding ( )
 </ng-template>
 ```
 
+### Route
+
+```js
+constructor(
+  private actr: ActivatedRoute
+) {
+}
+
+this.actr.snapshot.queryParams['rn']
+```
+
+### [pipe](https://angular.io/api/common/AsyncPipe)
+
+```js
+import { PipeTransform, Pipe } from '@angular/core';
+
+@Pipe({ name: 'color' })
+export class ColorPipe implements PipeTransform {
+
+    transform(color: string): any {
+        switch ((color || '').toLowerCase().replace('paint', '').trim()) {
+          case 'black' : return 'black-flag';
+          default: return 'custom-flag';
+        }
+    }
+}
+
+<span class='color' [ngClass]="dataItem.Color | color" matTooltip="Color: {{ dataItem.Color }}">
+```
+
 ### [Glossary](https://v8.angular.io/guide/glossary)
 
 ### Component
@@ -112,6 +142,34 @@ export class xxxModule { }
   </div>
 </ng-template>
 ```
+
+### [angular CDK Overlay](https://v8.material.angular.io/cdk/overlay/api)
+
+Overlay 全局弹出层
+
+```js
+cosnt top = this.origin.elementRef.nativeElement.offsetTop;
+cosnt left = this.origin.elementRef.nativeElement.offsetLeft;
+return this.overlay.position().global().right().bottom().top(top).left(left);
+```
+
+相对于某元素的弹出层
+
+```js
+cosnt top = this.origin.elementRef.nativeElement.offsetTop;
+cosnt left = this.origin.elementRef.nativeElement.offsetLeft;
+return this.overlay.position().flexibleConnectedTo(this.origin.elementRef).withPositions([{
+  originX: 'start',
+  originY: 'top',
+  overlayX: 'start',
+  overlayY: 'top'
+}]);
+```
+
+[源码分析](https://zhuanlan.zhihu.com/p/146996352)
+1.计算 overlay 的可视性
+2.选择最优的位置
+3.应用位置
 
 ### [Angular Material Icon](https://material.io/resources/icons/?icon=sd_storage&style=baseline)
 

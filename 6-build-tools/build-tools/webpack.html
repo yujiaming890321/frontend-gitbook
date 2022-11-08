@@ -1366,7 +1366,8 @@
                                 <h1 id="webpack-&#x5E38;&#x7528;&#x914D;&#x7F6E;"><a name="webpack-&#x5E38;&#x7528;&#x914D;&#x7F6E;" class="plugin-anchor" href="#webpack-&#x5E38;&#x7528;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>webpack &#x5E38;&#x7528;&#x914D;&#x7F6E;</h1>
 <p>webpack4 2018 Feb release. major change: remove commonsChunk.</p>
 <p>webpack5 2020 Oct release. major change: Long Term Caching.</p>
-<h2 id="&#x83B7;&#x53D6;commithash"><a name="&#x83B7;&#x53D6;commithash" class="plugin-anchor" href="#&#x83B7;&#x53D6;commithash"><i class="fa fa-link" aria-hidden="true"></i></a>&#x83B7;&#x53D6;commitHash</h2>
+<h2 id="config"><a name="config" class="plugin-anchor" href="#config"><i class="fa fa-link" aria-hidden="true"></i></a>Config</h2>
+<h3 id="&#x83B7;&#x53D6;commithash"><a name="&#x83B7;&#x53D6;commithash" class="plugin-anchor" href="#&#x83B7;&#x53D6;commithash"><i class="fa fa-link" aria-hidden="true"></i></a>&#x83B7;&#x53D6;commitHash</h3>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> { execSync } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;child_process&apos;</span>);
 <span class="hljs-keyword">let</span> commitHash;
 
@@ -1377,14 +1378,50 @@
   commitHash = <span class="hljs-string">&apos;N/A&apos;</span>;
 }
 </code></pre>
-<h2 id="&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;"><a name="&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;" class="plugin-anchor" href="#&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;</h2>
+<h3 id="&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;"><a name="&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;" class="plugin-anchor" href="#&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x5F3A;&#x7F13;&#x5B58;</h3>
 <p>&#x6587;&#x4EF6;&#x540D;&#x4F7F;&#x7528;<code>&#x6D88;&#x606F;&#x6458;&#x8981;&#x7B97;&#x6CD5;</code></p>
 <pre><code class="lang-js">output: {
     filename: <span class="hljs-string">&apos;bundle.[name][hash:8].js&apos;</span>,
     publicPath,
 }
 </code></pre>
-<h2 id="htmlwebpackplugin-cdn&#x914D;&#x7F6E;"><a name="htmlwebpackplugin-cdn&#x914D;&#x7F6E;" class="plugin-anchor" href="#htmlwebpackplugin-cdn&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>HtmlWebpackPlugin CDN&#x914D;&#x7F6E;</h2>
+<h2 id="loader"><a name="loader" class="plugin-anchor" href="#loader"><i class="fa fa-link" aria-hidden="true"></i></a>Loader</h2>
+<p>1.&#x6587;&#x4EF6;</p>
+<p>val-loader&#xFF1A;&#x5C06;&#x4EE3;&#x7801;&#x4F5C;&#x4E3A;&#x6A21;&#x5757;&#x6267;&#x884C;&#xFF0C;&#x5E76;&#x5C06;&#x5176;&#x5BFC;&#x51FA;&#x4E3A;js&#x4EE3;&#x7801;
+ref-loader&#xFF1A;&#x7528;&#x4E8E;&#x624B;&#x52A8;&#x5EFA;&#x7ACB;&#x6587;&#x4EF6;&#x4E4B;&#x95F4;&#x7684;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;
+raw-loader&#xFF1A;&#x52A0;&#x8F7D;&#x6587;&#x4EF6;&#x539F;&#x59CB;&#x5185;&#x5BB9;(utf-8)</p>
+<p>2.JSON</p>
+<p>cson-loader&#xFF1A;&#x52A0;&#x8F7D;&#x5E76;&#x8F6C;&#x6362;CSON&#x6587;&#x4EF6;</p>
+<p>3.&#x8BED;&#x6CD5;&#x8F6C;&#x6362;</p>
+<p>babel-loader&#xFF1A;&#x4F7F;&#x7528;babel&#x52A0;&#x8F7D;es5+&#x4EE3;&#x7801;&#x8F6C;&#x6362;&#x4E3A;es5
+buble-loader&#xFF1A;&#x4F7F;&#x7528;buble&#x52A0;&#x8F7D;es5+&#x4EE3;&#x7801;&#x8F6C;&#x6362;&#x4E3A;es5
+traceur-loader&#xFF1A;&#x4F7F;&#x7528;traceur&#x52A0;&#x8F7D;es5+&#x4EE3;&#x7801;&#x8F6C;&#x6362;&#x4E3A;es5
+ts-loader&#xFF1A;&#x50CF;&#x52A0;&#x8F7D;js&#x4E00;&#x6837;&#x52A0;&#x8F7D;ts2.0+
+coffee-loader&#xFF1A;&#x50CF;&#x52A0;&#x8F7D;js&#x4E00;&#x6837;&#x52A0;&#x8F7D;coffeeScript
+fengari-loader&#xFF1A;&#x4F7F;&#x7528;fengari&#x52A0;&#x8F7D;lua&#x4EE3;&#x7801;
+elm-webpack-loader&#xFF1A;&#x50CF;&#x52A0;&#x8F7D;js&#x4E00;&#x6837;&#x52A0;&#x8F7D;Elm</p>
+<p>4.&#x6A21;&#x677F;</p>
+<p>html-loader&#xFF1A;&#x5C06;html&#x5BFC;&#x51FA;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x9700;&#x8981;&#x4F20;&#x5165;&#x9759;&#x6001;&#x8D44;&#x6E90;&#x5F15;&#x7528;&#x8DEF;&#x5F84;
+pug-loader&#xFF1A;&#x52A0;&#x8F7D;pug&#x548C;jade&#x6A21;&#x677F;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x51FD;&#x6570;
+markdown-loader&#xFF1A;&#x5C06;markdown&#x7F16;&#x8BD1;&#x4E3A;html
+react-markdown-loader&#xFF1A;&#x4F7F;&#x7528;markdown-parse&#x89E3;&#x6790;&#x5668;&#x5C06;markdown&#x7F16;&#x8BD1;&#x4E3A;React&#x7EC4;&#x4EF6;
+posthtml-loader&#xFF1A;&#x4F7F;&#x7528;posthtml&#x52A0;&#x8F7D;&#x5E76;&#x8F6C;&#x6362;&#x4E3A;html&#x6587;&#x4EF6;
+handlebars-loader&#xFF1A;&#x5C06;handlebars&#x6587;&#x4EF6;&#x7F16;&#x8BD1;&#x4E3A;html
+markup-inline-loader&#xFF1A;&#x5C06;svg/mathML&#x6587;&#x4EF6;&#x5D4C;&#x5957;&#x5230;html&#x4E2D;
+twing-loader&#xFF1A;&#x7F16;&#x8BD1;twig&#x6A21;&#x677F;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x51FD;&#x6570;
+remark-loader&#xFF1A;&#x901A;&#x8FC7;remark&#x52A0;&#x8F7D;markdown&#xFF0C;&#x4E14;&#x652F;&#x6301;&#x89E3;&#x6790;&#x5185;&#x5BB9;&#x4E2D;&#x7684;&#x56FE;&#x7247;</p>
+<p>5.&#x6837;&#x5F0F;</p>
+<p>style-loader&#xFF1A;&#x5C06;&#x6A21;&#x5757;&#x5BFC;&#x51FA;&#x7684;&#x5185;&#x5BB9;&#x4F5C;&#x4E3A;&#x6837;&#x5F0F;&#x5E76;&#x6DFB;&#x52A0;&#x5230;dom&#x4E2D;
+css-loader&#xFF1A;&#x52A0;&#x8F7D;css&#x6587;&#x4EF6;&#x5E76;&#x89E3;&#x6790;import&#x7684;css&#x6587;&#x4EF6;&#xFF0C;&#x6700;&#x7EC8;&#x8FD4;&#x56DE;css&#x4EE3;&#x7801;
+less-loader&#xFF1A;&#x52A0;&#x8F7D;&#x5E76;&#x7F16;&#x8BD1;less&#x6587;&#x4EF6;
+sass-loader&#xFF1A;&#x52A0;&#x8F7D;&#x5E76;&#x7F16;&#x8BD1;sass/scss&#x6587;&#x4EF6;
+postcss-loader&#xFF1A;&#x4F7F;&#x7528;postcss&#x52A0;&#x8F7D;&#x5E76;&#x8F6C;&#x6362;css/sss&#x6587;&#x4EF6;
+stylus-loader&#xFF1A;&#x52A0;&#x8F7D;&#x5E76;&#x7F16;&#x8BD1;stylus&#x6587;&#x4EF6;</p>
+<p>6.&#x6846;&#x67B6;</p>
+<p>vue-loader&#xFF1A;&#x52A0;&#x8F7D;&#x5E76;&#x7F16;&#x8BD1;vue&#x7EC4;&#x4EF6;
+angular2-template-loader&#xFF1A;&#x52A0;&#x8F7D;&#x5E76;&#x7F16;&#x8BD1;angular&#x7EC4;&#x4EF6;</p>
+<h2 id="plugin"><a name="plugin" class="plugin-anchor" href="#plugin"><i class="fa fa-link" aria-hidden="true"></i></a>Plugin</h2>
+<h3 id="htmlwebpackplugin-cdn&#x914D;&#x7F6E;"><a name="htmlwebpackplugin-cdn&#x914D;&#x7F6E;" class="plugin-anchor" href="#htmlwebpackplugin-cdn&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>HtmlWebpackPlugin CDN&#x914D;&#x7F6E;</h3>
 <p>HtmlWebpackPlugin &#x4FEE;&#x6539;&#x4E3A; cdn &#x8DEF;&#x5F84;</p>
 <pre><code class="lang-js"><span class="hljs-comment">// webpack.config.js</span>
 <span class="hljs-keyword">const</span> CDN_HOST = process.env.CDN_HOST;<span class="hljs-comment">// CDN &#x57DF;&#x540D;</span>
@@ -1409,7 +1446,7 @@
     ]
 }
 </code></pre>
-<h2 id="commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;"><a name="commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;" class="plugin-anchor" href="#commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>CommonsChunkPlugin&#xFF08;webpack 4 removed&#xFF09;</h2>
+<h3 id="commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;"><a name="commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;" class="plugin-anchor" href="#commonschunkplugin&#xFF08;webpack-4-removed&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>CommonsChunkPlugin&#xFF08;webpack 4 removed&#xFF09;</h3>
 <p>&#x8D1F;&#x8D23;&#x5C06;&#x591A;&#x6B21;&#x88AB;&#x4F7F;&#x7528;&#x7684; JS &#x6A21;&#x5757;&#x6253;&#x5305;&#x5728;&#x4E00;&#x8D77;</p>
 <ul>
 <li>&#x4F20;&#x5165;&#x5B57;&#x7B26;&#x4E32;&#x53C2;&#x6570;</li>
@@ -1434,13 +1471,20 @@
   chunks:[<span class="hljs-string">&apos;main&apos;</span>,<span class="hljs-string">&apos;user&apos;</span>,<span class="hljs-string">&apos;index&apos;</span>]
 }),
 </code></pre>
-<h2 id="defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;"><a name="defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;" class="plugin-anchor" href="#defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a>DefinePlugin &#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;</h2>
+<h3 id="defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;"><a name="defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;" class="plugin-anchor" href="#defineplugin-&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a>DefinePlugin &#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x53D8;&#x91CF;</h3>
 <pre><code class="lang-js"><span class="hljs-keyword">new</span> webpack.DefinePlugin({
     NAME1: <span class="hljs-built_in">JSON</span>.stringify(process.env.NAME1),
     NAME2: <span class="hljs-built_in">JSON</span>.stringify(process.env.NAME2)
 })
 </code></pre>
-<h2 id="bannerplugin-&#x7248;&#x6743;&#x58F0;&#x660E;"><a name="bannerplugin-&#x7248;&#x6743;&#x58F0;&#x660E;" class="plugin-anchor" href="#bannerplugin-&#x7248;&#x6743;&#x58F0;&#x660E;"><i class="fa fa-link" aria-hidden="true"></i></a>BannerPlugin &#x7248;&#x6743;&#x58F0;&#x660E;</h2>
+<h3 id="provideplugin-&#x5728;&#x4F7F;&#x7528;&#x65F6;&#x5C06;&#x4E0D;&#x518D;&#x9700;&#x8981;import&#x548C;require&#x8FDB;&#x884C;&#x5F15;&#x5165;&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x5373;&#x53EF;"><a name="provideplugin-&#x5728;&#x4F7F;&#x7528;&#x65F6;&#x5C06;&#x4E0D;&#x518D;&#x9700;&#x8981;import&#x548C;require&#x8FDB;&#x884C;&#x5F15;&#x5165;&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x5373;&#x53EF;" class="plugin-anchor" href="#provideplugin-&#x5728;&#x4F7F;&#x7528;&#x65F6;&#x5C06;&#x4E0D;&#x518D;&#x9700;&#x8981;import&#x548C;require&#x8FDB;&#x884C;&#x5F15;&#x5165;&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x5373;&#x53EF;"><i class="fa fa-link" aria-hidden="true"></i></a><a href="https://webpack.js.org/plugins/provide-plugin/#root" target="_blank">ProvidePlugin</a> &#x5728;&#x4F7F;&#x7528;&#x65F6;&#x5C06;&#x4E0D;&#x518D;&#x9700;&#x8981;import&#x548C;require&#x8FDB;&#x884C;&#x5F15;&#x5165;&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x5373;&#x53EF;</h3>
+<pre><code class="lang-js">plugins: [
+    <span class="hljs-keyword">new</span> webpack.ProvidePlugin({
+      <span class="hljs-string">&apos;api&apos;</span>: <span class="hljs-string">&apos;api&apos;</span>
+    }),
+]
+</code></pre>
+<h3 id="bannerplugin-&#x7248;&#x6743;&#x58F0;&#x660E;"><a name="bannerplugin-&#x7248;&#x6743;&#x58F0;&#x660E;" class="plugin-anchor" href="#bannerplugin-&#x7248;&#x6743;&#x58F0;&#x660E;"><i class="fa fa-link" aria-hidden="true"></i></a>BannerPlugin &#x7248;&#x6743;&#x58F0;&#x660E;</h3>
 <pre><code class="lang-js"><span class="hljs-keyword">new</span> webpack.BannerPlugin(
   <span class="hljs-string">`
   Bundle: Standalone
@@ -1448,7 +1492,7 @@
   `</span>
 ),
 </code></pre>
-<h2 id="minicssextractplugin-css-in-js-css&#x63D0;&#x53D6;file"><a name="minicssextractplugin-css-in-js-css&#x63D0;&#x53D6;file" class="plugin-anchor" href="#minicssextractplugin-css-in-js-css&#x63D0;&#x53D6;file"><i class="fa fa-link" aria-hidden="true"></i></a>MiniCssExtractPlugin css-in-js css&#x63D0;&#x53D6;file</h2>
+<h3 id="minicssextractplugin-css-in-js-css&#x63D0;&#x53D6;file"><a name="minicssextractplugin-css-in-js-css&#x63D0;&#x53D6;file" class="plugin-anchor" href="#minicssextractplugin-css-in-js-css&#x63D0;&#x53D6;file"><i class="fa fa-link" aria-hidden="true"></i></a>MiniCssExtractPlugin css-in-js css&#x63D0;&#x53D6;file</h3>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> plugins = [
   <span class="hljs-keyword">new</span> MiniCssExtractPlugin({
     filename: <span class="hljs-string">&apos;[name].styles.min.css?[contenthash]&apos;</span>,
@@ -1466,7 +1510,7 @@ rules: [
   },
 ]
 </code></pre>
-<h2 id="terserplugin-&#x538B;&#x7F29;js"><a name="terserplugin-&#x538B;&#x7F29;js" class="plugin-anchor" href="#terserplugin-&#x538B;&#x7F29;js"><i class="fa fa-link" aria-hidden="true"></i></a><a href="https://webpack.js.org/plugins/terser-webpack-plugin" target="_blank">TerserPlugin</a> &#x538B;&#x7F29;JS</h2>
+<h3 id="terserplugin-&#x538B;&#x7F29;js"><a name="terserplugin-&#x538B;&#x7F29;js" class="plugin-anchor" href="#terserplugin-&#x538B;&#x7F29;js"><i class="fa fa-link" aria-hidden="true"></i></a><a href="https://webpack.js.org/plugins/terser-webpack-plugin" target="_blank">TerserPlugin</a> &#x538B;&#x7F29;JS</h3>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> TerserPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;terser-webpack-plugin&quot;</span>);
 
 <span class="hljs-built_in">module</span>.exports = {
@@ -1482,7 +1526,7 @@ rules: [
   },
 };
 </code></pre>
-<h2 id="cssminimizerwebpackplugin-&#x538B;&#x7F29;css"><a name="cssminimizerwebpackplugin-&#x538B;&#x7F29;css" class="plugin-anchor" href="#cssminimizerwebpackplugin-&#x538B;&#x7F29;css"><i class="fa fa-link" aria-hidden="true"></i></a><a href="https://webpack.js.org/plugins/css-minimizer-webpack-plugin/" target="_blank">CssMinimizerWebpackPlugin</a> &#x538B;&#x7F29;css</h2>
+<h3 id="cssminimizerwebpackplugin-&#x538B;&#x7F29;css"><a name="cssminimizerwebpackplugin-&#x538B;&#x7F29;css" class="plugin-anchor" href="#cssminimizerwebpackplugin-&#x538B;&#x7F29;css"><i class="fa fa-link" aria-hidden="true"></i></a><a href="https://webpack.js.org/plugins/css-minimizer-webpack-plugin/" target="_blank">CssMinimizerWebpackPlugin</a> &#x538B;&#x7F29;css</h3>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> CssMinimizerPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;css-minimizer-webpack-plugin&quot;</span>);
 
 <span class="hljs-built_in">module</span>.exports = {
@@ -1492,28 +1536,28 @@ rules: [
   },
 };
 </code></pre>
-<h2 id="webpack-bundle-analyzer-&#x6587;&#x4EF6;&#x53EF;&#x89C6;&#x5316;&#x5206;&#x6790;&#x5DE5;&#x5177;"><a name="webpack-bundle-analyzer-&#x6587;&#x4EF6;&#x53EF;&#x89C6;&#x5316;&#x5206;&#x6790;&#x5DE5;&#x5177;" class="plugin-anchor" href="#webpack-bundle-analyzer-&#x6587;&#x4EF6;&#x53EF;&#x89C6;&#x5316;&#x5206;&#x6790;&#x5DE5;&#x5177;"><i class="fa fa-link" aria-hidden="true"></i></a>webpack-bundle-analyzer &#x6587;&#x4EF6;&#x53EF;&#x89C6;&#x5316;&#x5206;&#x6790;&#x5DE5;&#x5177;</h2>
+<h3 id="webpack-bundle-analyzer-&#x6587;&#x4EF6;&#x53EF;&#x89C6;&#x5316;&#x5206;&#x6790;&#x5DE5;&#x5177;"><a name="webpack-bundle-analyzer-&#x6587;&#x4EF6;&#x53EF;&#x89C6;&#x5316;&#x5206;&#x6790;&#x5DE5;&#x5177;" class="plugin-anchor" href="#webpack-bundle-analyzer-&#x6587;&#x4EF6;&#x53EF;&#x89C6;&#x5316;&#x5206;&#x6790;&#x5DE5;&#x5177;"><i class="fa fa-link" aria-hidden="true"></i></a>webpack-bundle-analyzer &#x6587;&#x4EF6;&#x53EF;&#x89C6;&#x5316;&#x5206;&#x6790;&#x5DE5;&#x5177;</h3>
 <pre><code class="lang-js">plugins: [
   <span class="hljs-keyword">new</span> BundleAnalyzerPlugin(),
 ],
 </code></pre>
-<h2 id="speed-measure-webpack-plugin-&#x4F18;&#x5316;&#x8017;&#x65F6;&#x5206;&#x6790;"><a name="speed-measure-webpack-plugin-&#x4F18;&#x5316;&#x8017;&#x65F6;&#x5206;&#x6790;" class="plugin-anchor" href="#speed-measure-webpack-plugin-&#x4F18;&#x5316;&#x8017;&#x65F6;&#x5206;&#x6790;"><i class="fa fa-link" aria-hidden="true"></i></a>speed-measure-webpack-plugin &#x4F18;&#x5316;&#x8017;&#x65F6;&#x5206;&#x6790;</h2>
+<h3 id="speed-measure-webpack-plugin-&#x4F18;&#x5316;&#x8017;&#x65F6;&#x5206;&#x6790;"><a name="speed-measure-webpack-plugin-&#x4F18;&#x5316;&#x8017;&#x65F6;&#x5206;&#x6790;" class="plugin-anchor" href="#speed-measure-webpack-plugin-&#x4F18;&#x5316;&#x8017;&#x65F6;&#x5206;&#x6790;"><i class="fa fa-link" aria-hidden="true"></i></a>speed-measure-webpack-plugin &#x4F18;&#x5316;&#x8017;&#x65F6;&#x5206;&#x6790;</h3>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> SpeedMeasurePlugin=<span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;speed-measure-webpack-plugin&apos;</span>)
 
 <span class="hljs-keyword">const</span> smp = <span class="hljs-keyword">new</span> SpeedMeasurePlugin();
 smp.wrap( webpackConfig )
 </code></pre>
-<h2 id="babelplugin-proposal-optional-chaining-&#x53EF;&#x9009;&#x94FE;&#x64CD;&#x4F5C;&#x7B26;-"><a name="babelplugin-proposal-optional-chaining-&#x53EF;&#x9009;&#x94FE;&#x64CD;&#x4F5C;&#x7B26;-" class="plugin-anchor" href="#babelplugin-proposal-optional-chaining-&#x53EF;&#x9009;&#x94FE;&#x64CD;&#x4F5C;&#x7B26;-"><i class="fa fa-link" aria-hidden="true"></i></a>@babel/plugin-proposal-optional-chaining &#x53EF;&#x9009;&#x94FE;&#x64CD;&#x4F5C;&#x7B26; ?.</h2>
+<h3 id="babelplugin-proposal-optional-chaining-&#x53EF;&#x9009;&#x94FE;&#x64CD;&#x4F5C;&#x7B26;-"><a name="babelplugin-proposal-optional-chaining-&#x53EF;&#x9009;&#x94FE;&#x64CD;&#x4F5C;&#x7B26;-" class="plugin-anchor" href="#babelplugin-proposal-optional-chaining-&#x53EF;&#x9009;&#x94FE;&#x64CD;&#x4F5C;&#x7B26;-"><i class="fa fa-link" aria-hidden="true"></i></a>@babel/plugin-proposal-optional-chaining &#x53EF;&#x9009;&#x94FE;&#x64CD;&#x4F5C;&#x7B26; ?.</h3>
 <pre><code class="lang-js">plugins: [
-  @babel/plugin-proposal-optional-chaining
+  <span class="hljs-string">&quot;@babel/plugin-proposal-optional-chaining&quot;</span>
 ],
 </code></pre>
-<h2 id="babelplugin-proposal-nullish-coalescing-operator-&#x7A7A;&#x4F4D;&#x5408;&#x5E76;&#x8FD0;&#x7B97;&#x7B26;-"><a name="babelplugin-proposal-nullish-coalescing-operator-&#x7A7A;&#x4F4D;&#x5408;&#x5E76;&#x8FD0;&#x7B97;&#x7B26;-" class="plugin-anchor" href="#babelplugin-proposal-nullish-coalescing-operator-&#x7A7A;&#x4F4D;&#x5408;&#x5E76;&#x8FD0;&#x7B97;&#x7B26;-"><i class="fa fa-link" aria-hidden="true"></i></a>@babel/plugin-proposal-nullish-coalescing-operator &#x7A7A;&#x4F4D;&#x5408;&#x5E76;&#x8FD0;&#x7B97;&#x7B26; ??</h2>
+<h3 id="babelplugin-proposal-nullish-coalescing-operator-&#x7A7A;&#x4F4D;&#x5408;&#x5E76;&#x8FD0;&#x7B97;&#x7B26;-"><a name="babelplugin-proposal-nullish-coalescing-operator-&#x7A7A;&#x4F4D;&#x5408;&#x5E76;&#x8FD0;&#x7B97;&#x7B26;-" class="plugin-anchor" href="#babelplugin-proposal-nullish-coalescing-operator-&#x7A7A;&#x4F4D;&#x5408;&#x5E76;&#x8FD0;&#x7B97;&#x7B26;-"><i class="fa fa-link" aria-hidden="true"></i></a>@babel/plugin-proposal-nullish-coalescing-operator &#x7A7A;&#x4F4D;&#x5408;&#x5E76;&#x8FD0;&#x7B97;&#x7B26; ??</h3>
 <pre><code class="lang-js">plugins: [
-  @babel/plugin-proposal-nullish-coalescing-operator
+  <span class="hljs-string">&quot;@babel/plugin-proposal-nullish-coalescing-operator&quot;</span>
 ],
 </code></pre>
-<h2 id="babelplugin-proposal-pipeline-operator-&#x7BA1;&#x9053;&#x8FD0;&#x7B97;&#x7B26;-"><a name="babelplugin-proposal-pipeline-operator-&#x7BA1;&#x9053;&#x8FD0;&#x7B97;&#x7B26;-" class="plugin-anchor" href="#babelplugin-proposal-pipeline-operator-&#x7BA1;&#x9053;&#x8FD0;&#x7B97;&#x7B26;-"><i class="fa fa-link" aria-hidden="true"></i></a>@babel/plugin-proposal-pipeline-operator &#x7BA1;&#x9053;&#x8FD0;&#x7B97;&#x7B26; |&gt;</h2>
+<h3 id="babelplugin-proposal-pipeline-operator-&#x7BA1;&#x9053;&#x8FD0;&#x7B97;&#x7B26;-"><a name="babelplugin-proposal-pipeline-operator-&#x7BA1;&#x9053;&#x8FD0;&#x7B97;&#x7B26;-" class="plugin-anchor" href="#babelplugin-proposal-pipeline-operator-&#x7BA1;&#x9053;&#x8FD0;&#x7B97;&#x7B26;-"><i class="fa fa-link" aria-hidden="true"></i></a>@babel/plugin-proposal-pipeline-operator &#x7BA1;&#x9053;&#x8FD0;&#x7B97;&#x7B26; |&gt;</h3>
 <pre><code class="lang-js">plugins: [
   [<span class="hljs-string">&quot;@babel/plugin-proposal-pipeline-operator&quot;</span>, { <span class="hljs-string">&quot;topicToken&quot;</span>: <span class="hljs-string">&quot;^^&quot;</span> }]
 ],
@@ -1574,7 +1618,7 @@ context
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Webpack","level":"6.1.3","depth":2,"next":{"title":"Package","level":"7.1","depth":1,"path":"7-package/package/README.md","ref":"7-package/package/README.md","articles":[{"title":"Node Sass","level":"7.1.1","depth":2,"path":"7-package/package/node_sass.md","ref":"7-package/package/node_sass.md","articles":[]},{"title":"Package Builder","level":"7.1.2","depth":2,"path":"7-package/package/package-builder.md","ref":"7-package/package/package-builder.md","articles":[]},{"title":"Package Env","level":"7.1.3","depth":2,"path":"7-package/package/package-env.md","ref":"7-package/package/package-env.md","articles":[]},{"title":"Package File","level":"7.1.4","depth":2,"path":"7-package/package/package-file.md","ref":"7-package/package/package-file.md","articles":[]},{"title":"Vscode Plugin","level":"7.1.5","depth":2,"path":"7-package/package/vscode-plugin.md","ref":"7-package/package/vscode-plugin.md","articles":[]}]},"previous":{"title":"Jenkins","level":"6.1.2","depth":2,"path":"6-build-tools/build-tools/jenkins.md","ref":"6-build-tools/build-tools/jenkins.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"6-build-tools/build-tools/webpack.md","mtime":"2022-10-11T13:37:32.049Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-10-11T13:38:09.782Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Webpack","level":"6.1.3","depth":2,"next":{"title":"Package","level":"7.1","depth":1,"path":"7-package/package/README.md","ref":"7-package/package/README.md","articles":[{"title":"Node Sass","level":"7.1.1","depth":2,"path":"7-package/package/node_sass.md","ref":"7-package/package/node_sass.md","articles":[]},{"title":"Package Builder","level":"7.1.2","depth":2,"path":"7-package/package/package-builder.md","ref":"7-package/package/package-builder.md","articles":[]},{"title":"Package Env","level":"7.1.3","depth":2,"path":"7-package/package/package-env.md","ref":"7-package/package/package-env.md","articles":[]},{"title":"Package File","level":"7.1.4","depth":2,"path":"7-package/package/package-file.md","ref":"7-package/package/package-file.md","articles":[]},{"title":"Vscode Plugin","level":"7.1.5","depth":2,"path":"7-package/package/vscode-plugin.md","ref":"7-package/package/vscode-plugin.md","articles":[]}]},"previous":{"title":"Jenkins","level":"6.1.2","depth":2,"path":"6-build-tools/build-tools/jenkins.md","ref":"6-build-tools/build-tools/jenkins.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"6-build-tools/build-tools/webpack.md","mtime":"2022-11-08T05:30:25.691Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-11-08T05:31:06.907Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
