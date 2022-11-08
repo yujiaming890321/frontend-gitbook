@@ -1,5 +1,7 @@
 # web tools
 
+[语义化版本](https://semver.org/lang/zh-CN/)
+
 [小画桌](https://xiaohuazhuo.com/workshop)
 
 [processon](https://www.processon.com/diagrams)
@@ -13,6 +15,8 @@
 [pandao](https://pandao.github.io/editor.md/)
 
 [diagrams](https://app.diagrams.net/)
+
+[figma](https://www.figma.com/)
 
 ## ui
 

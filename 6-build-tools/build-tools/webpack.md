@@ -4,7 +4,9 @@ webpack4 2018 Feb release. major change: remove commonsChunk.
 
 webpack5 2020 Oct release. major change: Long Term Caching.
 
-## 获取commitHash
+## Config
+
+### 获取commitHash
 
 ```js
 const { execSync } = require('child_process');
@@ -18,7 +20,7 @@ try {
 }
 ```
 
-## 静态资源使用强缓存
+### 静态资源使用强缓存
 
 文件名使用`消息摘要算法`
 
@@ -29,7 +31,57 @@ output: {
 }
 ```
 
-## HtmlWebpackPlugin CDN配置
+## Loader
+
+1.文件
+
+val-loader：将代码作为模块执行，并将其导出为js代码
+ref-loader：用于手动建立文件之间的依赖关系
+raw-loader：加载文件原始内容(utf-8)
+
+2.JSON
+
+cson-loader：加载并转换CSON文件
+
+3.语法转换
+
+babel-loader：使用babel加载es5+代码转换为es5
+buble-loader：使用buble加载es5+代码转换为es5
+traceur-loader：使用traceur加载es5+代码转换为es5
+ts-loader：像加载js一样加载ts2.0+
+coffee-loader：像加载js一样加载coffeeScript
+fengari-loader：使用fengari加载lua代码
+elm-webpack-loader：像加载js一样加载Elm
+
+4.模板
+
+html-loader：将html导出为字符串，需要传入静态资源引用路径
+pug-loader：加载pug和jade模板并返回一个函数
+markdown-loader：将markdown编译为html
+react-markdown-loader：使用markdown-parse解析器将markdown编译为React组件
+posthtml-loader：使用posthtml加载并转换为html文件
+handlebars-loader：将handlebars文件编译为html
+markup-inline-loader：将svg/mathML文件嵌套到html中
+twing-loader：编译twig模板并返回一个函数
+remark-loader：通过remark加载markdown，且支持解析内容中的图片
+
+5.样式
+
+style-loader：将模块导出的内容作为样式并添加到dom中
+css-loader：加载css文件并解析import的css文件，最终返回css代码
+less-loader：加载并编译less文件
+sass-loader：加载并编译sass/scss文件
+postcss-loader：使用postcss加载并转换css/sss文件
+stylus-loader：加载并编译stylus文件
+
+6.框架
+
+vue-loader：加载并编译vue组件
+angular2-template-loader：加载并编译angular组件
+
+## Plugin
+
+### HtmlWebpackPlugin CDN配置
 
 HtmlWebpackPlugin 修改为 cdn 路径
 
@@ -58,7 +110,7 @@ module.exports = {
 }
 ```
 
-## CommonsChunkPlugin（webpack 4 removed）
+### CommonsChunkPlugin（webpack 4 removed）
 
 负责将多次被使用的 JS 模块打包在一起
 
@@ -88,7 +140,7 @@ new webpack.optimize.CommonsChunkPlugin({
 }),
 ```
 
-## DefinePlugin 定义全局变量
+### DefinePlugin 定义全局变量
 
 ```js
 new webpack.DefinePlugin({
@@ -97,7 +149,17 @@ new webpack.DefinePlugin({
 })
 ```
 
-## BannerPlugin 版权声明
+### [ProvidePlugin](https://webpack.js.org/plugins/provide-plugin/#root) 在使用时将不再需要import和require进行引入，直接使用即可
+
+```js
+plugins: [
+    new webpack.ProvidePlugin({
+      'api': 'api'
+    }),
+]
+```
+
+### BannerPlugin 版权声明
 
 ```js
 new webpack.BannerPlugin(
@@ -108,7 +170,7 @@ new webpack.BannerPlugin(
 ),
 ```
 
-## MiniCssExtractPlugin css-in-js css提取file
+### MiniCssExtractPlugin css-in-js css提取file
 
 ```js
 const plugins = [
@@ -129,7 +191,7 @@ rules: [
 ]
 ```
 
-## [TerserPlugin](https://webpack.js.org/plugins/terser-webpack-plugin) 压缩JS
+### [TerserPlugin](https://webpack.js.org/plugins/terser-webpack-plugin) 压缩JS
 
 ```js
 const TerserPlugin = require("terser-webpack-plugin");
@@ -148,7 +210,7 @@ module.exports = {
 };
 ```
 
-## [CssMinimizerWebpackPlugin](https://webpack.js.org/plugins/css-minimizer-webpack-plugin/) 压缩css
+### [CssMinimizerWebpackPlugin](https://webpack.js.org/plugins/css-minimizer-webpack-plugin/) 压缩css
 
 ```js
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
@@ -161,7 +223,7 @@ module.exports = {
 };
 ```
 
-## webpack-bundle-analyzer 文件可视化分析工具
+### webpack-bundle-analyzer 文件可视化分析工具
 
 ```js
 plugins: [
@@ -169,7 +231,7 @@ plugins: [
 ],
 ```
 
-## speed-measure-webpack-plugin 优化耗时分析
+### speed-measure-webpack-plugin 优化耗时分析
 
 ```js
 const SpeedMeasurePlugin=require('speed-measure-webpack-plugin')
@@ -178,23 +240,23 @@ const smp = new SpeedMeasurePlugin();
 smp.wrap( webpackConfig )
 ```
 
-## @babel/plugin-proposal-optional-chaining 可选链操作符 ?.
+### @babel/plugin-proposal-optional-chaining 可选链操作符 ?.
 
 ```js
 plugins: [
-  @babel/plugin-proposal-optional-chaining
+  "@babel/plugin-proposal-optional-chaining"
 ],
 ```
 
-## @babel/plugin-proposal-nullish-coalescing-operator 空位合并运算符 ??
+### @babel/plugin-proposal-nullish-coalescing-operator 空位合并运算符 ??
 
 ```js
 plugins: [
-  @babel/plugin-proposal-nullish-coalescing-operator
+  "@babel/plugin-proposal-nullish-coalescing-operator"
 ],
 ```
 
-## @babel/plugin-proposal-pipeline-operator 管道运算符 |>
+### @babel/plugin-proposal-pipeline-operator 管道运算符 |>
 
 ```js
 plugins: [
