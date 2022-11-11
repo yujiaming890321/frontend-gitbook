@@ -14,6 +14,7 @@ Sorry for late reply.
 make sense. 有道理
 fire up = setup
 spark the fire
+SOP - Standard Operation Procedure 标准操作程序
 
 ## Tesla
 
@@ -293,6 +294,7 @@ mandatory [ˈmændətɔːri] adj.强制性的;强制的
 parenthesis [pəˈrenθəsɪs] n.括号
 clarification [ˌklærəfɪˈkeɪʃn] n.说明;解释
 milestone [ˈmaɪlstoʊn] n.里程碑
+declined [dɪˈklaɪnd] v.减少;下降;衰弱;衰退;谢绝;婉言拒绝;
 
 ## 提要求
 

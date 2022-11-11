@@ -4,6 +4,8 @@ webpack4 2018 Feb release. major change: remove commonsChunk.
 
 webpack5 2020 Oct release. major change: Long Term Caching.
 
+https://www.cnblogs.com/dashnowords/category/1284284.html
+
 ## Config
 
 ### 获取commitHash
@@ -219,6 +221,22 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [new CssMinimizerPlugin()],
+  },
+};
+```
+
+### [OptimizeCSSAssetsPlugin](https://github.com/NMFR/optimize-css-assets-webpack-plugin) 压缩css
+
+webpack v4
+For webpack v5 or above please use css-minimizer-webpack-plugin instead.
+
+```js
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+
+module.exports = {
+  optimization: {
+    minimize: true,
+    minimizer: [new OptimizeCSSAssetsPlugin()],
   },
 };
 ```
