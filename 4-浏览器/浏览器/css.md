@@ -1,5 +1,20 @@
 # css
 
+## 多行省略
+
+为了兼容safari要设定高度及行高
+
+```css
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+word-break: break-all;
+overflow: hidden;
+
+line-height: 20px;
+height: 40px;
+```
+
 ## 转大写
 
 ```css
