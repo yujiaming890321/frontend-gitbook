@@ -15,6 +15,7 @@ make sense. 有道理
 fire up = setup
 spark the fire
 SOP - Standard Operation Procedure 标准操作程序
+TBD - To Be Determined
 
 ## Tesla
 
@@ -295,6 +296,12 @@ parenthesis [pəˈrenθəsɪs] n.括号
 clarification [ˌklærəfɪˈkeɪʃn] n.说明;解释
 milestone [ˈmaɪlstoʊn] n.里程碑
 declined [dɪˈklaɪnd] v.减少;下降;衰弱;衰退;谢绝;婉言拒绝;
+lack [læk] n.缺乏;匮乏;短缺
+luster [ˈlʌstər] n.光泽;光彩; -- What a lackluster set of fixes
+exceed [ɪkˈsiːd] vt.超过(数量);超越(法律、命令等)的限制
+lead [liːdz] v.领导，引领;带路，领路; n.实例;范例;榜样;线索;
+investigate [ɪnˈvestɪɡeɪt] v.侦查(某事);调查(某人);研究
+alternately [ˈɔːltərneɪtly] adv. 交替的
 
 ## 提要求
 

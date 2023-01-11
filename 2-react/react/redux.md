@@ -1,5 +1,14 @@
 # redux
 
+```js
+const middleware = [thunkMiddleware];
+if (process.env.NODE_ENV === 'development') {
+  const { logger } = require('redux-logger');
+  middleware.push(logger);
+}
+const store = createStore(reducers, applyMiddleware(...middleware));
+```
+
 ## redux 数据流
 
 组件通过 store.dispatch(action) 发起一个 action
