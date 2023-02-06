@@ -1,5 +1,7 @@
 # vocabulary
 
+https://wikidiff.com/
+
 ## email
 
 btw - by the way
@@ -67,6 +69,7 @@ improve [ɪmˈpruːv] v.改善;改进;
 improvement [ɪmˈpruːvmənt] n.改善;改进;
 feature [ˈfiːtʃər] n.特征;特点; v.以…为特色;
 implement [ˈɪmplɪment] vt.实施;使生效; n.工具;器具;
+implementation [ˌɪmpləmɛnˈteɪʃən] n.实施;执行;贯彻;生效;完成;工具;仪器;供给器具
 retrospective [ˌretrəˈspektɪv] n.回顾展 adj.回顾的;
 scoping [ˈskoʊpɪŋ] v.范围界定;仔细看;彻底检查
 grooming [ˈɡruːmɪŋ] n.打扮;装束;刷洗;(给动物)梳毛 需求讲解
@@ -88,6 +91,8 @@ comment [ˈkɑːment] n.议论;评论;
 consider [kənˌsɪdə] v.考虑;认为;
 consideration [kənˌsɪdəˈreɪʃn] n.考虑;深思;
 entirely [ɪnˈtaɪərli] adv.完整地
+restrict [rɪˈstrɪkt] vt. (以法规)限制;限定(数量、范围等);束缚;妨碍;阻碍;约束
+authorize [ˈɔːθəraɪz] v.批准;授权
 
 ## computer related
 
@@ -232,6 +237,7 @@ concept [ˈkɑːnsept] n.概念;观念
 capacity [kəˈpæsəti] n.容量;容积;容纳能力;领悟(或理解、办事)能力;职位;职责;生产量;功率
 suspected [səˈspektɪd] v.疑有，觉得(尤指坏事可能属实或发生);感觉有问题;不信任;怀疑(某人有罪)
 assume [əˈsuːm] v.假定;假设;认为;承担(责任);就(职);取得(权力);呈现(外观、样子);显露(特征);装出
+imply [ɪmˈplaɪ] v.意味着;暗示;表明;含有…的意思;暗指;说明;必然包含;使有必要
 implicitly [ɪmˈplɪsətli] adv.含蓄地;暗中地;不明显地;蕴涵地;无疑问地;无保留地;绝对地
 trial [ˈtraɪəl] v.试验;试用;测试(能力、质量、性能等) n.(法院的)审讯，审理，审判;(对能力、质量、性能等的)试验，试用;预赛;选拔赛;比赛;令人伤脑筋的事
 expression [ɪkˈspreʃn] n.表示;表达;表露;表情;神色;词语;措辞;表达方式;
@@ -301,7 +307,16 @@ luster [ˈlʌstər] n.光泽;光彩; -- What a lackluster set of fixes
 exceed [ɪkˈsiːd] vt.超过(数量);超越(法律、命令等)的限制
 lead [liːdz] v.领导，引领;带路，领路; n.实例;范例;榜样;线索;
 investigate [ɪnˈvestɪɡeɪt] v.侦查(某事);调查(某人);研究
+investigation [ɪnˌvestɪˈɡeɪʃn] n.调查;(正式的)侦查;科学研究;学术研究
 alternately [ˈɔːltərneɪtly] adv. 交替的
+nouns [naʊnz] n.名词
+verb [vɜːrb] n.动词
+proper nouns [ˈprɑːpər naʊnz] n.专有名词
+contrive [kənˈtraɪv] v.(不顾困难而)设法做到;(克服困难)促成(某事);巧妙地策划;精巧地制造(如机器)
+achieve [əˈtʃiːv] v.实现;完成;
+doable [ˈduːəbl] adj. 可做;可行;性感的
+yup [jʌp] adv.不错;是的 n.同“yuppie”
+individuals n.个人;与众不同的人;有个性的人;某种类型的人;(尤指)古怪的人
 
 ## 提要求
 
