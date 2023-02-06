@@ -231,3 +231,20 @@ thunk 采用的是扩展 action 的方式：使得 redux 的 store 能 dispatch 
 
 saga 采用的方案更接近于 redux 的全局思想
 saga 采用发布订阅模式，需要一个经纪人 Broker，用于监听组件发出的 action，将监听到的 action1 转发给对应的订阅者，再由订阅者执行具体任务，任务执行完后，再发出另一个 action2 交由 reducer 修改 state
+
+## retry
+
+```js
+import {call, put, select, takeLatest, retry} from "redux-saga/effects";
+
+function* fetchFunc() {
+  const {response} = yield call(apiRequest, {page: 1});
+  if (response != null) {
+    return response;
+  } else {
+    throw new Error("fetchOwnershipXPConfig: GET_OWNERSHIP_XP_CONFIG call failed.");
+  }
+}
+
+const response = yield retry(3, 5 * 1000, fetchFunc);
+```

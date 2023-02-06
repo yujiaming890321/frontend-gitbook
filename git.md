@@ -40,8 +40,8 @@ git checkout main &&
 git stash pop
 
 git stash &&
-git remote set-branches origin 'r/202210_2/alpha_cn' && 
-git fetch origin r/202210_2/alpha_cn && 
-git checkout r/202210_2/alpha_cn &&
+git remote set-branches origin 'r/202210_3/alpha_cn' && 
+git fetch origin r/202210_3/alpha_cn && 
+git checkout r/202210_3/alpha_cn &&
 git stash pop
 ```

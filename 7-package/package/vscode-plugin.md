@@ -23,3 +23,12 @@ vetur
 vscode goto node_modules
 vscode-pigments
 Vue Language Features (Volar)
+Code Spell Checker
+Color Picker
+Class autocomplete for HTML
+Color Highlight
+Highlight Matching Tag
+Path Intellisense
+image preview
+Import Cost
+Trailing Spaces

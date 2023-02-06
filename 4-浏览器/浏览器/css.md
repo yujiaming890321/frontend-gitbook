@@ -1,5 +1,20 @@
 # css
 
+## 多行省略
+
+为了兼容safari要设定高度及行高
+
+```css
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+word-break: break-all;
+overflow: hidden;
+
+line-height: 20px;
+height: 40px;
+```
+
 ## 转大写
 
 ```css
@@ -20,4 +35,14 @@ inset	可选。从外层的阴影（开始时）改变阴影内侧阴影
 
 ```js
 box-shadow: 0 2px 0 rgb(54 45 89 / 15%), -0.1875rem -0.1875rem 0 0.1875rem #f2b712, 0 0 0 0.375rem #e1567c;
+```
+
+## 画梯形
+
+```css
+// 梯形朝向哪个方向，哪个方向就是0
+border-left: 20px solid transparent;
+border-right: 20px solid transparent;
+border-bottom: 20px solid red;
+border-top: 0;
 ```
