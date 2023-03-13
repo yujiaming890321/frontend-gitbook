@@ -35,6 +35,7 @@ DRO - Delivery & Registration Operations
 CX - Customer Experience Platform
 TAI - Trade In
 PR - pull request
+CUA - customer acquisition
 
 registration [ˌredʒɪˈstreɪʃn] n.登记
 deposit [dɪˈpɑːzɪt] n.订金 vt.放下;存储;存钱;
@@ -316,7 +317,20 @@ contrive [kənˈtraɪv] v.(不顾困难而)设法做到;(克服困难)促成(某
 achieve [əˈtʃiːv] v.实现;完成;
 doable [ˈduːəbl] adj. 可做;可行;性感的
 yup [jʌp] adv.不错;是的 n.同“yuppie”
-individuals n.个人;与众不同的人;有个性的人;某种类型的人;(尤指)古怪的人
+individuals [ˌɪndəˈvɪdʒəwəlz] n.个人;与众不同的人;有个性的人;某种类型的人;(尤指)古怪的人
+impact [ˈɪmpækt] n.影响;撞击;强大作用;冲撞;冲击力 v.冲击;撞击;(对某事物)有影响 eg: may not impact anyone else
+wonder [ˈwʌndər] v. 想知道;想弄明白;琢磨;礼貌地提问或请人做事时说;感到诧异;非常惊讶 adj.极好的;极有效的;非常美丽的  eg: Wondering if you guys have encountered this issue before:
+pharmacy
+realistic - should we be committing to week following to be realistic
+disclose - we will not disclose it, you'll have to find it in PRs
+eff - they're actually really effing cool
+hijack - maybe hijack Stage for little bit time tomorrow with a temp branch and put Turkey changes there
+briefly - Me, you and amit will align on how we are demo-ing very briefly tomorrow morning
+indeed - reminder that we are indeed pencil's down.
+candidate - RC candidate(pencil's down)
+feedback - from US feedback
+rollout
+decouple - Unifed platform that can decouple dependency between different incomming channels and internal services.
 
 ## 提要求
 

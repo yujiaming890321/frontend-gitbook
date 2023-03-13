@@ -172,7 +172,7 @@ new webpack.BannerPlugin(
 ),
 ```
 
-### MiniCssExtractPlugin css-in-js css提取file
+### [MiniCssExtractPlugin](https://www.npmjs.com/package/mini-css-extract-plugin) css-in-js css提取file
 
 ```js
 const plugins = [
@@ -181,16 +181,19 @@ const plugins = [
   }),
 ]
 
-rules: [
-  {
-    test: /\.(scss|css)$/,
-    use: [
-      MiniCssExtractPlugin.loader,
-      'css-loader',
-      'postcss-loader',
-    ],
-  },
-]
+plugins: plugins,
+module: {
+  rules: [
+    {
+      test: /\.(scss|css)$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+        'postcss-loader',
+      ],
+    },
+  ]
+},
 ```
 
 ### [TerserPlugin](https://webpack.js.org/plugins/terser-webpack-plugin) 压缩JS

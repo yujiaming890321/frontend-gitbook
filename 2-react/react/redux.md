@@ -89,3 +89,22 @@ function eReducer(state = [2, 3], action) {
 ## react-redux：将 store 通过 props 传入 React 最外层组件
 
 ![image](https://img2020.cnblogs.com/blog/2347599/202112/2347599-20211203182754726-1163674991.jpg)
+
+## reselect
+
+```js
+import {createSelector} from "reselect";
+
+export const getProductList = (state: ApplicationState): Optional<ProductListState> => state.productList;
+export const getSelectedId = (state: ApplicationState): Optional<string> => state.selectedId;
+
+export const getSelectProductList = createSelector(
+  getProductList,
+  getSelectedId
+  (productList, selectedId): Array<string> => {
+    return (
+      productList.find(item => item.id === selectedId)
+    );
+  },
+);
+```
