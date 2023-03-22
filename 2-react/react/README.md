@@ -262,3 +262,19 @@ const reducer = (state, action) => {
     }
 };
 const [ state, dispatch ] = useReducer(reducer, initState);
+
+## dynamic
+
+```js
+  const componentName = "card";
+  const dynamicLoadComponent = (component: string) => {
+    return require(`../components/${component}/index`).default;
+  };
+  const DynamicDetail = dynamicLoadComponent(componentName);
+
+  return (
+    <div className="App">
+      <DynamicDetail />
+    </div>
+  );
+```
