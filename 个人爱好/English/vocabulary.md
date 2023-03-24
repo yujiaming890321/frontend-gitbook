@@ -46,7 +46,7 @@ priority [praɪˈɔːrəti] n.优先权
 advanced [ədˈvænst] adj.先进的 v.前进
 privacy [ˈpraɪvəsi] n.隐私
 insights [ˈɪnˌsaɪts] n.洞察力
-statement [ˈsteɪtmənt] n.声明
+statement [ˈsteɪtmənt] n.陈述;声明;报表;说法;报告;说明;表白;表态;结算单;清单;评估报告;（文字）陈述，表述
 policy [ˈpɑːləsi] n.政策;方针;
 minimize [ˈmɪnɪmaɪz] vt.减少
 bureaucracy [bjʊˈrɑːkrəsi] n.官僚主义
@@ -97,6 +97,8 @@ authorize [ˈɔːθəraɪz] v.批准;授权
 
 ## computer related
 
+pii 个人身份信息 personally identifiable information
+pci 个人计算机接口 Personal computer interface
 deprecated [ˈdeprəkeɪtɪd] v.已弃用;对…表示极不赞成;
 initial [ɪˈnɪʃl] adj.最初的;
 efficiency [ɪˈfɪʃnsi] n.效率;
@@ -169,6 +171,9 @@ composability [kəmˈpoʊzəˈbɪləti] n.可组合性;
 discard [dɪˈskɑːrd] v.丢弃;
 hunk [hʌŋk] n.大块，大片
 pixel [ˈpɪksl] n.像素
+hydrate [ˈhaɪdreɪt] n.水合物 Hydrate query params to res
+statement [ˈsteɪtmənt] n.声明 - return statement 返回语句
+assignment [əˈsaɪnmənt] n.分配;(分派的)工作，任务;(工作等的)分派，布置 - 赋值
 
 ## commonly
 
@@ -331,6 +336,11 @@ candidate - RC candidate(pencil's down)
 feedback - from US feedback
 rollout
 decouple - Unifed platform that can decouple dependency between different incomming channels and internal services.
+notation - 9’s notation
+snippet - send me snippet 给我发代码段
+screenshot - 截图
+quarter [ˈkwɔːrtər] - 四分之一
+folks - Hey folks.
 
 ## 提要求
 

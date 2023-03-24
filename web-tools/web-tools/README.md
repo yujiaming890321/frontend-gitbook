@@ -1,5 +1,7 @@
 # web tools
 
+github 提速访问链接：https://raw.hellogithub.com/hosts（ps：这链接定时更新），获取对应的host配置。
+
 [语义化版本](https://semver.org/lang/zh-CN/)
 
 [小画桌](https://xiaohuazhuo.com/workshop)

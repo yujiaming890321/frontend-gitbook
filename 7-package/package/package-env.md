@@ -14,7 +14,7 @@
 
 ## [dotenv](https://www.npmjs.com/package/dotenv)
 
-零依赖模块，从.env 加载配置文件
+零依赖模块，从.env 加载配置文件，必须以 REACT_APP 开头
 
 ```
 "build:dev": "dotenv -e .env.dev -e .env react-app-rewired build",

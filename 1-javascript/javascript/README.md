@@ -92,3 +92,9 @@ eval 的功能是把对应的字符串解析成 JS 代码并运行
 | http-only |             不能通过 JS 访问 Cookie，减少 XSS 攻击             |
 |  secure   |                只能在协议为 HTTPS 的请求中携带                 |
 | same-site |     规定浏览器不能在跨域请求中携带 Cookie，减少 CSRF 攻击      |
+
+### sessionStorage
+
+单页面Single page application 可以传输数据。
+
+本页面以新页面或窗口打开的同源页面可以共享状态，新建页签时会复制顶级会话上下文作为新会话的上下文。
