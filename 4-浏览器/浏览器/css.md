@@ -1,5 +1,31 @@
 # css
 
+## 清除浮动
+
+1. 额外标签
+
+```css
+.clear {
+    clear: both;
+}
+```
+
+2. 父级 overflow
+
+定义width或zoom:1，同时不能定义height，使用overflow:hidden
+
+3. after伪元素
+
+IE8以上和非IE浏览器才支持:after，为额外标签的升级版，好处是不用单独加标签了。
+
+```css
+.clearfix:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+```
+
 ## 多行省略
 
 为了兼容safari要设定高度及行高

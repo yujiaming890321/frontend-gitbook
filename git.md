@@ -13,7 +13,12 @@ To push the current branch and set the remote as upstream, use
 
 ## 跟踪远程分支
 
+git fetch origin main
 git branch -u origin/feature/DRO-1216
+
+## reset single file
+
+git checkout -- [filepath]
 
 ## git lfs (Large File Storage) 大文件传输
 
