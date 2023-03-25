@@ -20,6 +20,11 @@ var bodyParser = require('body-parser')
 
 var app = express()
 app.use(bodyParser.json({ limit: '32kb' }))
+
+// get file
+(req: Request, res: Response, next: NextFunction): void => {
+    const { data } = req.body;
+}
 ```
 
 ## cookie-parser
@@ -52,4 +57,28 @@ const pprof = require('express-pprof-middleware');
 
 const app = express();
 app.use(pprof);
+```
+
+## multer
+
+Multer is a node.js middleware for handling multipart/form-data
+
+```js
+const express = require('express')
+const multer  = require('multer')
+
+// storage file
+const upload = multer({ storage: multer.memoryStorage() }).single('file');
+// get file
+(req: Request, res: Response, next: NextFunction): void => {
+    const { file } = req;
+}
+```
+
+## form-data
+
+A library to create readable "multipart/form-data" streams.
+
+```js
+import FormData from 'form-data';
 ```

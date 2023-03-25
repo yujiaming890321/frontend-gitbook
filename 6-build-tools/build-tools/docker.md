@@ -2,6 +2,10 @@
 
 docker-machine、docker-compose、docker-swarm
 
+```js
+docker build -t xxx . //本地执行docker编译dockerfile
+```
+
 ## docker-machine
 
 docker-machine是解决docker运行环境问题。

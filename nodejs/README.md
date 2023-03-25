@@ -1,5 +1,26 @@
 # nodejs
 
+## [winston](https://www.npmjs.com/package/winston)
+
+A logger for just about everything.
+
+```js
+import { createLogger, format, transports } from 'winston';
+
+const { combine, timestamp, printf, label } = format;
+
+const log = createLogger({
+    format: combine(
+    timestamp(),
+    label({ label: uniqid() }),
+    printf((error) => {
+        return `Timestamp: ${error.timestamp} Level: ${error.level} Message: ${error.message}`;
+    }),
+    ),
+    transports: [new transports.Console()],
+});
+```
+
 ## nodejs Performance Profiling
 
 We are using Clinic.js and autocannon to profile.
