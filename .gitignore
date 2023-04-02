@@ -10,6 +10,8 @@ yarn-debug.log*
 yarn-error.log*
 
 _book
+python/
+tampermonkey/
 
 # Editor directories and files
 .vscode
