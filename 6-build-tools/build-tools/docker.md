@@ -2,9 +2,29 @@
 
 docker-machine、docker-compose、docker-swarm
 
+为了对齐docker环境和本地环境，可以先执行docker 编译image后，进入 container 敲命令查看。
+
 ```js
 docker build -t xxx . //本地执行docker编译dockerfile
 ```
+
+## .dockerignore
+
+.dockerignore 文件的写法和 .gitignore 类似，支持正则和通配符
+1、每行为一个条目；
+2、空行被忽略；
+3、构建上下文路径为所有文件的根路径；
+
+符号|作用
+--|--:
+#|注释
+*|匹配0或多个非/的字符
+?|匹配1个非/的字符
+**|0个或多个目录
+!|除...外，需结合上下文语义
+
+*.md
+!readme.md 忽略所有.md文件，除readme.md外。
 
 ## docker-machine
 

@@ -1,5 +1,9 @@
 # css
 
+## import
+
+@import 'foo.css'
+
 ## 清除浮动
 
 1. 额外标签
