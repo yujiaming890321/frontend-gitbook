@@ -18,6 +18,12 @@ fire up = setup
 spark the fire
 SOP - Standard Operation Procedure 标准操作程序
 TBD - To Be Determined
+TBC - to be confirmed
+WFH - work for home
+OT - overtime 加班
+PS - postscript 附注
+CC - carbon copy 复写、抄送
+carbon paper - 复写纸
 
 ## Tesla
 
@@ -94,6 +100,13 @@ consideration [kənˌsɪdəˈreɪʃn] n.考虑;深思;
 entirely [ɪnˈtaɪərli] adv.完整地
 restrict [rɪˈstrɪkt] vt. (以法规)限制;限定(数量、范围等);束缚;妨碍;阻碍;约束
 authorize [ˈɔːθəraɪz] v.批准;授权
+
+how's the project going 项目进展怎么样
+we're right on target. 我们正按计划进行
+it's 70% done. 已经完成了70%
+the proposal is due in two weeks 这个方案两周后交
+what's your point? 你想说啥
+can you just give me some bullet points? 能不能给我一些要点
 
 ## computer related
 
@@ -174,6 +187,7 @@ pixel [ˈpɪksl] n.像素
 hydrate [ˈhaɪdreɪt] n.水合物 Hydrate query params to res
 statement [ˈsteɪtmənt] n.声明 - return statement 返回语句
 assignment [əˈsaɪnmənt] n.分配;(分派的)工作，任务;(工作等的)分派，布置 - 赋值
+repository [/rɪˈpɑːzətɔːri/] n.仓库;贮藏室;存放处;学识渊博的人;智囊;知识宝典
 
 ## commonly
 
@@ -341,6 +355,9 @@ snippet - send me snippet 给我发代码段
 screenshot - 截图
 quarter [ˈkwɔːrtər] - 四分之一
 folks - Hey folks.
+bout - careful, this chat is bout to get shut down
+disclaimer [dɪsˈkleɪmər] n.免责声明;弃权声明(书)
+risk [/rɪsk/] n.危险;风险;危险人物;会带来风险的事物;(风险很小或很大的)借款人，保险对象
 
 ## 提要求
 

@@ -1,5 +1,9 @@
 # Git
 
+## 修改文件名
+
+git mv [filename] [new_filename]
+
 ## 推送分支到远程，没有则新建
 
 git push origin feature/CNDE-4214
@@ -15,6 +19,10 @@ To push the current branch and set the remote as upstream, use
 
 git fetch origin main
 git branch -u origin/feature/DRO-1216
+
+## 删除文件git提交记录
+
+git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch ./build/web-chat.js.map' --prune-empty --tag-name-filter cat -- --all
 
 ## reset single file
 

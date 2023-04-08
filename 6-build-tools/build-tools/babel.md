@@ -4,7 +4,7 @@
 babel src --out-dir dist --extensions .ts --copy-files --no-copy-ignored --ignore **/__tests__,**/__integration_tests__
 ```
 
-## tsc vs babel
+## [tsc vs babel](https://www.typescriptlang.org/docs/handbook/babel-with-typescript.html)
 
 babel 是单文件编译的，每个文件处理方式都一样。
 tsc 是多文件一起编译的，因为在编译过程中会解析模块语法，去做类型推导和检查。

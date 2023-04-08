@@ -1365,8 +1365,46 @@
                                 
                                 <h1 id="docker"><a name="docker" class="plugin-anchor" href="#docker"><i class="fa fa-link" aria-hidden="true"></i></a>docker</h1>
 <p>docker-machine&#x3001;docker-compose&#x3001;docker-swarm</p>
+<p>&#x4E3A;&#x4E86;&#x5BF9;&#x9F50;docker&#x73AF;&#x5883;&#x548C;&#x672C;&#x5730;&#x73AF;&#x5883;&#xFF0C;&#x53EF;&#x4EE5;&#x5148;&#x6267;&#x884C;docker &#x7F16;&#x8BD1;image&#x540E;&#xFF0C;&#x8FDB;&#x5165; container &#x6572;&#x547D;&#x4EE4;&#x67E5;&#x770B;&#x3002;</p>
 <pre><code class="lang-js">docker build -t xxx . <span class="hljs-comment">//&#x672C;&#x5730;&#x6267;&#x884C;docker&#x7F16;&#x8BD1;dockerfile</span>
 </code></pre>
+<h2 id="dockerignore"><a name="dockerignore" class="plugin-anchor" href="#dockerignore"><i class="fa fa-link" aria-hidden="true"></i></a>.dockerignore</h2>
+<p>.dockerignore &#x6587;&#x4EF6;&#x7684;&#x5199;&#x6CD5;&#x548C; .gitignore &#x7C7B;&#x4F3C;&#xFF0C;&#x652F;&#x6301;&#x6B63;&#x5219;&#x548C;&#x901A;&#x914D;&#x7B26;
+1&#x3001;&#x6BCF;&#x884C;&#x4E3A;&#x4E00;&#x4E2A;&#x6761;&#x76EE;&#xFF1B;
+2&#x3001;&#x7A7A;&#x884C;&#x88AB;&#x5FFD;&#x7565;&#xFF1B;
+3&#x3001;&#x6784;&#x5EFA;&#x4E0A;&#x4E0B;&#x6587;&#x8DEF;&#x5F84;&#x4E3A;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x7684;&#x6839;&#x8DEF;&#x5F84;&#xFF1B;</p>
+<table>
+<thead>
+<tr>
+<th>&#x7B26;&#x53F7;</th>
+<th style="text-align:right">&#x4F5C;&#x7528;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#</td>
+<td style="text-align:right">&#x6CE8;&#x91CA;</td>
+</tr>
+<tr>
+<td>*</td>
+<td style="text-align:right">&#x5339;&#x914D;0&#x6216;&#x591A;&#x4E2A;&#x975E;/&#x7684;&#x5B57;&#x7B26;</td>
+</tr>
+<tr>
+<td>?</td>
+<td style="text-align:right">&#x5339;&#x914D;1&#x4E2A;&#x975E;/&#x7684;&#x5B57;&#x7B26;</td>
+</tr>
+<tr>
+<td>**</td>
+<td style="text-align:right">0&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x76EE;&#x5F55;</td>
+</tr>
+<tr>
+<td>!</td>
+<td style="text-align:right">&#x9664;...&#x5916;&#xFF0C;&#x9700;&#x7ED3;&#x5408;&#x4E0A;&#x4E0B;&#x6587;&#x8BED;&#x4E49;</td>
+</tr>
+</tbody>
+</table>
+<p>*.md
+!readme.md &#x5FFD;&#x7565;&#x6240;&#x6709;.md&#x6587;&#x4EF6;&#xFF0C;&#x9664;readme.md&#x5916;&#x3002;</p>
 <h2 id="docker-machine"><a name="docker-machine" class="plugin-anchor" href="#docker-machine"><i class="fa fa-link" aria-hidden="true"></i></a>docker-machine</h2>
 <p>docker-machine&#x662F;&#x89E3;&#x51B3;docker&#x8FD0;&#x884C;&#x73AF;&#x5883;&#x95EE;&#x9898;&#x3002;</p>
 <p>docker&#x6280;&#x672F;&#x662F;&#x57FA;&#x4E8E;Linux&#x5185;&#x6838;&#x7684;cgroup&#x6280;&#x672F;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x5728;&#x975E;Linux&#x5E73;&#x53F0;&#x4E0A;&#x4F7F;&#x7528;docker&#x6280;&#x672F;&#x9700;&#x8981;&#x4F9D;&#x8D56;&#x5B89;&#x88C5;Linux&#x7CFB;&#x7EDF;&#x7684;&#x865A;&#x62DF;&#x673A;&#x3002;</p>
@@ -1433,7 +1471,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Docker","level":"6.1.1","depth":2,"next":{"title":"Jenkins","level":"6.1.2","depth":2,"path":"6-build-tools/build-tools/jenkins.md","ref":"6-build-tools/build-tools/jenkins.md","articles":[]},"previous":{"title":"Build Tools","level":"6.1","depth":1,"path":"6-build-tools/build-tools/README.md","ref":"6-build-tools/build-tools/README.md","articles":[{"title":"Docker","level":"6.1.1","depth":2,"path":"6-build-tools/build-tools/docker.md","ref":"6-build-tools/build-tools/docker.md","articles":[]},{"title":"Jenkins","level":"6.1.2","depth":2,"path":"6-build-tools/build-tools/jenkins.md","ref":"6-build-tools/build-tools/jenkins.md","articles":[]},{"title":"Webpack","level":"6.1.3","depth":2,"path":"6-build-tools/build-tools/webpack.md","ref":"6-build-tools/build-tools/webpack.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"6-build-tools/build-tools/docker.md","mtime":"2023-04-02T15:45:07.016Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-04-02T15:45:45.019Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Docker","level":"6.1.1","depth":2,"next":{"title":"Jenkins","level":"6.1.2","depth":2,"path":"6-build-tools/build-tools/jenkins.md","ref":"6-build-tools/build-tools/jenkins.md","articles":[]},"previous":{"title":"Build Tools","level":"6.1","depth":1,"path":"6-build-tools/build-tools/README.md","ref":"6-build-tools/build-tools/README.md","articles":[{"title":"Docker","level":"6.1.1","depth":2,"path":"6-build-tools/build-tools/docker.md","ref":"6-build-tools/build-tools/docker.md","articles":[]},{"title":"Jenkins","level":"6.1.2","depth":2,"path":"6-build-tools/build-tools/jenkins.md","ref":"6-build-tools/build-tools/jenkins.md","articles":[]},{"title":"Webpack","level":"6.1.3","depth":2,"path":"6-build-tools/build-tools/webpack.md","ref":"6-build-tools/build-tools/webpack.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"6-build-tools/build-tools/docker.md","mtime":"2023-04-08T06:53:50.122Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-04-08T06:54:29.893Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
