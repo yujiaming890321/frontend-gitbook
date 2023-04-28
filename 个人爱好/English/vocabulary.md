@@ -188,6 +188,7 @@ hydrate [ˈhaɪdreɪt] n.水合物 Hydrate query params to res
 statement [ˈsteɪtmənt] n.声明 - return statement 返回语句
 assignment [əˈsaɪnmənt] n.分配;(分派的)工作，任务;(工作等的)分派，布置 - 赋值
 repository [/rɪˈpɑːzətɔːri/] n.仓库;贮藏室;存放处;学识渊博的人;智囊;知识宝典
+sentinel [/ˈsentɪnl/] n.哨兵
 
 ## commonly
 
@@ -358,6 +359,20 @@ folks - Hey folks.
 bout - careful, this chat is bout to get shut down
 disclaimer [dɪsˈkleɪmər] n.免责声明;弃权声明(书)
 risk [/rɪsk/] n.危险;风险;危险人物;会带来风险的事物;(风险很小或很大的)借款人，保险对象
+tricky [/ˈtrɪki/] adj. 棘手的;狡猾的;难办的;难对付的;诡计多端的
+funky [/ˈfʌŋki/] adj. 时髦的;节奏强适宜跳舞的;时髦独特的;恶臭的
+weird [/wɪrd/] adj. 奇怪的;诡异的;怪诞的;奇异的;不寻常的;离奇的 n.命运;宿命;厄运;<古>命运女神
+strange [/streɪndʒ/] adj.奇怪的，古怪的;不平常的，奇特的;陌生的，不熟悉的;外地的，异乡的;冷淡的;疏远的，不亲近的;局促不安地，不自在的;<古>外行的, 没有经验的, 不习惯的;<核>（粒子）奇异的 adv.陌生地;奇怪地;冷淡地;外行地
+maintenance
+ride - Anyone can give me a ride to Big Al's 有人可以载我去Big Al’s吗
+heading - sure, I'll be heading out in about 20-30 mins 当然可以, 我大约20-30分钟后出发
+We're still doing post release tasks and a few folks have one more meeting.
+Planning to be there around 6pm. 大约6点到
+Remember no to leave your laptop in that car! 记住不要把笔记本电脑留在车里！
+Supervisor n.监督人;指导者;主管人
+take a glance at
+promote
+unaware - For anyone unaware,
 
 ## 提要求
 
