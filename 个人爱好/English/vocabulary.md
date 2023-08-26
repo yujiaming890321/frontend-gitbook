@@ -72,9 +72,9 @@ expected [ɪkˈspektɪd] adj.预期的 v.预料
 runbook [rʌn bʊk] 操作手册
 enhance [ɪnˈhæns] vt.提高
 enhancement [ɪnˈhænsmənt] n.提高
-migrate 迁移
 improve [ɪmˈpruːv] v.改善;改进;
 improvement [ɪmˈpruːvmənt] n.改善;改进;
+migrate [ˈmaɪɡreɪt] v.迁移
 feature [ˈfiːtʃər] n.特征;特点; v.以…为特色;
 implement [ˈɪmplɪment] vt.实施;使生效; n.工具;器具;
 implementation [ˌɪmpləmɛnˈteɪʃən] n.实施;执行;贯彻;生效;完成;工具;仪器;供给器具
