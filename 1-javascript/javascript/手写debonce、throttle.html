@@ -1363,34 +1363,8 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="debonce-&#x9632;&#x6296;&#xFF0C;&#x5728;-wait-&#x65F6;&#x95F4;&#x5185;&#x53EA;&#x6267;&#x884C;&#x6700;&#x540E;&#x4E00;&#x6B21;"><a name="debonce-&#x9632;&#x6296;&#xFF0C;&#x5728;-wait-&#x65F6;&#x95F4;&#x5185;&#x53EA;&#x6267;&#x884C;&#x6700;&#x540E;&#x4E00;&#x6B21;" class="plugin-anchor" href="#debonce-&#x9632;&#x6296;&#xFF0C;&#x5728;-wait-&#x65F6;&#x95F4;&#x5185;&#x53EA;&#x6267;&#x884C;&#x6700;&#x540E;&#x4E00;&#x6B21;"><i class="fa fa-link" aria-hidden="true"></i></a>debonce &#x9632;&#x6296;&#xFF0C;&#x5728; wait &#x65F6;&#x95F4;&#x5185;&#x53EA;&#x6267;&#x884C;&#x6700;&#x540E;&#x4E00;&#x6B21;</h1>
-<p>&#x9AD8;&#x9891;&#x7387;&#x89E6;&#x53D1;&#x7684;&#x4E8B;&#x4EF6;,&#x5728;&#x6307;&#x5B9A;&#x7684;&#x5355;&#x4F4D;&#x65F6;&#x95F4;&#x5185;&#xFF0C;&#x53EA;&#x54CD;&#x5E94;&#x6700;&#x540E;&#x4E00;&#x6B21;</p>
-<pre><code>function myDebounce(fn, wait = 0) {
-  let timer = null;
+                                <h1 id="&#x624B;&#x5199;-debonce&#x3001;throttle"><a name="&#x624B;&#x5199;-debonce&#x3001;throttle" class="plugin-anchor" href="#&#x624B;&#x5199;-debonce&#x3001;throttle"><i class="fa fa-link" aria-hidden="true"></i></a>&#x624B;&#x5199; Debonce&#x3001;Throttle</h1>
 
-  function debounce() {
-    let _context = this;
-    let args = [...arguments];
-    clearTimeout(timer);
-    timer = setTimeout(function () {
-      fn.apply(_context, args);
-    }, wait);
-  }
-  return debounce;
-}
-</code></pre><h1 id="throttle-&#x8282;&#x6D41;&#xFF0C;&#x5728;-wait-&#x79D2;&#x5185;&#x6700;&#x591A;&#x6267;&#x884C;&#x4E00;&#x6B21;"><a name="throttle-&#x8282;&#x6D41;&#xFF0C;&#x5728;-wait-&#x79D2;&#x5185;&#x6700;&#x591A;&#x6267;&#x884C;&#x4E00;&#x6B21;" class="plugin-anchor" href="#throttle-&#x8282;&#x6D41;&#xFF0C;&#x5728;-wait-&#x79D2;&#x5185;&#x6700;&#x591A;&#x6267;&#x884C;&#x4E00;&#x6B21;"><i class="fa fa-link" aria-hidden="true"></i></a>throttle &#x8282;&#x6D41;&#xFF0C;&#x5728; wait &#x79D2;&#x5185;&#x6700;&#x591A;&#x6267;&#x884C;&#x4E00;&#x6B21;</h1>
-<p>&#x9AD8;&#x9891;&#x7387;&#x89E6;&#x53D1;&#x7684;&#x4E8B;&#x4EF6;,&#x5728;&#x6307;&#x5B9A;&#x7684;&#x5355;&#x4F4D;&#x65F6;&#x95F4;&#x5185;&#xFF0C;&#x53EA;&#x54CD;&#x5E94;&#x7B2C;&#x4E00;&#x6B21;</p>
-<pre><code>const MyThrottle=(fn,delay)=&gt;{
-   let lastTime = 0;
-   return () =&gt; {
-      var nowTime = Date.now();
-      if(nowTime - lastTime &gt; delay){
-        fn();
-        lastTime = nowTime;
-      }
-   }
-}
-</code></pre>
                                 
                                 </section>
                             
@@ -1433,7 +1407,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"手写 Debonce、Throttle","level":"1.3.28","depth":2,"next":{"title":"手写 Instanceof","level":"1.3.29","depth":2,"path":"1-javascript/javascript/手写instanceof.md","ref":"1-javascript/javascript/手写instanceof.md","articles":[]},"previous":{"title":"手写 Promise 队列","level":"1.3.27","depth":2,"path":"1-javascript/javascript/手写Promise队列.md","ref":"1-javascript/javascript/手写Promise队列.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"1-javascript/javascript/手写debonce、throttle.md","mtime":"2023-04-28T15:04:52.952Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-04-28T15:05:44.993Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"手写 Debonce、Throttle","level":"1.3.28","depth":2,"next":{"title":"手写 Instanceof","level":"1.3.29","depth":2,"path":"1-javascript/javascript/手写instanceof.md","ref":"1-javascript/javascript/手写instanceof.md","articles":[]},"previous":{"title":"手写 Promise 队列","level":"1.3.27","depth":2,"path":"1-javascript/javascript/手写Promise队列.md","ref":"1-javascript/javascript/手写Promise队列.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","github","codeblock-disable-glossary","collapsible-menu","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yujiaming890321/frontend-gitbook/"},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"codeblock-disable-glossary":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Frontend-gitbook","gitbook":"*","description":"前端个人知识总结"},"file":{"path":"1-javascript/javascript/手写debonce、throttle.md","mtime":"2023-08-26T15:00:26.599Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-08-26T15:00:38.165Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
