@@ -17,8 +17,10 @@ To push the current branch and set the remote as upstream, use
 
 ## 跟踪远程分支
 
+更新远程分支
 git fetch origin main
-git branch -u origin/feature/DRO-1216
+跟踪远程分支
+git branch -u origin/
 
 ## 删除文件git提交记录
 
@@ -34,6 +36,14 @@ git checkout -- [filepath]
 git lfs install
 git lfs uninstall
 ```
+
+## .git/config
+
+使用 lfs 后会缺少fetch 地址，导致无法拉取最新分支。
+
+[remote "origin"]
+	url = git@github-fw.tesla.com:mobile-apps/mobile-app.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
 
 ## git pull --dedth 1 后拉取分支
 
@@ -52,11 +62,8 @@ git fetch origin main &&
 git checkout main &&
 git stash pop
 
-git stash &&
-git remote set-branches origin 'r/202210_3/alpha_cn' && 
-git fetch origin r/202210_3/alpha_cn && 
-git checkout r/202210_3/alpha_cn &&
-git stash pop
+git checkout -b user/feature/service-new-issue-selector 81f5944bfb7a9fef2f8f21d7c156c61e82e35a1e
+git branch -u origin/user/feature/service-new-issue-selector
 ```
 
 ## Git Tricks

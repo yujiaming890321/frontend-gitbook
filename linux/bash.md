@@ -1,5 +1,13 @@
 # bash
 
+## 查询进程
+
+sudo lsof -i tcp:3002
+
+## 根据PID杀死进程
+
+sudo kill -9 8166
+
 ## find 查询
 
 ```bash

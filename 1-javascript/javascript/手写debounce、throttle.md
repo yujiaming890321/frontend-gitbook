@@ -1,8 +1,10 @@
-# debonce 防抖，在 wait 时间内只执行最后一次
+# debounce、throttle
+
+## debounce 防抖，在 wait 时间内只执行最后一次
 
 高频率触发的事件,在指定的单位时间内，只响应最后一次
 
-```
+```js
 function myDebounce(fn, wait = 0) {
   let timer = null;
 
@@ -18,11 +20,11 @@ function myDebounce(fn, wait = 0) {
 }
 ```
 
-# throttle 节流，在 wait 秒内最多执行一次
+## throttle 节流，在 wait 秒内最多执行一次
 
 高频率触发的事件,在指定的单位时间内，只响应第一次
 
-```
+```js
 const MyThrottle=(fn,delay)=>{
    let lastTime = 0;
    return () => {

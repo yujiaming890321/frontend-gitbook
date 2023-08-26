@@ -24,6 +24,8 @@
 
 [ES6 的解构赋值是深拷贝 or 浅拷贝?](https://mp.weixin.qq.com/s/qq90CbqQscltVwJXTY3qDw)
 
+[greensock Animations platform - 简单易上手的JS动画库](https://github.com/greensock/GSAP)
+
 ## React
 
 [react 词汇表](https://reactjs.org/docs/glossary.html)

@@ -4,9 +4,14 @@
 
 属性或参数中使用 ？：表示该属性或参数为可选项
 
-变量后使用 ！：表示类型推断排除null、undefined
+变量后使用 ! ：表示类型推断排除null、undefined
+Non-null Assertion Operator (Postfix !)
 
 ```js
+function liveDangerously(x?: number | null) {
+  // No error
+  console.log(x!.toFixed());
+}
 const obj = { flag1: true };
 const test1 = !!obj.flag1; // equal const test1 = obj.flag1 || false
 consolo.log(test1); // true

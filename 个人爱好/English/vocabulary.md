@@ -72,6 +72,7 @@ expected [ɪkˈspektɪd] adj.预期的 v.预料
 runbook [rʌn bʊk] 操作手册
 enhance [ɪnˈhæns] vt.提高
 enhancement [ɪnˈhænsmənt] n.提高
+migrate 迁移
 improve [ɪmˈpruːv] v.改善;改进;
 improvement [ɪmˈpruːvmənt] n.改善;改进;
 feature [ˈfiːtʃər] n.特征;特点; v.以…为特色;
@@ -189,6 +190,7 @@ statement [ˈsteɪtmənt] n.声明 - return statement 返回语句
 assignment [əˈsaɪnmənt] n.分配;(分派的)工作，任务;(工作等的)分派，布置 - 赋值
 repository [/rɪˈpɑːzətɔːri/] n.仓库;贮藏室;存放处;学识渊博的人;智囊;知识宝典
 sentinel [/ˈsentɪnl/] n.哨兵
+sanitize
 
 ## commonly
 
@@ -317,7 +319,7 @@ intern [ˈɪntɜːrn] n.实习
 contractor [kənˈtræktər] n. 承包商
 timeslot [taɪm slɑːt] n.间隙
 accordingly [əˈkɔːrdɪŋli] adv.照着;相应地;因此;所以
-integrate [ˈɪntɪɡreɪt]  v.整合;合并
+integrate [ˈɪntɪɡreɪt]  v.整合;合并 集成
 mandatory [ˈmændətɔːri] adj.强制性的;强制的
 parenthesis [pəˈrenθəsɪs] n.括号
 clarification [ˌklærəfɪˈkeɪʃn] n.说明;解释
@@ -373,11 +375,22 @@ Supervisor n.监督人;指导者;主管人
 take a glance at
 promote
 unaware - For anyone unaware,
+bless
+tragic - this is tragic.
+ignore - you can just ignore it,
+certificate - there is a problem with gfycat's certificate.
+accordingly - your client is throwing this accordingly.
 
-## 提要求
+Do any of you currently have problems with messages failing to post on mobile.
+hidden in plain sight!
+You can also use the back button on a 5-button mouse.
 
-Could you please /Could you possibly tell me/Can please fill out this form/I'd really appreciate if you could/I'd be very grateful if you could/it would be very helpful if you could send us/I was wondering if you could/If possible i'd like to know more about/Please find my two main questions below
+booth - walked by the booth in the cafeteria
+snatched - now I wish I had snatched some of the stickers.
+alarmed - Was just a little alarmed with the package changes.
+harrowing - getting it to build isn't as harrowing as I think it is.
 
-## 加附件
+briefly - 
+illustrate - 
+concept - 
 
-I've attached/Please find a file attached/I'm enclosing the files
