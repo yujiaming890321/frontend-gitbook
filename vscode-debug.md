@@ -40,3 +40,8 @@ extension install php debug
 
 1. run and debug 中点击 Node.js
 2. 然后选择启动命令
+
+## test debug
+
+new javascript debug terminal
+run test

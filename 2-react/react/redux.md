@@ -23,7 +23,7 @@ store 返回新的 state 值给组件
 
 ![image](https://gw.alicdn.com/tps/TB1SsWQLFXXXXXMXVXXXXXXXXXX-1170-514.jpg_600x600.jpg)
 
-## Store
+## 单一数据源 Store
 
 Store — 数据存储中心，同时连接着 Actions 和 Views（React Components）。
 
@@ -41,13 +41,13 @@ Store — 数据存储中心，同时连接着 Actions 和 Views（React Compone
    - dispatch 方法 对应着 pub
    - subscribe 方法 对应着 sub
 
-### Reducer
+### 使用纯函数来执行修改，Reducer
 
 Reducer，这个名字来源于数组的一个函数 — reduce，它们俩比较相似的地方在于：接收一个旧的 prevState，返回一个新的 nextState。
 
 在上文讲解 Store 的时候，得知：Reducer 是一个纯函数，用来修改 Store 数据的。
 
-### 数据不可变
+### State 是只读的，数据不可变
 
 React 在利用组件（Component）构建 Web 应用时，其实无形中创建了两棵树：虚拟 dom 树和组件树
 

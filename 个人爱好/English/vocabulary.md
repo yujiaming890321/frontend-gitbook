@@ -67,6 +67,8 @@ financial [faɪˈnænʃl] adj.财政的;财务的;金融的;有钱的
 
 ## agile 敏捷开发
 
+UAT - User Acceptance Testing
+PPV - Product Process Validation
 scrum [skrʌm] n.并列争球;
 expected [ɪkˈspektɪd] adj.预期的 v.预料
 runbook [rʌn bʊk] 操作手册
@@ -74,6 +76,7 @@ enhance [ɪnˈhæns] vt.提高
 enhancement [ɪnˈhænsmənt] n.提高
 improve [ɪmˈpruːv] v.改善;改进;
 improvement [ɪmˈpruːvmənt] n.改善;改进;
+integrate [ˈɪntɪɡreɪt]  v.整合;合并 集成
 migrate [ˈmaɪɡreɪt] v.迁移
 feature [ˈfiːtʃər] n.特征;特点; v.以…为特色;
 implement [ˈɪmplɪment] vt.实施;使生效; n.工具;器具;
@@ -191,6 +194,11 @@ assignment [əˈsaɪnmənt] n.分配;(分派的)工作，任务;(工作等的)�
 repository [/rɪˈpɑːzətɔːri/] n.仓库;贮藏室;存放处;学识渊博的人;智囊;知识宝典
 sentinel [/ˈsentɪnl/] n.哨兵
 sanitize
+foreground
+background
+emulator
+simulator
+suffice
 
 ## commonly
 
@@ -319,7 +327,6 @@ intern [ˈɪntɜːrn] n.实习
 contractor [kənˈtræktər] n. 承包商
 timeslot [taɪm slɑːt] n.间隙
 accordingly [əˈkɔːrdɪŋli] adv.照着;相应地;因此;所以
-integrate [ˈɪntɪɡreɪt]  v.整合;合并 集成
 mandatory [ˈmændətɔːri] adj.强制性的;强制的
 parenthesis [pəˈrenθəsɪs] n.括号
 clarification [ˌklærəfɪˈkeɪʃn] n.说明;解释

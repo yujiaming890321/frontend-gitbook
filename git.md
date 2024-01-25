@@ -51,14 +51,14 @@ git lfs uninstall
 // git clone --depth 1 https://github.com/dogescript/xxxxxxx.git
 // git fetch --unshallow
 
-git remote set-branches origin 'DEVOPS-3868-pvg16-prd' && 
-git fetch --depth 1 origin DEVOPS-3868-pvg16-prd && 
-git checkout DEVOPS-3868-pvg16-prd && 
+git remote set-branches origin 'DEVOPS-3868-pvg16-prd' &&
+git fetch --depth 1 origin DEVOPS-3868-pvg16-prd &&
+git checkout DEVOPS-3868-pvg16-prd &&
 git fetch --unshallow
 
 git stash &&
-git remote set-branches origin 'main' && 
-git fetch origin main && 
+git remote set-branches origin 'main' &&
+git fetch origin main &&
 git checkout main &&
 git stash pop
 

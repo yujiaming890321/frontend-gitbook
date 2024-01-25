@@ -40,6 +40,10 @@ dcoker-compose主要是解决本地docker容器编排问题。
 
 最后只需要执行docker-compose对应的命令就会像执行脚本一样地批量创建和销毁容器。
 
+"dev-up": "docker-compose up",
+"dev-down": "docker-compose down -v --rmi local",
+"clear-images": "docker image prune",
+
 ### docker-compose down [options]
 
 删除容器、网络、卷、镜像
