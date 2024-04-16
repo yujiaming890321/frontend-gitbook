@@ -3,7 +3,8 @@
 ## 子传父实例
 
 ```js
-function FancyInput(props, ref) {
+// 子组件
+function FancyInputFn(props, ref) {
   const inputRef = useRef();
   useImperativeHandle(ref, () => ({
     focus: () => {
@@ -12,5 +13,21 @@ function FancyInput(props, ref) {
   }));
   return <input ref={inputRef} ... />;
 }
-FancyInput = forwardRef(FancyInput);
+FancyInput = forwardRef(FancyInputFn);
+
+// 父组件
+const inputRef = useRef(null);
+
+function handleClick() {
+  inputRef.current.focus();
+}
+
+return (
+  <>
+    <button onClick={handleClick}>
+      Write a comment
+    </button>
+    <FancyInput ref={inputRef} />
+  </>
+);
 ```
