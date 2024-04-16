@@ -199,6 +199,7 @@ background
 emulator
 simulator
 suffice
+monitoring 监控
 
 ## commonly
 
@@ -372,6 +373,7 @@ tricky [/ˈtrɪki/] adj. 棘手的;狡猾的;难办的;难对付的;诡计多端
 funky [/ˈfʌŋki/] adj. 时髦的;节奏强适宜跳舞的;时髦独特的;恶臭的
 weird [/wɪrd/] adj. 奇怪的;诡异的;怪诞的;奇异的;不寻常的;离奇的 n.命运;宿命;厄运;<古>命运女神
 strange [/streɪndʒ/] adj.奇怪的，古怪的;不平常的，奇特的;陌生的，不熟悉的;外地的，异乡的;冷淡的;疏远的，不亲近的;局促不安地，不自在的;<古>外行的, 没有经验的, 不习惯的;<核>（粒子）奇异的 adv.陌生地;奇怪地;冷淡地;外行地
+indicated verb.point out;show
 maintenance
 ride - Anyone can give me a ride to Big Al's 有人可以载我去Big Al’s吗
 heading - sure, I'll be heading out in about 20-30 mins 当然可以, 我大约20-30分钟后出发
