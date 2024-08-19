@@ -76,7 +76,7 @@ enhance [ɪnˈhæns] vt.提高
 enhancement [ɪnˈhænsmənt] n.提高
 improve [ɪmˈpruːv] v.改善;改进;
 improvement [ɪmˈpruːvmənt] n.改善;改进;
-integrate [ˈɪntɪɡreɪt]  v.整合;合并 集成
+integrate [ˈɪntɪɡreɪt] v.整合;合并 集成
 migrate [ˈmaɪɡreɪt] v.迁移
 feature [ˈfiːtʃər] n.特征;特点; v.以…为特色;
 implement [ˈɪmplɪment] vt.实施;使生效; n.工具;器具;
@@ -107,7 +107,7 @@ authorize [ˈɔːθəraɪz] v.批准;授权
 
 how's the project going 项目进展怎么样
 we're right on target. 我们正按计划进行
-it's 70% done. 已经完成了70%
+it's 70% done. 已经完成了 70%
 the proposal is due in two weeks 这个方案两周后交
 what's your point? 你想说啥
 can you just give me some bullet points? 能不能给我一些要点
@@ -152,7 +152,7 @@ calculate [ˈkælkjuleɪt] vt.计算;核算;
 comma [ˈkɑːmə] n.逗号
 dots [dɑːts] n.点;
 blank [blæŋk] adj.空白的 n.空格;
-duplicate [ˈduːplɪkeɪt]  vt.复制;复印;
+duplicate [ˈduːplɪkeɪt] vt.复制;复印;
 balance [ˈbæləns] n.均衡;平衡;均势;平衡能力;余额;结欠;天平 v.保持平衡
 according [əˈkɔːrdɪŋ] v.给予，赠予，授予(权力、地位、某种待遇); (与…)一致，符合，配合
 accordingly [əˈkɔːrdɪŋli] adv.照着;相应地;因此;所以
@@ -170,7 +170,7 @@ summary [ˈsʌməri] n.总结;概括;概要
 license [ˈlaɪsns] n.许可证;执照;特许
 watermark [ˈwɔːtərmɑːrk] n.水印
 asterisk [ˈæstərɪsk] n.星号
-conflict [ˈkɑːnflɪkt]  n.争执;争论;(军事)冲突;战斗;抵触;矛盾;不一致
+conflict [ˈkɑːnflɪkt] n.争执;争论;(军事)冲突;战斗;抵触;矛盾;不一致
 hardcode [ˌhɑːrd ˈkoʊd] 硬编码
 carryover [ˈkæri oʊvər] 延期
 regression [rɪˈɡreʃn] n.倒退;回归;退化
@@ -313,12 +313,12 @@ deny [dɪˈnaɪ] v.否认;否定;拒绝承认;拒绝接受;拒绝;拒绝给予;�
 adaptive [əˈdæptɪv] adj.适应的;有适应能力的
 hyper [ˈhaɪpər] adj.既兴奋又紧张的;精力过旺的 n.宣传人员
 visor [ˈvaɪzər] n.(头盔上的)面甲，面罩，护面;遮阳帽舌;(汽车内挡风玻璃上方的)遮阳板
-hypervisor  n.管理程序
+hypervisor n.管理程序
 alternative [ɔːlˈtɜːrnətɪv] adj.可供替代的;另类的;非传统的
 formula [ˈfɔːrmjələ] n.公式;方程式;计算式;分子式;方案;方法;配方;配方奶（母乳的替代品）;（特定场合的）惯用词语，套话
 infra [ˈɪnfrə] adv.〈拉〉在下；（在）以下
 bench [bentʃ] n.长凳;
-alpha [ˈælfə] n.阿尔法;希腊字母表的第1个字母
+alpha [ˈælfə] n.阿尔法;希腊字母表的第 1 个字母
 tremendous [trəˈmendəs] adj.巨大的;极大的;极好的;精彩的;了不起的
 mentioned [ˈmenʃnd] v.提到;写到;说到
 collaborator [kəˈlæbəreɪtər] n.合作者
@@ -337,7 +337,7 @@ lack [læk] n.缺乏;匮乏;短缺
 luster [ˈlʌstər] n.光泽;光彩; -- What a lackluster set of fixes
 exceed [ɪkˈsiːd] vt.超过(数量);超越(法律、命令等)的限制
 lead [liːdz] v.领导，引领;带路，领路; n.实例;范例;榜样;线索;
-investigate [ɪnˈvestɪɡeɪt] v.侦查(某事);调查(某人);研究
+investigate [ɪnˈvestɪɡeɪt] v.侦查(某事);调查(某人);研究 -- we are continuing to investigate.
 investigation [ɪnˌvestɪˈɡeɪʃn] n.调查;(正式的)侦查;科学研究;学术研究
 alternately [ˈɔːltərneɪtly] adv. 交替的
 nouns [naʊnz] n.名词
@@ -349,7 +349,7 @@ doable [ˈduːəbl] adj. 可做;可行;性感的
 yup [jʌp] adv.不错;是的 n.同“yuppie”
 individuals [ˌɪndəˈvɪdʒəwəlz] n.个人;与众不同的人;有个性的人;某种类型的人;(尤指)古怪的人
 impact [ˈɪmpækt] n.影响;撞击;强大作用;冲撞;冲击力 v.冲击;撞击;(对某事物)有影响 eg: may not impact anyone else
-wonder [ˈwʌndər] v. 想知道;想弄明白;琢磨;礼貌地提问或请人做事时说;感到诧异;非常惊讶 adj.极好的;极有效的;非常美丽的  eg: Wondering if you guys have encountered this issue before:
+wonder [ˈwʌndər] v. 想知道;想弄明白;琢磨;礼貌地提问或请人做事时说;感到诧异;非常惊讶 adj.极好的;极有效的;非常美丽的 eg: Wondering if you guys have encountered this issue before:
 pharmacy
 realistic - should we be committing to week following to be realistic
 disclose - we will not disclose it, you'll have to find it in PRs
@@ -375,10 +375,10 @@ weird [/wɪrd/] adj. 奇怪的;诡异的;怪诞的;奇异的;不寻常的;离奇
 strange [/streɪndʒ/] adj.奇怪的，古怪的;不平常的，奇特的;陌生的，不熟悉的;外地的，异乡的;冷淡的;疏远的，不亲近的;局促不安地，不自在的;<古>外行的, 没有经验的, 不习惯的;<核>（粒子）奇异的 adv.陌生地;奇怪地;冷淡地;外行地
 indicated verb.point out;show
 maintenance
-ride - Anyone can give me a ride to Big Al's 有人可以载我去Big Al’s吗
-heading - sure, I'll be heading out in about 20-30 mins 当然可以, 我大约20-30分钟后出发
+ride - Anyone can give me a ride to Big Al's 有人可以载我去 Big Al’s 吗
+heading - sure, I'll be heading out in about 20-30 mins 当然可以, 我大约 20-30 分钟后出发
 We're still doing post release tasks and a few folks have one more meeting.
-Planning to be there around 6pm. 大约6点到
+Planning to be there around 6pm. 大约 6 点到
 Remember no to leave your laptop in that car! 记住不要把笔记本电脑留在车里！
 Supervisor n.监督人;指导者;主管人
 take a glance at
@@ -399,7 +399,6 @@ snatched - now I wish I had snatched some of the stickers.
 alarmed - Was just a little alarmed with the package changes.
 harrowing - getting it to build isn't as harrowing as I think it is.
 
-briefly - 
-illustrate - 
-concept - 
-
+briefly -
+illustrate -
+concept -
