@@ -1,4 +1,4 @@
-# 
+# useOrientationQueries
 
 ```js
 import { useState, useEffect } from 'react';

@@ -7,7 +7,7 @@
 
 ## 简单写法
 
-```javascript
+```js
 var obj = {}
 obj.__proto__ = Base.prototype
 Base.call(obj)
@@ -15,7 +15,7 @@ Base.call(obj)
 
 ## 满分写法
 
-```javascript
+```js
 function myNew(target) {
   let result = {}
   let arg = Array.prototype.slice.call(arguments, 1)

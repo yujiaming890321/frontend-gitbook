@@ -16,7 +16,7 @@ VNode 本身是 js 对象，兼容性极强，不依赖当前的执行的环境�
 
 ## 项目架构
 
-```
+```js
 src
 ├── components
 ├── App.vue
@@ -27,7 +27,7 @@ src
 
 > app.js 导出 createApp 函数工厂，此函数是可以被重复执行的，从根 Vue 实例注入，用于创建 router，store 以及应用程序实例。
 
-```
+```js
 import Vue from 'vue'
 import App from './App.vue'
 // 导出一个工厂函数，用于创建新的应用程序、router 和 store 实例
@@ -41,7 +41,7 @@ export function createApp () {
 
 > entry-client.js 负责创建应用程序，挂载实例 DOM ，仅运行于浏览器。
 
-```
+```js
 import { createApp } from './app'
 const { app } = createApp()
 // #app 为根元素，名称可替换
@@ -50,7 +50,7 @@ app.$mount('#app')
 
 > entry-server.js 创建返回应用实例，同时还会进行路由匹配和数据的预处理，仅运行于服务器。
 
-```
+```js
 import { createApp } from './app'
 export default context => {
   const { app } = createApp()
@@ -73,7 +73,7 @@ Server entry 只生成 Vue 对象。
 
 server bundle 用于生成 vue-ssr-server-bundle.json，我们熟悉的 sourceMap 和需要在服务端运行的代码列表都在这个产物中。
 
-```
+```js
 // vue-SSR-server-bundle.json
 {
   "entry": ,
@@ -86,7 +86,7 @@ server bundle 用于生成 vue-ssr-server-bundle.json，我们熟悉的 sourceMa
 
 client Bundle 用于生成 vue-SSR-client-manifest.json，包含所有的静态资源，首次渲染需要加载的 script 标签，以及需要在客户端运行的代码。
 
-```
+```js
 // vue-SSR-client-manifest.json
 {
   "publicPath": 公共资源路径文件地址,
@@ -97,7 +97,7 @@ client Bundle 用于生成 vue-SSR-client-manifest.json，包含所有的静态�
 }
 ```
 
-## vue-server-renderer
+## renderer
 
 是 Vue SSR 的核心代码，值得我们关注的是应用初始化和应用输出。
 两个阶段提供了完整的应用层代码编译和组装逻辑。
@@ -106,14 +106,14 @@ client Bundle 用于生成 vue-SSR-client-manifest.json，包含所有的静态�
 
 #### 生成 Vue 对象
 
-```
+```js
 const Vue = require('vue')
 const app = new Vue()
 ```
 
 #### 生成 renderer
 
-```
+```js
 const renderer = require('vue-server-renderer').createRenderer()
 // createRenderer 函数中有两个重要的对象：render 和 templateRenderer
 function createRenderer (ref) {
@@ -134,7 +134,7 @@ function createRenderer (ref) {
 
 #### 创建沙盒 vm，实例化 Vue 的入口文件
 
-```
+```js
 var vm = require('vm');
 // 调用 createBundleRunner 函数实例对象，rendererOptions 支持可配置
 var run = createBundleRunner(
@@ -148,7 +148,7 @@ var run = createBundleRunner(
 在 createBundleRunner 方法的源码到其实举例了一个叫 compileModule 的一个方法
 这个方法中有两个函数：getCompiledScript 和 evaluateModule
 
-```
+```js
 function createBundleRunner (entry, files, basedir, runInNewContext) {
 //触发 compileModule 方法，找到 webpack 编译形成的 code
 var evaluate = compileModule(files, basedir, runInNewContext);
@@ -157,7 +157,7 @@ var evaluate = compileModule(files, basedir, runInNewContext);
 
 getCompiledScript：编译 wrapper ，找到入口文件的 files 文件名及 script 脚本的编译执行
 
-```
+```js
 function getCompiledScript (filename) {
     if (compiledScripts[filename]) {
       return compiledScripts[filename]
@@ -177,7 +177,7 @@ function getCompiledScript (filename) {
 
 evaluateModule：根据 runInThisContext 中的配置项来决定是在当前上下文执行还是单独上下文执行。
 
-```
+```js
 function evaluateModule (filename, sandbox, evaluatedFiles) {
     if ( evaluatedFiles === void 0 ) evaluatedFiles = {};
     if (evaluatedFiles[filename]) {
@@ -202,7 +202,7 @@ function evaluateModule (filename, sandbox, evaluatedFiles) {
 
 #### 错误抛出容错和全局错误监听 renderToString: 在没有 cb 函数时做了 promise 的返回，那说明我们在调用次函数的时候可以直接做 try catch 的处理，用于全局错误的抛出容错。
 
-```
+```js
 renderToString: function (context, cb) {
     var assign;
     if (typeof context === 'function') {
@@ -221,7 +221,7 @@ renderToString: function (context, cb) {
 
 renderToStream：对抛错做了监听机制, 抛错的钩子函数将在这个方法中触发。
 
-```
+```js
  renderToStream: function (context) {
     var res = new PassThrough();
     run(context).catch(function (err) {
@@ -247,7 +247,7 @@ Node.js 服务器是一个长期运行的进程，在客户端编写的代码在
 
 防止交叉污染的能力是由 rendererOptions.runInNewContext 这个配置项来提供的，这个配置支持 true， false，和 once 三种配置项传入。
 
-```
+```js
 // rendererOptions.runInNewContext 可配置项如下
   true:
   新上下文模式：创建新上下文并重新评估捆绑包在每个渲染上。
@@ -263,7 +263,7 @@ Node.js 服务器是一个长期运行的进程，在客户端编写的代码在
 
 特别说明一下 false 和 once 的场景， 为了防止交叉污染，在渲染的过程中对作用域要求很严格，以此来保证在不同的对象彼此之间不会形成污染。
 
-```
+```js
 if (!runner) {
    var sandbox = runInNewContext === 'once'
       ? createSandbox()
@@ -298,7 +298,7 @@ render: 函数会被递归调用按照从父到子的顺序，将组件全部转
 
 ![image](https://mmbiz.qpic.cn/mmbiz_png/vzEib9IRhZD6XzrBwmrj1hQfHP9Qtb6HaRGcKib531fZdYd8pKW4eHjicpibJ16cuDohOKtYQzfsvJj9wMCkNfI5iaA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
 
-```
+```js
 function createRenderFunction (
   modules,
   directives,
@@ -337,7 +337,7 @@ function createRenderFunction (
 
 经过应用初始化阶段，代码被编译获取了 html 字符串，context 渲染需要依赖的 templateRenderer.prototype.bindRenderFns 中绑定的 state, script , styles 等资源。
 
-```
+```js
 TemplateRenderer.prototype.bindRenderFns = function bindRenderFns (context) {
   var renderer = this
   ;['ResourceHints', 'State', 'Scripts', 'Styles'].forEach(function (type) {
@@ -353,7 +353,7 @@ TemplateRenderer.prototype.bindRenderFns = function bindRenderFns (context) {
 
 - 定义了模版引擎 templateRender 会帮助我们进行 html 组装
 
-```
+```js
 TemplateRenderer.prototype.render = function render (content, context) {
 // parsedTemplate 用于解析函数得到的包含三个部分的 compile 对象，
 // 按照顺序进行字符串模版的拼接

@@ -5,9 +5,12 @@
  * @LastEditors: yujiaming
  */
 Promise.resolve(1)
-  .then((res) => {
-    console.log(res)
-    return 2
-  })
-  .catch((err) => 3)
-  .then((res) => console.log(res))
+    .then((res) => {
+        console.log(res)
+        return 2
+    })
+    .catch((err) => 3)
+    .then((res) => console.log(res))
+
+// 1
+// 2

@@ -4,7 +4,7 @@
 
 ## HTML5History
 
-```
+```js
 window.addEventListener('popstate', handleRoutingEvent)
 
 const handleRoutingEvent = () => {
@@ -111,7 +111,7 @@ runQueue(queue, iterator, () => {
 
 如果支持`popstate`，使用`popstate`。否则使用`hashchange` 监听。
 
-```
+```js
 const eventType = supportsPushState ? 'popstate' : 'hashchange'
 window.addEventListener(
     eventType,

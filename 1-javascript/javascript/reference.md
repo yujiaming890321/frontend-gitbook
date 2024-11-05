@@ -12,7 +12,7 @@ const products = {
 
 const output = Object.entries(products).flatMap(([k, v]) => Array(v).fill(k))
 
-console.log(output)
+console.log(output) // ['bread', 'milk', 'milk', 'cheese', 'cheese', 'chicken']
 ```
 
 ## 获取对象中字段的集合

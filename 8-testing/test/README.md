@@ -1,4 +1,6 @@
-# test
+# Testing
+
+写单元测试可以提高开发效率
 
 AAA 模式：
 
@@ -34,13 +36,21 @@ expect(arg2).toBe(2) // 确保参数相加
 
 ```javascript
 describe('Form', () => {
-  describe('Props', () => {
-    test('colon 会控制 label 后面的冒号是否显示', () => {})
+  it('Props', () => {
+    test('colon 会控制 label 后面的冒号是否显示', () => {
+      // Both toBe and toEqual calls Object.is to compare primitive values, which is even better for testing than === strict equality operator.
+      expect(to do sth).toBe(string or number) 
+      // https://jestjs.io/docs/expect#tobevalue
+      // Use .toBe to compare primitive values or to check referential identity of object instances.
+      expect(to do sth).toEqual(obj)
+      // https://jestjs.io/docs/expect#toequalvalue
+      // Use .toEqual to compare recursively all properties of object instances (also known as "deep" equality).
+    })
     test('component 设置 Form 渲染元素，为 false 则不创建 DOM 节点', () => {})
     // ...
   })
   
-  describe('Instance', () => {
+  it('Instance', () => {
     test('getFieldError 可获取对应字段名的错误信息', () => {})
     test('getFieldInstance 获取对应字段实例', () => {})
     // ...

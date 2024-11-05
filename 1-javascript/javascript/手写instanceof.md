@@ -2,7 +2,7 @@
 
 检查目标对象的原型链中是否有与指定对象的原型相同的原型, 通过 === 严格等于来对于两个原型是否相等。
 
-```
+```js
 function myInstanceof(target, source) {
     let proto = target.__proto__;
     let prototype = source.prototype;

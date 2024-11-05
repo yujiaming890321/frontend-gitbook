@@ -6,7 +6,8 @@
   "scripts": {
     "start": "gitbook build && gitbook serve",
     "start:debug": "gitbook serve --log=debug",
-    "build": "gitbook build"
+    "build": "gitbook build",
+    "tcd": "tcd -p ./type-challenges"
   },
   "author": "https://github.com/yujiaming890321",
   "license": "MIT",
@@ -16,7 +17,9 @@
     "gitbook-plugin-anchors": "^0.7.1",
     "gitbook-plugin-codeblock-disable-glossary": "0.0.1",
     "gitbook-plugin-collapsible-menu": "^1.0.3",
-    "gitbook-plugin-github": "^2.0.0"
+    "gitbook-plugin-github": "^2.0.0",
+    "@type-challenges/utils": "0.1.1",
+    "type-challenges-downloader": "0.1.2"
   },
   "devDependencies": {
     "husky": "^4.2.3",

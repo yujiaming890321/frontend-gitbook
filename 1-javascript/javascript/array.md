@@ -9,7 +9,7 @@ const array1 = ['a', 'b', 'c'];
 array1.forEach(element => console.log(element));
 ```
 
-## fill、map
+## fill (Change source)、map
 
 file，用一个固定值填充一个数组中从起始索引到终止索引内的全部元素
 map，创建一个新数组，其结果是该数组中的每个元素是调用一次提供的函数后的返回值
@@ -25,7 +25,7 @@ let array = Array(3).fill(0); // [ 0, 0, 0 ]
 array.map((_,i) => i); // [ 0, 1, 2 ]
 ```
 
-## pop、push
+## pop (Change source)、push (Change source)
 
 pop，删除掉数组的最后一个元素，并返回该元素的值
 push，添加到数组末尾，并返回该数组的新长度
@@ -39,7 +39,7 @@ myFish.push('cow');
 console.log(myFish); // ["angel", "clown", "mandarin", "cow" ]
 ```
 
-## shift、unshift
+## shift (Change source)、unshift (Change source)
 
 shift，删除数组第一个元素，并返回该元素的值
 unshift，将一个或多个元素添加到数组的开头，并返回该数组的新长度
@@ -167,7 +167,7 @@ console.log(animals.slice(1, 5)); // ["bison", "camel", "duck", "elephant"]
 console.log(animals.slice(-2)); // ["duck", "elephant"]
 ```
 
-## sort
+## sort (Change source)
 
 sort，用原地算法对数组的元素进行排序，并返回数组。默认排序顺序是在将元素转换为字符串，然后比较它们的UTF-16代码单元值序列时构建的
 
@@ -197,7 +197,7 @@ arr.sort((a, b) => {
 })
 ```
 
-## reverse
+## reverse (Change source)
 
 reverse，法将数组中元素的位置颠倒，并返回该数组。该方法会改变原数组。
 

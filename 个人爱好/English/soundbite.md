@@ -30,3 +30,5 @@ nothing is impossible to a willing heart.
 22. As you sow, so shall you reap. -- 种瓜得瓜，种豆得豆。
 23. Nothing seek, nothing find. -- 无所求则无所获。
 24. Live and let live. -- 宽容共生。
+
+## cycling enthusiast

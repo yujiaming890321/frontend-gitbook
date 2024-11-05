@@ -2,7 +2,7 @@
 
 支持限制并发数
 
-```
+```js
 class PromiseQueue {
   limit: number
   active: number

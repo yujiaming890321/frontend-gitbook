@@ -11,11 +11,11 @@ fw - forward 转发
 re - reply 回复
 aka - Also Known As 又名、亦称、也被称为
 gotcha - I've got you
-RSVP - Reply, if you please
-Sorry for late reply.
+RSVP - Reply, if you please 敬请回复 please reply
+Sorry for (my) late reply. 抱歉我回复晚了.
 make sense. 有道理
 fire up = setup
-spark the fire
+spark the fire = begin 点火
 SOP - Standard Operation Procedure 标准操作程序
 TBD - To Be Determined
 TBC - to be confirmed
@@ -32,9 +32,9 @@ no fear of solving hard problems ourselves
 我们高效聪明地完成工作
 efficiency and sustainable
 我们不浪费时间在官僚主义，我们注重达成使命
-minimize bureaucracy, just get it done
+minimize bureaucracy /bjʊˈrɑːkrəsi/, just get it done
 我们力争在自己的领域里做到最好
-competitive to be the best
+competitive /kəmˈpetətɪv/ to be the best
 
 VFX - Vehicle Fulfillment Experience
 DRO - Delivery & Registration Operations
@@ -42,28 +42,6 @@ CX - Customer Experience Platform
 TAI - Trade In
 PR - pull request
 CUA - customer acquisition
-
-registration [ˌredʒɪˈstreɪʃn] n.登记
-deposit [dɪˈpɑːzɪt] n.订金 vt.放下;存储;存钱;
-insurance [ɪnˈʃʊrəns] n.保险;
-performance [pərˈfɔːrməns] n.性能
-prior [ˈpraɪər] adj.先前的
-priority [praɪˈɔːrəti] n.优先权
-advanced [ədˈvænst] adj.先进的 v.前进
-privacy [ˈpraɪvəsi] n.隐私
-insights [ˈɪnˌsaɪts] n.洞察力
-statement [ˈsteɪtmənt] n.陈述;声明;报表;说法;报告;说明;表白;表态;结算单;清单;评估报告;（文字）陈述，表述
-policy [ˈpɑːləsi] n.政策;方针;
-minimize [ˈmɪnɪmaɪz] vt.减少
-bureaucracy [bjʊˈrɑːkrəsi] n.官僚主义
-director [dəˈrektər] n.负责人
-compete [kəmˈpiːt] vu.竞争;对抗;
-competitive [kəmˈpetətɪv] adj.竞争的;努力竞争的;
-garage [ɡəˈrɑːʒ] n.停车房;车库;
-honk [hɑːŋk] n.鹅叫声;汽车喇叭声
-horn [hɔːrn] n.喇叭;角质;(羊、牛等动物的)角;(乐器)号;（车辆的）喇叭
-hazards [ˈhæzərdz] n.危险;危害;汽车双闪
-financial [faɪˈnænʃl] adj.财政的;财务的;金融的;有钱的
 
 ## agile 敏捷开发
 
@@ -116,6 +94,28 @@ can you just give me some bullet points? 能不能给我一些要点
 
 pii 个人身份信息 personally identifiable information
 pci 个人计算机接口 Personal computer interface
+work around [wɜːrk əˈraʊnd] 解决方案
+
+registration [ˌredʒɪˈstreɪʃn] n.登记
+deposit [dɪˈpɑːzɪt] n.订金 vt.放下;存储;存钱;
+insurance [ɪnˈʃʊrəns] n.保险;
+performance [pərˈfɔːrməns] n.性能
+prior [ˈpraɪər] adj.先前的
+priority [praɪˈɔːrəti] n.优先权
+advanced [ədˈvænst] adj.先进的 v.前进
+privacy [ˈpraɪvəsi] n.隐私
+insights [ˈɪnˌsaɪts] n.洞察力
+policy [ˈpɑːləsi] n.政策;方针;
+minimize [ˈmɪnɪmaɪz] vt.减少
+bureaucracy [bjʊˈrɑːkrəsi] n.官僚主义
+director [dəˈrektər] n.负责人
+compete [kəmˈpiːt] vu.竞争;对抗;
+competitive [kəmˈpetətɪv] adj.竞争的;努力竞争的;
+garage [ɡəˈrɑːʒ] n.停车房;车库;
+honk [hɑːŋk] n.鹅叫声;汽车喇叭声
+horn [hɔːrn] n.喇叭;角质;(羊、牛等动物的)角;(乐器)号;（车辆的）喇叭
+hazards [ˈhæzərdz] n.危险;危害;汽车双闪
+financial [faɪˈnænʃl] adj.财政的;财务的;金融的;有钱的
 deprecated [ˈdeprəkeɪtɪd] v.已弃用;对…表示极不赞成;
 initial [ɪˈnɪʃl] adj.最初的;
 efficiency [ɪˈfɪʃnsi] n.效率;
@@ -186,22 +186,23 @@ nitpick [ˈnɪtpɪk] v.吹毛求疵
 declarative [dɪˈklærətɪv] adj.陈述的
 composability [kəmˈpoʊzəˈbɪləti] n.可组合性;
 discard [dɪˈskɑːrd] v.丢弃;
-hunk [hʌŋk] n.大块，大片
 pixel [ˈpɪksl] n.像素
 hydrate [ˈhaɪdreɪt] n.水合物 Hydrate query params to res
-statement [ˈsteɪtmənt] n.声明 - return statement 返回语句
+statement [ˈsteɪtmənt] n.陈述;声明;报表;说法;报告;说明;表白;表态;结算单;清单;评估报告;（文字）陈述，表述 - return statement 返回语句
 assignment [əˈsaɪnmənt] n.分配;(分派的)工作，任务;(工作等的)分派，布置 - 赋值
 repository [/rɪˈpɑːzətɔːri/] n.仓库;贮藏室;存放处;学识渊博的人;智囊;知识宝典
 sentinel [/ˈsentɪnl/] n.哨兵
-sanitize
-foreground
-background
-emulator
-simulator
-suffice
-monitoring 监控
+sanitize [/ˈsænɪtaɪz/] vt.(用化学制剂)消毒，使清洁；净化；去除…中使人不快的内容
+foreground [/ˈfɔːrɡraʊnd/] n.(景物、图画等的)前景；瞩目地位；重要位置
+background [/ˈbækɡraʊnd/] n.背景；<计>后台；背景音乐；出身背景，（包括学历在内的）经历；底子，底色；（事情的）背景情况；不引人注意的地方
+emulator [/ˈemjuleɪtər/] n.仿真器；仿真程序；竞争者
+simulator [/ˈsɪmjuleɪtər/] n.模拟器
+suffice [/səˈfaɪs/] vi.足够；足以
+monitor [/ˈmɑːnɪtər/] n.监视器；(计算机)显示器；监控器；显示屏；班长；监督员，核查员；巨蜥；级长；班代表
 
 ## commonly
+
+make sense [meɪk sens] 有道理，合乎情理;可以理解;讲得通
 
 scheme [skiːm] n.计划;方案;体系; v.密谋;
 likelihood [ˈlaɪklihʊd] n.可能
@@ -212,9 +213,9 @@ guys [gaɪz] n.小伙子;
 quarter [ˈkwɔːrtər] n.四分之一
 hire [ˈhaɪər] v.聘用;录用;雇用; n.新雇员;
 mute [mjuːt] adj.沉默的;无声的;
-encap n.营地
-encapsulation n.封装，包封
-spec [spek] n.规格
+camp [/kæmp/] n.营地；阵营；
+encapsulate [/ɪnˈkæpsjuleɪt/] vt.封装，包封;概括；压缩；简述
+specifications [/ˌspesɪfɪˈkeɪʃn/] n.规格
 spectacular [spekˈtækjələr] adj.壮观的; n.壮观的场面;
 second [ˈsekənd] adv.第二 n.秒(时间单位);片刻;瞬间;
 double [ˈdʌbl] adj.双的;两倍的;
@@ -242,12 +243,12 @@ wondering [ˈwʌndərɪŋ] v.想知道;想弄明白;
 would [wʊd] v.愿意;希望;
 below [bɪˈloʊ] prep.在下面;
 attach [əˈtætʃ] v.贴上;重视;
-attached [əˈtætʃt] adj.依恋;爱慕;
+attached [əˈtætʃt] adj.所附的；附属于；依恋；爱慕；
 enclose [ɪnˈkloʊz] vt.围住;附入;附上;
-enclosing [ɪnˈkloʊzɪŋ] vt.围住;附入;附上;
 agriculture [ˈæɡrɪkʌltʃər] n.农业;
-poinsettias [pɔɪnˈsɛtiəz] n.一品红;
-especially [ɪˈspeʃəli] adv.尤其;特别;
+poinsettia [pɔɪnˈsɛtiə] n.一品红；猩猩木(花的名字)
+especial [ɪˈspeʃə] adj.特别的；特殊的；格外的
+special [ˈspeʃəli] adj.特别的；特殊的；专用的；重要的；更好的；特设的；不寻常的；特别关照的；不一般的；有专门目的的；格外看重的；起专门作用的
 forward [ˈfɔːrwərd] adv.向前地;向前;前进;进展;
 reply [rɪˈplaɪ] v.回复;答复;
 huge [hjuːdʒ] adj.巨大的;极多的;
@@ -283,8 +284,6 @@ track [træk] n.轨道;小道，小径;
 confuse [kənˈfjuːz] vt.混淆;使糊涂;
 deadline [ˈdedlaɪn] n.最后期限;截止日期
 suppress [səˈpres] vt.镇压;(武力)平定;压制;
-make sense [meɪk sens] 有道理，合乎情理;可以理解;讲得通
-work around [wɜːrk əˈraʊnd] 解决方案
 enterprise [ˈentərpraɪz] n.企业;公司;
 community [kəˈmjuːnəti] n.社区;社会;
 slight [slaɪt] adj.轻微的;略微的;细小的;
@@ -399,6 +398,34 @@ snatched - now I wish I had snatched some of the stickers.
 alarmed - Was just a little alarmed with the package changes.
 harrowing - getting it to build isn't as harrowing as I think it is.
 
-briefly -
-illustrate -
-concept -
+briefly /ˈbriːfli/ - adv.简要地
+illustrate /ˈɪləstreɪt/ vt.说明
+concept /ˈkɑːnsept/ n.概念
+
+crown 王冠, 某物的顶部
+trunk 树干
+capybara /ˌkæpəˈberə/ n.水豚
+scorpion /ˈskɔːrpiən/ n.蝎子
+
+## confident, confidence, confidential
+
+fidare 信任，缩写fid
+confident adj.自信的
+confidence n.信任
+confidential adj.(信任某人才能透露的) 保密的
+confidence man = （获取他人信任的人）诈骗贩 = conman
+
+## fiance, fiancee
+
+fiance n.未婚夫
+fiancee n.未婚妻
+husband n.丈夫
+wife n.妻子
+
+## charge
+
+car /kɑːr/ n.汽车；轿车；(某种类型的)火车车厢
+cargo /ˈkɑːrɡoʊ/ n.(船或飞机装载的)货物
+charge /tʃɑːrdʒ/ （装）n. 价格；充电；指控；主管；控告；任务；指责；谴责；炸药量；被照管的人；感染力；突然猛冲
+
+## 

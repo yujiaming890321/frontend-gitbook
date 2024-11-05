@@ -5,7 +5,9 @@
  * @LastEditors: yujiaming
  */
 Promise.resolve(1)
-  .then((x) => x + 1)
-  .then((x) => Promise.reject(1))
-  .then((x) => console.log('x:' + x))
-  .catch((error) => console.log('error:' + error))
+    .then((x) => x + 1)
+    .then((x) => Promise.reject(2))
+    .then((x) => console.log('x:' + x))
+    .catch((error) => console.log('error:' + error))
+
+// error:1

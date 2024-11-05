@@ -3,7 +3,7 @@
 ## 子传父实例
 
 ```js
-// 子组件
+// 子组件，使用forwardRef封装，使用useImperativeHandle暴露封装的方法
 function FancyInputFn(props, ref) {
   const inputRef = useRef();
   useImperativeHandle(ref, () => ({
@@ -15,7 +15,7 @@ function FancyInputFn(props, ref) {
 }
 FancyInput = forwardRef(FancyInputFn);
 
-// 父组件
+// 父组件，通过ref使用子组件方法
 const inputRef = useRef(null);
 
 function handleClick() {
