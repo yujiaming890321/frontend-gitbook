@@ -24,6 +24,14 @@ useEffect & useLayoutEffect 底层调用方法一样，useLayoutEffect 执行优
 
 - [react-intl 国际化](https://formatjs.io/docs/getting-started/installation/)
 
+## Wookloop
+
+[window.requestIdleCallback](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestIdleCallback)
+在浏览器空闲时期被调用
+如果渲染过于频繁，页面无法渲染。所以 React 自己开发了一个件事调度系统 scheduler。
+
+## Reconciler
+
 ## 如何拆分组件
 
 目的：简化代码，单一职责
