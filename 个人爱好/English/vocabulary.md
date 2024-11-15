@@ -372,9 +372,9 @@ tricky [/ˈtrɪki/] adj. 棘手的;狡猾的;难办的;难对付的;诡计多端
 funky [/ˈfʌŋki/] adj. 时髦的;节奏强适宜跳舞的;时髦独特的;恶臭的
 weird [/wɪrd/] adj. 奇怪的;诡异的;怪诞的;奇异的;不寻常的;离奇的 n.命运;宿命;厄运;<古>命运女神
 strange [/streɪndʒ/] adj.奇怪的，古怪的;不平常的，奇特的;陌生的，不熟悉的;外地的，异乡的;冷淡的;疏远的，不亲近的;局促不安地，不自在的;<古>外行的, 没有经验的, 不习惯的;<核>（粒子）奇异的 adv.陌生地;奇怪地;冷淡地;外行地
-indicated verb.point out;show
-maintenance
-ride - Anyone can give me a ride to Big Al's 有人可以载我去 Big Al’s 吗
+indicated /ˈɪndɪkeɪtɪd/ verb.point out;show 表明
+maintenance /ˈmeɪntənəns/ n. 维护；维修；
+ride /raɪd/ v.骑；驾驶；搭乘； - Anyone can give me a ride to Big Al's 有人可以载我去 Big Al’s 吗
 heading - sure, I'll be heading out in about 20-30 mins 当然可以, 我大约 20-30 分钟后出发
 We're still doing post release tasks and a few folks have one more meeting.
 Planning to be there around 6pm. 大约 6 点到
@@ -398,18 +398,38 @@ snatched - now I wish I had snatched some of the stickers.
 alarmed - Was just a little alarmed with the package changes.
 harrowing - getting it to build isn't as harrowing as I think it is.
 
+homesick /ˈhoʊmsɪk/ adj. 想家的；思乡的；
 briefly /ˈbriːfli/ - adv.简要地
 illustrate /ˈɪləstreɪt/ vt.说明
 concept /ˈkɑːnsept/ n.概念
+post n:文章
+outline v.概述
+organize /ˈɔːrɡənaɪz/ v.组织
+allude /əˈluːd/ v.暗指；间接提到；影射
+additionally /əˈdɪʃənəli/ adv.另外；
+declare /dɪˈkler/ v.声明；宣布
+throughout /θruːˈaʊt/ adv.始终；
+preface /ˈprefəs/ n.前言； vt.以…为开端；
+conversely /ˈkɑːnvɜːrsli/ adv.相反地；
+alternatively /ɔːlˈtɜːrnətɪvli/ adv.(引出第二种选择或可能的建议)要不，或者
+syntax /ˈsɪntæks/ n.句法；
+alias /ˈeɪliəs/ n.别名；
+identify /aɪˈdentɪfaɪ/ vt.识别；
+expose /ɪkˈspoʊz/ vt.暴露；
+present /ˈpreznt , prɪˈzent/ n.目前；
+represent /ˌreprɪˈzent/ v.代表，表示
+ambient /ˈæmbiənt/ adj.周围的；
+shape /ʃeɪp/ n.形状
 
-crown 王冠, 某物的顶部
-trunk 树干
+crown /kraʊn/ n.王冠, 某物的顶部
+trunk /trʌŋk/ n.树干；主要部分, 主干
+
 capybara /ˌkæpəˈberə/ n.水豚
 scorpion /ˈskɔːrpiən/ n.蝎子
 
 ## confident, confidence, confidential
 
-fidare 信任，缩写fid
+fidare 信任，缩写 fid
 confident adj.自信的
 confidence n.信任
 confidential adj.(信任某人才能透露的) 保密的
@@ -428,4 +448,4 @@ car /kɑːr/ n.汽车；轿车；(某种类型的)火车车厢
 cargo /ˈkɑːrɡoʊ/ n.(船或飞机装载的)货物
 charge /tʃɑːrdʒ/ （装）n. 价格；充电；指控；主管；控告；任务；指责；谴责；炸药量；被照管的人；感染力；突然猛冲
 
-## 
+##

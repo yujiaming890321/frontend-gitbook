@@ -1,5 +1,7 @@
 # useImperativeHandle
 
+## [https://react.dev/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes](https://react.dev/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)
+
 ## 子传父实例
 
 ```js
