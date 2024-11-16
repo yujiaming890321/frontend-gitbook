@@ -43,6 +43,15 @@ TAI - Trade In
 PR - pull request
 CUA - customer acquisition
 
+## JD
+
+Custom first
+innovation
+dedication
+responsibility
+gratitude
+integrity
+
 ## agile 敏捷开发
 
 UAT - User Acceptance Testing
@@ -96,6 +105,8 @@ pii 个人身份信息 personally identifiable information
 pci 个人计算机接口 Personal computer interface
 work around [wɜːrk əˈraʊnd] 解决方案
 
+binary /ˈbaɪnəri/ adj.二进制的
+scaffold /ˈskæfoʊld/ n.脚手架
 registration [ˌredʒɪˈstreɪʃn] n.登记
 deposit [dɪˈpɑːzɪt] n.订金 vt.放下;存储;存钱;
 insurance [ɪnˈʃʊrəns] n.保险;
@@ -131,7 +142,7 @@ directive [dəˈrektɪv] n.指示;命令 adj.指示的;指导的
 provider [prəˈvaɪdər] n.提供者
 dependency [dɪˈpendənsi] n.依靠，依赖
 specific [spəˈsɪfɪk] adj.具体的;特定的; n.特效药;特性;
-ensure [ɪnˈʃʊr] v.确保;保证;
+ensure [ɪnˈʃʊr] v.确保;保证; -- SWC try to ensure If you select the latest version of each crates, it will work
 consume [kənˈsuːm] vt.消费;
 glossary [ˈɡlɑːsəri] n.词汇表
 establish [ɪˈstæblɪʃ] vt.建立
@@ -420,6 +431,8 @@ present /ˈpreznt , prɪˈzent/ n.目前；
 represent /ˌreprɪˈzent/ v.代表，表示
 ambient /ˈæmbiənt/ adj.周围的；
 shape /ʃeɪp/ n.形状
+prompt /prɑːmpt/ adj.迅速的；
+usage /ˈjuːsɪdʒ/ n.用法
 
 crown /kraʊn/ n.王冠, 某物的顶部
 trunk /trʌŋk/ n.树干；主要部分, 主干
