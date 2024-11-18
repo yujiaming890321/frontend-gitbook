@@ -461,4 +461,8 @@ car /kɑːr/ n.汽车；轿车；(某种类型的)火车车厢
 cargo /ˈkɑːrɡoʊ/ n.(船或飞机装载的)货物
 charge /tʃɑːrdʒ/ （装）n. 价格；充电；指控；主管；控告；任务；指责；谴责；炸药量；被照管的人；感染力；突然猛冲
 
-##
+## depend, dependence, independence
+
+depend /dɪˈpend/ v.依赖；
+dependence /dɪˈpendəns/ n.依赖；瘾 drug dependence 毒瘾 alcohol dependence 酒瘾
+independence /ˌɪndɪˈpendəns/ n.独立；自主；（不依赖）

@@ -29,3 +29,9 @@ his opinion should be taken with a pinch of salt. 他的观点，我们要有所
 
 轻松的开玩笑 = play a joke on someone
 Don't worry about what she said. She was just pulling your leg. 别在意她说的，她只是跟你开玩笑呢
+
+## one love
+
+loeuf (法语) 鸡蛋 = 0 = love
+1:0 one love
+0:0, love all
