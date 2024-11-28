@@ -1,12 +1,29 @@
 # redux
 
+-   applyMiddleware: function()
+-   bingActionCreators: function()
+-   combineReducers: function()
+
+    将 reducer 组合起来
+
+-   compose: function()
+
+    将方法组合起来。louder、threetimes，compose(louder, threetimes) = louderThreetimes
+
+-   createStore: function()
+
+    创建一个 store, store 有 dispatch、subscribe、getState、replaceReducer
+
 ```js
-const middleware = [thunkMiddleware];
+const middleware = [thunkMiddleware]
 if (process.env.NODE_ENV === 'development') {
-  const { logger } = require('redux-logger');
-  middleware.push(logger);
+    const { logger } = require('redux-logger')
+    middleware.push(logger)
 }
-const store = createStore(reducers, applyMiddleware(...middleware));
+const reducers = combineReducers({
+    calculator: calculatorReducer,
+})
+const store = createStore(reducers, applyMiddleware(...middleware))
 ```
 
 ## redux 数据流
@@ -38,8 +55,8 @@ Store — 数据存储中心，同时连接着 Actions 和 Views（React Compone
 1. Store 的数据修改，本质上是通过 Reducer 来完成的。
 2. Store 只提供 get 方法（即 getState），不提供 set 方法，所以数据的修改一定是通过 dispatch(action)来完成，即：action -> reducers -> store
 3. Store 除了存储数据之外，还有着消息发布/订阅（pub/sub）的功能，也正是因为这个功能，它才能够同时连接着 Actions 和 Views。
-   - dispatch 方法 对应着 pub
-   - subscribe 方法 对应着 sub
+    - dispatch 方法 对应着 pub
+    - subscribe 方法 对应着 sub
 
 ### 使用纯函数来执行修改，Reducer
 
@@ -61,12 +78,12 @@ Reducer 函数在修改数据的时候，正是这样做的，最后返回的都
 
 ```javascript
 function eReducer(state = [2, 3], action) {
-  switch (action.type) {
-    case 'ADD':
-      return [...state, 4]; // 并没有直接地通过 state.push(4)，修改引用的数据
-    default:
-      return state;
-  }
+    switch (action.type) {
+        case 'ADD':
+            return [...state, 4] // 并没有直接地通过 state.push(4)，修改引用的数据
+        default:
+            return state
+    }
 }
 ```
 
