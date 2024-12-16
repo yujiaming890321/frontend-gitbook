@@ -105,6 +105,12 @@ pii 个人身份信息 personally identifiable information
 pci 个人计算机接口 Personal computer interface
 work around [wɜːrk əˈraʊnd] 解决方案
 
+add /æd/ v.加
+subtract /səbˈtrækt/ v.减
+multiply /ˈmʌltɪplaɪ/ v.乘
+divide /dɪˈvaɪd/ v.除
+pseudo-code /ˈsudoʊ koʊd/ 伪代码
+functional programming 函数式编程
 merit /ˈmerɪt/ n.优点；价值；
 tradeoff /ˈtreɪˌdɔf/ n.权衡;
 binary /ˈbaɪnəri/ adj.二进制的
