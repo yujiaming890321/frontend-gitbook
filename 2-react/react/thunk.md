@@ -16,7 +16,7 @@ thunk 函数是接受两个参数的函数:Redux store 分派方法和 Redux sto
 
 ```javascript
 const thunkFunction = (dispatch, getState) => {
-  // logic here that can dispatch actions or read state
+    // logic here that can dispatch actions or read state
 }
 
 store.dispatch(thunkFunction)
@@ -28,20 +28,20 @@ Redux 代码通常使用动作创建者来生成动作对象以进行分派，�
 ```javascript
 // fetchTodoById is the "thunk action creator"
 export function fetchTodoById(todoId) {
-  // fetchTodoByIdThunk is the "thunk function"
-  return async function fetchTodoByIdThunk(dispatch, getState) {
-    const response = await client.get(`/fakeApi/todo/${todoId}`)
-    dispatch(todosLoaded(response.todos))
-  }
+    // fetchTodoByIdThunk is the "thunk function"
+    return async function fetchTodoByIdThunk(dispatch, getState) {
+        const response = await client.get(`/fakeApi/todo/${todoId}`)
+        dispatch(todosLoaded(response.todos))
+    }
 }
 ```
 
 Thunk 函数和动作创建者可以使用 function 关键字或箭头函数来编写——这里没有什么有意义的区别。同样的 fetchTodoById thunk 也可以用箭头函数来写，像这样:
 
 ```javascript
-export const fetchTodoById = todoId => async dispatch => {
-  const response = await client.get(`/fakeApi/todo/${todoId}`)
-  dispatch(todosLoaded(response.todos))
+export const fetchTodoById = (todoId) => async (dispatch) => {
+    const response = await client.get(`/fakeApi/todo/${todoId}`)
+    dispatch(todosLoaded(response.todos))
 }
 ```
 
@@ -49,12 +49,12 @@ export const fetchTodoById = todoId => async dispatch => {
 
 ```javascript
 function TodoComponent({ todoId }) {
-  const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-  const onFetchClicked = () => {
-    // Calls the thunk action creator, and passes the thunk function to dispatch
-    dispatch(fetchTodoById(todoId))
-  }
+    const onFetchClicked = () => {
+        // Calls the thunk action creator, and passes the thunk function to dispatch
+        dispatch(fetchTodoById(todoId))
+    }
 }
 ```
 
@@ -62,30 +62,27 @@ function TodoComponent({ todoId }) {
 
 由于 thunks 是一种通用工具，可以包含任意逻辑，因此可以用于各种各样的目的。最常见的用例有:
 
-- 将复杂的逻辑移出组件
-- 发出异步请求或其他异步逻辑
-- 编写需要在一行或一段时间内调度多个操作的逻辑
-- 编写需要访问的逻辑在`getState`中做出决定或包含其他状态值
+-   将复杂的逻辑移出组件
+-   发出异步请求或其他异步逻辑
+-   编写需要在一行或一段时间内调度多个操作的逻辑
+-   编写需要访问的逻辑在`getState`中做出决定或包含其他状态值
 
 ## 源码逻辑
 
 ```javascript
 function createThunkMiddleware(extraArgument) {
-  const middleware =
-    ({ dispatch, getState }) =>
-    next =>
-    action => {
-      // The thunk middleware looks for any functions that were passed to `store.dispatch`.
-      // If this "action" is really a function, call it and return the result.
-      if (typeof action === 'function') {
-        // Inject the store's `dispatch` and `getState` methods, as well as any "extra arg"
-        return action(dispatch, getState, extraArgument)
-      }
+    const middleware = ({ dispatch, getState }) => (next) => (action) => {
+        // The thunk middleware looks for any functions that were passed to `store.dispatch`.
+        // If this "action" is really a function, call it and return the result.
+        if (typeof action === 'function') {
+            // Inject the store's `dispatch` and `getState` methods, as well as any "extra arg"
+            return action(dispatch, getState, extraArgument)
+        }
 
-      // Otherwise, pass the action down the middleware chain as usual
-      return next(action)
+        // Otherwise, pass the action down the middleware chain as usual
+        return next(action)
     }
-  return middleware
+    return middleware
 }
 ```
 
@@ -112,3 +109,7 @@ function createThunkMiddleware(extraArgument) {
 ```
 
 ![image](https://img2020.cnblogs.com/blog/2347599/202201/2347599-20220118101858833-959563829.webp)
+
+## 缺点
+
+无法抽出逻辑进行测试
