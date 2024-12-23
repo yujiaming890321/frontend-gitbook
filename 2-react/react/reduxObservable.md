@@ -18,7 +18,7 @@ epicMiddleware.run(rootEpic)
 // fetch-epic
 import { ajax } from 'rxjs/ajax'
 import { ofType } from 'redux-observable'
-import { map, mergeMap } from 'rxjs/operators'
+import { map, mergeMap, tap } from 'rxjs/operators'
 import { FETCH_CHARACTERS, fecthCharactersFulfilled } from 'actions'
 
 const fecthCharactersEpic = (action$) => {
@@ -26,7 +26,16 @@ const fecthCharactersEpic = (action$) => {
         ofType(FETCH_CHARACTERS),
         mergeMap((action) =>
             ajax.getJSON(ENDPOINT + action.payload.searchTerm)
-        ).pipe(map((response) => fecthCharactersFulfilled(response.result)))
+        ).pipe(
+            tap((value) => console.log(value)),
+            map((response) => fecthCharactersFulfilled(response.result)),
+            takeUntil(
+                action$.pipe(
+                    tap((value) => console.log('Cancelling!')),
+                    ofType(FETCH_CHARACTERS)
+                )
+            )
+        )
     )
 }
 
