@@ -20,6 +20,8 @@ Object.defineProperty(Person.pretotype, 'fullName', {
 
 demo:
 
+autorun 是组件初始化时会调用，runInAction 是异步 action 执行回调时使用的方法
+
 ```js
 import { observable, autorun } from 'mobx'
 
@@ -78,7 +80,7 @@ const extendObservable = (target, source) => {
 demo:
 
 ```js
-import { decorate, observable, autorun } from 'mobx'
+import { decorate, observable } from 'mobx'
 import { observer } from 'mobx-react'
 
 class Count {
@@ -121,7 +123,7 @@ class PizzaCalculator {
 
 ```js
 // index.ts
-import { Provider} from 'mobx-react'
+import { Provider } from 'mobx-react'
 
 ReactDom.render(<Provider itemStore={store}><App /></Provider>)
 
