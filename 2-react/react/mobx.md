@@ -9,7 +9,7 @@ function decoratorName(target, key, descriptor){
     //...
 }
 
-Object.defineProperty(Person.pretotype, 'fullname', {
+Object.defineProperty(Person.pretotype, 'fullName', {
     get: funciont() {
         return this.firstName + ' ' + this.lastName
     }
@@ -43,6 +43,9 @@ autorun(() => {
 ```
 
 ## observable 观察者
+
+_if you add properties to an object after you pass it to observable(), those new properties will not be observed._
+use a Map(), if you're going to be adding keys later on.
 
 ```js
 const onChange = (oldValue, newValue) ={
@@ -89,4 +92,57 @@ class Count {
 decorate(Count, {
     value: observable,
 })
+```
+
+```js
+import { action, observable, computed } from 'mobx'
+
+class PizzaCalculator {
+    @observable number = 0
+    @observable slicesPerPerson = 2
+    @observable slicesPerPie = 8
+
+    @computed get slicesNeeded() {
+        return this.number * this.slicesPerPerson
+    }
+    @computed get pieNeeded() {
+        return Math.ceil(this.slicesNeeded / this.slicesPerPie)
+    }
+
+    @action addGuest() {
+        this.number++
+    }
+}
+```
+
+## mobx-react
+
+```js
+// index.ts
+import { Provider} from 'mobx-react'
+
+ReactDom.render(<Provider itemStore={store}><App /></Provider>)
+
+// app.ts
+import { inject, observer } from 'mobx-react'
+
+const App = () => {
+    const PackedItems = inject('itemList')(
+        observer(({itemList}) => {
+            return <Items title="Packed items" items={itemList.packedItems} />
+        })
+    )
+
+    return (
+        <PackedItems />
+    )
+}
+
+// item.ts
+import { inject } from 'mobx-react'
+
+@inject('itemList')
+const NewItem = ({ itemList }) => {
+    return
+}
 ```

@@ -441,6 +441,7 @@ ambient /ˈæmbiənt/ adj.周围的；
 shape /ʃeɪp/ n.形状
 prompt /prɑːmpt/ adj.迅速的；
 usage /ˈjuːsɪdʒ/ n.用法
+colleague /ˈkɑːliːɡ/ n.同事
 
 crown /kraʊn/ n.王冠, 某物的顶部
 trunk /trʌŋk/ n.树干；主要部分, 主干
