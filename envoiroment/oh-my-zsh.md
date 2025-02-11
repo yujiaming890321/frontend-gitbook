@@ -41,10 +41,20 @@ Run install script to copy theme to your ~/.oh-my-zsh folder
 vim 打开 .zshrc
 
 ```node
+vim ~/.zshrc
+
 ZSH_THEME="agnoster"
+
+source ~/.zshrc
 ```
 
 ### [powerline字体](https://github.com/powerline/fonts)
+
+```node
+git clone git@github.com:powerline/fonts.git
+```
+
+preference -> Keys -> Text ->
 
 ### [自动提示](https://github.com/zsh-users/zsh-autosuggestions)
 
@@ -59,6 +69,7 @@ ZSH_THEME="agnoster"
     ```node
     vim ~/.zshrc
     plugins=(zsh-autosuggestions git)
+    source ~/.zshrc
     ```
 
 3. 重新打开终端窗口。

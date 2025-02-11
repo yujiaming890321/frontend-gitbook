@@ -218,11 +218,14 @@ emulator [/ˈemjuleɪtər/] n.仿真器；仿真程序；竞争者
 simulator [/ˈsɪmjuleɪtər/] n.模拟器
 suffice [/səˈfaɪs/] vi.足够；足以
 monitor [/ˈmɑːnɪtər/] n.监视器；(计算机)显示器；监控器；显示屏；班长；监督员，核查员；巨蜥；级长；班代表
+industry
+standard
 
 ## commonly
 
 make sense [meɪk sens] 有道理，合乎情理;可以理解;讲得通
 
+chroe
 scheme [skiːm] n.计划;方案;体系; v.密谋;
 likelihood [ˈlaɪklihʊd] n.可能
 correct [kəˈrekt] adj.对的; v.纠正;改正;

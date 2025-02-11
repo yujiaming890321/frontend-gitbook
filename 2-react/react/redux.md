@@ -341,3 +341,42 @@ export const getSelectProductList = createSelector(
   },
 );
 ```
+
+### Terminology
+
+Selector Function : A function that accepts one or more JavaScript values as arguments, and derives a result.
+Input Selectors : Basic selector functions used as building blocks for creating a memoized selector.
+Output Selector : The actual memoized selectors created by createSelector.
+Result Function : The function that comes after the input selectors.
+Dependencies : Same as input selectors.
+
+```js
+const outputSelector = createSelector(
+  [inputSelector1, inputSelector2, inputSelector3], // synonymous with `dependencies`.
+  resultFunc // Result function
+)
+```
+
+### Cascading Memoization
+
+Reselect uses a two-stage "cascading" approach to memoizing functions:
+
+The way Reselect works can be broken down into multiple parts:
+
+1. Initial Run: On the first call, Reselect runs all the input selectors, gathers their results, and passes them to the result function.
+
+2. Subsequent Runs: For subsequent calls, Reselect performs two levels of checks:
+
+- First Level: It compares the current arguments with the previous ones (done by argsMemoize).
+
+  - If they're the same, it returns the cached result without running the input selectors or the result function.
+
+  - If they differ, it proceeds ("cascades") to the second level.
+
+- Second Level: It runs the input selectors and compares their current results with the previous ones (done by memoize).
+
+  - If the results are the same, it returns the cached result without running the result function.
+
+  - If the results differ, it runs the result function.
+
+This behavior is what we call Cascading Memoization.
