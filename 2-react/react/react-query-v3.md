@@ -3,7 +3,61 @@
 在使用 Hooks 写组件时，发起异步请求时，不仅需要管理请求状态，而且还需要处理异步数据，为此要多写几个 useState/useEffect 来控制。
 而 react-query 正是为此而生，可以方便的管理服务端的状态
 
-## Provider、Client
+## the 5 O'clock rule
+
+the level of abstraction for solving a problem will bubble up until it allows the average developer to stop thinking about the problem
+
+v=f(s), view = function(state)
+
+### 1. basic question
+
+```js
+useEffect(() => {
+    let igore = false
+    const handleFetchPokemon = async () => {
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+        if (igore) return // change id randomly will not effect the data
+        const json = res.json()
+        setPokemon(json)
+    }
+    handleFetchPokemon()
+    return () => {
+        igore = true
+    }
+}, [id])
+```
+
+### 2. disappear observability
+
+```js
+const useQuery = (url) => {
+    useEffect(() => {
+        let igore = false
+        const handleFetchPokemon = async () => {
+            const res = await fetch(url)
+            if (igore) return // change id randomly will not effect the data
+            const json = res.json()
+            setPokemon(json)
+        }
+        handleFetchPokemon()
+        return () => {
+            igore = true
+        }
+    }, [id])
+}
+```
+
+## query fundamental: Provider、Client
+
+```js
+cache = new Map()
+```
+
+1. how does it know what data to use?
+
+2. how does it know where to get the data from?
+
+Rules: the queryKey must be globally unique, the queryFn must return a Promise
 
 provider cache and client config to children
 

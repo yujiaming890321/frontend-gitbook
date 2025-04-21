@@ -452,6 +452,9 @@ trunk /trʌŋk/ n.树干；主要部分, 主干
 capybara /ˌkæpəˈberə/ n.水豚
 scorpion /ˈskɔːrpiən/ n.蝎子
 
+yet another demonstration of 再次证明...
+learned absolutely nothing 什么也没学到
+
 ## confident, confidence, confidential
 
 fidare 信任，缩写 fid
