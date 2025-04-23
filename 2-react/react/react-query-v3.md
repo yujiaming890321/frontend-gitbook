@@ -97,6 +97,20 @@ function App() {
 }
 ```
 
+the query lifecycle:
+
+```js
+status === 'pending'
+isPending === true
+
+// fulfilled
+status === 'success'
+isSuccess === true
+// rejected
+status === 'error'
+isError === true
+```
+
 The result object contains a few very important states you'll need to be aware of to be productive. A query can only be in one of the following states at any given moment:
 
 -   `isLoading` or `status === 'loading'` - The query has no data and is currently fetching
@@ -140,6 +154,17 @@ function Todos() {
 data refetch only trigger for stale data.
 stale time is for re-fetching.
 cache time is for re-used.
+
+```js
+function useIssues(search){
+    return useQuery({
+        queryKey: ['todos', search],
+        queryFn: () => fetchTodoList(search),
+        staleTime: 5000
+        enabled: search !== ''
+    })
+}
+```
 
 ### Array as Query key
 
