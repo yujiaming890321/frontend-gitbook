@@ -120,6 +120,7 @@ scaffold /ˈskæfoʊld/ n.脚手架
 registration [ˌredʒɪˈstreɪʃn] n.登记
 deposit [dɪˈpɑːzɪt] n.订金 vt.放下;存储;存钱;
 insurance [ɪnˈʃʊrəns] n.保险;
+perform 
 performance [pərˈfɔːrməns] n.性能
 prior [ˈpraɪər] adj.先前的
 priority [praɪˈɔːrəti] n.优先权
@@ -227,7 +228,8 @@ approache
 ## commonly
 
 make sense [meɪk sens] 有道理，合乎情理;可以理解;讲得通
-
+dudes
+folks
 eliminate
 chroe
 scheme [skiːm] n.计划;方案;体系; v.密谋;
