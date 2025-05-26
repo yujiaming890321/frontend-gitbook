@@ -1,4 +1,4 @@
-# vocabulary
+# vocabulary、glossary
 
 https://wikidiff.com/
 
