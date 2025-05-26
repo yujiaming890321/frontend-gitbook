@@ -43,6 +43,8 @@ TAI - Trade In
 PR - pull request
 CUA - customer acquisition
 
+FSD - Full-Self Driving
+
 ## JD
 
 Custom first
@@ -118,6 +120,7 @@ scaffold /ˈskæfoʊld/ n.脚手架
 registration [ˌredʒɪˈstreɪʃn] n.登记
 deposit [dɪˈpɑːzɪt] n.订金 vt.放下;存储;存钱;
 insurance [ɪnˈʃʊrəns] n.保险;
+perform 
 performance [pərˈfɔːrməns] n.性能
 prior [ˈpraɪər] adj.先前的
 priority [praɪˈɔːrəti] n.优先权
@@ -220,11 +223,14 @@ suffice [/səˈfaɪs/] vi.足够；足以
 monitor [/ˈmɑːnɪtər/] n.监视器；(计算机)显示器；监控器；显示屏；班长；监督员，核查员；巨蜥；级长；班代表
 industry
 standard
+approache
 
 ## commonly
 
 make sense [meɪk sens] 有道理，合乎情理;可以理解;讲得通
-
+dudes
+folks
+eliminate
 chroe
 scheme [skiːm] n.计划;方案;体系; v.密谋;
 likelihood [ˈlaɪklihʊd] n.可能
@@ -376,12 +382,12 @@ realistic - should we be committing to week following to be realistic
 disclose - we will not disclose it, you'll have to find it in PRs
 eff - they're actually really effing cool
 hijack - maybe hijack Stage for little bit time tomorrow with a temp branch and put Turkey changes there
-briefly - Me, you and amit will align on how we are demo-ing very briefly tomorrow morning
+briefly - /ˈbriːfli/ adv. 简短地 Me, you and Amit will align on how we are demo-ing very briefly tomorrow morning
 indeed - reminder that we are indeed pencil's down.
 candidate - RC candidate(pencil's down)
 feedback - from US feedback
 rollout
-decouple - Unifed platform that can decouple dependency between different incomming channels and internal services.
+decouple /diːˈkʌpl/ vt. 使分离 n. 解耦 - Unifed platform that can decouple dependency between different incomming channels and internal services.
 notation - 9’s notation
 snippet - send me snippet 给我发代码段
 screenshot - 截图
@@ -402,6 +408,7 @@ We're still doing post release tasks and a few folks have one more meeting.
 Planning to be there around 6pm. 大约 6 点到
 Remember no to leave your laptop in that car! 记住不要把笔记本电脑留在车里！
 Supervisor n.监督人;指导者;主管人
+escalate 升级,范围逐步扩大
 take a glance at
 promote
 unaware - For anyone unaware,
@@ -445,12 +452,25 @@ shape /ʃeɪp/ n.形状
 prompt /prɑːmpt/ adj.迅速的；
 usage /ˈjuːsɪdʒ/ n.用法
 colleague /ˈkɑːliːɡ/ n.同事
+scenario
 
 crown /kraʊn/ n.王冠, 某物的顶部
 trunk /trʌŋk/ n.树干；主要部分, 主干
 
 capybara /ˌkæpəˈberə/ n.水豚
 scorpion /ˈskɔːrpiən/ n.蝎子
+a fall into a pit, a gain in your wit 吃一堑长一智
+
+## authentication vs authorization
+
+authentication 认证, 验证用户或实体的身份的过程
+authorization 授权，是控制用户或实体对资源或服务的访问权限的过程
+
+## access vs privilege vs permission
+
+access 访问，通常由authentication、authorization控制
+privilege 特权，一种全局的权利
+permission 许可，一种局部的限制
 
 yet another demonstration of 再次证明...
 learned absolutely nothing 什么也没学到

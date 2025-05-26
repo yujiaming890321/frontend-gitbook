@@ -1,4 +1,4 @@
-# [react-query v3](https://tanstack.com/query/v3)
+# [@tanstack/react-query v3](https://tanstack.com/query/v3)
 
 在使用 Hooks 写组件时，发起异步请求时，不仅需要管理请求状态，而且还需要处理异步数据，为此要多写几个 useState/useEffect 来控制。
 而 react-query 正是为此而生，可以方便的管理服务端的状态
