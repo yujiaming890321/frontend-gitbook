@@ -106,6 +106,7 @@ can you just give me some bullet points? 能不能给我一些要点
 pii 个人身份信息 personally identifiable information
 pci 个人计算机接口 Personal computer interface
 work around [wɜːrk əˈraʊnd] 解决方案
+conceptual diagram
 
 add /æd/ v.加
 subtract /səbˈtrækt/ v.减
@@ -120,7 +121,8 @@ scaffold /ˈskæfoʊld/ n.脚手架
 registration [ˌredʒɪˈstreɪʃn] n.登记
 deposit [dɪˈpɑːzɪt] n.订金 vt.放下;存储;存钱;
 insurance [ɪnˈʃʊrəns] n.保险;
-perform 
+perform [/pərˈfɔːrm/] v.执行
+parallel [/ˈpærəlel/] adj.平行的
 performance [pərˈfɔːrməns] n.性能
 prior [ˈpraɪər] adj.先前的
 priority [praɪˈɔːrəti] n.优先权
@@ -221,7 +223,7 @@ emulator [/ˈemjuleɪtər/] n.仿真器；仿真程序；竞争者
 simulator [/ˈsɪmjuleɪtər/] n.模拟器
 suffice [/səˈfaɪs/] vi.足够；足以
 monitor [/ˈmɑːnɪtər/] n.监视器；(计算机)显示器；监控器；显示屏；班长；监督员，核查员；巨蜥；级长；班代表
-industry
+industry [/ˈɪndəstri/] n.工业
 standard
 approache
 
@@ -232,6 +234,7 @@ dudes
 folks
 eliminate
 chroe
+alternatively
 scheme [skiːm] n.计划;方案;体系; v.密谋;
 likelihood [ˈlaɪklihʊd] n.可能
 correct [kəˈrekt] adj.对的; v.纠正;改正;

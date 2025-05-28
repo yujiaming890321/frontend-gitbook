@@ -1,14 +1,16 @@
 # RAG(Retrieval-Augmented Generation)
 
+![alt text](image-3.png)
+
 A typical RAG application has two main components:
 
 通常一个RAG应用有两个主要部分
 
-1. `Indexing`: a pipeline for ingesting data from a source and indexing it. *This usually happens offline.*
+1. `Indexing(pre-training)`: a pipeline for ingesting data from a source and indexing it. *This usually happens offline.*
 
     `建立索引`: 从源获取数据并对其建立索引的管道。*这通常发生在离线状态*
 
-2. `Retrieval and generation`: the actual RAG chain, which takes the user query at run time and retrieves the relevant data from the index, then passes that to the model.
+2. `Retrieval and generation(post-training)`: the actual RAG chain, which takes the user query at run time and retrieves the relevant data from the index, then passes that to the model.
 
     `检索和生成：`实际的RAG链，在运行时接收用户查询，从索引中检索相关数据，然后将其传递给模型。
 
