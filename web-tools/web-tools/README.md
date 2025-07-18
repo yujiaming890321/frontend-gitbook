@@ -20,6 +20,8 @@ github 提速访问链接：https://raw.hellogithub.com/hosts（ps：这链接�
 
 [figma](https://www.figma.com/)
 
+[excalidraw](https://excalidraw.com/)
+
 ## ui
 
 [uecook](http://uecook.com/)

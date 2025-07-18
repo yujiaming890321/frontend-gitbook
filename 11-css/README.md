@@ -28,3 +28,32 @@
 ```html
 <div class="replicant-dotted-bg"></div>
 ```
+
+## happy text
+
+```css
+.happy-text {
+  background: linear-gradient(270deg, #FF5F6D, #FFC371, #c34dbf, #ff4b1f, #ff9068, #16BFFD, #a84dc3, #CB3066, #4CA1AF, #C4E0E5);
+  background-size: 2000% 2000%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: happyText 30s ease infinite;
+  -moz-animation: happyText 30s ease infinite;
+  animation: happyText 30s ease infinite;
+} 
+@-webkit-keyframes happyText {
+    0%{background-position:0% 14%}
+    50%{background-position:100% 87%}
+    100%{background-position:0% 14%}
+}
+@-moz-keyframes happyText {
+    0%{background-position:0% 14%}
+    50%{background-position:100% 87%}
+    100%{background-position:0% 14%}
+}
+@keyframes happyText {
+    0%{background-position:0% 14%}
+    50%{background-position:100% 87%}
+    100%{background-position:0% 14%}
+}
+```

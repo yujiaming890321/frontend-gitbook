@@ -1,5 +1,9 @@
 # [@react-router](https://reactrouter.com/home)
 
+<Route element={element} path />
+element = <Suspense>{component}</Suspense>
+component = lazy(() => import(...))
+
 ```js
 route("some/path", "./some/file.tsx"),
   // pattern ^           ^ module file

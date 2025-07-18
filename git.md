@@ -1,5 +1,7 @@
 # Git
 
+mermaid\suggestion
+
 ## 修改文件名
 
 git mv [filename] [new_filename]

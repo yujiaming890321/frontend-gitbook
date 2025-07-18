@@ -2,6 +2,27 @@
 
 https://wikidiff.com/
 
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday
+Saturday
+Sunday
+
+January
+February
+March
+April
+May
+June
+July
+August
+September
+October
+November
+December
+
 ## email
 
 btw - by the way
@@ -226,6 +247,7 @@ monitor [/ˈmɑːnɪtər/] n.监视器；(计算机)显示器；监控器；显�
 industry [/ˈɪndəstri/] n.工业
 standard
 approache
+gauge
 
 ## commonly
 
