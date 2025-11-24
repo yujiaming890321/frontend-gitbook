@@ -2,6 +2,8 @@
 
 https://wikidiff.com/
 
+## 
+
 Monday
 Tuesday
 Wednesday
@@ -61,10 +63,14 @@ VFX - Vehicle Fulfillment Experience
 DRO - Delivery & Registration Operations
 CX - Customer Experience Platform
 TAI - Trade In
-PR - pull request
 CUA - customer acquisition
-
+PC - Premium Connectivity
+OTA - over the air
 FSD - Full-Self Driving
+EAP - Enhance Autopilot
+BAP - basic Autopilot
+EWI - extended warranty insurance
+ESA - extended service agreement
 
 ## JD
 
@@ -78,7 +84,8 @@ integrity
 ## agile 敏捷开发
 
 UAT - User Acceptance Testing
-PPV - Product Process Validation
+PPV - Production Process Validation
+ROI - return on investment 投资回报率
 scrum [skrʌm] n.并列争球;
 expected [ɪkˈspektɪd] adj.预期的 v.预料
 runbook [rʌn bʊk] 操作手册
@@ -86,8 +93,8 @@ enhance [ɪnˈhæns] vt.提高
 enhancement [ɪnˈhænsmənt] n.提高
 improve [ɪmˈpruːv] v.改善;改进;
 improvement [ɪmˈpruːvmənt] n.改善;改进;
-integrate [ˈɪntɪɡreɪt] v.整合;合并 集成
-migrate [ˈmaɪɡreɪt] v.迁移
+integrate, inte/grate [ˈɪntɪɡreɪt] v.整合;合并 集成
+migrate, mi/grate [ˈmaɪɡreɪt] v.迁移
 feature [ˈfiːtʃər] n.特征;特点; v.以…为特色;
 implement [ˈɪmplɪment] vt.实施;使生效; n.工具;器具;
 implementation [ˌɪmpləmɛnˈteɪʃən] n.实施;执行;贯彻;生效;完成;工具;仪器;供给器具
@@ -102,6 +109,9 @@ engagements [ɛnˈgeɪdʒmənts] n.约定，约会
 challenge [ˈtʃælɪndʒ] n.挑战;艰巨任务;
 
 ## pr related
+
+PR - pull request
+CR - change request
 
 prior [ˈpraɪər] adj.先前的
 priority [praɪˈɔːrəti] n.优先权
@@ -182,7 +192,7 @@ glossary [ˈɡlɑːsəri] n.词汇表
 establish [ɪˈstæblɪʃ] vt.建立
 establishing [ɪˈstæblɪʃɪŋ] v.建立
 posture [ˈpɑːstʃər] n.姿势;态度;看法;立场;
-integration [ˌɪntɪˈɡreɪʃn] n.结合;整合;一体化;
+integration [ˌɪntɪˈɡreɪʃn] n.联调;结合;整合;一体化;
 omitted [əˈmɪtɪd] v.删除;忽略;漏掉;遗漏;
 mess [mes] n.混乱;杂乱; v.弄脏;弄乱;
 helmet [ˈhelmɪt] n.头盔
@@ -245,18 +255,19 @@ simulator [/ˈsɪmjuleɪtər/] n.模拟器
 suffice [/səˈfaɪs/] vi.足够；足以
 monitor [/ˈmɑːnɪtər/] n.监视器；(计算机)显示器；监控器；显示屏；班长；监督员，核查员；巨蜥；级长；班代表
 industry [/ˈɪndəstri/] n.工业
-standard
-approache
-gauge
+standard [/ˈstændərd/] n.标准；规范
+approach [/əˈproʊtʃ/] n. 方法；接近
+gauge [/ɡeɪdʒ/] v. 测量；判定
+catalyst [/ˈkætəlɪst/] n.催化剂;引发变化的因素
 
 ## commonly
 
 make sense [meɪk sens] 有道理，合乎情理;可以理解;讲得通
-dudes
-folks
-eliminate
+dudes [/djudz/] n. 男人
+folks [/foʊks/] n. 大伙儿； Dev folks are working to restore LD items. 开发们正在努力恢复LD项目
+eliminate [/ɪˈlɪmɪneɪt/] v. 消除；排除；
 chroe
-alternatively
+alternatively [/ɔːlˈtɜːrnətɪvli/] adv. 要不
 scheme [skiːm] n.计划;方案;体系; v.密谋;
 likelihood [ˈlaɪklihʊd] n.可能
 correct [kəˈrekt] adj.对的; v.纠正;改正;
@@ -442,6 +453,10 @@ tragic - this is tragic.
 ignore - you can just ignore it,
 certificate - there is a problem with gfycat's certificate.
 accordingly - your client is throwing this accordingly.
+redemption /rɪˈdempʃn/ - 赎回
+revenue /ˈrevənuː/ - 收入
+defer /dɪˈfɜːr/ - 延迟
+credit /ˈkredɪt/ - 信用
 
 Do any of you currently have problems with messages failing to post on mobile.
 hidden in plain sight!
