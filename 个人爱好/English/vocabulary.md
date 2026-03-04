@@ -2,7 +2,7 @@
 
 https://wikidiff.com/
 
-## 
+##
 
 Monday
 Tuesday
@@ -134,10 +134,17 @@ can you just give me some bullet points? 能不能给我一些要点
 
 ## computer related
 
+CST(China Standard Time)
+PST(Pacific Standard Time)
 pii 个人身份信息 personally identifiable information
 pci 个人计算机接口 Personal computer interface
 work around [wɜːrk əˈraʊnd] 解决方案
 conceptual diagram
+
+kilo - K
+mega - M
+giga - G
+tera - T
 
 add /æd/ v.加
 subtract /səbˈtrækt/ v.减
@@ -264,7 +271,7 @@ catalyst [/ˈkætəlɪst/] n.催化剂;引发变化的因素
 
 make sense [meɪk sens] 有道理，合乎情理;可以理解;讲得通
 dudes [/djudz/] n. 男人
-folks [/foʊks/] n. 大伙儿； Dev folks are working to restore LD items. 开发们正在努力恢复LD项目
+folks [/foʊks/] n. 大伙儿； Dev folks are working to restore LD items. 开发们正在努力恢复 LD 项目
 eliminate [/ɪˈlɪmɪneɪt/] v. 消除；排除；
 chroe
 alternatively [/ɔːlˈtɜːrnətɪvli/] adv. 要不
@@ -508,7 +515,7 @@ authorization 授权，是控制用户或实体对资源或服务的访问权限
 
 ## access vs privilege vs permission
 
-access 访问，通常由authentication、authorization控制
+access 访问，通常由 authentication、authorization 控制
 privilege 特权，一种全局的权利
 permission 许可，一种局部的限制
 
