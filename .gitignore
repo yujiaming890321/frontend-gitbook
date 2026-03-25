@@ -10,6 +10,8 @@ yarn-debug.log*
 yarn-error.log*
 
 _book
+build/
+.docusaurus/
 python/
 tampermonkey/
 
