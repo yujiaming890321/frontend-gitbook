@@ -24,7 +24,9 @@ jobs:
           node-version: 20.13.1
           cache: npm
       - run: npm ci
-      - run: node_modules/.bin/docusaurus build
+      - run: ls node_modules/.bin/ | head -20
+      - run: npm ls @docusaurus/core
+      - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: build
