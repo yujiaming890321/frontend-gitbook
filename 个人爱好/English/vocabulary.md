@@ -146,6 +146,7 @@ mega - M
 giga - G
 tera - T
 
+postpone /poʊˈspoʊn/ vt.推迟
 add /æd/ v.加
 subtract /səbˈtrækt/ v.减
 multiply /ˈmʌltɪplaɪ/ v.乘
@@ -249,7 +250,7 @@ declarative [dɪˈklærətɪv] adj.陈述的
 composability [kəmˈpoʊzəˈbɪləti] n.可组合性;
 discard [dɪˈskɑːrd] v.丢弃;
 pixel [ˈpɪksl] n.像素
-hydrate [ˈhaɪdreɪt] n.水合物 Hydrate query params to res
+hydrate [ˈhaɪdreɪt] n.水合物 Hydrate query params to res; hydrateResLocalWithAccessToken
 statement [ˈsteɪtmənt] n.陈述;声明;报表;说法;报告;说明;表白;表态;结算单;清单;评估报告;（文字）陈述，表述 - return statement 返回语句
 assignment [əˈsaɪnmənt] n.分配;(分派的)工作，任务;(工作等的)分派，布置 - 赋值
 repository [/rɪˈpɑːzətɔːri/] n.仓库;贮藏室;存放处;学识渊博的人;智囊;知识宝典
@@ -266,6 +267,9 @@ standard [/ˈstændərd/] n.标准；规范
 approach [/əˈproʊtʃ/] n. 方法；接近
 gauge [/ɡeɪdʒ/] v. 测量；判定
 catalyst [/ˈkætəlɪst/] n.催化剂;引发变化的因素
+proceed = processed
+tabbed /tæbd/ 分页的
+single
 
 ## commonly
 
