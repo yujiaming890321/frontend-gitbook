@@ -53,6 +53,7 @@ const config = {
                         '**/ServiceWorker-demo/**',
                         '**/WebWorker-demo/**',
                         '**/node_modules/**',
+                        '**/skills/**',
                     ],
                 },
                 blog: false,
