@@ -6,7 +6,7 @@
     "github",
     "codeblock-disable-glossary",
     "collapsible-menu",
-    "anchors"
+    "anchors@0.7.1"
   ],
   "pluginsConfig": {
     "github": {
