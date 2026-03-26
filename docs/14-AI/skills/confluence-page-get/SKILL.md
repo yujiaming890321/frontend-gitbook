@@ -10,7 +10,7 @@ confluence, wiki, page, fetch page, view page, search confluence, confluence sea
 
 ## Overview
 
-Fetch and display Confluence pages from Tesla's internal Confluence instance (`CONFLUENCE_URL`) using the REST API with Bearer token authentication.
+Fetch and display Confluence pages from Confluence instance (`CONFLUENCE_URL`) using the REST API with Bearer token authentication.
 
 ## When to Use
 

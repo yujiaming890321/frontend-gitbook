@@ -44,7 +44,7 @@ git lfs uninstall
 使用 lfs 后会缺少fetch 地址，导致无法拉取最新分支。
 
 [remote "origin"]
-	url = git@github-fw.tesla.com:mobile-apps/mobile-app.git
+	url = git@github.com/app.git
 	fetch = +refs/heads/*:refs/remotes/origin/*
 
 ## git pull --dedth 1 后拉取分支

@@ -10,7 +10,7 @@ get jira, fetch issue, view ticket, look up jira, jira details, issue details, t
 
 ## Overview
 
-Fetch and display a Jira issue from Tesla's internal Jira instance (`JIRA_URL`) using the REST API with Bearer token authentication.
+Fetch and display a Jira issue from Jira instance (`JIRA_URL`) using the REST API with Bearer token authentication.
 
 ## When to Use
 

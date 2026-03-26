@@ -29,7 +29,7 @@ Extract PR number from user input. Detect repo and hostname from git remote:
 git remote get-url origin
 
 # Get GitHub Enterprise hostname from remote URL
-# e.g., github.teslamotors.com -> use as --hostname value
+# e.g., github.com -> use as --hostname value
 ```
 
 ### Step 2: Fetch PR Review Comments

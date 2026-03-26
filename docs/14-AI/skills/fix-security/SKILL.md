@@ -52,7 +52,7 @@ git remote get-url origin
 ```
 
 - Parse `owner/repo` from the remote URL
-- Determine the GitHub hostname (e.g., `github.com`, `github.tesla.com`)
+- Determine the GitHub hostname (e.g., `github.com`)
 
 ### 2. Fetch Dependabot alerts
 
