@@ -12,7 +12,7 @@ yarn-error.log*
 _book
 build/
 .docusaurus/
-python/
+/python/
 tampermonkey/
 
 # Editor directories and files

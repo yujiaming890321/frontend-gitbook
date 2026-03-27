@@ -14,7 +14,8 @@
 
 | 工具 | 用途 | 免费额度 |
 |------|------|---------|
-| **Google AI Studio** | 调用 Gemini API，免费额度最大方 | 免费调用，有 RPM 限制 |
+| **DeepSeek** | 国产模型，推理能力强，API 兼容 OpenAI 格式 | 注册送 500 万 tokens |
+| **通义千问 DashScope** | 阿里云 Qwen 模型官方平台，中文能力强 | 注册送 100 万 tokens，部分模型持续免费 |
 | **Ollama** | 本地运行开源模型（Llama、Qwen 等） | 完全免费，需 8GB+ 内存 |
 | **Groq** | 云端调用开源模型，速度极快 | 免费 tier，有速率限制 |
 | **HuggingFace** | 模型托管 + Inference API | 免费 tier |
@@ -22,7 +23,7 @@
 | **LangChain / LangGraph** | Agent 框架 | 开源免费 |
 | **Claude Code** | AI 编程助手（你已经在用） | 按计划付费 |
 
-**推荐组合**：Google AI Studio（云端 LLM）+ Ollama（本地 LLM）+ Chroma（向量数据库）
+**推荐组合**：DeepSeek（云端 LLM）+ Ollama（本地 LLM）+ Chroma（向量数据库）
 
 ### Ollama 安装
 
@@ -40,13 +41,25 @@ ollama pull qwen2.5:7b
 curl http://localhost:11434/api/generate -d '{"model":"qwen2.5:7b","prompt":"你好"}'
 ```
 
-### Google AI Studio 获取免费 API Key
+### DeepSeek 获取免费 API Key
 
 ```
-1. 访问 https://aistudio.google.com/
-2. 登录 Google 账号
-3. 点击 "Get API Key" → "Create API Key"
+1. 访问 https://platform.deepseek.com/
+2. 注册并登录账号
+3. 进入 "API Keys" 页面 → "创建 API Key"
 4. 保存 key，后续代码中使用
+5. 注册即送 500 万 tokens 免费额度
+```
+
+### 通义千问 DashScope 获取免费 API Key
+
+```
+1. 访问 https://dashscope.console.aliyun.com/
+2. 用支付宝/淘宝/阿里云账号登录
+3. 开通 DashScope 服务（免费）
+4. 进入「API-KEY 管理」→ 创建 API Key
+5. 保存 key，后续代码中使用
+6. 注册即送免费额度，qwen-turbo 等模型有持续免费调用额度
 ```
 
 ---
@@ -198,7 +211,7 @@ chunks = [doc[i:i+500] for i in range(0, len(doc), 500)]
 # 3. async/await（API 调用）
 async def call_llm(prompt: str) -> str:
     response = await client.chat.completions.create(
-        model="gemini-2.0-flash",
+        model="deepseek-chat",
         messages=[{"role": "user", "content": prompt}]
     )
     return response.choices[0].message.content
@@ -264,7 +277,7 @@ async def chat(request: ChatRequest):
 | 天 | 内容 | 时间 |
 |---|------|------|
 | Day 1 | 用 Ollama 本地调用 LLM（REST API 方式） | 30min |
-| Day 2 | 用 Google AI Studio 获取 API key，调用 Gemini API | 30min |
+| Day 2 | 用 DeepSeek 获取 API key，调用 DeepSeek API | 30min |
 | Day 3 | 学习 OpenAI 兼容格式（messages 数组、role、temperature） | 30min |
 | Day 4 | 流式响应（streaming）：理解 SSE，实现打字机效果 | 30min |
 | Day 5 | 多轮对话：管理 messages 历史 | 30min |
@@ -274,7 +287,7 @@ async def chat(request: ChatRequest):
 
 ```python
 # OpenAI 兼容格式（几乎所有 LLM API 都遵循这个格式）
-# Ollama、Gemini、Groq 都支持这个格式
+# Ollama、DeepSeek、Groq 都支持这个格式
 
 from openai import OpenAI
 
@@ -284,15 +297,20 @@ client = OpenAI(
     api_key="ollama"  # Ollama 不需要真实 key
 )
 
-# 或者连接 Google Gemini（免费）
-# pip install google-genai
+# 或者连接 DeepSeek（注册送 500 万 tokens）
 # client = OpenAI(
-#     base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
-#     api_key="your-gemini-api-key"
+#     base_url="https://api.deepseek.com",
+#     api_key="your-deepseek-api-key"
+# )
+
+# 或者连接通义千问 DashScope（注册送免费额度）
+# client = OpenAI(
+#     base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+#     api_key="your-dashscope-api-key"
 # )
 
 response = client.chat.completions.create(
-    model="qwen2.5:7b",  # Gemini 用 "gemini-2.0-flash"
+    model="qwen2.5:7b",  # DeepSeek 用 "deepseek-chat"，DashScope 用 "qwen-turbo"
     messages=[
         {"role": "system", "content": "你是一个有用的助手"},
         {"role": "user", "content": "解释什么是 React hooks"}
@@ -795,7 +813,7 @@ claude mcp add gitbook-docs node dist/index.js
 
 ```
                     ┌─ Prompt Engineering（实战）
-                    ├─ LLM API 调用（Ollama / Gemini）
+                    ├─ LLM API 调用（Ollama / DeepSeek）
 你现在的能力 ────────┤
 (前端 + JS/TS)      ├─ RAG 全栈（文档→向量→检索→问答→UI）
                     ├─ Agent 开发（LangGraph + 工具编排）
