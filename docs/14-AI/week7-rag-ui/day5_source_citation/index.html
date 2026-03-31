@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Source Citation - Day 5</title>
+    <!--
+    Day 5: 来源引用展示 — 显示 RAG 用到了哪些文档
+
+    为什么需要来源引用？
+    - 用户需要知道 AI 回答的依据是什么
+    - 可以验证回答是否准确
+    - 这是 RAG 相比纯 LLM 的核心优势：有据可查
+
+    本文件在 Day 4 流式输出的基础上:
+    - 展示来源文档的详细信息
+    - 可展开/折叠来源内容
+    - 高亮相关度分数
+    - 支持点击跳转到原文
+
+    前置条件:
+    - 启动后端: python day2_sse_streaming.py
+    -->
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .app-container {
+            width: 900px;
+            height: 92vh;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        /* ---- Left: Chat Panel ---- */
+        .chat-panel {
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        .chat-header {
+            padding: 14px 20px;
+            background: #1e293b;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h1 { font-size: 16px; font-weight: 600; }
+
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .message {
+            max-width: 90%;
+            padding: 10px 14px;
+            border-radius: 10px;
+            line-height: 1.7;
+            font-size: 14px;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: #3b82f6;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.assistant {
+            align-self: flex-start;
+            background: #f1f5f9;
+            color: #1e293b;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.error {
+            align-self: center;
+            background: #fef2f2;
+            color: #dc2626;
+            font-size: 13px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 14px;
+            background: #3b82f6;
+            margin-left: 2px;
+            vertical-align: text-bottom;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .inline-sources {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .inline-source-chip {
+            font-size: 11px;
+            padding: 2px 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .inline-source-chip:hover {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .inline-source-chip.active {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .meta { font-size: 11px; color: #94a3b8; margin-top: 4px; }
+
+        .input-area {
+            padding: 14px 16px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 8px;
+        }
+
+        .input-area input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .input-area input:focus { border-color: #3b82f6; }
+
+        .input-area button {
+            padding: 10px 20px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .input-area button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .input-area button.stop { background: #ef4444; }
+
+        /* ---- Right: Sources Panel ---- */
+        .sources-panel {
+            display: flex;
+            flex-direction: column;
+            background: #f8fafc;
+        }
+
+        .sources-header {
+            padding: 14px 16px;
+            background: #1e293b;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .sources-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px;
+        }
+
+        .source-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .source-card.active {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 1px #3b82f6;
+        }
+
+        .source-card-header {
+            padding: 10px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .source-card-header:hover { background: #f1f5f9; }
+
+        .source-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e293b;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 160px;
+        }
+
+        .score-badge {
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .score-high { background: #dcfce7; color: #166534; }
+        .score-mid { background: #fef9c3; color: #854d0e; }
+        .score-low { background: #fee2e2; color: #991b1b; }
+
+        .source-card-body {
+            padding: 0 12px 12px;
+            font-size: 12px;
+            color: #475569;
+            line-height: 1.6;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .source-preview {
+            margin-top: 8px;
+            padding: 8px;
+            background: #f8fafc;
+            border-radius: 4px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 11px;
+            white-space: pre-wrap;
+            max-height: 150px;
+            overflow-y: auto;
+            color: #334155;
+        }
+
+        .no-sources {
+            padding: 30px 16px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .sources-summary {
+            padding: 10px 16px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 12px;
+            color: #64748b;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const API_BASE = "http://localhost:8000";
+
+        // ============================================================
+        // SSE Parser (same as Day 4)
+        // ============================================================
+
+        function parseSSEEvents(text) {
+            const events = [];
+            const lines = text.split("\n");
+            let currentEvent = { type: null, data: null };
+            for (const line of lines) {
+                if (line.startsWith("event: ")) {
+                    currentEvent.type = line.slice(7).trim();
+                } else if (line.startsWith("data: ")) {
+                    currentEvent.data = line.slice(6);
+                } else if (line === "" && currentEvent.type && currentEvent.data) {
+                    try {
+                        events.push({ type: currentEvent.type, data: JSON.parse(currentEvent.data) });
+                    } catch {}
+                    currentEvent = { type: null, data: null };
+                }
+            }
+            return events;
+        }
+
+        async function fetchStream(question, onEvent, signal) {
+            const response = await fetch(`${API_BASE}/ask/stream`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ question }),
+                signal,
+            });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let buffer = "";
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+                buffer += decoder.decode(value, { stream: true });
+                const lastEnd = buffer.lastIndexOf("\n\n");
+                if (lastEnd === -1) continue;
+                const complete = buffer.slice(0, lastEnd + 2);
+                buffer = buffer.slice(lastEnd + 2);
+                for (const event of parseSSEEvents(complete)) {
+                    onEvent(event.type, event.data);
+                }
+            }
+            if (buffer.trim()) {
+                for (const event of parseSSEEvents(buffer)) {
+                    onEvent(event.type, event.data);
+                }
+            }
+        }
+
+        // ============================================================
+        // Score Badge — color-coded relevance score
+        // ============================================================
+
+        function ScoreBadge({ score }) {
+            // Lower distance = more relevant (Chroma uses L2 distance)
+            const level = score < 0.5 ? "high" : score < 1.0 ? "mid" : "low";
+            const label = score < 0.5 ? "High" : score < 1.0 ? "Medium" : "Low";
+            return (
+                <span className={`score-badge score-${level}`}>
+                    {label} ({score.toFixed(2)})
+                </span>
+            );
+        }
+
+        // ============================================================
+        // Source Card — collapsible source document display
+        // ============================================================
+
+        function SourceCard({ source, isActive, onClick }) {
+            const [expanded, setExpanded] = React.useState(false);
+
+            return (
+                <div className={`source-card ${isActive ? "active" : ""}`}>
+                    <div
+                        className="source-card-header"
+                        onClick={() => {
+                            setExpanded(!expanded);
+                            onClick();
+                        }}
+                    >
+                        <span className="source-name" title={source.source}>
+                            {expanded ? "v " : "> "}
+                            {source.source}
+                        </span>
+                        <ScoreBadge score={source.score} />
+                    </div>
+
+                    {expanded && (
+                        <div className="source-card-body">
+                            <div><strong>Relevance distance:</strong> {source.score.toFixed(4)}</div>
+                            <div className="source-preview">{source.preview}</div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        // ============================================================
+        // Sources Panel — right sidebar showing all sources
+        // ============================================================
+
+        function SourcesPanel({ sources, activeSource, onSourceClick }) {
+            if (!sources || sources.length === 0) {
+                return (
+                    <div className="sources-panel">
+                        <div className="sources-header">Sources</div>
+                        <div className="no-sources">
+                            Ask a question to see<br />which documents are used
+                        </div>
+                    </div>
+                );
+            }
+
+            return (
+                <div className="sources-panel">
+                    <div className="sources-header">
+                        Sources ({sources.length})
+                    </div>
+                    <div className="sources-list">
+                        {sources.map((src, i) => (
+                            <SourceCard
+                                key={i}
+                                source={src}
+                                isActive={activeSource === i}
+                                onClick={() => onSourceClick(i)}
+                            />
+                        ))}
+                    </div>
+                    <div className="sources-summary">
+                        Avg distance: {(sources.reduce((s, x) => s + x.score, 0) / sources.length).toFixed(3)}
+                    </div>
+                </div>
+            );
+        }
+
+        // ============================================================
+        // Chat Message with inline source references
+        // ============================================================
+
+        function ChatMessage({ message, isStreaming, onSourceClick }) {
+            return (
+                <div className={`message ${message.role}`}>
+                    <div>
+                        {message.content}
+                        {isStreaming && <span className="cursor" />}
+                    </div>
+
+                    {/* Inline source chips in the message */}
+                    {message.sources && message.sources.length > 0 && !isStreaming && (
+                        <div className="inline-sources">
+                            {message.sources.map((src, i) => (
+                                <span
+                                    key={i}
+                                    className="inline-source-chip"
+                                    onClick={() => onSourceClick(i)}
+                                    title={`Click to view: ${src.source}`}
+                                >
+                                    [{i + 1}] {src.source}
+                                </span>
+                            ))}
+                        </div>
+                    )}
+
+                    {message.meta && <div className="meta">{message.meta}</div>}
+                </div>
+            );
+        }
+
+        // ============================================================
+        // Main App — split layout with chat + sources panel
+        // ============================================================
+
+        function App() {
+            const [messages, setMessages] = React.useState([]);
+            const [input, setInput] = React.useState("");
+            const [streaming, setStreaming] = React.useState(false);
+            const [abortController, setAbortController] = React.useState(null);
+            const [currentSources, setCurrentSources] = React.useState([]);
+            const [activeSource, setActiveSource] = React.useState(null);
+            const messagesEndRef = React.useRef(null);
+
+            React.useEffect(() => {
+                messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+            }, [messages]);
+
+            const handleSend = async (question) => {
+                const q = question || input.trim();
+                if (!q || streaming) return;
+
+                setMessages((prev) => [...prev, { role: "user", content: q }]);
+                setInput("");
+                setStreaming(true);
+                setCurrentSources([]);
+                setActiveSource(null);
+
+                const controller = new AbortController();
+                setAbortController(controller);
+
+                let streamedContent = "";
+                const startTime = Date.now();
+
+                setMessages((prev) => [
+                    ...prev,
+                    { role: "assistant", content: "", sources: [], streaming: true },
+                ]);
+
+                try {
+                    await fetchStream(
+                        q,
+                        (type, data) => {
+                            switch (type) {
+                                case "sources":
+                                    // Update both the sidebar and the message
+                                    setCurrentSources(data.sources);
+                                    setMessages((prev) => {
+                                        const updated = [...prev];
+                                        const last = updated[updated.length - 1];
+                                        updated[updated.length - 1] = { ...last, sources: data.sources };
+                                        return updated;
+                                    });
+                                    break;
+
+                                case "token":
+                                    streamedContent += data.content;
+                                    setMessages((prev) => {
+                                        const updated = [...prev];
+                                        const last = updated[updated.length - 1];
+                                        updated[updated.length - 1] = { ...last, content: streamedContent };
+                                        return updated;
+                                    });
+                                    break;
+
+                                case "done":
+                                    const elapsed = Date.now() - startTime;
+                                    setMessages((prev) => {
+                                        const updated = [...prev];
+                                        const last = updated[updated.length - 1];
+                                        updated[updated.length - 1] = {
+                                            ...last,
+                                            streaming: false,
+                                            meta: `${elapsed}ms | ${data.token_count} tokens | ${currentSources.length} sources`,
+                                        };
+                                        return updated;
+                                    });
+                                    break;
+
+                                case "error":
+                                    setMessages((prev) => [
+                                        ...prev,
+                                        { role: "error", content: data.message },
+                                    ]);
+                                    break;
+                            }
+                        },
+                        controller.signal
+                    );
+                } catch (err) {
+                    if (err.name !== "AbortError") {
+                        setMessages((prev) => [
+                            ...prev,
+                            { role: "error", content: `Error: ${err.message}` },
+                        ]);
+                    }
+                } finally {
+                    setStreaming(false);
+                    setAbortController(null);
+                }
+            };
+
+            const handleStop = () => abortController?.abort();
+
+            const handleKeyDown = (e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSend();
+                }
+            };
+
+            // When user clicks a source chip, highlight it in the sidebar
+            const handleSourceClick = (index) => {
+                setActiveSource(index === activeSource ? null : index);
+            };
+
+            return (
+                <div className="app-container">
+                    {/* Left: Chat */}
+                    <div className="chat-panel">
+                        <div className="chat-header">
+                            <h1>RAG Chat with Sources</h1>
+                        </div>
+
+                        <div className="messages">
+                            {messages.length === 0 && (
+                                <div style={{ textAlign: "center", color: "#94a3b8", padding: "40px" }}>
+                                    <h2 style={{ fontSize: 18, marginBottom: 8, color: "#64748b" }}>
+                                        Source Citation Demo
+                                    </h2>
+                                    <p style={{ fontSize: 13 }}>
+                                        Ask a question and see which documents are used.
+                                        <br />
+                                        Click the source chips to view details in the right panel.
+                                    </p>
+                                </div>
+                            )}
+
+                            {messages.map((msg, i) => (
+                                <ChatMessage
+                                    key={i}
+                                    message={msg}
+                                    isStreaming={msg.streaming}
+                                    onSourceClick={handleSourceClick}
+                                />
+                            ))}
+                            <div ref={messagesEndRef} />
+                        </div>
+
+                        <div className="input-area">
+                            <input
+                                value={input}
+                                onChange={(e) => setInput(e.target.value)}
+                                onKeyDown={handleKeyDown}
+                                placeholder="Ask a question..."
+                                disabled={streaming}
+                            />
+                            {streaming ? (
+                                <button className="stop" onClick={handleStop}>Stop</button>
+                            ) : (
+                                <button onClick={() => handleSend()} disabled={!input.trim()}>
+                                    Send
+                                </button>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Right: Sources */}
+                    <SourcesPanel
+                        sources={currentSources}
+                        activeSource={activeSource}
+                        onSourceClick={handleSourceClick}
+                    />
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<App />);
+    </script>
+
+    <!--
+    ============================================================
+    练习题
+    ============================================================
+
+    TODO 1: 添加来源历史
+    不只显示最新一次的来源，而是保存每次对话的来源
+    在右侧面板按对话轮次分组展示
+
+    TODO 2: 添加来源搜索
+    在右侧面板顶部添加搜索框，可以搜索来源文件名
+
+    TODO 3: 实现来源内容高亮
+    在来源预览中，高亮与用户问题最相关的关键词
+    提示: 把问题分词后，用 <mark> 标签包裹匹配的词
+
+    TODO 4: 添加来源评分可视化
+    用进度条或星级展示来源的相关度分数
+    提示: 用 CSS width percentage 做进度条
+
+    TODO 5: 添加 "View Full Document" 功能
+    点击来源后，调用后端接口获取完整文档内容
+    需要在后端添加 GET /docs/{filename} 接口
+    -->
+</body>
+</html>

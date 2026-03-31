@@ -38,7 +38,7 @@ def create_api_request(endpoint: str, **params):
     """Build an API request with arbitrary parameters"""
     print(f"POST {endpoint}")
     for key, value in params.items():
-        print(f"  {key}: {value}")
+        print(f"{key}: {value}")
 
 create_api_request(
     "/v1/chat/completions",
@@ -77,7 +77,7 @@ documents = [
 # Sort by relevance score, highest first
 sorted_docs = sorted(documents, key=lambda doc: doc["score"], reverse=True)
 for doc in sorted_docs:
-    print(f"  {doc['score']:.2f} - {doc['title']}")
+    print(f"{doc['score']:.2f} - {doc['title']}")
 
 # AI 场景：按 token 数排序 chunks（模拟）
 chunks = ["短文本", "这是一段稍微长一些的文本内容", "中等长度的内容"]
@@ -93,27 +93,31 @@ print(f"按长度排序: {sorted_chunks}")
 # Python 推荐用列表推导式替代 map/filter，但了解它们仍有用
 
 # map — 但推荐用列表推导式
+print("map — 但推荐用列表推导式")
 scores = [0.85, 0.92, 0.78, 0.65]
 # JS: scores.map(s => Math.round(s * 100))
 percentages = [round(s * 100) for s in scores]  # Pythonic way
 print(percentages)  # [85, 92, 78, 65]
 
 # filter — 但推荐用列表推导式
+print("filter — 但推荐用列表推导式")
 # JS: scores.filter(s => s > 0.8)
 high_scores = [s for s in scores if s > 0.8]  # Pythonic way
 print(high_scores)  # [0.85, 0.92]
 
 # enumerate — Python 独有，遍历时同时获取索引
+print("numerate — Python 独有，遍历时同时获取索引")
 # JS: arr.forEach((item, index) => ...)
 for i, score in enumerate(scores):
-    print(f"  #{i+1}: {score}")
+    print(f"#{i+1}: {score}")
 
 # zip — 同时遍历多个列表
+print("zip — 同时遍历多个列表")
 # JS: 没有直接等价物
 models = ["gpt-4", "deepseek", "qwen"]
 speeds = [30, 80, 50]
 for model, speed in zip(models, speeds):
-    print(f"  {model}: {speed} tokens/s")
+    print(f"{model}: {speed} tokens/s")
 
 
 # ============================================================
@@ -192,16 +196,28 @@ print("=" * 50)
 #        {"role": "user", "content": "你好"},
 #        {"role": "user", "content": "帮我写代码"}]
 
-# def build_messages(system_prompt: str, *user_messages) -> list[dict]:
-#     ???
+def build_messages(system_prompt: str, *user_messages) -> list[dict]:
+    return [{"role": "system", "content": system_prompt}, *[{"role": "user", "content": message} for message in user_messages]]
+
+print(build_messages("你是助手", "你好", "帮我写代码"))
 
 # TODO 2: 写一个装饰器 log_call，打印函数名和参数
 # @log_call
 # def add(a, b): return a + b
 # add(1, 2)  → 打印: "Calling add(1, 2)" 然后返回 3
 
-# def log_call(func):
-#     ???
+def log_call(func):
+    @functiontools.wraps(func)
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        print(f"Calling {func.__name__}({args}, {kwargs})")
+        return result
+    return wrapper
+
+@log_call
+def add(a, b):
+    return a + b
+print(add(1, 2))
 
 # TODO 3: 给定一组文档和分数，用 zip + sorted 按分数从高到低排序，
 # 然后只返回分数 > 0.8 的文档标题

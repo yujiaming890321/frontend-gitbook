@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Chat UI - Day 3</title>
+    <!--
+    Day 3: React 聊天界面 — 用 CDN React 搭建 Chat UI
+
+    为什么用 CDN 而不是 create-react-app？
+    - 你已经是前端开发了，不需要再学一遍脚手架
+    - 这里的重点是对接 AI 后端，不是前端工程化
+    - 一个 HTML 文件就能跑，方便学习
+
+    前置条件:
+    - 启动后端: python day1_fastapi_wrap.py (默认端口 8000)
+    - 直接用浏览器打开这个 HTML 文件
+
+    知识点:
+    - fetch 调用 FastAPI 后端
+    - React 状态管理聊天消息
+    - 加载状态和错误处理
+    -->
+
+    <!-- React 18 via CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel for JSX in browser (dev only, don't use in production) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-container {
+            width: 700px;
+            height: 85vh;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            padding: 16px 20px;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h1 { font-size: 18px; font-weight: 600; }
+        .chat-header .status {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.2);
+        }
+        .chat-header .status.connected { background: #22c55e; }
+        .chat-header .status.error { background: #ef4444; }
+
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            line-height: 1.6;
+            font-size: 14px;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: #2563eb;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.assistant {
+            align-self: flex-start;
+            background: #f0f0f0;
+            color: #333;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.error {
+            align-self: center;
+            background: #fef2f2;
+            color: #dc2626;
+            font-size: 13px;
+        }
+
+        .message .meta {
+            font-size: 11px;
+            color: #999;
+            margin-top: 8px;
+        }
+
+        .message.assistant .meta { color: #888; }
+
+        .sources {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .sources .source-item {
+            margin: 4px 0;
+            padding: 4px 8px;
+            background: #e8e8e8;
+            border-radius: 4px;
+            display: inline-block;
+            margin-right: 4px;
+        }
+
+        .input-area {
+            padding: 16px 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-area input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-area input:focus { border-color: #2563eb; }
+        .input-area input:disabled { background: #f5f5f5; }
+
+        .input-area button {
+            padding: 12px 24px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .input-area button:hover { background: #1d4ed8; }
+        .input-area button:disabled { background: #93c5fd; cursor: not-allowed; }
+
+        .loading-dots::after {
+            content: '';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+
+        @keyframes dots {
+            0%  { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+        }
+
+        .welcome {
+            text-align: center;
+            color: #999;
+            padding: 40px 20px;
+        }
+
+        .welcome h2 { font-size: 20px; margin-bottom: 8px; color: #666; }
+        .welcome p { font-size: 14px; }
+
+        .welcome .examples {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .welcome .example-btn {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            font-size: 13px;
+            color: #555;
+            transition: all 0.2s;
+        }
+
+        .welcome .example-btn:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // ============================================================
+        // Configuration
+        // ============================================================
+
+        // Backend API URL — change this if your FastAPI server runs elsewhere
+        const API_BASE = "http://localhost:8000";
+
+        // ============================================================
+        // API Client — wraps fetch calls to the backend
+        // Same pattern you'd use in any React app
+        // ============================================================
+
+        const api = {
+            /**
+             * Send a question to the RAG backend and get an answer.
+             * Calls POST /ask from day1_fastapi_wrap.py
+             */
+            async ask(question) {
+                const response = await fetch(`${API_BASE}/ask`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ question }),
+                });
+
+                if (!response.ok) {
+                    const error = await response.json().catch(() => ({}));
+                    throw new Error(error.detail || `HTTP ${response.status}`);
+                }
+
+                return response.json();
+            },
+
+            /** Check if the backend is running */
+            async healthCheck() {
+                try {
+                    const response = await fetch(`${API_BASE}/health`);
+                    return response.ok;
+                } catch {
+                    return false;
+                }
+            },
+        };
+
+        // ============================================================
+        // Chat Message Component
+        // ============================================================
+
+        function ChatMessage({ message }) {
+            return (
+                <div className={`message ${message.role}`}>
+                    {/* Message content */}
+                    <div>{message.content}</div>
+
+                    {/* Source citations (for assistant messages) */}
+                    {message.sources && message.sources.length > 0 && (
+                        <div className="sources">
+                            <strong>Sources:</strong>
+                            {message.sources.map((src, i) => (
+                                <span key={i} className="source-item">
+                                    {src.source} ({(src.score).toFixed(2)})
+                                </span>
+                            ))}
+                        </div>
+                    )}
+
+                    {/* Metadata (elapsed time, chunks used) */}
+                    {message.meta && (
+                        <div className="meta">{message.meta}</div>
+                    )}
+                </div>
+            );
+        }
+
+        // ============================================================
+        // Welcome Screen Component
+        // ============================================================
+
+        function Welcome({ onExampleClick }) {
+            const examples = [
+                "What are React hooks?",
+                "Explain JavaScript closures",
+                "How does CSS flexbox work?",
+            ];
+
+            return (
+                <div className="welcome">
+                    <h2>RAG Chat</h2>
+                    <p>Ask questions about your knowledge base</p>
+                    <div className="examples">
+                        {examples.map((q, i) => (
+                            <button
+                                key={i}
+                                className="example-btn"
+                                onClick={() => onExampleClick(q)}
+                            >
+                                {q}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        // ============================================================
+        // Main App Component
+        // ============================================================
+
+        function App() {
+            const [messages, setMessages] = React.useState([]);
+            const [input, setInput] = React.useState("");
+            const [loading, setLoading] = React.useState(false);
+            const [backendStatus, setBackendStatus] = React.useState("checking");
+            const messagesEndRef = React.useRef(null);
+
+            // Check backend health on mount
+            React.useEffect(() => {
+                api.healthCheck().then((ok) => {
+                    setBackendStatus(ok ? "connected" : "error");
+                });
+            }, []);
+
+            // Auto-scroll to bottom when new messages arrive
+            React.useEffect(() => {
+                messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+            }, [messages]);
+
+            // Send a question to the backend
+            const handleSend = async (question) => {
+                const q = question || input.trim();
+                if (!q || loading) return;
+
+                // Add user message to chat
+                const userMsg = { role: "user", content: q };
+                setMessages((prev) => [...prev, userMsg]);
+                setInput("");
+                setLoading(true);
+
+                try {
+                    const result = await api.ask(q);
+
+                    // Add assistant message with sources and metadata
+                    const assistantMsg = {
+                        role: "assistant",
+                        content: result.answer,
+                        sources: result.sources,
+                        meta: `${result.elapsed_ms}ms | ${result.chunks_used} chunks | ${result.context_length} chars context`,
+                    };
+                    setMessages((prev) => [...prev, assistantMsg]);
+                } catch (err) {
+                    // Add error message
+                    setMessages((prev) => [
+                        ...prev,
+                        { role: "error", content: `Error: ${err.message}` },
+                    ]);
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            // Handle Enter key
+            const handleKeyDown = (e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSend();
+                }
+            };
+
+            return (
+                <div className="chat-container">
+                    {/* Header */}
+                    <div className="chat-header">
+                        <h1>RAG Chat</h1>
+                        <span className={`status ${backendStatus}`}>
+                            {backendStatus === "connected" ? "Backend Connected" :
+                             backendStatus === "error" ? "Backend Offline" :
+                             "Checking..."}
+                        </span>
+                    </div>
+
+                    {/* Messages */}
+                    <div className="messages">
+                        {messages.length === 0 ? (
+                            <Welcome onExampleClick={handleSend} />
+                        ) : (
+                            messages.map((msg, i) => (
+                                <ChatMessage key={i} message={msg} />
+                            ))
+                        )}
+
+                        {loading && (
+                            <div className="message assistant">
+                                <span className="loading-dots">Thinking</span>
+                            </div>
+                        )}
+
+                        <div ref={messagesEndRef} />
+                    </div>
+
+                    {/* Input */}
+                    <div className="input-area">
+                        <input
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                            placeholder={
+                                backendStatus === "error"
+                                    ? "Backend is offline. Start it first."
+                                    : "Ask a question..."
+                            }
+                            disabled={loading || backendStatus === "error"}
+                        />
+                        <button
+                            onClick={() => handleSend()}
+                            disabled={loading || !input.trim() || backendStatus === "error"}
+                        >
+                            {loading ? "..." : "Send"}
+                        </button>
+                    </div>
+                </div>
+            );
+        }
+
+        // ============================================================
+        // Mount React App
+        // ============================================================
+
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<App />);
+    </script>
+
+    <!--
+    ============================================================
+    练习题
+    ============================================================
+
+    TODO 1: 添加 "Clear Chat" 按钮
+    在 header 区域添加一个按钮，点击后清空 messages 数组
+
+    TODO 2: 添加消息时间戳
+    每条消息旁边显示发送时间 (new Date().toLocaleTimeString())
+
+    TODO 3: 添加 Markdown 渲染
+    AI 回答通常包含 Markdown 格式，用 marked.js 库渲染：
+    <script src="https://unpkg.com/marked/marked.min.js"></script>
+    然后用 dangerouslySetInnerHTML={{ __html: marked.parse(content) }}
+
+    TODO 4: 保存聊天记录到 localStorage
+    页面刷新后恢复之前的对话
+    提示: useEffect + localStorage.setItem/getItem
+    -->
+</body>
+</html>

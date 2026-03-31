@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Thinking Process UI</title>
+    <!--
+    Day 5: React UI showing agent's thinking process
+    Uses CDN React (no build step needed), standalone HTML file
+
+    Usage:
+      1. Start the FastAPI server: python day4_fastapi_agent.py --serve
+      2. Open this file in a browser
+
+    Architecture:
+      - React via CDN (development mode)
+      - Babel standalone for JSX transformation
+      - SSE (EventSource) for streaming agent responses
+      - No build tools, no npm, just one HTML file
+    -->
+
+    <!-- React CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            padding: 16px 0;
+            border-bottom: 1px solid #334155;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #38bdf8;
+        }
+
+        .header .subtitle {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 4px;
+        }
+
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #1e293b;
+            border-radius: 8px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+        .status-dot.offline {
+            background: #ef4444;
+        }
+
+        .status-dot.thinking {
+            background: #eab308;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .chat-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 0;
+        }
+
+        .message {
+            margin-bottom: 16px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .message.user .bubble {
+            background: #1d4ed8;
+            color: white;
+            border-radius: 16px 16px 4px 16px;
+            padding: 10px 16px;
+            max-width: 70%;
+        }
+
+        .message.assistant .bubble {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px 16px 16px 4px;
+            padding: 12px 16px;
+            max-width: 85%;
+        }
+
+        .message .role-label {
+            font-size: 11px;
+            color: #64748b;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Thinking process styles */
+        .thinking-panel {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .thinking-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background: #0f172a;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .thinking-header:hover {
+            background: #1a2744;
+        }
+
+        .thinking-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #38bdf8;
+        }
+
+        .thinking-body {
+            padding: 0 16px 12px;
+        }
+
+        .thinking-step {
+            padding: 8px 0;
+            border-bottom: 1px solid #1e293b;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .thinking-step:last-child {
+            border-bottom: none;
+        }
+
+        .step-label {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 8px;
+            text-transform: uppercase;
+        }
+
+        .step-label.think { background: #854d0e; color: #fef08a; }
+        .step-label.action { background: #1e40af; color: #93c5fd; }
+        .step-label.observe { background: #166534; color: #86efac; }
+        .step-label.error { background: #7f1d1d; color: #fca5a5; }
+
+        .tool-call-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            background: #312e81;
+            color: #a5b4fc;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: monospace;
+        }
+
+        /* Input area */
+        .input-area {
+            padding: 16px 0;
+            border-top: 1px solid #334155;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .input-field {
+            flex: 1;
+            padding: 12px 16px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            color: #e2e8f0;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-field:focus {
+            border-color: #38bdf8;
+        }
+
+        .input-field::placeholder {
+            color: #475569;
+        }
+
+        .send-btn {
+            padding: 12px 24px;
+            background: #1d4ed8;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .send-btn:hover {
+            background: #2563eb;
+        }
+
+        .send-btn:disabled {
+            background: #334155;
+            cursor: not-allowed;
+        }
+
+        .input-options {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .input-options label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        /* Settings panel */
+        .settings-panel {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+
+        .settings-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .settings-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .settings-row label {
+            min-width: 80px;
+            color: #94a3b8;
+        }
+
+        .settings-row input {
+            flex: 1;
+            padding: 4px 8px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 4px;
+            color: #e2e8f0;
+            font-size: 13px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+
+        .loading-dots::after {
+            content: '';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+
+        @keyframes dots {
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #475569;
+        }
+
+        .empty-state h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #64748b;
+        }
+
+        .clear-btn {
+            padding: 4px 12px;
+            background: transparent;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            color: #64748b;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .clear-btn:hover {
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef, useCallback } = React;
+
+        // ============================================================
+        // API Helper
+        // ============================================================
+        const API_BASE = 'http://localhost:8000';
+
+        async function chatAPI(message, sessionId, useTools) {
+            const response = await fetch(`${API_BASE}/chat`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message,
+                    session_id: sessionId,
+                    use_tools: useTools,
+                }),
+            });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.json();
+        }
+
+        async function healthCheck() {
+            try {
+                const res = await fetch(`${API_BASE}/health`);
+                return res.ok;
+            } catch {
+                return false;
+            }
+        }
+
+        // SSE streaming chat
+        function streamChat(message, sessionId, onEvent) {
+            const params = new URLSearchParams({ message });
+            if (sessionId) params.set('session_id', sessionId);
+
+            const es = new EventSource(`${API_BASE}/chat/stream?${params}`);
+
+            es.addEventListener('status', (e) => {
+                onEvent({ type: 'status', data: JSON.parse(e.data) });
+            });
+
+            es.addEventListener('step', (e) => {
+                onEvent({ type: 'step', data: JSON.parse(e.data) });
+            });
+
+            es.addEventListener('tool_call', (e) => {
+                onEvent({ type: 'tool_call', data: JSON.parse(e.data) });
+            });
+
+            es.addEventListener('message', (e) => {
+                onEvent({ type: 'message', data: JSON.parse(e.data) });
+            });
+
+            es.addEventListener('done', (e) => {
+                onEvent({ type: 'done', data: JSON.parse(e.data) });
+                es.close();
+            });
+
+            es.onerror = () => {
+                onEvent({ type: 'error', data: { message: 'Connection lost' } });
+                es.close();
+            };
+
+            return () => es.close();
+        }
+
+        // ============================================================
+        // Components
+        // ============================================================
+
+        // Thinking Process Panel
+        function ThinkingPanel({ steps }) {
+            const [expanded, setExpanded] = useState(true);
+
+            if (!steps || steps.length === 0) return null;
+
+            return (
+                <div className="thinking-panel">
+                    <div className="thinking-header" onClick={() => setExpanded(!expanded)}>
+                        <span className="thinking-title">
+                            <span>&#x1f9e0;</span>
+                            Thinking Process ({steps.length} steps)
+                        </span>
+                        <span>{expanded ? '&#9660;' : '&#9654;'}</span>
+                    </div>
+                    {expanded && (
+                        <div className="thinking-body">
+                            {steps.map((step, i) => (
+                                <ThinkingStep key={i} step={step} index={i} />
+                            ))}
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        function ThinkingStep({ step, index }) {
+            const labelClass = step.type === 'action' ? 'action'
+                : step.type === 'observe' ? 'observe'
+                : step.type === 'error' ? 'error'
+                : 'think';
+
+            const labelText = step.type === 'action' ? 'ACT'
+                : step.type === 'observe' ? 'OBS'
+                : step.type === 'error' ? 'ERR'
+                : 'THINK';
+
+            return (
+                <div className="thinking-step">
+                    <span className={`step-label ${labelClass}`}>{labelText}</span>
+                    {step.tool && (
+                        <span className="tool-call-badge">{step.tool}</span>
+                    )}
+                    <span>{step.content || step.result || ''}</span>
+                </div>
+            );
+        }
+
+        // Chat Message
+        function ChatMessage({ message }) {
+            const isUser = message.role === 'user';
+
+            return (
+                <div className={`message ${message.role}`}>
+                    {!isUser && (
+                        <div>
+                            <div className="role-label">Agent</div>
+                            {message.thinkingSteps && message.thinkingSteps.length > 0 && (
+                                <ThinkingPanel steps={message.thinkingSteps} />
+                            )}
+                            <div className="bubble">{message.content}</div>
+                        </div>
+                    )}
+                    {isUser && (
+                        <div className="bubble">{message.content}</div>
+                    )}
+                </div>
+            );
+        }
+
+        // Empty State
+        function EmptyState() {
+            return (
+                <div className="empty-state">
+                    <h3>Agent Thinking Process UI</h3>
+                    <p>Ask a question to see the agent's thinking process.</p>
+                    <p style={{ marginTop: '16px', fontSize: '13px' }}>
+                        Try: "List files in current directory" or "Calculate 42 * 3.14"
+                    </p>
+                </div>
+            );
+        }
+
+        // ============================================================
+        // Main App
+        // ============================================================
+        function App() {
+            const [messages, setMessages] = useState([]);
+            const [input, setInput] = useState('');
+            const [isLoading, setIsLoading] = useState(false);
+            const [isOnline, setIsOnline] = useState(false);
+            const [sessionId, setSessionId] = useState(null);
+            const [useTools, setUseTools] = useState(true);
+            const [useStream, setUseStream] = useState(false);
+            const [apiUrl, setApiUrl] = useState(API_BASE);
+            const [showSettings, setShowSettings] = useState(false);
+
+            const chatAreaRef = useRef(null);
+            const inputRef = useRef(null);
+
+            // Auto-scroll to bottom when new messages arrive
+            useEffect(() => {
+                if (chatAreaRef.current) {
+                    chatAreaRef.current.scrollTop = chatAreaRef.current.scrollHeight;
+                }
+            }, [messages]);
+
+            // Health check on mount
+            useEffect(() => {
+                const check = async () => {
+                    const online = await healthCheck();
+                    setIsOnline(online);
+                };
+                check();
+                const interval = setInterval(check, 10000);
+                return () => clearInterval(interval);
+            }, []);
+
+            const handleSend = useCallback(async () => {
+                const msg = input.trim();
+                if (!msg || isLoading) return;
+
+                setInput('');
+                setIsLoading(true);
+
+                // Add user message
+                const userMsg = { role: 'user', content: msg };
+                setMessages(prev => [...prev, userMsg]);
+
+                try {
+                    if (useStream) {
+                        // Streaming mode
+                        let streamContent = '';
+                        let streamSteps = [];
+
+                        setMessages(prev => [...prev, {
+                            role: 'assistant',
+                            content: '',
+                            thinkingSteps: [],
+                            isStreaming: true,
+                        }]);
+
+                        streamChat(msg, sessionId, (event) => {
+                            if (event.type === 'step') {
+                                streamSteps = [...streamSteps, event.data];
+                                setMessages(prev => {
+                                    const newMsgs = [...prev];
+                                    const last = newMsgs[newMsgs.length - 1];
+                                    newMsgs[newMsgs.length - 1] = {
+                                        ...last,
+                                        thinkingSteps: streamSteps,
+                                    };
+                                    return newMsgs;
+                                });
+                            } else if (event.type === 'message') {
+                                streamContent += event.data.content || '';
+                                setMessages(prev => {
+                                    const newMsgs = [...prev];
+                                    newMsgs[newMsgs.length - 1] = {
+                                        ...newMsgs[newMsgs.length - 1],
+                                        content: streamContent,
+                                    };
+                                    return newMsgs;
+                                });
+                            } else if (event.type === 'done') {
+                                setIsLoading(false);
+                                if (event.data.session_id) {
+                                    setSessionId(event.data.session_id);
+                                }
+                            } else if (event.type === 'error') {
+                                setIsLoading(false);
+                                setMessages(prev => {
+                                    const newMsgs = [...prev];
+                                    newMsgs[newMsgs.length - 1] = {
+                                        ...newMsgs[newMsgs.length - 1],
+                                        content: streamContent || 'Connection error',
+                                    };
+                                    return newMsgs;
+                                });
+                            }
+                        });
+                    } else {
+                        // Non-streaming mode
+                        const result = await chatAPI(msg, sessionId, useTools);
+
+                        if (result.session_id) {
+                            setSessionId(result.session_id);
+                        }
+
+                        const agentMsg = {
+                            role: 'assistant',
+                            content: result.message,
+                            thinkingSteps: result.thinking_steps || [],
+                            toolCalls: result.tool_calls || [],
+                        };
+
+                        setMessages(prev => [...prev, agentMsg]);
+                        setIsLoading(false);
+                    }
+                } catch (err) {
+                    const errorMsg = {
+                        role: 'assistant',
+                        content: 'Error: ' + err.message + '. Make sure the FastAPI server is running.',
+                        thinkingSteps: [{ type: 'error', content: err.message }],
+                    };
+                    setMessages(prev => [...prev, errorMsg]);
+                    setIsLoading(false);
+                }
+            }, [input, isLoading, sessionId, useTools, useStream]);
+
+            const handleKeyDown = (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSend();
+                }
+            };
+
+            const clearChat = () => {
+                setMessages([]);
+                setSessionId(null);
+            };
+
+            return (
+                <div className="app-container">
+                    {/* Header */}
+                    <div className="header">
+                        <h1>Agent Thinking Process</h1>
+                        <div className="subtitle">
+                            Watch the agent think, use tools, and reason step by step
+                        </div>
+                    </div>
+
+                    {/* Status bar */}
+                    <div className="status-bar">
+                        <span className={`status-dot ${isOnline ? (isLoading ? 'thinking' : '') : 'offline'}`} />
+                        <span>
+                            {isOnline
+                                ? (isLoading ? 'Thinking...' : 'Connected')
+                                : 'Offline - Start server: python day4_fastapi_agent.py --serve'
+                            }
+                        </span>
+                        <span style={{ flex: 1 }} />
+                        {sessionId && (
+                            <span style={{ fontSize: '12px', color: '#64748b' }}>
+                                Session: {sessionId}
+                            </span>
+                        )}
+                        <button className="clear-btn" onClick={() => setShowSettings(!showSettings)}>
+                            Settings
+                        </button>
+                        <button className="clear-btn" onClick={clearChat}>Clear</button>
+                    </div>
+
+                    {/* Settings */}
+                    {showSettings && (
+                        <div className="settings-panel">
+                            <div className="settings-row">
+                                <label>API URL:</label>
+                                <input
+                                    value={apiUrl}
+                                    onChange={(e) => setApiUrl(e.target.value)}
+                                    placeholder="http://localhost:8000"
+                                />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Chat area */}
+                    <div className="chat-area" ref={chatAreaRef}>
+                        {messages.length === 0 ? (
+                            <EmptyState />
+                        ) : (
+                            messages.map((msg, i) => (
+                                <ChatMessage key={i} message={msg} />
+                            ))
+                        )}
+                        {isLoading && !useStream && (
+                            <div className="message assistant">
+                                <div className="role-label">Agent</div>
+                                <div className="bubble">
+                                    <span className="loading-dots">Thinking</span>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Input area */}
+                    <div className="input-area">
+                        <div className="input-row">
+                            <input
+                                ref={inputRef}
+                                className="input-field"
+                                value={input}
+                                onChange={(e) => setInput(e.target.value)}
+                                onKeyDown={handleKeyDown}
+                                placeholder="Ask the agent something..."
+                                disabled={isLoading}
+                            />
+                            <button
+                                className="send-btn"
+                                onClick={handleSend}
+                                disabled={isLoading || !input.trim()}
+                            >
+                                Send
+                            </button>
+                        </div>
+                        <div className="input-options">
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={useTools}
+                                    onChange={(e) => setUseTools(e.target.checked)}
+                                />
+                                Enable Tools
+                            </label>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={useStream}
+                                    onChange={(e) => setUseStream(e.target.checked)}
+                                />
+                                Stream Mode (SSE)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        // ============================================================
+        // Mount App
+        // ============================================================
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Streaming Chat - Day 4</title>
+    <!--
+    Day 4: 前端流式输出 — 接入 SSE，实现打字机效果
+
+    在 Day 3 基础上升级：
+    - Day 3: fetch → 等待完整响应 → 显示
+    - Day 4: fetch → ReadableStream → 逐字显示
+
+    两种方案:
+    1. EventSource (原生 SSE)       — 只支持 GET，简单但有限制
+    2. fetch + ReadableStream       — 支持 POST，更灵活（本文件用这个）
+
+    前置条件:
+    - 启动后端: python day2_sse_streaming.py (默认端口 8000)
+    - 直接在浏览器打开这个 HTML 文件
+
+    知识点:
+    - fetch streaming (ReadableStream API)
+    - SSE event parsing
+    - React state updates during streaming
+    -->
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #e2e8f0;
+        }
+
+        .chat-container {
+            width: 750px;
+            height: 90vh;
+            background: #1e293b;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            padding: 16px 20px;
+            background: #0f172a;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h1 { font-size: 18px; font-weight: 600; }
+        .chat-header .badge {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            background: #22c55e;
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            line-height: 1.7;
+            font-size: 14px;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: #3b82f6;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.assistant {
+            align-self: flex-start;
+            background: #334155;
+            color: #e2e8f0;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.error {
+            align-self: center;
+            background: #7f1d1d;
+            color: #fca5a5;
+            font-size: 13px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 16px;
+            background: #3b82f6;
+            margin-left: 2px;
+            vertical-align: text-bottom;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .sources-bar {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #475569;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .source-chip {
+            display: inline-block;
+            margin: 3px 4px 3px 0;
+            padding: 3px 8px;
+            background: #475569;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+
+        .meta {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 6px;
+        }
+
+        .input-area {
+            padding: 16px 20px;
+            border-top: 1px solid #334155;
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-area input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            background: #0f172a;
+            color: #e2e8f0;
+            transition: border-color 0.2s;
+        }
+
+        .input-area input:focus { border-color: #3b82f6; }
+        .input-area input:disabled { opacity: 0.5; }
+
+        .input-area button {
+            padding: 12px 24px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+            min-width: 80px;
+        }
+
+        .input-area button:hover { background: #2563eb; }
+        .input-area button:disabled { background: #1e40af; opacity: 0.5; cursor: not-allowed; }
+        .input-area button.stop { background: #ef4444; }
+        .input-area button.stop:hover { background: #dc2626; }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 8px 0;
+        }
+
+        .typing-indicator span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #64748b;
+            animation: typing-bounce 1.4s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing-bounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-6px); }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const API_BASE = "http://localhost:8000";
+
+        // ============================================================
+        // SSE Parser — parse Server-Sent Events from a text stream
+        //
+        // SSE format:
+        //   event: token\n
+        //   data: {"content": "hello"}\n
+        //   \n
+        //
+        // This is what the browser's EventSource does internally,
+        // but we need a manual parser because EventSource only
+        // supports GET requests, and our /ask/stream is POST.
+        // ============================================================
+
+        function parseSSEEvents(text) {
+            /**
+             * Parse raw SSE text into structured events.
+             * Handles buffered/partial data from ReadableStream.
+             */
+            const events = [];
+            const lines = text.split("\n");
+            let currentEvent = { type: null, data: null };
+
+            for (const line of lines) {
+                if (line.startsWith("event: ")) {
+                    currentEvent.type = line.slice(7).trim();
+                } else if (line.startsWith("data: ")) {
+                    currentEvent.data = line.slice(6);
+                } else if (line === "" && currentEvent.type && currentEvent.data) {
+                    // Empty line = end of event
+                    try {
+                        events.push({
+                            type: currentEvent.type,
+                            data: JSON.parse(currentEvent.data),
+                        });
+                    } catch (e) {
+                        console.warn("Failed to parse SSE data:", currentEvent.data);
+                    }
+                    currentEvent = { type: null, data: null };
+                }
+            }
+
+            return events;
+        }
+
+        // ============================================================
+        // Streaming fetch — the core of this lesson
+        //
+        // Regular fetch:
+        //   const data = await fetch(url).then(r => r.json());
+        //
+        // Streaming fetch:
+        //   const reader = (await fetch(url)).body.getReader();
+        //   while (true) {
+        //     const { done, value } = await reader.read();
+        //     if (done) break;
+        //     // process chunk
+        //   }
+        // ============================================================
+
+        async function fetchStream(question, onEvent, signal) {
+            /**
+             * Fetch streaming SSE response from the backend.
+             *
+             * @param question - The user's question
+             * @param onEvent  - Callback for each SSE event: (type, data) => void
+             * @param signal   - AbortController signal to cancel the stream
+             */
+            const response = await fetch(`${API_BASE}/ask/stream`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ question }),
+                signal,
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+
+            // Get a ReadableStream reader
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let buffer = "";
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                // Decode the binary chunk to text and add to buffer
+                buffer += decoder.decode(value, { stream: true });
+
+                // Try to parse complete SSE events from the buffer
+                // SSE events end with \n\n, so we look for that boundary
+                const lastDoubleNewline = buffer.lastIndexOf("\n\n");
+                if (lastDoubleNewline === -1) continue;
+
+                // Parse the complete portion
+                const complete = buffer.slice(0, lastDoubleNewline + 2);
+                buffer = buffer.slice(lastDoubleNewline + 2);
+
+                const events = parseSSEEvents(complete);
+                for (const event of events) {
+                    onEvent(event.type, event.data);
+                }
+            }
+
+            // Parse any remaining buffer
+            if (buffer.trim()) {
+                const events = parseSSEEvents(buffer);
+                for (const event of events) {
+                    onEvent(event.type, event.data);
+                }
+            }
+        }
+
+        // ============================================================
+        // Alternative: Use the demo endpoint (GET) with EventSource
+        // ============================================================
+
+        function fetchStreamDemo(onEvent) {
+            /**
+             * Use native EventSource for the GET /ask/demo endpoint.
+             * Simpler but only works with GET requests.
+             */
+            return new Promise((resolve, reject) => {
+                const es = new EventSource(`${API_BASE}/ask/demo`);
+
+                es.addEventListener("sources", (e) => {
+                    onEvent("sources", JSON.parse(e.data));
+                });
+
+                es.addEventListener("token", (e) => {
+                    onEvent("token", JSON.parse(e.data));
+                });
+
+                es.addEventListener("done", (e) => {
+                    onEvent("done", JSON.parse(e.data));
+                    es.close();
+                    resolve();
+                });
+
+                es.addEventListener("error", (e) => {
+                    es.close();
+                    reject(new Error("EventSource error"));
+                });
+            });
+        }
+
+        // ============================================================
+        // Chat Message Component (with streaming cursor)
+        // ============================================================
+
+        function ChatMessage({ message, isStreaming }) {
+            return (
+                <div className={`message ${message.role}`}>
+                    <div>
+                        {message.content}
+                        {isStreaming && <span className="cursor" />}
+                    </div>
+
+                    {message.sources && message.sources.length > 0 && (
+                        <div className="sources-bar">
+                            <strong>Sources:</strong>
+                            {message.sources.map((src, i) => (
+                                <span key={i} className="source-chip">
+                                    {src.source} ({src.score})
+                                </span>
+                            ))}
+                        </div>
+                    )}
+
+                    {message.meta && <div className="meta">{message.meta}</div>}
+                </div>
+            );
+        }
+
+        // ============================================================
+        // Main App Component
+        // ============================================================
+
+        function App() {
+            const [messages, setMessages] = React.useState([]);
+            const [input, setInput] = React.useState("");
+            const [streaming, setStreaming] = React.useState(false);
+            const [abortController, setAbortController] = React.useState(null);
+            const messagesEndRef = React.useRef(null);
+
+            React.useEffect(() => {
+                messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+            }, [messages]);
+
+            const handleSend = async (question) => {
+                const q = question || input.trim();
+                if (!q || streaming) return;
+
+                // Add user message
+                setMessages((prev) => [...prev, { role: "user", content: q }]);
+                setInput("");
+                setStreaming(true);
+
+                // Create AbortController so user can stop the stream
+                const controller = new AbortController();
+                setAbortController(controller);
+
+                // Track streaming state for the assistant message
+                let streamedContent = "";
+                let sources = [];
+                const startTime = Date.now();
+
+                // Add an empty assistant message that we'll update as tokens arrive
+                const assistantIndex = messages.length + 1; // +1 for user msg just added
+                setMessages((prev) => [
+                    ...prev,
+                    { role: "assistant", content: "", sources: [], streaming: true },
+                ]);
+
+                try {
+                    await fetchStream(
+                        q,
+                        (type, data) => {
+                            switch (type) {
+                                case "sources":
+                                    sources = data.sources;
+                                    // Update the assistant message with sources
+                                    setMessages((prev) => {
+                                        const updated = [...prev];
+                                        const last = updated[updated.length - 1];
+                                        updated[updated.length - 1] = { ...last, sources };
+                                        return updated;
+                                    });
+                                    break;
+
+                                case "token":
+                                    streamedContent += data.content;
+                                    // Update the assistant message content progressively
+                                    setMessages((prev) => {
+                                        const updated = [...prev];
+                                        const last = updated[updated.length - 1];
+                                        updated[updated.length - 1] = {
+                                            ...last,
+                                            content: streamedContent,
+                                        };
+                                        return updated;
+                                    });
+                                    break;
+
+                                case "done":
+                                    const elapsed = Date.now() - startTime;
+                                    // Finalize the message with metadata
+                                    setMessages((prev) => {
+                                        const updated = [...prev];
+                                        const last = updated[updated.length - 1];
+                                        updated[updated.length - 1] = {
+                                            ...last,
+                                            streaming: false,
+                                            meta: `${elapsed}ms | ${data.token_count} tokens`,
+                                        };
+                                        return updated;
+                                    });
+                                    break;
+
+                                case "error":
+                                    setMessages((prev) => [
+                                        ...prev,
+                                        { role: "error", content: data.message },
+                                    ]);
+                                    break;
+                            }
+                        },
+                        controller.signal
+                    );
+                } catch (err) {
+                    if (err.name === "AbortError") {
+                        // User cancelled — finalize message with what we have
+                        setMessages((prev) => {
+                            const updated = [...prev];
+                            const last = updated[updated.length - 1];
+                            updated[updated.length - 1] = {
+                                ...last,
+                                streaming: false,
+                                meta: "[Cancelled by user]",
+                            };
+                            return updated;
+                        });
+                    } else {
+                        setMessages((prev) => [
+                            ...prev,
+                            { role: "error", content: `Stream error: ${err.message}` },
+                        ]);
+                    }
+                } finally {
+                    setStreaming(false);
+                    setAbortController(null);
+                }
+            };
+
+            // Stop button handler
+            const handleStop = () => {
+                if (abortController) {
+                    abortController.abort();
+                }
+            };
+
+            const handleKeyDown = (e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSend();
+                }
+            };
+
+            return (
+                <div className="chat-container">
+                    <div className="chat-header">
+                        <h1>RAG Streaming Chat</h1>
+                        <span className="badge">SSE</span>
+                    </div>
+
+                    <div className="messages">
+                        {messages.length === 0 && (
+                            <div style={{ textAlign: "center", color: "#64748b", padding: "40px" }}>
+                                <h2 style={{ marginBottom: 8 }}>Streaming RAG Chat</h2>
+                                <p>Responses stream in real-time, just like ChatGPT</p>
+                                <p style={{ marginTop: 12, fontSize: 12 }}>
+                                    Backend: python day2_sse_streaming.py
+                                </p>
+                            </div>
+                        )}
+
+                        {messages.map((msg, i) => (
+                            <ChatMessage
+                                key={i}
+                                message={msg}
+                                isStreaming={msg.streaming}
+                            />
+                        ))}
+
+                        <div ref={messagesEndRef} />
+                    </div>
+
+                    <div className="input-area">
+                        <input
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                            placeholder="Ask a question..."
+                            disabled={streaming}
+                        />
+                        {streaming ? (
+                            <button className="stop" onClick={handleStop}>
+                                Stop
+                            </button>
+                        ) : (
+                            <button
+                                onClick={() => handleSend()}
+                                disabled={!input.trim()}
+                            >
+                                Send
+                            </button>
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<App />);
+    </script>
+
+    <!--
+    ============================================================
+    练习题
+    ============================================================
+
+    TODO 1: 添加 "Use Demo" 按钮
+    调用 fetchStreamDemo() 而不是 fetchStream()
+    这样不需要 Ollama 也能测试流式效果
+
+    TODO 2: 添加 token 速度显示
+    在流式过程中，实时显示 tokens/sec
+    提示: 记录 startTime 和 tokenCount，每次 token 事件更新
+
+    TODO 3: 实现自动重连
+    如果流式连接中断，自动重试（最多 3 次）
+    提示: 用 try/catch + retry counter
+
+    TODO 4: 添加 Markdown 实时渲染
+    流式输出的同时渲染 Markdown（代码高亮、列表等）
+    推荐: marked.js + 自定义 renderer
+    注意: 流式中 Markdown 可能不完整，需要容错处理
+    -->
+</body>
+</html>
