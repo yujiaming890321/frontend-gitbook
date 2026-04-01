@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """
 Day 3: 类与面向对象 — class、__init__、继承、dataclass
 AI 开发中常用：定义数据结构、封装 API 客户端、构建 Agent 状态
@@ -263,18 +265,85 @@ print("=" * 50)
 # - 方法 to_api_format(): 返回 [{"role": ..., "content": ...}, ...]
 # - property token_estimate: 粗略估算 token 数（中文 1 字 ≈ 2 tokens）
 
-# @dataclass
-# class Conversation:
-#     ???
+@dataclass
+class Conversation:
+    messages: list[ChatMessage]
+    model: str = "qwen2.5:7b"
+
+    def add_message(self, role: str, content: str) -> None:
+        self.messages.append(ChatMessage(role, content))
+
+    def to_api_format(self) -> list[dict]:
+        return  [message.to_dict() for message in self.messages]
+
+    @property
+    def token_estimate(self) -> int:
+        return sum(len(message.content) * 2 for message in self.messages)
+
+conversation = Conversation(messages=[])
+conversation.add_message("user", "你好")
+print(f"len:{len(conversation.messages)}")
+print(f"to_api_format:{conversation.to_api_format()}")
+print(f"token_estimate:{conversation.token_estimate}")
 
 # TODO 2: 继承 BaseLLMClient，实现一个 GroqClient
 # base_url = "https://api.groq.com/openai/v1"
 # 默认 model = "llama-3.1-8b-instant"
 # 需要 api_key 参数
 
-# class GroqClient(BaseLLMClient):
-#     ???
+class GroqClient(BaseLLMClient):
+    def __init__(self, api_key: str, model: str = "llama-3.1-8b-instant", base_url: str = "https://api.groq.com/openai/v1"):
+        super().__init__(model, base_url)
+        self.api_key = api_key
+
+    def chat(self, messages: list[dict]) -> str:
+        request = self._format_request(messages)
+        # Simulate API call
+        return f"[GroqClient/{self.model}] 模拟回复: 收到 {len(messages)} 条消息"
+
+groqClient = GroqClient(api_key="fake-key")
+print(groqClient.chat(conversation.to_api_format()))
 
 # TODO 3: 给 SearchResults 添加一个 top(n) 方法
 # 假设 Document 有一个 score 字段，返回分数最高的 n 个结果
 # 提示：可以用 sorted() + lambda
+
+@dataclass
+class DemoSearchResults:
+    """Container for search results with Python magic methods"""
+    results: list[Document] = field(default_factory=list)
+
+    def __len__(self) -> int:
+        """Enable len(results) — like JS: results.length"""
+        return len(self.results)
+
+    def __getitem__(self, index):
+        """Enable results[0] — like JS array indexing"""
+        return self.results[index]
+
+    def __iter__(self):
+        """Enable for doc in results — like JS Symbol.iterator"""
+        return iter(self.results)
+
+    def __contains__(self, source: str) -> bool:
+        """Enable 'file.md' in results — membership test"""
+        return any(doc.source == source for doc in self.results)
+
+    def top(self, n: int) -> list[Document]:
+        return sorted(self.results, key=lambda x: x.score, reverse=True)[:n]
+
+# Demo: DemoSearchResults.top(n)
+doc_a = Document("RAG 是检索增强生成技术", "rag.md")
+doc_a.score = 0.95
+doc_b = Document("Fine-tuning 是模型微调", "finetune.md")
+doc_b.score = 0.72
+doc_c = Document("Prompt Engineering 提示词工程", "prompt.md")
+doc_c.score = 0.88
+doc_d = Document("Agent 是自主决策的 AI 系统", "agent.md")
+doc_d.score = 0.91
+
+demo_results = DemoSearchResults(results=[doc_a, doc_b, doc_c, doc_d])
+print("\n--- DemoSearchResults.top(n) ---")
+print(f"共 {len(demo_results)} 条结果，取 top 2:")
+for doc in demo_results.top(2):
+    print(f"  score={doc.score}  source={doc.source}  preview={doc.preview(20)}")

@@ -215,6 +215,7 @@ print(config)
 ### basic function
 
 ```python
+# list[dict] 兼容
 from __future__ import annotations
 def basic_function(str: str, *array) -> list[dict]:
 ```
@@ -262,4 +263,90 @@ documents = zip(titles, relevance) # [("RAG 入门",0.85), ("Agent 实战", 0.92
 
 ```python
 sorted(可迭代对象, key=排序依据, reverse=是否倒序)
+```
+
+## Object
+
+### class & extends
+
+```python
+class BaseLLMClient:
+    def __init__(self, model: str, base_url: str):
+        self.model = model
+        self.base_url = base_url
+
+    def chat(self, messages: list[dict]) -> str:
+        raise NotImplementedError("Subclass must implement chat()")
+
+    def _format_request(self, messages: list[dict]) -> dict:
+        return {
+            "model": self.model,
+            "messages": messages,
+        }
+
+class OllamaClient(BaseLLMClient):
+    def __init__(self, model: str = "qwen2.5:7b"):
+        super().__init__(model, "http://localhost:11434/v1")
+
+    def chat(self, messages: list[dict]) -> str:
+        request = self._format_request(messages)
+        # Simulate API call
+        return f"[Ollama/{self.model}] 模拟回复: 收到 {len(messages)} 条消息"
+
+client = OllamaClient()
+messages = [{"role": "user", "content": "你好"}]
+print(client.chat(messages))
+```
+
+### dataclass & Magic Methods / Dunder Methods
+
+```python
+from dataclasses import dataclass, field
+
+@dataclass
+class LLMConfig:
+    model: str = "qwen2.5:7b"
+    temperature: float = 0.7
+    max_tokens: int = 1000
+    stream: bool = False
+    stop_sequences: list[str] = field(default_factory=list)
+
+# 不需要写 __init__，自动生成！
+config1 = LLMConfig()
+config2 = LLMConfig(model="deepseek-chat", temperature=0.3)
+print(config1)
+print(config2)
+print(f"config1 == config2: {config1 == config2}")  # 自动生成 __eq__
+
+@dataclass
+class SearchResults:
+    """Container for search results with Python magic methods"""
+    results: list[Document] = field(default_factory=list)
+
+    def __len__(self) -> int:
+        """Enable len(results) — like JS: results.length"""
+        return len(self.results)
+
+    def __getitem__(self, index):
+        """Enable results[0] — like JS array indexing"""
+        return self.results[index]
+
+    def __iter__(self):
+        """Enable for doc in results — like JS Symbol.iterator"""
+        return iter(self.results)
+
+    def __contains__(self, source: str) -> bool:
+        """Enable 'file.md' in results — membership test"""
+        return any(doc.source == source for doc in self.results)
+
+# 使用起来像内置类型一样自然
+results = SearchResults(results=[
+    Document("内容1", "doc1.md"),
+    Document("内容2", "doc2.md"),
+    Document("内容3", "doc3.md"),
+])
+
+print(f"结果数量: {len(results)}")
+print(f"第一个: {results[0]}")
+print(f"包含 doc2.md: {'doc2.md' in results}")
 ```
