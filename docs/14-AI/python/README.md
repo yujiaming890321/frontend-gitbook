@@ -209,3 +209,57 @@ overrides = {"temperature": 0.3, "model": "qwen2.5:7b"}
 config = {**defaults,**overrides}  # JS: {...defaults, ...overrides}
 print(config)
 ```
+
+## Function (JS: Fucntion)
+
+### basic function
+
+```python
+from __future__ import annotations
+def basic_function(str: str, *array) -> list[dict]:
+```
+
+### lambda （JS 匿名函数）
+
+```python
+# 这两个完全等价
+lambda x: x * 2          # Python lambda
+# (x) => x * 2           // JS 箭头函数
+```
+
+### Decorator
+
+```python
+def decorator_function(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        # example(1, 2, name="Alice", age=30)
+        # args   = (1, 2)
+        # kwargs = {"name": "Alice", "age": 30}
+        result = func(*args, **kwargs)
+        print(f"Calling {func.__name__}({args})")
+        return result
+    return wrapper
+
+@decorator_function
+def basic_function(a: int, b: int) -> int: return a + b
+```
+
+### zip （JS: generator)
+
+```python
+titles = ["RAG 入门", "Agent 实战", "Prompt 技巧", "LLM 基础", "向量数据库"]
+relevance = [0.85, 0.92, 0.78, 0.95, 0.65]
+documents = zip(titles, relevance) # [("RAG 入门",0.85), ("Agent 实战", 0.92), ("Prompt 技巧",0.78),("LLM 基础", 0.95), ("向量数据库", 0.65)]
+#   for title, score in documents:
+#       print(title, score)       # ✅ 第一次遍历正常
+#   for title, score in documents:
+#       print(title, score)       # ❌ 第二次什么都不会输出，已经耗尽了
+#   如果需要多次使用，先转成 list：documents = list(zip(titles, relevance))。
+```
+
+### sorted
+
+```python
+sorted(可迭代对象, key=排序依据, reverse=是否倒序)
+```

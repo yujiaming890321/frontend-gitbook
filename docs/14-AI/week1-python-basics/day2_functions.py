@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """
 Day 2: 函数 — *args / **kwargs、lambda、装饰器
 AI 开发中常用：封装 API 调用、配置传递、日志/重试装饰器
@@ -207,15 +209,15 @@ print(build_messages("你是助手", "你好", "帮我写代码"))
 # add(1, 2)  → 打印: "Calling add(1, 2)" 然后返回 3
 
 def log_call(func):
-    @functiontools.wraps(func)
+    @functools.wraps(func)
     def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
-        print(f"Calling {func.__name__}({args}, {kwargs})")
+        print(f"Calling {func.__name__}({args})")
         return result
     return wrapper
 
 @log_call
-def add(a, b):
+def add(a: int, b: int) -> int:
     return a + b
 print(add(1, 2))
 
@@ -223,5 +225,11 @@ print(add(1, 2))
 # 然后只返回分数 > 0.8 的文档标题
 titles = ["RAG 入门", "Agent 实战", "Prompt 技巧", "LLM 基础", "向量数据库"]
 relevance = [0.85, 0.92, 0.78, 0.95, 0.65]
-# top_titles = ???
-# print(top_titles)  # ["向量数据库", "Agent 实战", "RAG 入门"] 不对，应该是分数>0.8的
+
+# top_titles = [title for title, score in zip(titles, relevance) if score > 0.8]
+# print(top_titles)  # ['RAG 入门', 'Agent 实战', 'LLM 基础']
+documents = zip(titles, relevance)
+sorted_documents = sorted(documents, key=lambda doc: doc[1], reverse=True)
+top_titles = [title for title, score in sorted_documents if score > 0.8]
+print(top_titles)  # ['LLM 基础', 'Agent 实战', 'RAG 入门']
+
